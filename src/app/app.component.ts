@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
     </h1>
     <router-outlet></router-outlet>
   `,
-  styles: []
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'app';
