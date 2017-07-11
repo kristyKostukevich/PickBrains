@@ -1,0 +1,32 @@
+<ul class="accordion" [ngClass]="{'d' : true }">
+    <button (click)="toggle(0)" >First item</button>
+    <li id="one" class="files">
+        <ul class="sub-menu" [ngClass]="{'d' : true }">
+            <li> Category 1</li>
+            <li> Category 2</li>
+            <li> Category 3</li>
+        </ul>
+    </li>
+    <button (click)="toggle(1)" >Second item</button>
+    <li id="second" class="lol">
+        <ul class="sub-menu" [ngClass]="{'accordion-item-expanded' : indexVisible == 1}">
+            <li>  1</li>
+            <li>  2</li>
+            <li>  3</li>
+        </ul>
+    </li>
+</ul>
+
+<div>
+    <h2 [ngClass]="1==1?'red':'blue'">Hello {{name}}</h2>
+</div>
+
+<style type="text/css">
+    .red {
+        color: red;
+    }
+
+    .blue {
+        color: blue;
+    }
+</style>

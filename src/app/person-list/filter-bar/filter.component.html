@@ -1,0 +1,106 @@
+<div class="div-filter">
+    <md-tab-group class="filter" fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="center start">
+        <md-tab label="Person">
+            <md-list>
+                <md-list-item>
+                    <md-icon mdSuffix>location_on</md-icon>
+                    <md-select placeholder="Location">
+                        <md-option *ngFor="let elem of arrayOfElem" [value]="elem.id">
+                            {{elem.name}}
+                        </md-option>
+                    </md-select>
+                </md-list-item>
+                <md-list-item>
+                    <md-icon mdSuffix>star</md-icon>
+                    <md-select placeholder="Primary skill">
+                        <md-option *ngFor="let elem of arrayOfElem" [value]="elem.id">
+                            {{elem.id}}                        </md-option>
+                    </md-select>
+                </md-list-item>
+                <md-list-item>
+                    <md-icon mdSuffix>attach_money</md-icon>
+                    <md-select placeholder="Salary">
+                        <md-option *ngFor="let elem of arrayOfElem" [value]="elem.id">
+                            {{elem.items[0]}}
+                        </md-option>
+                    </md-select>
+                </md-list-item>
+                <md-list-item>
+                    <md-icon mdSuffix>language</md-icon>
+                    <md-select placeholder="English level">
+                        <md-option *ngFor="let elem of arrayOfElem" [value]="elem.id">
+                            {{elem.items[0]}}
+                        </md-option>
+                    </md-select>
+                </md-list-item>
+                <md-list-item>
+                    <md-icon mdSuffix>done</md-icon>
+                    <md-select placeholder="Status">
+                        <md-option *ngFor="let elem of arrayOfElem" [value]="elem.id">
+                            {{elem.items[0]}}
+                        </md-option>
+                    </md-select>
+                </md-list-item>
+                <md-list-item>
+                    <md-icon mdSuffix>work</md-icon>
+                    <md-select placeholder="Work experience">
+                        <md-option *ngFor="let elem of arrayOfElem" [value]="elem.id">
+                            {{elem.items[0]}}
+                        </md-option>
+                    </md-select>
+                </md-list-item>
+            </md-list>
+        </md-tab>
+        <md-tab label="Vacancy">
+            <md-list>
+                <md-list-item>
+                    <md-select placeholder="Categories">
+                        <md-option *ngFor="let elem of arrayOfElem" [value]="elem.id">
+                            {{elem.name}}
+                        </md-option>
+                    </md-select>
+                </md-list-item>
+                <md-list-item>
+                    <md-select placeholder="Categories">
+                        <md-option *ngFor="let elem of arrayOfElem" [value]="elem.id">
+                            {{elem.name}}
+                        </md-option>
+                    </md-select>
+                </md-list-item>
+                <md-list-item>
+                    <md-select placeholder="Categories">
+                        <md-option *ngFor="let elem of arrayOfElem" [value]="elem.id">
+                            {{elem.name}}
+                        </md-option>
+                    </md-select>
+                </md-list-item>
+            </md-list>
+        </md-tab>
+        <md-tab label="History">
+            <md-list>
+                <md-list-item>
+                    <md-select placeholder="Categories">
+                        <md-option *ngFor="let elem of arrayOfElem" [value]="elem.id">
+                            {{elem.name}}
+                        </md-option>
+                    </md-select>
+                </md-list-item>
+                <md-list-item>
+                    <md-select placeholder="Categories">
+                        <md-option *ngFor="let elem of arrayOfElem" [value]="elem.id">
+                            {{elem.name}}
+                        </md-option>
+                    </md-select>
+                </md-list-item>
+                <md-list-item>
+                    <md-select placeholder="Categories">
+                        <md-option *ngFor="let elem of arrayOfElem" [value]="elem.id">
+                            {{elem.name}}
+                        </md-option>
+                    </md-select>
+                </md-list-item>
+            </md-list>
+        </md-tab>
+    </md-tab-group>
+</div>
+
