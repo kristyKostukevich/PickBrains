@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayout.xs="column">
-    <filter-component></filter-component>
+    <person-page-filter></person-page-filter>
     <div fxLayout="column" fxLayout.xs="column">
         <global-search></global-search>
-        <line-elements></line-elements>
+        <person-page-list [personList]="persons"></person-page-list>
     </div>
 </div>
