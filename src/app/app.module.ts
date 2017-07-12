@@ -26,9 +26,7 @@ import { PersonPageModule } from './person-list/person-list-component/person-lis
   declarations: [
     AppComponent,
   ],
-  exports: [MaterialModule],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule { }

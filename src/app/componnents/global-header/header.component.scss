@@ -1,0 +1,31 @@
+.header-logo {
+  margin-left: 2%;
+  margin-top: 0.1%;
+  height: 90%;
+  width: 8%;
+}
+
+.header {
+  z-index: 9999;
+  display: inline-block;
+  width: 100%;
+  height: 64px;
+  background-color: #3f51b5;
+  border: 1px solid rgba(0, 0, 0, .03);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
+}
+
+.nameOfUser {
+  font-family: Roboto;
+  color: #FFFFFF;
+  font-size: 13px;
+  float: right;
+  margin-top: 1.7%;
+  margin-right: 0.2%;
+}
+
+.personIcon {
+  float: right;
+  margin-top: 1.3%;
+  margin: 3%;
+}
