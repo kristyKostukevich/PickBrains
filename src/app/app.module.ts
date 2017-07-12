@@ -5,14 +5,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GlobalHeaderModule } from './components/global-header/header.module';
-import { TempModule } from './components/test-grid/test.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule, MdCheckboxModule, MaterialModule } from '@angular/material';
-
-import 'hammerjs';
-import { PersonListModule } from './person-list/person-list-component/person-list.module';
-
-
+import { AccordionModule } from 'ngx-accordion';
+import { PersonPageModule } from './person-list/person-list-component/person-list.module';
 
 @NgModule({
   imports: [
@@ -24,8 +20,8 @@ import { PersonListModule } from './person-list/person-list-component/person-lis
     AppRoutingModule,
     FlexLayoutModule,
     GlobalHeaderModule,
-    TempModule,
-    PersonListModule,
+    PersonPageModule,
+    AccordionModule,
   ],
   declarations: [
     AppComponent,
