@@ -4,3 +4,12 @@ body {
 }
 
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+body{
+  background-color: #F5F5F5;
+  margin: 0;
+}
+@font-face {
+  font-family: Roboto; /* Имя шрифта */
+  src: url(./assets/fonts/Roboto-Light.ttf); /* Путь к файлу со шрифтом */
+}
