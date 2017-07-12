@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'filter-component',
-  templateUrl: 'filter.component.html',
-  styleUrls: ['filter.component.scss'],
+  selector: 'person-page-filter',
+  templateUrl: 'person-page-filter.component.html',
+  styleUrls: ['person-page-filter.component.scss'],
 })
 export class FilterComponent {
   // public arrayOfElem: fieldOfFilter[] = [
@@ -18,16 +18,6 @@ export class FilterComponent {
   //   { id: 19, name: 'Magma', items: ['f', 'sdfgsd'] },
   //   { id: 20, name: 'Tornado', items: ['s', 'sdfgsd'] },
   // ];
-
-  indexVisible = null;
-  // visibility2 = '';
-  toggle(index) {
-    if (this.indexVisible === index) {
-      this.indexVisible = null;
-    } else {
-      this.indexVisible = index;
-    }
-  }
 
 }
 export class fieldOfFilter {
