@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['vacancy-detail-wrapper.component.scss'],
 })
 export class VacancyDetailWrapperComponent {
-
+  menuItems: string[] = ['General', 'Assigned candidates', 'Potential candidates', 'History'];
 }

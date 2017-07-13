@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'vacancy-detail-menu',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['vacancy-detail-menu.component.scss'],
 })
 export class VacancyDetailMenuComponent {
-  menuItems: string[] = ['General', 'Assigned candidates', 'Potential candidates', 'History'];
+  @Input() menuItems: string[];
 }
