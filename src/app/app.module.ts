@@ -1,28 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { GlobalHeaderModule } from './components/global-header/header.module';
-import { VacanciesDetailModule } from './vacancy-detail/vacancy-detail-wrapper/vacancy-detail-wrapper.module';
-import 'hammerjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdButtonModule, MdCheckboxModule, MaterialModule } from '@angular/material';
+import { PersonPageModule } from './person-list/person-list-component/person-list.module';
+import { VacanciesDetailModule } from "./vacancy-detail/vacancy-detail-wrapper/vacancy-detail-wrapper.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
   imports: [
+    MaterialModule,
+    BrowserAnimationsModule,
+    MdButtonModule,
+    MdCheckboxModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
     FlexLayoutModule,
     GlobalHeaderModule,
     VacanciesDetailModule,
+    PersonPageModule,
+  ],
+  declarations: [
+    AppComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

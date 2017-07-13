@@ -1,8 +1,17 @@
 <div class="header">
-    <div class="userItems">
-        <span class="nameOfUser">{{person}}</span>
-        <i class="material-icons md-14 md-white">expand_more</i>
-    </div>
+    <img class="header-logo" src="../assets/head-logo.png" alt="Company logo">
+    <button md-icon-button [mdMenuTriggerFor]="menu" class="menu">
+        <md-icon>expand_more</md-icon>
+    </button>
+    <md-menu #menu="mdMenu">
+        <button md-menu-item>
+           <md-icon>work</md-icon>
+            <span>Interviews</span>
+        </button>
+        <button md-menu-item>
+         <md-icon>exit_to_app</md-icon>
+            <span>Logout</span>
+        </button>
+    </md-menu>
+    <span class="nameOfUser">{{person}}</span>
 </div>
-
-

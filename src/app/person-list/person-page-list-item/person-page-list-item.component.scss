@@ -1,0 +1,34 @@
+.person-card{
+  width: 912px;
+  margin-bottom: 15px;
+  margin-left: 70px;
+  color: #000000;
+}
+.person-logo{
+  width: 60px;
+  height: 60px;
+}
+.mat-card-title,.mat-card-header .mat-card-subtitle:not(:first-child){
+  margin-left: 30px;
+}
+.primary-skill{
+  color: #000000;
+}
+.mat-card-title{
+ font-weight: bold;
+}
+.mat-card-actions, .mat-card-content, .mat-card-subtitle, .mat-card-title{
+  margin-bottom: 8px;
+}
+.mat-card-subtitle[_ngcontent-c8]{
+  margin-bottom: 0;
+}
+.adress{
+  padding-top: 20px;
+}
+.right-block{
+  height: 63px;
+}
+.status{
+  font-weight: bold;
+}
