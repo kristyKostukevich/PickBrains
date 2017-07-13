@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { GlobalHeaderModule } from './componnents/global-header/header.module';
-
+import { VacanciesDetailModule } from './vacancy-detail/vacancy-detail-wrapper/vacancy-detail-wrapper.module';
 import 'hammerjs';
 
 @NgModule({
@@ -22,6 +22,7 @@ import 'hammerjs';
     MaterialModule,
     FlexLayoutModule,
     GlobalHeaderModule,
+    VacanciesDetailModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
