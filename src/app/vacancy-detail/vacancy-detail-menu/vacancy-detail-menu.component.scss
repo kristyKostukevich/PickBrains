@@ -9,13 +9,22 @@
 }
 
 .vacancies-page-menu {
-  max-width: 252px;
+  position: fixed;
+  top: 64px;
+  width: 260px;
   box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+  transition: 0.3s;
 }
 
 .menu-item {
-  width: 252px;
+  width: 260px;
   text-align: left;
   padding: 13px 16px;
   color: #606060;
+}
+
+@media screen and (max-width: 800px) {
+  .vacancies-page-menu {
+    display: none;
+  }
 }
