@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule, MdCheckboxModule, MaterialModule } from '@angular/material';
 import { PersonPageModule } from './person-list/person-list-component/person-list.module';
 import { VacanciesDetailModule } from "./vacancy-detail/vacancy-detail-wrapper/vacancy-detail-wrapper.module";
+import { VacancyDetailMenuModule } from './vacancy-detail/vacancy-detail-menu/vacancy-detail-menu.module';
+
 
 @NgModule({
   imports: [
@@ -22,6 +24,7 @@ import { VacanciesDetailModule } from "./vacancy-detail/vacancy-detail-wrapper/v
     GlobalHeaderModule,
     VacanciesDetailModule,
     PersonPageModule,
+    VacancyDetailMenuModule,
   ],
   declarations: [
     AppComponent,

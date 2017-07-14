@@ -1,17 +1,25 @@
-<div class="header">
-    <img class="header-logo" src="../assets/head-logo.png" alt="Company logo">
-    <button md-icon-button [mdMenuTriggerFor]="menu" class="menu">
-        <md-icon>expand_more</md-icon>
-    </button>
-    <md-menu #menu="mdMenu">
-        <button md-menu-item>
-           <md-icon>work</md-icon>
-            <span>Interviews</span>
-        </button>
-        <button md-menu-item>
-         <md-icon>exit_to_app</md-icon>
-            <span>Logout</span>
-        </button>
-    </md-menu>
-    <span class="nameOfUser">{{person}}</span>
-</div>
+<header>
+    <div class="logo-items">
+        <img src="../assets/logo-brain.png" alt="Company logo">
+        <md-icon class="mobile-menu-icon">menu</md-icon>
+        <span class="logo-name">PickBrains</span>
+    </div>
+    <div class="user-items">
+        <span>{{person}}</span>
+        <div class="menu">
+            <button md-icon-button [mdMenuTriggerFor]="menu">
+                <md-icon class="user-menu-icon">expand_more</md-icon>
+            </button>
+            <md-menu #menu="mdMenu">
+                <button md-menu-item>
+                    <md-icon>work</md-icon>
+                    <span class="user-menu-items">Interviews</span>
+                </button>
+                <button md-menu-item>
+                    <md-icon>exit_to_app</md-icon>
+                    <span class="user-menu-items">Logout</span>
+                </button>
+            </md-menu>
+        </div>
+    </div>
+</header>
