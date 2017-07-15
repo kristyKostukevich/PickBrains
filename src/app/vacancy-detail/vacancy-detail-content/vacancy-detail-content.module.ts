@@ -5,6 +5,7 @@ import { VacancyDetailContentComponent } from './vacancy-detail-content.componen
 import { InputTextModule } from '../../components/input-text/input-text.module';
 import { DatepickerModule } from '../../components/datepicker/datepicker.module';
 import { InputTextAreaModule } from '../../components/input-text-area/input-text-area.module';
+import { SelectModule } from '../../components/select/select.module'
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { InputTextAreaModule } from '../../components/input-text-area/input-text
     InputTextModule,
     DatepickerModule,
     InputTextAreaModule,
+    SelectModule,
   ],
   declarations: [VacancyDetailContentComponent],
   exports: [VacancyDetailContentComponent],

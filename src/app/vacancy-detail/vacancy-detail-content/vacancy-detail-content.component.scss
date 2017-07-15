@@ -1,12 +1,28 @@
-.general {
-  width: 960px;
-  border: 1px solid rgba(0,0,0,.03);
-  box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
+form {
+  width: calc(100% - 360px);
+  border: 1px solid rgba(0, 0, 0, .03);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
   background-color: #ffffff;
+  box-sizing: border-box;
   padding: 25px;
+  //display: flex;
+  //flex-direction: column;
+  //justify-content: space-between;
+  //align-items: center;
+  position: absolute;
+  left: 310px;
+  height: 1300px;
+  margin-bottom: 30px;
 }
 
 .input-text {
   width: 300px;
 }
 
+@media screen and (max-width: 800px) {
+  form {
+    width: 95%;
+    left: 2.5%;
+    margin-bottom: 2.5%;
+  }
+}

@@ -9,6 +9,9 @@ export class VacancyDetailContentComponent {
 
   projectName: string[] = ['', 'Project Name'];
 
+  locations: string[] = ['lco1', 'loc2', 'loc3'];
+  placeholder: string = 'Location';
+
   requestDate: string[] = ['', 'Request Date'];
 
   Description: string[] = ['', 'Description'];
