@@ -1,6 +1,11 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 body {
-  font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #eeeeee;
   margin: 0;
+}
+
+html {
+  overflow: hidden;
 }
