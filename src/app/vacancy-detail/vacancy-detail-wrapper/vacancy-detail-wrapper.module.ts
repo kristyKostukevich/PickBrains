@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '@angular/material';
-import { VacancyDetailWrapperComponent } from './vacancy-detail-wrapper.component';
-import { VacancyDetailContentModule } from '../vacancy-detail-content/vacancy-detail-content.module';
+import { ListModule } from '../../components/list/list.module';
+import { VacancyDetailContentModule } from '../vacancy-detail-general/vacancy-detail-general.module';
 import { VacancyDetailMenuModule } from '../vacancy-detail-menu/vacancy-detail-menu.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { VacancyDetailWrapperComponent } from './vacancy-detail-wrapper.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule,
     VacancyDetailContentModule,
     VacancyDetailMenuModule,
-    FlexLayoutModule,
+    ListModule,
   ],
   declarations: [VacancyDetailWrapperComponent],
   exports: [VacancyDetailWrapperComponent],

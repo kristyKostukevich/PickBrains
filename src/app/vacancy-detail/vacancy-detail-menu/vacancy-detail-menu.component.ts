@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class VacancyDetailMenuComponent {
   @Input() menuItems: string[];
+  @Input() vacancyName: string;
 }

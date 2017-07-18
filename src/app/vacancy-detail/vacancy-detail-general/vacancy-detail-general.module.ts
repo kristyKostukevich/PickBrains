@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { VacancyDetailContentComponent } from './vacancy-detail-content.component';
+import { VacancyDetailContentComponent } from './vacancy-detail-general.component';
 import { InputTextModule } from '../../components/input-text/input-text.module';
-import { DatepickerModule } from '../../components/datepicker/datepicker.module';
+import { DatePickerModule } from '../../components/date-picker/date-picker.module';
 import { InputTextAreaModule } from '../../components/input-text-area/input-text-area.module';
-import { SelectModule } from '../../components/select/select.module'
+import { SelectModule } from '../../components/select/select.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FlexLayoutModule,
     InputTextModule,
-    DatepickerModule,
+    DatePickerModule,
     InputTextAreaModule,
     SelectModule,
   ],
   declarations: [VacancyDetailContentComponent],
   exports: [VacancyDetailContentComponent],
 })
-export class VacancyDetailContentModule {}
+export class VacancyDetailContentModule {
+
+}
