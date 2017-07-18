@@ -1,8 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MaterialModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MdSliderModule } from '@angular/material';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SliderComponent } from './slider.component';
 
@@ -12,9 +10,8 @@ import { SliderComponent } from './slider.component';
   ],
   imports: [
     FormsModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    MaterialModule,
+    CommonModule,
+    MdSliderModule,
   ],
   providers: [],
   exports: [SliderComponent],

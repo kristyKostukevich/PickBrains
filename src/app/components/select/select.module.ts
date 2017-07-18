@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { MdSelectModule } from '@angular/material';
 import { SelectComponent } from './select.component';
 
@@ -9,7 +9,7 @@ import { SelectComponent } from './select.component';
   ],
   imports: [
     FormsModule,
-    BrowserModule,
+    CommonModule,
     MdSelectModule,
   ],
   providers: [],
