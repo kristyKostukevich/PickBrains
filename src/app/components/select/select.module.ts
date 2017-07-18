@@ -1,10 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MaterialModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms'
+import { BrowserModule } from '@angular/platform-browser';
+import { MdSelectModule } from '@angular/material';
 import { SelectComponent } from './select.component';
-import { FormsModule } from '@angular/forms';
-
 
 @NgModule({
   declarations: [SelectComponent,
@@ -12,8 +10,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     FormsModule,
     BrowserModule,
-    BrowserAnimationsModule,
-    MaterialModule,
+    MdSelectModule,
   ],
   providers: [],
   exports: [SelectComponent],
