@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { IPersonItem } from '../person-page-list-item/person-page-list-item.component';
 
 @Component({
@@ -9,9 +8,15 @@ import { IPersonItem } from '../person-page-list-item/person-page-list-item.comp
 })
 export class PersonPageListComponent implements OnInit {
   @Input() personList: IPersonItem[];
-  currentList: IPersonItem[];
+  // currentList: IPersonItem[];
 
-  ngOnInit(): void {
-    this.currentList = this.personList;
-  }
+  ngOnInit() {
+//   this.currentList = this.personList
+}
+//
+//   ngOnChanges(changes: SimpleChanges) {
+//     if (changes['personList']) {
+//       this.currentList = this.personList;
+//     }
+//   }
 }

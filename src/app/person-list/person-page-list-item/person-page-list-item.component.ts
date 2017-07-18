@@ -1,12 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 export interface IPersonItem {
-  name: string;
-  primarySkill: string;
-  location: string;
+  eng_first_name: string;
+  eng_second_name: string;
+  ru_first_name: string;
+  ru_second_name: string;
+  skill_name: string;
+  city: string;
   status: string;
-  date: Date;
-  adress: string;
+  contact_date: Date;
+  email: string;
+  id : number;
 }
 
 @Component({

@@ -1,18 +1,20 @@
-<md-card class="person-card">
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-        <md-card-header>
-            <div md-card-avatar class="example-header-image"><img class="person-logo" src="../assets/person-logo.png">
-            </div>
-            <md-card-title>{{currentPerson.name}}</md-card-title>
-            <md-card-subtitle class="primary-skill">{{currentPerson.primarySkill}}</md-card-subtitle>
-            <md-card-subtitle class="adress">{{currentPerson.adress}}</md-card-subtitle>
-        </md-card-header>
-        <div class="right-block" fxLayout="column" fxLayoutAlign="space-between center">
-            <span class="status">{{currentPerson.status}}</span>
-            <div fxlayout="row">
-                <span class="location">{{currentPerson.location}} </span>
-                <span class="data">{{currentPerson.date.toLocaleDateString()}}</span>
+<a routerLink="/detail-vacancy">
+    <md-card class="person-card">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <md-card-header>
+                <div md-card-avatar class="example-header-image"><img class="person-logo" src="../assets/person-logo.png">
+                </div>
+                <md-card-title>{{currentPerson.eng_first_name}}</md-card-title>
+                <md-card-subtitle class="primary-skill">{{currentPerson.skill_name}}</md-card-subtitle>
+                <md-card-subtitle class="adress">{{currentPerson.email}}</md-card-subtitle>
+            </md-card-header>
+            <div class="right-block" fxLayout="column" fxLayoutAlign="space-between center">
+                <span class="status">{{currentPerson.status}}</span>
+                <div fxlayout="row">
+                    <span class="location">{{currentPerson.city}} </span>
+                    <span class="data">{{ currentPerson.contact_date | date: mediumTime}}</span>
+                </div>
             </div>
         </div>
-    </div>
-</md-card>
+    </md-card>
+</a>
