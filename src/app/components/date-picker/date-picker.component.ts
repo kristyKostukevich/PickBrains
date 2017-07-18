@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'datepicker',
-  templateUrl: 'datepicker.component.html',
+  selector: 'date-picker',
+  templateUrl: 'date-picker.component.html',
+  styleUrls: ['date-picker.component.scss'],
 })
-export class DatepickerComponent {
+export class DatePickerComponent {
   @Input() placeholder: string;
   @Input() model: string;
 
