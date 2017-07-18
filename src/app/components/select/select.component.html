@@ -1,7 +1,7 @@
 <md-select [placeholder]="placeholder"
            [ngModel]="model"
            (ngModelChange)="onModelChange($event)"
-           class="half-width">
+           class="select adaptive-components">
     <md-option *ngFor="let item of options" [value]="item">
         {{ item }}
     </md-option>
