@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PersonListComponent } from './person-list/person-list-component/person-list.component';
 import { TempComponent } from './Temp/temp.component';
 
+import 'hammerjs';
 
 const routes: Routes = [
   {

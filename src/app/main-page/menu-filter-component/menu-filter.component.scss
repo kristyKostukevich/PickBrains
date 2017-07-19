@@ -1,0 +1,28 @@
+.filter-head{
+  box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+  background-color: #ffffff;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  top: 64px;
+  transition: 0.3s;
+  width: 260px;
+  overflow: hidden;
+}
+
+.mat-tab-link {
+  min-width: 84px !important;
+}
+/deep/.mat-ink-bar {
+  display: none !important;
+}
+.mat-tab-nav-bar {
+  width: 260px;
+}
+
+@media screen and (max-width: 800px) {
+  .filter-head {
+    display: none;
+  }
+}

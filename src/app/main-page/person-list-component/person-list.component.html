@@ -1,0 +1,10 @@
+<div fxLayout="row" fxLayout.xs="column">
+    <div class="leftBar" fxLayout="column" fxLayout.xs="column">
+        <person-page-filter></person-page-filter>
+        <filter-person></filter-person>
+    </div>
+    <div fxLayout="column" fxLayout.xs="column">
+        <global-search></global-search>
+        <list [list]="listItem"></list>
+    </div>
+</div>
