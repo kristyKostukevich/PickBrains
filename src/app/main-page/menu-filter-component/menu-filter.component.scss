@@ -12,7 +12,10 @@
 }
 
 .mat-tab-link {
-  min-width: 84px !important;
+   min-width: 84px !important;
+}
+.mat-tab-link:hover {
+  background-color: #F5F5F5;
 }
 /deep/.mat-ink-bar {
   display: none !important;

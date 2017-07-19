@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FilterModule } from '../person-page-filter/person-page-filter.module';
+import { FilterModule } from '../menu-filter-component/menu-filter.module';
 import { SearchLineModule } from '../../components/general-search/search.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';

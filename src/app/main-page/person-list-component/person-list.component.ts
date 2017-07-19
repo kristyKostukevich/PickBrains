@@ -21,15 +21,12 @@ export class PersonListComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.httpService.getData().subscribe((data: Response) => {
-    //   this.persons = data.json();
-    //   console.log(this.persons);
-    // });
     this.httpService.getData({
       skip: 0
     }).then(res => {
       this.persons = res.json();
       this.listItem = new CardList(this.persons,'candidates');
+      console.log(this.persons);
     });
 
   }

@@ -17,7 +17,6 @@ export class FilterVacancyComponent implements OnInit {
   ngOnInit() {
     this.httpService.getCitiesData().then(res => {
       this.arrayOfCities = res.json();
-      console.log(this.arrayOfCities)
     });
     this.httpService.getSkillsData().then(res => {
       this.arrayOfSkills = res.json();

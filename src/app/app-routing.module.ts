@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PersonListComponent } from './person-list/person-list-component/person-list.component';
+import { PersonListComponent } from './main-page/person-list-component/person-list.component';
 import { TempComponent } from './Temp/temp.component';
 
 import 'hammerjs';
+import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy-list-component';
+import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
 
 const routes: Routes = [
   {
@@ -17,18 +19,18 @@ const routes: Routes = [
   },
   {
     path: 'vacancy-page',
-    component: PersonListComponent,
+    component: VacancyListComponent,
   },
   {
-    path: 'history',
-    component: PersonListComponent,
+    path: 'history-page',
+    component: HistoryListComponent,
   },
   {
-    path: 'detail-candidate',
+    path: 'person-page/detail-candidate/:id',
     component:TempComponent
 },
   {
-    path: 'detail-vacancy',
+    path: 'vacancy-page/detail-vacancy/:id',
     component:TempComponent
   },
 ];
