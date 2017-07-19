@@ -1,0 +1,24 @@
+<accordion>
+    <accordion-group>
+        <accordion-heading>
+            <md-icon mdSuffix>location_on</md-icon>
+            Location
+            <md-icon class="buttonMore">expand_more</md-icon>
+        </accordion-heading>
+        <ul class="sub-menu">
+            <li *ngFor="let item of arrayOfCities"  >{{item.city}}
+            </li>
+        </ul>
+    </accordion-group>
+    <accordion-group>
+        <accordion-heading>
+            <md-icon mdSuffix>star</md-icon>
+            <span>Primary skill</span>
+            <md-icon class="buttonMore">expand_more</md-icon>
+        </accordion-heading>
+        <ul class="sub-menu">
+            <li *ngFor="let item of arrayOfSkills" >{{item.skill_name}}</li>
+            <li></li>
+        </ul>
+    </accordion-group>
+</accordion>

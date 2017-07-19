@@ -5,7 +5,6 @@ import { CandidateModule } from '../candidate/candidate.module';
 import { HistoryModule } from '../history/history.module';
 import { ListComponent } from './list.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
