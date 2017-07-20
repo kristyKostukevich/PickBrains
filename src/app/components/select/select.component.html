@@ -1,8 +1,8 @@
-<md-select [placeholder]="model.placeholder"
-           [(ngModel)]="model.value"
+<md-select [placeholder]="placeholder"
+           [ngModel]="model"
            (ngModelChange)="onModelChange($event)"
            class="select adaptive-components">
-    <md-option *ngFor="let item of model.options" [value]="item">
+    <md-option *ngFor="let item of options" [value]="item">
         {{ item }}
     </md-option>
 </md-select>
