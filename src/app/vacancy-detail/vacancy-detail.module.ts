@@ -15,4 +15,4 @@ import { VacancyDetailComponent } from './vacancy-detail.component';
   declarations: [VacancyDetailComponent],
   exports: [VacancyDetailComponent],
 })
-export class VacanciesDetailModule {}
+export class VacancyDetailModule {}

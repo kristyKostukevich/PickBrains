@@ -1,209 +1,92 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CardList } from '../classes/card-list';
 import { CandidateCardItem } from '../interfaces/candidate-card-item';
 import { VacancyCardItem } from '../interfaces/vacancy-card-item';
 import { HistoryCardItem } from '../interfaces/history-card-item';
 import { GeneralPage } from '../classes/general-page';
+import { HttpService } from './vacancy-delail.service';
 
 @Component({
   selector: 'vacancy-detail',
   templateUrl: 'vacancy-detail.component.html',
   styleUrls: ['vacancy-detail.component.scss'],
+  providers: [HttpService],
 })
-export class VacancyDetailComponent {
+export class VacancyDetailComponent implements OnInit {
   menuItems: string[] = ['General', 'Assigned candidates', 'Potential candidates', 'History'];
+
   candidateItems: CandidateCardItem[] = [
     {
-      candidateName: 'Candidate name',
+      name: 'Candidate name',
       status: 'Status',
       email: 'Email',
-      location: 'Location',
-      primarySkill: 'Primary skill',
-      date: new Date(2017, 1, 5),
+      city: 'city',
+      skill_name: 'Primary skill',
+      contact_date: new Date(2017, 1, 5),
+      id: 1,
     },
     {
-      candidateName: 'Candidate name',
+      name: 'Candidate name',
       status: 'Status',
       email: 'Email',
-      location: 'Location',
-      primarySkill: 'Primary skill',
-      date: new Date(2017, 1, 5),
+      city: 'city',
+      skill_name: 'Primary skill',
+      contact_date: new Date(2017, 1, 5),
+      id: 2,
     },
     {
-      candidateName: 'Candidate name',
+      name: 'Candidate name',
       status: 'Status',
       email: 'Email',
-      location: 'Location',
-      primarySkill: 'Primary skill',
-      date: new Date(2017, 1, 5),
+      city: 'city',
+      skill_name: 'Primary skill',
+      contact_date: new Date(2017, 1, 5),
+      id: 3,
     },
     {
-      candidateName: 'Candidate name',
+      name: 'Candidate name',
       status: 'Status',
       email: 'Email',
-      location: 'Location',
-      primarySkill: 'Primary skill',
-      date: new Date(2017, 1, 5),
+      city: 'city',
+      skill_name: 'Primary skill',
+      contact_date: new Date(2017, 1, 5),
+      id: 4,
     },
     {
-      candidateName: 'Candidate name',
+      name: 'Candidate name',
       status: 'Status',
       email: 'Email',
-      location: 'Location',
-      primarySkill: 'Primary skill',
-      date: new Date(2017, 1, 5),
+      city: 'city',
+      skill_name: 'Primary skill',
+      contact_date: new Date(2017, 1, 5),
+      id: 5,
     },
     {
-      candidateName: 'Candidate name',
+      name: 'Candidate name',
       status: 'Status',
       email: 'Email',
-      location: 'Location',
-      primarySkill: 'Primary skill',
-      date: new Date(2017, 1, 5),
+      city: 'city',
+      skill_name: 'Primary skill',
+      contact_date: new Date(2017, 1, 5),
+      id: 6,
     },
     {
-      candidateName: 'Candidate name',
+      name: 'Candidate name',
       status: 'Status',
       email: 'Email',
-      location: 'Location',
-      primarySkill: 'Primary skill',
-      date: new Date(2017, 1, 5),
+      city: 'city',
+      skill_name: 'Primary skill',
+      contact_date: new Date(2017, 1, 5),
+      id: 7,
     },
     {
-      candidateName: 'Candidate name',
+      name: 'Candidate name',
       status: 'Status',
       email: 'Email',
-      location: 'Location',
-      primarySkill: 'Primary skill',
-      date: new Date(2017, 1, 5),
-    },
-  ];
-  vacancyItems: VacancyCardItem[] = [
-    {
-      projectName: 'Project name',
-      location: 'Minsk',
-      status: 'In progress',
-      date: new Date(2017, 1, 5),
-      description: 'Description',
-      primarySkill: 'Java',
-    },
-    {
-      projectName: 'Project name',
-      location: 'Minsk',
-      status: 'In progress',
-      date: new Date(2017, 1, 5),
-      description: 'Description',
-      primarySkill: 'Java',
-    },
-    {
-      projectName: 'Project name',
-      location: 'Minsk',
-      status: 'In progress',
-      date: new Date(2017, 1, 5),
-      description: 'Description',
-      primarySkill: 'Java',
-    },
-    {
-      projectName: 'Project name',
-      location: 'Minsk',
-      status: 'In progress',
-      date: new Date(2017, 1, 5),
-      description: 'Description',
-      primarySkill: 'Java',
-    },
-    {
-      projectName: 'Project name',
-      location: 'Minsk',
-      status: 'In progress',
-      date: new Date(2017, 1, 5),
-      description: 'Description',
-      primarySkill: 'Java',
-    },
-    {
-      projectName: 'Project name',
-      location: 'Minsk',
-      status: 'In progress',
-      date: new Date(2017, 1, 5),
-      description: 'Description',
-      primarySkill: 'Java',
-    },
-    {
-      projectName: 'Project name',
-      location: 'Minsk',
-      status: 'In progress',
-      date: new Date(2017, 1, 5),
-      description: 'Description',
-      primarySkill: 'Java',
-    },
-    {
-      projectName: 'Project name',
-      location: 'Minsk',
-      status: 'In progress',
-      date: new Date(2017, 1, 5),
-      description: 'Description',
-      primarySkill: 'Java',
-    },
-    {
-      projectName: 'Project name',
-      location: 'Minsk',
-      status: 'In progress',
-      date: new Date(2017, 1, 5),
-      description: 'Description',
-      primarySkill: 'Java',
-    },
-    {
-      projectName: 'Project name',
-      location: 'Minsk',
-      status: 'In progress',
-      date: new Date(2017, 1, 5),
-      description: 'Description',
-      primarySkill: 'Java',
-    },
-    {
-      projectName: 'Project name',
-      location: 'Minsk',
-      status: 'In progress',
-      date: new Date(2017, 1, 5),
-      description: 'Description',
-      primarySkill: 'Java',
-    },
-    {
-      projectName: 'Project name',
-      location: 'Minsk',
-      status: 'In progress',
-      date: new Date(2017, 1, 5),
-      description: 'Description',
-      primarySkill: 'Java',
-    },
-  ];
-  historyItems: HistoryCardItem[] = [
-    {
-      changeName: 'Status was change',
-      userName: 'Gena',
-      changeDate: new Date(2016,2,7),
-      data: {
-        projectName: 'Project name',
-        location: 'Minsk',
-        status: 'In progress',
-        date: new Date(2017, 1, 5),
-        description: 'Description',
-        primarySkill: 'Java',
-      },
-      type: 'vacancy',
-    },
-    {
-      changeName: 'Email was change',
-      userName: 'Zosya',
-      changeDate: new Date(2020,2,7),
-      data: {
-        candidateName: 'Candidate name',
-        status: 'Status',
-        email: 'Email',
-        location: 'Location',
-        primarySkill: 'Primary skill',
-        date: new Date(2017, 1, 5),
-      },
-      type: 'candidate',
+      city: 'city',
+      skill_name: 'Primary skill',
+      contact_date: new Date(2017, 1, 5),
+      id: 8,
     },
   ];
   listItems: CardList = new CardList(this.candidateItems, 'candidates');
@@ -278,5 +161,21 @@ export class VacancyDetailComponent {
       value: 'Free coffee',
     },
   ];
-  model: GeneralPage = new GeneralPage(this.array);
+
+  // response = {"id":1,"name":"WOWSUCHVAC","request_date":"2017-07-11T13:20:35.000Z",
+  //   "start_date":"2018-09-02T21:00:00.000Z","skill_name":".NET","primary_skill_lvl":3,
+  //   "city":"Belarus, Minsk","status":"On hold",
+  //   "secondary_skills":[{"skill_name":"PHP","lvl":2},{"skill_name":"HTML/CSS","lvl":6}]};
+
+  model: GeneralPage;
+
+  constructor(private httpService: HttpService) {
+  }
+
+  ngOnInit() {
+    this.httpService.getData().then(res => {
+      this.model = new GeneralPage(res.json());
+    });
+
+  }
 }

@@ -1,8 +1,9 @@
 export interface CandidateCardItem {
-  candidateName: string;
+  name: string;
+  skill_name: string;
+  city: string;
   status: string;
+  contact_date: Date;
   email: string;
-  location: string;
-  primarySkill: string;
-  date: Date;
+  id : number;
 }
