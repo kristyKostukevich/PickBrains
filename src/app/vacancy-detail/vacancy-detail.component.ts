@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CardList } from '../classes/card-list';
 import { CandidateCardItem } from '../interfaces/candidate-card-item';
 import { VacancyCardItem } from '../interfaces/vacancy-card-item';
 import { HistoryCardItem } from '../interfaces/history-card-item';
 import { GeneralPage } from '../classes/general-page';
+import { HttpService } from './vacancy-delail.service';
 
 @Component({
   selector: 'vacancy-detail',
   templateUrl: 'vacancy-detail.component.html',
   styleUrls: ['vacancy-detail.component.scss'],
+  providers: [HttpService],
 })
-export class VacancyDetailComponent {
+export class VacancyDetailComponent implements OnInit {
   menuItems: string[] = ['General', 'Assigned candidates', 'Potential candidates', 'History'];
+
   candidateItems: CandidateCardItem[] = [
     {
       name: 'Candidate name',
@@ -86,8 +89,8 @@ export class VacancyDetailComponent {
       id: 8,
     },
   ];
-
   listItems: CardList = new CardList(this.candidateItems, 'candidates');
+
   array = [
     {
       value: 'Sobaca Project',
@@ -158,5 +161,21 @@ export class VacancyDetailComponent {
       value: 'Free coffee',
     },
   ];
-  model: GeneralPage = new GeneralPage(this.array);
+
+  // response = {"id":1,"name":"WOWSUCHVAC","request_date":"2017-07-11T13:20:35.000Z",
+  //   "start_date":"2018-09-02T21:00:00.000Z","skill_name":".NET","primary_skill_lvl":3,
+  //   "city":"Belarus, Minsk","status":"On hold",
+  //   "secondary_skills":[{"skill_name":"PHP","lvl":2},{"skill_name":"HTML/CSS","lvl":6}]};
+
+  model: GeneralPage;
+
+  constructor(private httpService: HttpService) {
+  }
+
+  ngOnInit() {
+    this.httpService.getData().then(res => {
+      this.model = new GeneralPage(res.json());
+    });
+
+  }
 }
