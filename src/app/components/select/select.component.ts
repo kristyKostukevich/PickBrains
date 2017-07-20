@@ -1,19 +1,15 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
+import { SelectModel } from '../../interfaces/select-model';
 @Component({
   selector: 'select-component',
   templateUrl: 'select.component.html',
   styleUrls: ['select.component.scss'],
 })
 export class SelectComponent {
-  @Input() placeholder: string;
-  @Input() model: string;
-  @Input() options: string[];
-  @Output() modelChange = new EventEmitter<string>();
+  @Input() model: SelectModel;
+  @Output() modelChange = new EventEmitter<SelectModel>();
 
-  onModelChange(model: string) {
-    this.modelChange.emit(model);
+  onModelChange() {
+    this.modelChange.emit(this.model);
   }
 }
-
-

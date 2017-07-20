@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { InputModel } from '../../interfaces/input-model';
 
 @Component({
   selector: 'input-text',
@@ -6,11 +7,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['input-text.component.scss'],
 })
 export class InputTextComponent {
-  @Input() placeholder: string;
-  @Input() model: string;
-  @Output() modelChange = new EventEmitter<string>();
+  @Input() model: InputModel;
+  @Output() modelChange = new EventEmitter<InputModel>();
 
-  onModelChange(model: string) {
-    this.modelChange.emit(model);
+  onModelChange() {
+    this.modelChange.emit(this.model);
   }
 }

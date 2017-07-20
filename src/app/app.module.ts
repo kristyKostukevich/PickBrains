@@ -1,9 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { GlobalHeaderModule } from './components/header/header.module';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GlobalHeaderModule } from './components/header/header.module';
+import { VacanciesDetailModule } from './vacancy-detail/vacancy-detail.module';
+import { AppComponent } from './app.component';
 import { AccordionModule } from 'ngx-accordion';
 import { PersonPageModule } from './main-page/person-list-component/person-list.module';
 import { HttpModule } from '@angular/http';

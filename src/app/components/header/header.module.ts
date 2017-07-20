@@ -13,4 +13,5 @@ import { GlobalHeaderComponent } from './header.component';
   declarations: [GlobalHeaderComponent],
   exports: [GlobalHeaderComponent],
 })
-export class GlobalHeaderModule{}
+export class GlobalHeaderModule{
+}
