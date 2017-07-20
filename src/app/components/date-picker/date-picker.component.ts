@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DatePickerModel } from '../../interfaces/date-picker-model';
 
 @Component({
   selector: 'date-picker',
@@ -6,12 +7,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['date-picker.component.scss'],
 })
 export class DatePickerComponent {
-  @Input() placeholder: string;
-  @Input() model: string;
+  @Input() model: DatePickerModel;
+  @Output() modelChange = new EventEmitter<DatePickerModel>();
 
-  @Output() modelChange = new EventEmitter<string>();
-
-  onModelChange(model: string) {
-    this.modelChange.emit(model);
+  onModelChange() {
+    this.modelChange.emit(this.model);
   }
 }
