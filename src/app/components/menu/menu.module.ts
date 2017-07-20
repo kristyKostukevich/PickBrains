@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MdButtonModule } from '@angular/material';
-import { VacancyDetailMenuComponent } from './vacancy-detail-menu.component';
+import { MenuComponent } from './menu.component';
 
 @NgModule({
   imports: [
     CommonModule,
     MdButtonModule,
   ],
-  declarations: [VacancyDetailMenuComponent],
-  exports: [VacancyDetailMenuComponent],
+  declarations: [MenuComponent],
+  exports: [MenuComponent],
 })
-export class VacancyDetailMenuModule {
+export class MenuModule {
 }

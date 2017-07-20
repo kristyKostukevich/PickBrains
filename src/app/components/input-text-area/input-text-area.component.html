@@ -1,6 +1,6 @@
 <md-input-container class="input-text-area">
         <textarea mdInput
-                  [ngModel]="model"
+                  [(ngModel)]="model.value"
                   (ngModelChange)="onModelChange($event)"
-                  [placeholder]="placeholder"></textarea>
+                  [placeholder]="model.placeholder"></textarea>
 </md-input-container>

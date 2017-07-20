@@ -1,6 +1,6 @@
 <md-input-container class="input-text adaptive-components">
     <input mdInput
-           [ngModel]="model"
+           [(ngModel)]="model.value"
            (ngModelChange)="onModelChange($event)"
-           [placeholder]="placeholder">
+           [placeholder]="model.placeholder">
 </md-input-container>
