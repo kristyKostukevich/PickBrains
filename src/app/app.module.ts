@@ -3,7 +3,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GlobalHeaderModule } from './components/header/header.module';
-import { VacanciesDetailModule } from './vacancy-detail/vacancy-detail-wrapper/vacancy-detail-wrapper.module';
+import { VacanciesDetailModule } from './vacancy-detail/vacancy-detail.module';
 import { AppComponent } from './app.component';
 
 

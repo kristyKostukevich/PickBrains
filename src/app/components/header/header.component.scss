@@ -68,3 +68,9 @@ span {
 .user-menu-icon {
   color: #ffffff;
 }
+
+.mobile-menu-icon:focus ~ .menu-left,
+.mobile-menu-icon:active ~ .menu-left,
+.mobile-menu-icon:hover {
+  display: block;
+}
