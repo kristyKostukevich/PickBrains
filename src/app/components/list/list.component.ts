@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { CardList } from '../../classes/card-list';
 
 @Component({
@@ -6,18 +6,24 @@ import { CardList } from '../../classes/card-list';
   templateUrl: 'list.component.html',
   styleUrls: ['list.component.scss'],
 })
-export class ListComponent {
+export class ListComponent implements OnChanges{
   @Input() list: CardList;
+  private initialiaze : boolean = false;
+
+ ngOnChanges(){
+  if(this.list)
+    this.initialiaze = true;
+}
 
   isVacancies() : boolean {
-    return this.list.type === 'vacancies';
+    return this.initialiaze && this.list.type === 'vacancies';
   }
 
   isCandidates() : boolean {
-    return this.list.type === 'candidates';
+    return this.initialiaze && this.list.type === 'candidates';
   }
 
   isHistory() : boolean {
-    return this.list.type === 'history';
+    return this.initialiaze && this.list.type === 'history';
   }
 }

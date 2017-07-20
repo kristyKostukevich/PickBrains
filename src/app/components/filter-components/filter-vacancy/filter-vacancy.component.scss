@@ -1,0 +1,70 @@
+accordion-group {
+  min-width: 84px !important;
+  line-height: 35px !important;
+  height: 35px !important;
+  font-size: 1em;
+  color: black;
+  background-color: #eeeeee;
+}
+
+.container {
+  z-index: 1;
+  width: 252px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, .03);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
+}
+
+/deep/ .mat-tab-label {
+  min-width: 84px !important;
+  line-height: 35px !important;
+  height: 35px !important;
+  font-size: 1em;
+  color: black;
+}
+
+li {
+  padding-left: 20px;
+  list-style-type: none;
+  border-bottom: 1px solid #F5F5F5; /* Параметры границы */
+}
+
+li:hover {
+  background-color: #F5F5F5;
+  border-bottom: 1px solid #F5F5F5; /* Параметры границы */
+  cursor: pointer;
+}
+
+md-icon {
+  float: left;
+  margin-top: 5px !important;
+}
+
+accordion-heading {
+  margin-left: 20px;
+}
+
+ul {
+  padding: 0;
+}
+
+/deep/ .panel-title {
+  margin-top: 25px;
+}
+
+/deep/ .panel-title:hover {
+  background-color: #F5F5F5;
+  cursor: pointer;
+}
+
+.buttonMore {
+  color: #ec407a;
+  float: right;
+  padding-right: 10px;
+}
+
+/deep/ .mat-slider {
+  margin-left: 5px;
+  margin-top: 20px;
+  width: 240px;
+}

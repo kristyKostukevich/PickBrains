@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FilterComponent } from './person-page-filter.component';
+import { FilterPersonComponent } from './filter-person.component';
+import { AccordionModule } from 'ngx-accordion';
 import { MaterialModule, MdDatepickerModule, MdNativeDateModule } from '@angular/material';
-import { AccordionModule } from 'ngx-accordion'
 
 @NgModule({
   imports: [CommonModule,MaterialModule,AccordionModule,MdDatepickerModule, MdNativeDateModule],
-  declarations: [FilterComponent],
-  exports: [FilterComponent],
+  declarations: [FilterPersonComponent],
+  exports: [FilterPersonComponent],
 })
-export class FilterModule{
+export class FilterPersonModule{
 }

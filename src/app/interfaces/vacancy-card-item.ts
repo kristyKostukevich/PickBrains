@@ -1,8 +1,11 @@
 export interface VacancyCardItem {
-  projectName: string;
+  id: number;
+  name: string;
   status: string;
-  description: string;
-  location: string;
-  primarySkill: string;
-  date: Date;
+  skill_name: string;
+  // description: string;
+  city: string;
+  primary_skill_lvl: number;
+  request_date: Date;
+  start_date: Date;
 }

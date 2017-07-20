@@ -1,0 +1,64 @@
+<accordion>
+    <accordion-group>
+        <accordion-heading>
+            <md-icon mdSuffix>location_on</md-icon>
+            Location
+            <md-icon class="buttonMore">expand_more</md-icon>
+        </accordion-heading>
+        <ul class="sub-menu">
+            <li *ngFor="let item of arrayOfCities"  >{{item.city}}
+            </li>
+        </ul>
+    </accordion-group>
+    <accordion-group>
+        <accordion-heading>
+            <md-icon mdSuffix>star</md-icon>
+            <span>Primary skill</span>
+            <md-icon class="buttonMore">expand_more</md-icon>
+        </accordion-heading>
+        <ul class="sub-menu">
+            <li *ngFor="let item of arrayOfSkills" >{{item.skill_name}}</li>
+            <li></li>
+        </ul>
+    </accordion-group>
+    <accordion-group>
+        <accordion-heading>
+            <md-icon mdSuffix>attach_money</md-icon>
+            Salary
+            <md-icon class="buttonMore">expand_more</md-icon>
+        </accordion-heading>
+        <md-slider thumbLabel max="9999"></md-slider>
+    </accordion-group>
+    <accordion-group>
+        <accordion-heading>
+            <md-icon mdSuffix>language</md-icon>
+            English level
+            <md-icon class="buttonMore">expand_more</md-icon>
+        </accordion-heading>
+        <ul class="sub-menu">
+            <li *ngFor="let item of arrayOfLanguages">{{item.lvl}}</li>
+        </ul>
+    </accordion-group>
+    <accordion-group>
+        <accordion-heading>
+            <md-icon mdSuffix>done</md-icon>
+            Status
+            <md-icon class="buttonMore">expand_more</md-icon>
+        </accordion-heading>
+        <ul class="sub-menu">
+           <li *ngFor="let item of arrayOfStatuses">{{item.status}}</li>
+        </ul>
+    </accordion-group>
+    <accordion-group>
+        <accordion-heading>
+            <md-icon mdSuffix>work</md-icon>
+            Work experience
+            <md-icon class="buttonMore">expand_more</md-icon>
+        </accordion-heading>
+        <md-input-container>
+            <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+        </md-input-container>
+        <md-datepicker #picker></md-datepicker>
+    </accordion-group>
+</accordion>

@@ -9,8 +9,8 @@ import { SliderComponent } from './slider.component';
   declarations: [SliderComponent,
   ],
   imports: [
-    FormsModule,
     CommonModule,
+    FormsModule,
     MdSliderModule,
   ],
   providers: [],
