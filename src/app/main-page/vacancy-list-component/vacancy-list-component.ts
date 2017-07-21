@@ -19,11 +19,9 @@ export class VacancyListComponent implements OnInit {
 
 
   ngOnInit() {
-    this.httpService.getData().then(res => {
-      this.vacancies = res.json();
-      this.listItem = new CardList(this.vacancies,'vacancies');
-      console.log(this.vacancies);
-    });
-
-  }
+  this.httpService.getData().then(res => {
+    this.vacancies = res.json();
+    this.listItem = new CardList(this.vacancies,'vacancies');
+  });
+}
 }

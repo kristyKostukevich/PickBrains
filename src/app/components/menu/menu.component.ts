@@ -5,8 +5,10 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: 'menu.component.html',
   styleUrls: ['menu.component.scss'],
 })
+
 export class MenuComponent implements OnInit {
-  @Input() menuItems: string[];
+
+  @Input() menuItems: LinkAndLabel [];
   toggleFlags: boolean[];
 
   ngOnInit() {
@@ -19,10 +21,15 @@ export class MenuComponent implements OnInit {
     let index: number = 0;
     for (const i of this.menuItems) {
       this.toggleFlags[index] = false;
-      if (i === item) {
+      if (i.label === item) {
         this.toggleFlags[index] = true;
       }
       index += 1;
     }
   }
+}
+
+export interface LinkAndLabel {
+  label: string;
+  link: string;
 }

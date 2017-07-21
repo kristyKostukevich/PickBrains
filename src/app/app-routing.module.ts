@@ -8,6 +8,8 @@ import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy
 import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
 import { AuthorizationComponent } from './authorization/authorization.component';
 
+import { VacancyDetailComponent } from './vacancy-detail/vacancy-detail.component';
+import { CandidateDetailComponent } from './candidate-detail/candidate-detail.component';
 
 const routes: Routes = [
   {
@@ -29,11 +31,11 @@ const routes: Routes = [
   },
   {
     path: 'person-page/detail-candidate/:id',
-    component:TempComponent
+    component:CandidateDetailComponent,
 },
   {
     path: 'vacancy-page/detail-vacancy/:id',
-    component:TempComponent
+    component:VacancyDetailComponent,
   },
   {
     path: 'login',
@@ -44,7 +46,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-
 })
 export class AppRoutingModule {
 }

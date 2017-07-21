@@ -1,18 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { HistoryCardItem } from '../interfaces/history-card-item';
+import { CandidateGeneralPage } from 'app/classes/candidate-general-page';
+import { CardList } from 'app/classes/card-list';
+import { FeedbackCardItem } from 'app/interfaces/feedback-card-item';
 import { GeneralPage } from '../classes/general-page';
-import { HttpService } from './vacancy-detail.service';
+import { HttpService } from './candidate-deteil.service';
 import { LinkAndLabel } from '../components/menu/menu.component';
 
 @Component({
-  selector: 'vacancy-detail',
-  templateUrl: 'vacancy-detail.component.html',
-  styleUrls: ['vacancy-detail.component.scss'],
+  selector: 'candidate-detail',
+  templateUrl: 'candidate-detail.component.html',
+  styleUrls: ['candidate-detail.component.scss'],
   providers: [HttpService],
 })
-export class VacancyDetailComponent implements OnInit {
-  menuItems: LinkAndLabel [];
+
+export class CandidateDetailComponent implements OnInit {
+  menuItems: LinkAndLabel[];
+  generalModel: CandidateGeneralPage;
+  // historyModel: CardList;
+  // hrmFeedbackModel: FeedbackCardItem;
   temp: string;
-  model: GeneralPage;
   arrayOfCities: any[];
   sendArrayOfCities: string[];
   arrayOfStatuses: any[];
@@ -23,11 +30,11 @@ export class VacancyDetailComponent implements OnInit {
   sendArrayOfLanguages: string[];
 
   constructor(private httpService: HttpService) {
-    this.menuItems = [{label: 'General', link: '/person-page'},
-      {label: 'Assigned candidates ', link: '/person-page'},
-      {label: 'Potential  candidates', link: '/person-page'},
+    this.menuItems = [ {label: 'General', link: '/person-page'},
+      {label: 'Feedbacks from Tech ', link: '/person-page'},
+      {label: 'Feedbacks from HRM', link: '/person-page'},
       {label: 'History', link: '/person-page'}];
-    this.model = new GeneralPage('', [], [], [], [],'');
+    this.generalModel = new CandidateGeneralPage('', [], [], [], [], '');
     this.arrayOfCities = [];
     this.sendArrayOfCities = [];
     this.temp = '';
@@ -76,7 +83,9 @@ export class VacancyDetailComponent implements OnInit {
         this.sendArrayOfCities[index] = i.city;
         index += 1;
       }
-      this.model = new GeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages,'vacancy');
+      this.generalModel = new CandidateGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages,'candidate');
     });
   }
+
+
 }

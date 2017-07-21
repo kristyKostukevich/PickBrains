@@ -1,7 +1,9 @@
-/**
- interface for next component: input-text, input-text-area
- */
-export interface InputModel {
+export class InputModel {
   value: string;
   placeholder: string;
+
+  constructor(value: string, placeholder: string) {
+    this.value = value || '';
+    this.placeholder = placeholder;
+  }
 }
