@@ -8,6 +8,7 @@ import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy
 import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
 import { AuthorizationComponent } from './authorization/authorization.component';
 
+
 const routes: Routes = [
   {
     path: '',
