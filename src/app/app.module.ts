@@ -11,6 +11,7 @@ import { TempModule } from './Temp/temp.module';
 import { FilterPersonModule } from './components/filter-components/filter-person/filter-person.module';
 import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy-list-component';
 import { VacancyPageModule } from './main-page/vacancy-list-component/vacancy-list-component.module';
+import { AuthorizationModule } from './authorization/authorization.module';
 import { HistoryModule } from './components/history/history.module';
 import { HistoryPageModule } from './main-page/history-list-component/history-list-component.module';
 import { VacanciesDetailModule } from './vacancy-detail/vacancy-detail.module';
@@ -31,6 +32,7 @@ import { CandidateDetailModule } from './candidate-detail/candidate-detail.modul
     HistoryPageModule,
     VacanciesDetailModule,
     CandidateDetailModule,
+    AuthorizationModule,
   ],
   declarations: [
     AppComponent,
