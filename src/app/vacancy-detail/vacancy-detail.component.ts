@@ -89,8 +89,9 @@ export class VacancyDetailComponent implements OnInit {
       id: 8,
     },
   ];
-  listItems: CardList = new CardList(this.candidateItems, 'candidates');
 
+
+  listItems: CardList = new CardList(this.candidateItems, 'candidates');
   array = [
     {
       value: 'Sobaca Project',

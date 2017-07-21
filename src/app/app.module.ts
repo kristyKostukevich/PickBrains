@@ -11,8 +11,10 @@ import { HttpModule } from '@angular/http';
 import { TempModule } from './Temp/temp.module';
 import { FilterPersonModule } from './components/filter-components/filter-person/filter-person.module';
 import { VacancyPageModule } from './main-page/vacancy-list-component/vacancy-list-component.module';
+import { AuthorizationModule } from './authorization/authorization.module';
 import { HistoryModule } from './components/history/history.module';
 import { HistoryPageModule } from './main-page/history-list-component/history-list-component.module';
+
 
 @NgModule({
   imports: [
@@ -27,7 +29,9 @@ import { HistoryPageModule } from './main-page/history-list-component/history-li
     FilterPersonModule,
     VacancyPageModule,
     HistoryPageModule,
+    AuthorizationModule,
     VacancyDetailModule,
+
   ],
   declarations: [
     AppComponent,
