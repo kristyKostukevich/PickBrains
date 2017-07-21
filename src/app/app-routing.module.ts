@@ -6,6 +6,7 @@ import { TempComponent } from './Temp/temp.component';
 import 'hammerjs';
 import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy-list-component';
 import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
+import { AuthorizationComponent } from './authorization/authorization.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
     path: 'vacancy-page/detail-vacancy/:id',
     component:TempComponent
   },
+  {
+    path: 'login',
+    component: AuthorizationComponent,
+  }
 ];
 
 @NgModule({
