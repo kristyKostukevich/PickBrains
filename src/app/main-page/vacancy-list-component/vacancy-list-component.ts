@@ -22,8 +22,6 @@ export class VacancyListComponent implements OnInit {
   this.httpService.getData().then(res => {
     this.vacancies = res.json();
     this.listItem = new CardList(this.vacancies,'vacancies');
-    console.log(this.vacancies);
   });
-
 }
 }

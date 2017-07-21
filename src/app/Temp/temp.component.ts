@@ -16,8 +16,6 @@ export class TempComponent implements OnInit {
     this.httpService.getData().then(res => {
       console.log(res.json());
     });
-
   }
-
 }
 

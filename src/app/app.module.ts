@@ -13,6 +13,8 @@ import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy
 import { VacancyPageModule } from './main-page/vacancy-list-component/vacancy-list-component.module';
 import { HistoryModule } from './components/history/history.module';
 import { HistoryPageModule } from './main-page/history-list-component/history-list-component.module';
+import { VacanciesDetailModule } from './vacancy-detail/vacancy-detail.module';
+import { CandidateDetailModule } from './candidate-detail/candidate-detail.module';
 
 @NgModule({
   imports: [
@@ -27,6 +29,8 @@ import { HistoryPageModule } from './main-page/history-list-component/history-li
     FilterPersonModule,
     VacancyPageModule,
     HistoryPageModule,
+    VacanciesDetailModule,
+    CandidateDetailModule,
   ],
   declarations: [
     AppComponent,

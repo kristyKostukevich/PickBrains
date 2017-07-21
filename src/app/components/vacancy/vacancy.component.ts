@@ -8,5 +8,4 @@ import { VacancyCardItem } from '../../interfaces/vacancy-card-item';
 })
 export class VacancyComponent {
   @Input() item: VacancyCardItem;
-
 }

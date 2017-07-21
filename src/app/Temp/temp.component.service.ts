@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 export class HttpService {
 
   constructor(private http: Http ,private route:ActivatedRoute) {
-    // console.log(this.route.snapshot.url[2].path);
   }
 
   getData() {

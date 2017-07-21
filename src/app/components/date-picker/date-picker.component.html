@@ -1,8 +1,8 @@
 <md-input-container class="date-picker adaptive-components">
     <input mdInput
-           [ngModel]="model"
+           [(ngModel)]="model.value"
            (ngModelChange)="onModelChange($event)"
-           [mdDatepicker]="picker" [placeholder]="placeholder">
+           [mdDatepicker]="picker" [placeholder]="model.placeholder">
     <button mdSuffix [mdDatepickerToggle]="picker"></button>
 </md-input-container>
 <md-datepicker touchUi="true" #picker></md-datepicker>

@@ -6,6 +6,8 @@ import { TempComponent } from './Temp/temp.component';
 import 'hammerjs';
 import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy-list-component';
 import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
+import { VacancyDetailComponent } from './vacancy-detail/vacancy-detail.component';
+import { CandidateDetailComponent } from './candidate-detail/candidate-detail.component';
 
 const routes: Routes = [
   {
@@ -27,11 +29,11 @@ const routes: Routes = [
   },
   {
     path: 'person-page/detail-candidate/:id',
-    component:TempComponent
+    component:CandidateDetailComponent,
 },
   {
     path: 'vacancy-page/detail-vacancy/:id',
-    component:TempComponent
+    component:VacancyDetailComponent,
   },
 ];
 
