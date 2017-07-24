@@ -22,7 +22,8 @@ export class HttpService{
     const options = this.preparseOptions();
     return this.http.get(url, options)
       .catch((error:any) => {
-        this.router.navigateByUrl('/login');
+        if (error.status === 401)
+          this.router.navigateByUrl('/login');
         return Observable.throw(error);
       });
   }
@@ -30,7 +31,8 @@ export class HttpService{
     const options = this.preparseOptions();
     return this.http.put(url, body, options)
       .catch((error:any) => {
-        this.router.navigateByUrl('/login');
+        if (error.status === 401)
+          this.router.navigateByUrl('/login');
         return Observable.throw(error);
       });;
   }
