@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpService } from './authorization-service';
 import { Router } from '@angular/router';
+import { HttpService } from '../http-service/http-service';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class AuthorizationComponent {
       login: this.login.value,
       password: this.password.value,
     };
-    this.httpService.postData(user)
+    this.httpService.postData(user, 'http://localhost:1337/api/authentication/login')
       .subscribe((data) => {
         this.router.navigateByUrl('/person-page');
       },

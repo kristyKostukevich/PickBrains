@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from './person-list-service';
 import { CardList } from '../../classes/card-list';
 import { CandidateCardItem } from '../../interfaces/candidate-card-item';
+import { HttpService } from '../../http-service/http-service';
 
 @Component({
   selector: 'person-list',
@@ -21,13 +21,11 @@ export class PersonListComponent implements OnInit {
 
 
   ngOnInit() {
-    this.httpService.getData({
-      skip: 0
-    }).then(res => {
-      this.persons = res.json();
-      this.listItem = new CardList(this.persons,'candidates');
-      console.log(this.persons);
-    });
+    this.httpService.putData({ skip: 0 }, 'http://localhost:1337/api/candidates')
+      .subscribe((res) => {
+        this.persons = res.json();
+        this.listItem = new CardList(this.persons,'candidates');
+      });
 
   }
 }

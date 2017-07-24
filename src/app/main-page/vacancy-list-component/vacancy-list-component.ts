@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CardList } from '../../classes/card-list';
 import { VacancyCardItem } from '../../interfaces/vacancy-card-item';
-import { HttpService } from './vacancy-list-component.service';
+import { HttpService } from '../../http-service/http-service';
+
 
 @Component({
   selector: 'vacancy-list',
@@ -19,9 +20,10 @@ export class VacancyListComponent implements OnInit {
 
 
   ngOnInit() {
-  this.httpService.getData().then(res => {
-    this.vacancies = res.json();
-    this.listItem = new CardList(this.vacancies,'vacancies');
-  });
-}
+    this.httpService.getData('http://localhost:1337/api/vacancies').subscribe((res) => {
+      this.vacancies = res.json();
+      this.listItem = new CardList(this.vacancies,'vacancies');
+    });
+
+  }
 }
