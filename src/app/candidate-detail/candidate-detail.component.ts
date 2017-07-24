@@ -4,8 +4,9 @@ import { CandidateGeneralPage } from 'app/classes/candidate-general-page';
 import { CardList } from 'app/classes/card-list';
 import { FeedbackCardItem } from 'app/interfaces/feedback-card-item';
 import { GeneralPage } from '../classes/general-page';
-import { HttpService } from './candidate-deteil.service';
 import { LinkAndLabel } from '../components/menu/menu.component';
+import { HttpService } from '../http-service/http-service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'candidate-detail',
@@ -29,7 +30,7 @@ export class CandidateDetailComponent implements OnInit {
   arrayOfLanguages: any[];
   sendArrayOfLanguages: string[];
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private route:ActivatedRoute) {
     this.menuItems = [ {label: 'General', link: '/person-page'},
       {label: 'Feedbacks from Tech ', link: '/person-page'},
       {label: 'Feedbacks from HRM', link: '/person-page'},
@@ -47,20 +48,23 @@ export class CandidateDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.getData().then(res => {
-      this.temp = res.json();
-    });
+    this.httpService
+      .getData(`http://localhost:1337/api/candidates?id=${this.route.snapshot.url[2].path}`)
+        .subscribe((res) => {
+          this.temp = res.json();
+        });
 
-    this.httpService.getStatusData().then(res => {
-      this.arrayOfStatuses = res.json();
-      let index = 0;
-      for (let i of this.arrayOfStatuses) {
-        this.sendArrayOfStatuses[index] = i.status;
-        index += 1;
-      }
-    });
+    this.httpService.getData('http://localhost:1337/api/meta-data/candidate-statuses')
+      .subscribe((res) => {
+        this.arrayOfStatuses = res.json();
+        let index = 0;
+        for (let i of this.arrayOfStatuses) {
+          this.sendArrayOfStatuses[index] = i.status;
+          index += 1;
+        }
+      });
 
-    this.httpService.getSkillsData().then(res => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe((res) => {
       this.arrayOfSkills = res.json();
       let index = 0;
       for (let i of this.arrayOfSkills) {
@@ -68,15 +72,16 @@ export class CandidateDetailComponent implements OnInit {
         index += 1;
       }
     });
-    this.httpService.getLanguageData().then(res => {
-      this.arrayOfLanguages = res.json();
-      let index = 0;
-      for (let i of this.arrayOfLanguages) {
-        this.sendArrayOfLanguages[index] = i.lvl;
-        index += 1;
-      }
-    });
-    this.httpService.getCitiesData().then(res => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels')
+      .subscribe((res) => {
+        this.arrayOfLanguages = res.json();
+        let index = 0;
+        for (let i of this.arrayOfLanguages) {
+          this.sendArrayOfLanguages[index] = i.lvl;
+          index += 1;
+        }
+      });
+    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe((res) => {
       this.arrayOfCities = res.json();
       let index = 0;
       for (let i of this.arrayOfCities) {

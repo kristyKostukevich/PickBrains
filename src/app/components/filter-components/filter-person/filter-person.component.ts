@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from './filter-person.service';
+import { HttpService } from '../../../http-service/http-service';
+
 
 @Component({
   selector: 'filter-person',
@@ -18,16 +19,16 @@ export class FilterPersonComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.getCitiesData().then(res => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe((res) => {
       this.arrayOfCities = res.json();
     });
-    this.httpService.getSkillsData().then(res => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe((res) => {
       this.arrayOfSkills = res.json();
     });
-    this.httpService.getLanguageData().then(res => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels').subscribe((res) => {
       this.arrayOfLanguages = res.json();
     });
-    this.httpService.getStatusData().then(res => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/candidate-statuses').subscribe((res) => {
       this.arrayOfStatuses = res.json();
     });
   }
