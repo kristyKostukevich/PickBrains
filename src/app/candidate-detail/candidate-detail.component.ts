@@ -29,6 +29,7 @@ export class CandidateDetailComponent implements OnInit {
   sendArrayOfSkills: string[];
   arrayOfLanguages: any[];
   sendArrayOfLanguages: string[];
+  statusSpinner: boolean;
 
   constructor(private httpService: HttpService, private route:ActivatedRoute) {
     this.menuItems = [ {label: 'General', link: '/person-page'},
@@ -48,11 +49,7 @@ export class CandidateDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService
-      .getData(`http://localhost:1337/api/candidates?id=${this.route.snapshot.url[2].path}`)
-        .subscribe((res) => {
-          this.temp = res.json();
-        });
+    this.statusSpinner = true;
 
     this.httpService.getData('http://localhost:1337/api/meta-data/candidate-statuses')
       .subscribe((res) => {
@@ -88,8 +85,21 @@ export class CandidateDetailComponent implements OnInit {
         this.sendArrayOfCities[index] = i.city;
         index += 1;
       }
-      this.generalModel = new CandidateGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages,'candidate');
+
     });
+    this.httpService
+      .getData(`http://localhost:1337/api/candidates?id=${this.route.snapshot.url[2].path}`)
+      .subscribe((res) => {
+        this.temp = res.json();
+        this.statusSpinner = false;
+        this.generalModel = new CandidateGeneralPage(
+          this.temp,
+          this.sendArrayOfCities,
+          this.sendArrayOfStatuses,
+          this.sendArrayOfSkills,
+          this.sendArrayOfLanguages,
+          'candidate');
+      });
   }
 
 

@@ -23,3 +23,23 @@ span {
   z-index: 999999;
   color: white;
 }
+
+.center-spinner {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 360px);
+  left: 310px;
+  top: 30px;
+  margin: 0;
+  height: calc(100% - 64px);
+}
+
+@media screen and (max-width: 800px) {
+  .center-spinner {
+    left: 2.5%;
+    margin: 2.5% 0;
+    width: 95%;
+  }
+}
