@@ -1,0 +1,11 @@
+<div class="mark">
+    <md-select [placeholder]="model.placeholder" [(ngModel)]="model.value" (ngModelChange)="onModelChange($event)"
+               class="select">
+        <md-option *ngFor="let item of model.options" [value]="item">
+            {{ item }}
+        </md-option>
+    </md-select>
+    <rating [(ngModel)]="model.level"></rating>
+</div>
+
+
