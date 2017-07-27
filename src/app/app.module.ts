@@ -16,6 +16,8 @@ import { HistoryModule } from './components/history/history.module';
 import { HistoryPageModule } from './main-page/history-list-component/history-list-component.module';
 import { VacanciesDetailModule } from './vacancy-detail/vacancy-detail.module';
 import { CandidateDetailModule } from './candidate-detail/candidate-detail.module';
+import { AddCandidateModule } from './add-candidate/add-candidate.module';
+import { AddVacancyModule } from './add-vacancy/add-vacancy.module';
 
 @NgModule({
   imports: [
@@ -33,6 +35,8 @@ import { CandidateDetailModule } from './candidate-detail/candidate-detail.modul
     VacanciesDetailModule,
     CandidateDetailModule,
     AuthorizationModule,
+    AddCandidateModule,
+    AddVacancyModule,
   ],
   declarations: [
     AppComponent,
