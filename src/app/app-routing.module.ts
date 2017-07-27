@@ -10,6 +10,8 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 
 import { VacancyDetailComponent } from './vacancy-detail/vacancy-detail.component';
 import { CandidateDetailComponent } from './candidate-detail/candidate-detail.component';
+import { AddCandidateComponent } from './add-candidate/add-candidate.component';
+import { AddVacancyComponent } from './add-vacancy/add-vacancy.component';
 
 const routes: Routes = [
   {
@@ -40,7 +42,15 @@ const routes: Routes = [
   {
     path: 'login',
     component: AuthorizationComponent,
-  }
+  },
+  {
+    path: 'add-candidate',
+    component: AddCandidateComponent,
+  },
+  {
+    path: 'add-vacancy',
+    component: AddVacancyComponent,
+  },
 ];
 
 @NgModule({

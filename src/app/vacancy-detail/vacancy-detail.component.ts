@@ -44,12 +44,6 @@ export class VacancyDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService
-      .getData(`http://localhost:1337/api/vacancies/${this.route.snapshot.url[2].path}`)
-      .subscribe((data) => {
-        this.temp = data.json();
-      });
-
     this.httpService.getData('http://localhost:1337/api/meta-data/candidate-statuses')
       .subscribe((res) => {
         this.arrayOfStatuses = res.json();
@@ -86,6 +80,11 @@ export class VacancyDetailComponent implements OnInit {
           this.sendArrayOfCities[index] = i.city;
           index += 1;
         }
+      });
+    this.httpService
+      .getData(`http://localhost:1337/api/vacancies/${this.route.snapshot.url[2].path}`)
+      .subscribe((data) => {
+        this.temp = data.json();
         this.model = new GeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages,'vacancy');
       });
   }

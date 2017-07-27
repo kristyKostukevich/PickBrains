@@ -3,7 +3,10 @@ import { CandidateDetailComponent } from 'app/candidate-detail/candidate-detail.
 import { MenuModule } from 'app/components/menu/menu.module';
 import { GeneralModule } from 'app/components/general/general.module';
 import { ListModule } from 'app/components/list/list.module';
-import { RatingModule } from 'ngx-rating';
+import { AddCandidateComponent } from './add-candidate.component';
+import { MdButtonModule, MdIconModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
+import { SelectMarkModule } from '../components/select-mark/select-mark.module';
 // import { FeedbackModule } from 'app/components/feedback/feedback.module';
 
 @NgModule({
@@ -11,12 +14,15 @@ import { RatingModule } from 'ngx-rating';
     GeneralModule,
     ListModule,
     MenuModule,
+    MdButtonModule,
+    MdIconModule,
+    RouterModule,
     // FeedbackModule,
-    RatingModule,
+    SelectMarkModule,
   ],
-  exports: [CandidateDetailComponent],
-  declarations: [CandidateDetailComponent],
+  exports: [AddCandidateComponent],
+  declarations: [AddCandidateComponent],
   providers: [],
 })
-export class CandidateDetailModule {
+export class AddCandidateModule {
 }

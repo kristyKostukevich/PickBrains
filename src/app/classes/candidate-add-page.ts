@@ -2,7 +2,7 @@ import { InputModel } from 'app/interfaces/input-model';
 import { SelectModel } from 'app/interfaces/select-model';
 import { DatePickerModel } from 'app/interfaces/date-picker-model';
 
-export class CandidateGeneralPage {
+export class CandidateAddPage {
   id: number;
   type: string;
   firstName: InputModel;
@@ -11,7 +11,7 @@ export class CandidateGeneralPage {
   status: SelectModel;
   primarySkill: SelectModel;
   workExperience: DatePickerModel;
-  secondarySkills: InputModel[];
+  secondarySkills: SelectModel[];
   otherSkills: InputModel [];
   englishLevel: SelectModel;
   resumeLink: InputModel;
@@ -23,43 +23,34 @@ export class CandidateGeneralPage {
   interviewDate: DatePickerModel;
   communicationDate: DatePickerModel;
   communicateAgain: DatePickerModel;
-  emailAdresses: InputModel[];
+  emailAdresses: InputModel;
   phoneNumbers: InputModel; //почему не массив?
   linkedIn: InputModel;
   skypeId: InputModel;
+  nextSecondarySkill: SelectModel;
+  nextOtherSkill: SelectModel;
 
-  constructor(data: any, arrayOfCities: any[], arrayOfStatuses: any[], arrayOfSkills: any[], arrayOfLanguages: any[], arrayOfOtherSkills: any[], type: string) {
-
+  constructor(data: any, arrayOfCities: any[], arrayOfStatuses: any[], arrayOfSkills: any[], arrayOfLanguages: any[],arrayOfOtherSkills: any[], type: string) {
     this.id = data.id;
     this.type = type;
     this.firstName = new InputModel(data.firstName, 'First Name');
     this.lastName = new InputModel(data.secondName, 'Last Name');
     this.location = new SelectModel(data.city, 'Location', arrayOfCities);
     this.status = new SelectModel(data.status, 'Status', arrayOfStatuses);
-    // console.log(data.skillName);
-    // console.log(data.secSkills[0]);
-    this.primarySkill = new SelectModel(data.skillName, 'Primary Skill', arrayOfSkills, data.primarySkillLvl);
+    this.primarySkill = new SelectModel(data.skillName, 'Primary Skill', arrayOfSkills, 1);
     this.workExperience = new DatePickerModel(data.expYear, 'Work Experience');
-    this.secondarySkills = [];
-    for (var key in data.secSkills) {
-      this.secondarySkills[key] = new SelectModel(data.secSkills[key].skillName, 'Secondary skill',arrayOfSkills,data.secSkills[key].lvl);
-    }
+    this.secondarySkills=[];
+    this.nextSecondarySkill = new SelectModel('','Secondary skill',arrayOfSkills,1);
     this.otherSkills = [];
-    for (var key in data.otherSkills) {
-      this.otherSkills[key] = new SelectModel(data.otherSkills[key].skill, 'Other skill',arrayOfOtherSkills);
-    }
+    this.nextOtherSkill = new SelectModel('','Other skill',arrayOfOtherSkills);
     this.englishLevel = new SelectModel(data.lvl, 'English Level', arrayOfLanguages);
     // this.resumeLink = new InputModel(data.linkedin, 'Resume Link');
     //
     // // нужны vacancies,hrmNames, techName
     //
-
-    this.emailAdresses = [];
-    for (var key in data.emails) {
-      this.emailAdresses[key] = new InputModel(data.emails[key], 'Email address');
-    }
+    this.emailAdresses = new InputModel('', 'Email addresses');
     this.phoneNumbers = new InputModel(data.phone, 'Phone number');
-    this.linkedIn = new InputModel(data.linkedin, 'LinkedIn');
+    this.linkedIn = new InputModel(data.linkedin, 'LinledIn');
     this.skypeId = new InputModel(data.skype, 'SkypeID');
   }
 }

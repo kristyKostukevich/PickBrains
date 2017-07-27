@@ -8,7 +8,7 @@ export class HttpService {
   constructor(private http: Http) {
   }
 
-  getData() {
-    return this.http.get('http://localhost:1337/api/vacancies').toPromise();
+  getData(body: any) {
+    return this.http.post('http://localhost:1337/api/vacancies', body).toPromise();
   }
 }

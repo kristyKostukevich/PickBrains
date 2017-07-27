@@ -1,4 +1,4 @@
-export class SelectModel {
+export class SelectMarkModel {
   value: string;
   placeholder: string;
   options: string[];

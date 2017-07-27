@@ -9,7 +9,8 @@ export class HttpService {
   }
 
   getData(body : any) {
-    return this.http.put('http://localhost:1337/api/candidates', body ).toPromise();
+    return this.http.post('http://localhost:1337/api/candidates', body ).toPromise();
+
   }
 }
 
