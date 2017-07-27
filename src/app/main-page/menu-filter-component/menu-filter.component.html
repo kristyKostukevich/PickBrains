@@ -1,38 +1,22 @@
-<!--<div class="container">-->
-<!--<md-tab-group class="filter" fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px"-->
-<!--fxLayoutAlign="center start">-->
+<!--<div class="container">--><!--<md-tab-group class="filter" fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px"--><!--fxLayoutAlign="center start">-->
 
-<!--<md-tab label="Person">-->
-<!--<filter-person></filter-person>-->
-<!--</md-tab>-->
-<!--<md-tab label="Vacancy">-->
-<!--<filter-vacancy></filter-vacancy>-->
-<!--</md-tab>-->
-<!--<md-tab label="History" routerLink='/person-page'>-->
-<!--</md-tab>-->
+<!--<md-tab label="Person">--><!--<filter-person></filter-person>--><!--</md-tab>--><!--<md-tab label="Vacancy">--><!--<filter-vacancy></filter-vacancy>--><!--</md-tab>--><!--<md-tab label="History" routerLink='/person-page'>--><!--</md-tab>-->
 
 <!--</md-tab-group>-->
 
 <div class="filter-head">
     <nav md-tab-nav-bar>
-        <a md-tab-link
-           routerLink='/person-page'
-           routerLinkActive #rla="routerLinkActive"
-           [active]="rla.isActive">
+        <a md-tab-link (click)="toggle('Person')" [ngClass]="{active: toggleFlags[0]}" routerLink='/person-page'
+           routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
             Person
         </a>
-        <a md-tab-link
-           routerLink='/vacancy-page'
-           routerLinkActive #rla="routerLinkActive"
-           [active]="rla.isActive">
+        <a md-tab-link (click)="toggle('Vacancy')" [ngClass]="{active: toggleFlags[1]}" routerLink='/vacancy-page'
+           routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
             Vacancy
         </a>
-        <a md-tab-link
-           routerLink='/history-page'
-           routerLinkActive #rla="routerLinkActive"
-           [active]="rla.isActive">
+        <a md-tab-link (click)="toggle('History')" [ngClass]="{active: toggleFlags[2]}" routerLink='/history-page'
+           routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
             History
         </a>
     </nav>
-</div>
-<!--</div>-->
+</div><!--</div>-->
