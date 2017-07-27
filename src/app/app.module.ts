@@ -13,6 +13,9 @@ import { FilterPersonModule } from './components/filter-components/filter-person
 import { VacancyPageModule } from './main-page/vacancy-list-component/vacancy-list-component.module';
 import { HistoryModule } from './components/history/history.module';
 import { HistoryPageModule } from './main-page/history-list-component/history-list-component.module';
+import { CandidateDetailModule } from 'app/candidate-detail/candidate-detail.module';
+import { GeneralModule } from 'app/components/general/general.module';
+import { MaxListModule } from 'app/components/max-list/max-list.module';
 
 @NgModule({
   imports: [
@@ -28,6 +31,9 @@ import { HistoryPageModule } from './main-page/history-list-component/history-li
     VacancyPageModule,
     HistoryPageModule,
     VacancyDetailModule,
+    CandidateDetailModule,
+    GeneralModule,
+    MaxListModule,
   ],
   declarations: [
     AppComponent,
