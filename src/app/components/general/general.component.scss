@@ -12,8 +12,13 @@ form {
   width: calc(100% - 360px);
 }
 
+.add {
+  width: 70%;
+  left: 15%;
+}
+
 @media screen and (max-width: 800px) {
-  form {
+  form, .add {
     top: 2.5%;
     margin-bottom: 2.5%;
     left: 2.5%;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpService } from '../vacancy-list-component/vacancy-list-component.service';
+import { HttpService } from '../../http-service/http-service';
 
 @Component({
   selector: 'history-page',

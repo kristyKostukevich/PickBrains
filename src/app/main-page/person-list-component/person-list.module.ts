@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ListModule } from '../../components/list/list.module';
 import { FilterPersonModule } from '../../components/filter-components/filter-person/filter-person.module';
 import { GlobalHeaderModule } from '../../components/header/header.module';
+import { ButtonAddModule } from '../../components/button-add/button.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { GlobalHeaderModule } from '../../components/header/header.module';
     ListModule,
     FilterPersonModule,
     GlobalHeaderModule,
+    ButtonAddModule,
   ],
   declarations: [PersonListComponent],
   exports: [PersonListComponent],

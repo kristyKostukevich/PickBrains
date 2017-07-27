@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { SelectMarkModel } from 'app/interfaces/select-mark-model';
+import { SelectMarkModel } from '../../interfaces/select-mark-model';
 
 @Component({
   selector: 'select-mark-component',

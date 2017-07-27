@@ -1,0 +1,17 @@
+<div class="page-login">
+    <div class="log-in-block">
+
+        <div class="logo-block">
+            <img class="header-logo" src="../assets/logo2-blue.png" alt="Company logo">
+            <span class="logo-name">PickBrains</span>
+        </div>
+        <div class="input-block" (click)="clear()">
+            <input-text [(model)]="login"></input-text>
+            <input-text [(model)]="password"></input-text>
+        </div>
+        <div class="button-block">
+        <button md-button (click)="submit()">Sing in</button>
+            <span class = "error-text">{{error}}</span>
+        </div>
+    </div>
+</div>

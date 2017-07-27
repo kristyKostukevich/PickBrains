@@ -9,7 +9,7 @@ export class SelectMarkModel {
     this.value = value;
     this.placeholder = placeholder;
     this.options = options;
-    this.level = level || 0;
+    this.level = level || 9;
     this.id = id || 0;
   }
 }

@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PersonListComponent } from './main-page/person-list-component/person-list.component';
+import { TempComponent } from './Temp/temp.component';
+import { AuthorizationComponent } from './authorization/authorization.component';
+import { VacancyDetailComponent } from './vacancy-detail/vacancy-detail.component';
+import { CandidateDetailComponent } from './candidate-detail/candidate-detail.component';
+import { AddCandidateComponent } from './add-candidate/add-candidate.component';
+import { AddVacancyComponent } from './add-vacancy/add-vacancy.component';
 
 import 'hammerjs';
 import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy-list-component';
@@ -47,7 +53,6 @@ const vacancyRoutes: Routes = [
     component: MaxListComponent,
   },
 ];
-
 const routes: Routes = [
   {
     path: '',
@@ -76,8 +81,19 @@ const routes: Routes = [
     component: VacancyDetailComponent,
     children: vacancyRoutes,
   },
+  {
+    path: 'login',
+    component: AuthorizationComponent,
+  },
+  {
+    path: 'add-candidate',
+    component: AddCandidateComponent,
+  },
+  {
+    path: 'add-vacancy',
+    component: AddVacancyComponent,
+  },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

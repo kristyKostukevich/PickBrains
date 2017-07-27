@@ -1,16 +1,24 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnDestroy, OnInit, OnChanges } from '@angular/core';
+import { GeneralPage } from '../../classes/general-page';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CandidateGeneralPage } from 'app/classes/candidate-general-page';
 import { VacancyGeneralPage } from 'app/classes/vacancy-general-page';
+import { SelectModel } from '../../interfaces/select-model';
 
 @Component({
   selector: 'general',
   templateUrl: 'general.component.html',
   styleUrls: ['general.component.scss'],
 })
+export class GeneralComponent implements OnChanges {
+  @Input() model: any;
+  @Output() modelChange = new EventEmitter<GeneralPage>();
+  private initialized: boolean = false;
+  returnSubmit: SelectModel[];
 
-export class GeneralComponent implements OnInit, OnDestroy {
+  private querySubscription: Subscription;
+
   model: any;
   id: number;
   type: string;
@@ -87,8 +95,6 @@ export class GeneralComponent implements OnInit, OnDestroy {
     ],
   };
 
-  private querySubscription: Subscription;
-
   constructor(private route: ActivatedRoute) {
     this.querySubscription = route.queryParams.subscribe(
       (queryParam: any) => {
@@ -118,19 +124,53 @@ export class GeneralComponent implements OnInit, OnDestroy {
     this.querySubscription.unsubscribe();
   }
 
+  ngOnChanges() {
+    if (this.model)
+      this.initialized = true;
+    this.returnSubmit = [];
+  }
+
+  onModelChange() {
+    this.modelChange.emit(this.model);
+  }
+
+  updateSecondarySkill(a, b, c) {
+      console.log(a,b,c);
+  }
+
+  addSecondarySkill() {
+    this.model.secondarySkills.push(this.model.nextSecondarySkill);
+    this.model.nextSecondarySkill = new SelectModel('', 'Secondary skill', this.model.nextSecondarySkill.options.filter(skill => {
+      return skill !== this.model.nextSecondarySkill.value;
+    }))
+  }
+
+  addOtherSkill() {
+    this.model.otherSkills.push(this.model.nextOtherSkill);
+    this.model.nextOtherSkill = new SelectModel('', 'Other skill', this.model.nextOtherSkill.options.filter(skill => {
+      return skill !== this.model.nextOtherSkill.value;
+    }))
+  }
+
+
   isCandidate(): boolean {
-    return this.type === 'candidate';
+    return this.initialized && this.model.type === 'candidate';
   }
 
   isVacancy(): boolean {
-    return this.type === 'vacancy';
+    return this.initialized && this.model.type === 'vacancy';
   }
 
   isFeedbackFromHr(): boolean {
-    return this.model.type === 'feedbackFromHr';
+    return this.initialized && this.model.type === 'feedbackFromHr';
   }
 
   isFeedbackFromTech(): boolean {
-    return this.model.type === 'feedbackFromTech';
+    return this.initialized && this.model.type === 'feedbackFromTech';
   }
+
+  isCandidateAdd(): boolean {
+    return this.initialized && this.model.type === 'add-candidate';
+  }
+
 }

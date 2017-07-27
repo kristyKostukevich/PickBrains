@@ -1,16 +1,17 @@
 import { InputModel } from 'app/interfaces/input-model';
 import { SelectModel } from 'app/interfaces/select-model';
 import { DatePickerModel } from 'app/interfaces/date-picker-model';
-import { SelectMarkModel } from 'app/interfaces/select-mark-model';
 
 export class CandidateGeneralPage {
+  id: number;
+  type: string;
   firstName: InputModel;
   lastName: InputModel;
   location: SelectModel;
   status: SelectModel;
   primarySkill: SelectModel;
   workExperience: DatePickerModel;
-  secondarySkills: SelectMarkModel[];
+  secondarySkills: SelectModel[];
   otherSkills: SelectModel[];
   englishLevel: SelectModel;
   resumeLink: InputModel;
@@ -27,42 +28,38 @@ export class CandidateGeneralPage {
   linkedIn: InputModel;
   skypeId: InputModel;
 
-  constructor(data: any) {
-    this.firstName = new InputModel(data.first_name, 'First Name');
-    this.lastName = new InputModel(data.second_name, 'Last Name');
-    this.location = new SelectModel(data.city, 'Location', ['1', '2', '3']);
-    this.status = new SelectModel(data.status, 'Status', ['1', '2', '3']);
-    this.primarySkill = new SelectModel(data.skill_name, 'Primarry Skill',
-      ['1', '2', '3'], data.primary_skill_lvl);
-    this.workExperience = new DatePickerModel(data.exp_year, 'Work Experience');
+  constructor(data: any, arrayOfCities: any[], arrayOfStatuses: any[], arrayOfSkills: any[], arrayOfLanguages: any[], arrayOfOtherSkills: any[], type: string) {
 
-    this.secondarySkills = new Array(data.sec_skills.length);
-    for (const i in data.sec_skills) {
-      const item = data.sec_skills[i];
-      this.secondarySkills[i] = new SelectMarkModel(item.skill_name, 'Secondary skill',
-        ['Ruby on Rails', 'BI', '3'], item.lvl, item.id);
+    this.id = data.id;
+    this.type = type;
+    this.firstName = new InputModel(data.firstName, 'First Name');
+    this.lastName = new InputModel(data.secondName, 'Last Name');
+    this.location = new SelectModel(data.city, 'Location', arrayOfCities);
+    this.status = new SelectModel(data.status, 'Status', arrayOfStatuses);
+    // console.log(data.skillName);
+    // console.log(data.secSkills[0]);
+    this.primarySkill = new SelectModel(data.skillName, 'Primary Skill', arrayOfSkills, data.primarySkillLvl);
+    this.workExperience = new DatePickerModel(data.expYear, 'Work Experience');
+    this.secondarySkills = [];
+    for (var key in data.secSkills) {
+      this.secondarySkills[key] = new SelectModel(data.secSkills[key].skillName, 'Secondary skill',arrayOfSkills,data.secSkills[key].lvl);
     }
-
     this.otherSkills = [];
-    for (const i in data.other_skills) {
-      const item = data.other_skills[i];
-      this.otherSkills[i] = new SelectModel(item.skill, 'Other skill',
-        ['1', '2', '3'], item.id);
+    for (var key in data.otherSkills) {
+      this.otherSkills[key] = new SelectModel(data.otherSkills[key].skill, 'Other skill',arrayOfOtherSkills);
     }
-
-    this.englishLevel = new SelectModel(data.lvl, 'English Level', ['1', '2', '3']);
-    this.resumeLink = new InputModel(data.linkedin, 'Resume Link');
-
-    // нужны vacancies,hrmNames, techName
+    this.englishLevel = new SelectModel(data.lvl, 'English Level', arrayOfLanguages);
+    // this.resumeLink = new InputModel(data.linkedin, 'Resume Link');
+    //
+    // // нужны vacancies,hrmNames, techName
+    //
 
     this.emailAdresses = [];
-    for (const i in data.emails) {
-      const item = data.emails[i];
-      this.emailAdresses[i] = new InputModel(item, 'Email adress');
+    for (var key in data.emails) {
+      this.emailAdresses[key] = new InputModel(data.emails[key], 'Email address');
     }
-
     this.phoneNumbers = new InputModel(data.phone, 'Phone number');
-    this.linkedIn = new InputModel(data.linked_in, 'LinledIn');
+    this.linkedIn = new InputModel(data.linkedin, 'LinkedIn');
     this.skypeId = new InputModel(data.skype, 'SkypeID');
   }
 }

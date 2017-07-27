@@ -9,11 +9,9 @@ export class HttpService {
   }
 
   getCitiesData() {
-    // return this.http.get('http://localhost:1337/api/candidates');
     return this.http.get('http://localhost:1337/api/meta-data/locations').toPromise();
   }
   getSkillsData() {
-
     return this.http.get('http://localhost:1337/api/meta-data/skills').toPromise();
   }
   getLanguageData() {

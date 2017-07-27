@@ -38,3 +38,14 @@
     display: none;
   }
 }
+
+.empty-block {
+  background-color: #3f51b5;
+  height: 160px;
+}
+img {
+  height: 160px;
+  opacity: 0.25;
+  width: 260px;
+  z-index: 500;
+}
