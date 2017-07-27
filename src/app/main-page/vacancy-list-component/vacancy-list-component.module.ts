@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ListModule } from '../../components/list/list.module';
 import { VacancyListComponent } from './vacancy-list-component';
 import { FilterVacancyModule } from '../../components/filter-components/filter-vacancy/filter-vacancy.module';
+import { ButtonAddModule } from '../../components/button-add/button.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FilterVacancyModule } from '../../components/filter-components/filter-v
     RouterModule,
     ListModule,
     FilterVacancyModule,
+    ButtonAddModule,
   ],
   declarations: [VacancyListComponent],
   exports: [VacancyListComponent],

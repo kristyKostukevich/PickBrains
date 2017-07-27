@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CardList } from '../../classes/card-list';
 import { VacancyCardItem } from '../../interfaces/vacancy-card-item';
 import { HttpService } from './vacancy-list-component.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'vacancy-list',
@@ -13,15 +14,16 @@ import { HttpService } from './vacancy-list-component.service';
 export class VacancyListComponent implements OnInit {
   vacancies: VacancyCardItem [] = [];
   listItem: CardList;
+  urlAdress: string;
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private route: ActivatedRoute) {
   }
 
-
   ngOnInit() {
-  this.httpService.getData().then(res => {
-    this.vacancies = res.json();
-    this.listItem = new CardList(this.vacancies,'vacancies');
-  });
-}
+    this.httpService.getData().then(res => {
+      this.vacancies = res.json();
+      this.listItem = new CardList(this.vacancies, 'vacancies');
+      this.urlAdress = this.route.snapshot.url[0].path;
+    });
+  }
 }
