@@ -3,7 +3,7 @@ export class InputModel {
   placeholder: string;
 
   constructor(value: string, placeholder: string) {
-    this.value = value;
+    this.value = value || '';
     this.placeholder = placeholder;
   }
 }
