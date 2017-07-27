@@ -20,7 +20,7 @@ export class VacancyListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.getData().then(res => {
+    this.httpService.getData({limit: 0}).then(res => {
       this.vacancies = res.json();
       this.listItem = new CardList(this.vacancies, 'vacancies');
       this.urlAdress = this.route.snapshot.url[0].path;
