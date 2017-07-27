@@ -7,7 +7,6 @@ export class HttpService {
 
   constructor(private http: Http) {
   }
-
   getCitiesData() {
     return this.http.get('http://localhost:1337/api/meta-data/locations').toPromise();
   }

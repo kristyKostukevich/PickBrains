@@ -52,12 +52,6 @@ export class CandidateDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService
-      .getData(`http://localhost:1337/api/candidates?id=${this.route.snapshot.url[2].path}`)
-        .subscribe((res) => {
-          this.temp = res.json();
-        });
-
     this.httpService.getData('http://localhost:1337/api/meta-data/candidate-statuses')
       .subscribe((res) => {
         this.arrayOfStatuses = res.json();
@@ -92,16 +86,22 @@ export class CandidateDetailComponent implements OnInit {
         this.sendArrayOfCities[index] = i.city;
         index += 1;
       }
-      this.generalModel = new CandidateGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages,this.sendArrayOfOtherSkills,'candidate');
     });
-    this.httpService.getOtherSkills().then(res => {
-      this.arrayOfOtherSkills = res.json();
-      let index = 0;
-      for (let i of this.arrayOfOtherSkills) {
-        this.sendArrayOfOtherSkills[index] = i.skill;
-        index += 1;
-      }
-    });
-
+    this.httpService.getData('http://localhost:1337/api/meta-data/other-skills')
+      .subscribe((res) => {
+        this.arrayOfOtherSkills = res.json();
+        let index = 0;
+        for (let i of this.arrayOfOtherSkills) {
+          this.sendArrayOfOtherSkills[index] = i.skill;
+          index += 1;
+        }
+      });
+    this.httpService
+      .getData(`http://localhost:1337/api/candidates?id=${this.route.snapshot.url[2].path}`)
+      .subscribe((res) => {
+        this.temp = res.json();
+        this.generalModel = new CandidateGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages,this.sendArrayOfOtherSkills,'candidate');
+      });
+    console.log(this.generalModel)
   }
 }

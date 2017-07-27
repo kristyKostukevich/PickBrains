@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralPage } from '../classes/general-page';
 import { LinkAndLabel } from '../components/menu/menu.component';
-import { HttpService } from './add-vacancy.service';
+import { HttpService } from '../http-service/http-service';
 
 @Component({
   selector: 'add-vacancy',
@@ -41,7 +41,7 @@ export class AddVacancyComponent implements OnInit {
 
   ngOnInit() {
 
-    this.httpService.getStatusData().then(res => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/candidate-statuses').subscribe(res => {
       this.arrayOfStatuses = res.json();
       let index = 0;
       for (let i of this.arrayOfStatuses) {
@@ -50,7 +50,7 @@ export class AddVacancyComponent implements OnInit {
       }
     });
 
-    this.httpService.getSkillsData().then(res => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe(res => {
       this.arrayOfSkills = res.json();
       let index = 0;
       for (let i of this.arrayOfSkills) {
@@ -58,7 +58,7 @@ export class AddVacancyComponent implements OnInit {
         index += 1;
       }
     });
-    this.httpService.getLanguageData().then(res => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels').subscribe(res => {
       this.arrayOfLanguages = res.json();
       let index = 0;
       for (let i of this.arrayOfLanguages) {
@@ -66,7 +66,7 @@ export class AddVacancyComponent implements OnInit {
         index += 1;
       }
     });
-    this.httpService.getCitiesData().then(res => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe(res => {
       this.arrayOfCities = res.json();
       let index = 0;
       for (let i of this.arrayOfCities) {
