@@ -5,6 +5,7 @@
   left: 0;
   transition: 0.3s;
   width: 260px;
+  z-index: 10;
 }
 
 .empty-block {
@@ -24,6 +25,7 @@ img {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 160px);
+  overflow: auto;
 }
 
 .menu-item {
@@ -38,6 +40,9 @@ img {
 @media screen and (max-width: 800px) {
   .menu-left {
     display: none;
+  }
+  .open {
+    display: block;
   }
 }
 
