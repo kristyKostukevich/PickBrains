@@ -3,7 +3,7 @@ accordion-group {
   line-height: 35px !important;
   height: 35px !important;
   font-size: 1em;
-  color: black;
+  color: #606060;
   background-color: #eeeeee;
 }
 
@@ -20,7 +20,6 @@ accordion-group {
   line-height: 35px !important;
   height: 35px !important;
   font-size: 1em;
-  color: black;
 }
 
 li {
@@ -42,6 +41,7 @@ md-icon {
 
 accordion-heading {
   margin-left: 20px;
+  font-weight: 400;
 }
 
 ul {
@@ -50,6 +50,7 @@ ul {
 
 /deep/ .panel-title {
   margin-top: 25px;
+  padding: 0 10px;
 }
 
 /deep/ .panel-title:hover {
@@ -60,11 +61,14 @@ ul {
 .buttonMore {
   color: #ec407a;
   float: right;
-  padding-right: 10px;
 }
 
 /deep/ .mat-slider {
-  margin-left: 5px;
+  margin-left: 10px;
   margin-top: 20px;
   width: 240px;
+}
+
+/deep/ .mat-input-wrapper {
+  margin: 0 15px !important;
 }
