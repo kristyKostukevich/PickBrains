@@ -28,24 +28,25 @@ export class CandidateGeneralPage {
   linkedIn: InputModel;
   skypeId: InputModel;
 
-  constructor(data: any, arrayOfCities: any[], arrayOfStatuses: any[], arrayOfSkills: any[], arrayOfLanguages: any[], type: string) {
+  constructor(data: any, arrayOfCities: any[], arrayOfStatuses: any[], arrayOfSkills: any[], arrayOfLanguages: any[], arrayOfOtherSkills: any[], type: string) {
+
     this.id = data.id;
     this.type = type;
-    this.firstName = new InputModel(data.first_name, 'First Name');
-    this.lastName = new InputModel(data.second_name, 'Last Name');
+    this.firstName = new InputModel(data.firstName, 'First Name');
+    this.lastName = new InputModel(data.secondName, 'Last Name');
     this.location = new SelectModel(data.city, 'Location', arrayOfCities);
     this.status = new SelectModel(data.status, 'Status', arrayOfStatuses);
-    this.primarySkill = new SelectModel(data.skill_name, 'Primary Skill',
-    arrayOfSkills, data.primary_skill_lvl);
-    this.workExperience = new DatePickerModel(data.exp_year, 'Work Experience');
+    // console.log(data.skillName);
+    // console.log(data.secSkills[0]);
+    this.primarySkill = new SelectModel(data.skillName, 'Primary Skill', arrayOfSkills, data.primarySkillLvl);
+    this.workExperience = new DatePickerModel(data.expYear, 'Work Experience');
     this.secondarySkills = [];
-    for (var key in data.sec_skills) {
-      this.secondarySkills[key] = new InputModel(data.sec_skills[key].skill_name, 'Secondary skill');
-      // console.log( data.sec_skills[key].skill_name);
+    for (var key in data.secSkills) {
+      this.secondarySkills[key] = new SelectModel(data.secSkills[key].skillName, 'Secondary skill',arrayOfSkills,data.secSkills[key].lvl);
     }
     this.otherSkills = [];
-    for (var key in data.other_skills) {
-      this.otherSkills[key] = new InputModel(data.other_skills[key].skill, 'Other skill');
+    for (var key in data.otherSkills) {
+      this.otherSkills[key] = new SelectModel(data.otherSkills[key].skill, 'Other skill',arrayOfOtherSkills);
     }
     this.englishLevel = new SelectModel(data.lvl, 'English Level', arrayOfLanguages);
     // this.resumeLink = new InputModel(data.linkedin, 'Resume Link');
@@ -55,10 +56,10 @@ export class CandidateGeneralPage {
 
     this.emailAdresses = [];
     for (var key in data.emails) {
-      this.emailAdresses[key] = new InputModel(data.emails[key], 'Email adress');
+      this.emailAdresses[key] = new InputModel(data.emails[key], 'Email address');
     }
     this.phoneNumbers = new InputModel(data.phone, 'Phone number');
-    this.linkedIn = new InputModel(data.linked_in, 'LinledIn');
+    this.linkedIn = new InputModel(data.linkedin, 'LinkedIn');
     this.skypeId = new InputModel(data.skype, 'SkypeID');
   }
 }

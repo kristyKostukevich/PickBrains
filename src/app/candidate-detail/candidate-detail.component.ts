@@ -28,13 +28,15 @@ export class CandidateDetailComponent implements OnInit {
   sendArrayOfSkills: string[];
   arrayOfLanguages: any[];
   sendArrayOfLanguages: string[];
+  arrayOfOtherSkills: any [];
+  sendArrayOfOtherSkills : string[];
 
   constructor(private httpService: HttpService) {
     this.menuItems = [ {label: 'General', link: '/person-page'},
       {label: 'Feedbacks from Tech ', link: '/person-page'},
       {label: 'Feedbacks from HRM', link: '/person-page'},
       {label: 'History', link: '/person-page'}];
-    this.generalModel = new CandidateGeneralPage('', [], [], [], [], '');
+    this.generalModel = new CandidateGeneralPage('', [], [], [], [], [], '');
     this.arrayOfCities = [];
     this.sendArrayOfCities = [];
     this.temp = '';
@@ -44,6 +46,8 @@ export class CandidateDetailComponent implements OnInit {
     this.sendArrayOfSkills = [];
     this.arrayOfLanguages = [];
     this.sendArrayOfLanguages = [];
+    this.arrayOfOtherSkills = [];
+    this.sendArrayOfOtherSkills = [];
   }
 
   ngOnInit() {
@@ -64,7 +68,7 @@ export class CandidateDetailComponent implements OnInit {
       this.arrayOfSkills = res.json();
       let index = 0;
       for (let i of this.arrayOfSkills) {
-        this.sendArrayOfSkills[index] = i.skill_name;
+        this.sendArrayOfSkills[index] = i.skillName;
         index += 1;
       }
     });
@@ -76,6 +80,14 @@ export class CandidateDetailComponent implements OnInit {
         index += 1;
       }
     });
+    this.httpService.getOtherSkills().then(res => {
+      this.arrayOfOtherSkills = res.json();
+      let index = 0;
+      for (let i of this.arrayOfOtherSkills) {
+        this.sendArrayOfOtherSkills[index] = i.skill;
+        index += 1;
+      }
+    });
     this.httpService.getCitiesData().then(res => {
       this.arrayOfCities = res.json();
       let index = 0;
@@ -83,9 +95,8 @@ export class CandidateDetailComponent implements OnInit {
         this.sendArrayOfCities[index] = i.city;
         index += 1;
       }
-      this.generalModel = new CandidateGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages,'candidate');
+      this.generalModel = new CandidateGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages,this.sendArrayOfOtherSkills,'candidate');
     });
+
   }
-
-
 }
