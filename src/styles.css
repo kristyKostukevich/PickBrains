@@ -16,8 +16,8 @@ html {
 
 .adaptive-components {
   width: 49%;
+  padding: 1%;
   min-width: 260px;
-  padding-left: 1.5%;
   box-sizing: border-box;
 }
 
@@ -28,7 +28,7 @@ html {
   }
 }
 
-@media screen and (min-width: 801px) and (max-width: 1100px) {
+@media screen and (min-width: 801px) and (max-width: 950px) {
   .adaptive-components {
     padding: 0;
     width: 92%;
