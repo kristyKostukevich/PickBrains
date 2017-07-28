@@ -19,5 +19,4 @@ export class MenuService {
   getData() {
     return this.data;
   }
-
 }

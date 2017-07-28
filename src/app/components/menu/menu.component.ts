@@ -1,35 +1,35 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShowMenuService } from 'app/components/header/show-menu.service';
+import { MenuService } from 'app/components/menu/menu.service';
 
 @Component({
   selector: 'menu',
   templateUrl: 'menu.component.html',
   styleUrls: ['menu.component.scss'],
 })
-export class MenuComponent implements OnInit, OnChanges {
+export class MenuComponent implements OnInit {
   @Input() menuItems: string[];
   @Input() id: number;
   @Input() type: string;
-  flag: boolean = false;
 
+  showMenuFlag: boolean = false;
   toggleFlags: boolean[];
 
-  constructor(private router: Router, private showMenu: ShowMenuService) {
+  constructor(private router: Router, private showMenu: ShowMenuService,
+              private menuService: MenuService) {
     this.toggleFlags = [];
-    this.showMenu.getEmitter().subscribe(flag => {
-      this.flag = flag;
+    this.showMenu.getEmitter().subscribe((flag) => {
+      this.showMenuFlag = flag;
     });
   }
 
-  ngOnChanges() {
-  }
-
   ngOnInit() {
-    this.goToItem('General');
+    this.menuService.setData(this.type, this.id, 'General');
+    this.toggleMenuItem('General');
   }
 
-  toggle(item: string) {
+  toggleMenuItem(item: string) {
     if (document.documentElement.clientWidth <= 800) {
       this.showMenu.menuToggle();
     }
@@ -44,8 +44,7 @@ export class MenuComponent implements OnInit, OnChanges {
     }
   }
 
-  getParent() {
-    console.log(this.type);
+  getParentPath() {
     switch (this.type) {
       case 'candidate':
         return '/person-page/detail-candidate';
@@ -57,18 +56,11 @@ export class MenuComponent implements OnInit, OnChanges {
   }
 
   goToItem(item: string) {
-    this.toggle(item);
-    const parentPath = this.getParent();
+    this.menuService.setItemType(item);
+    this.toggleMenuItem(item);
+    const parentPath = this.getParentPath();
     const path = `${parentPath}/${this.id}/${item.replace(/\s/g, '-')
       .toLowerCase()}`;
-    this.router.navigate([path],
-      {
-        queryParams: {
-          itemType: item,
-          type: this.type,
-          id: this.id,
-        },
-      },
-    );
+    this.router.navigate([path]);
   }
 }
