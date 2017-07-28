@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HistoryCardItem } from '../interfaces/history-card-item';
 import { CandidateGeneralPage } from 'app/classes/candidate-general-page';
-import { CardList } from 'app/classes/card-list';
-import { FeedbackCardItem } from 'app/interfaces/feedback-card-item';
-import { GeneralPage } from '../classes/general-page';
 import { LinkAndLabel } from '../components/menu/menu.component';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../http-service/http-service';

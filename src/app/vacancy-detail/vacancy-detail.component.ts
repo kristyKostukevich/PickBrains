@@ -24,6 +24,8 @@ export class VacancyDetailComponent implements OnInit {
   sendArrayOfSkills: string[];
   arrayOfLanguages: any[];
   sendArrayOfLanguages: string[];
+  arrayOfOtherSkills: any[];
+  sendArrayOfOtherSkills: string[];
 
   constructor(private httpService: HttpService, private route:ActivatedRoute) {
 
@@ -31,7 +33,7 @@ export class VacancyDetailComponent implements OnInit {
       {label: 'Assigned candidates ', link: '/person-page'},
       {label: 'Potential  candidates', link: '/person-page'},
       {label: 'History', link: '/person-page'}];
-    this.model = new GeneralPage('', [], [], [], [],'');
+    this.model = new GeneralPage('', [], [], [], [],[],'');
     this.arrayOfCities = [];
     this.sendArrayOfCities = [];
     this.temp = '';
@@ -41,10 +43,12 @@ export class VacancyDetailComponent implements OnInit {
     this.sendArrayOfSkills = [];
     this.arrayOfLanguages = [];
     this.sendArrayOfLanguages = [];
+    this.arrayOfOtherSkills = [];
+    this.sendArrayOfOtherSkills = [];
   }
 
   ngOnInit() {
-    this.httpService.getData('http://localhost:1337/api/meta-data/candidate-statuses')
+    this.httpService.getData('http://localhost:1337/api/meta-data/vacancy-statuses')
       .subscribe((res) => {
         this.arrayOfStatuses = res.json();
         let index = 0;
@@ -58,7 +62,7 @@ export class VacancyDetailComponent implements OnInit {
       this.arrayOfSkills = res.json();
       let index = 0;
       for (const i of this.arrayOfSkills) {
-        this.sendArrayOfSkills[index] = i.skill_name;
+        this.sendArrayOfSkills[index] = i.skillName;
         index += 1;
       }
     });
@@ -73,7 +77,6 @@ export class VacancyDetailComponent implements OnInit {
       });
     this.httpService.getData('http://localhost:1337/api/meta-data/locations')
       .subscribe((res) => {
-        console.log(res);
         this.arrayOfCities = res.json();
         let index = 0;
         for (let i of this.arrayOfCities) {
@@ -81,11 +84,20 @@ export class VacancyDetailComponent implements OnInit {
           index += 1;
         }
       });
+    this.httpService.getData('http://localhost:1337/api/meta-data/other-skills')
+      .subscribe((res) => {
+        this.arrayOfOtherSkills = res.json();
+        let index = 0;
+        for (let i of this.arrayOfOtherSkills) {
+          this.sendArrayOfOtherSkills[index] = i.skill;
+          index += 1;
+        }
+      });
     this.httpService
       .getData(`http://localhost:1337/api/vacancies/${this.route.snapshot.url[2].path}`)
       .subscribe((data) => {
         this.temp = data.json();
-        this.model = new GeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages,'vacancy');
+        this.model = new GeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages,this.sendArrayOfOtherSkills,'vacancy');
       });
   }
 }
