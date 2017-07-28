@@ -3,9 +3,9 @@
         <div class="first-block">
             <div>
                 <h4>{{item.name}}</h4>
-                <span class="date">{{item.request_date | date: mediumTime }}</span>
+                <!--<span class="date">{{item.request_date | date: mediumTime }}</span>-->
             </div>
-            <p>{{item.id}}</p>
+            <p>{{item.requestDate | date: mediumTime}}</p>
         </div>
         <div class="second-block">
             <span>{{item.status}}</span>

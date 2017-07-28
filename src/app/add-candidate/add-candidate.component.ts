@@ -12,8 +12,6 @@ import { HttpService } from '../http-service/http-service';
 export class AddCandidateComponent implements OnInit {
   generalModel: CandidateAddPage;
   postCandidateInfo: PostCandidateInfo;
-  // historyModel: CardList;
-  // hrmFeedbackModel: FeedbackCardItem;
   temp: string;
   arrayOfCities: any[];
   sendArrayOfCities: string[];
@@ -66,6 +64,14 @@ export class AddCandidateComponent implements OnInit {
       let index = 0;
       for (let i of this.arrayOfLanguages) {
         this.sendArrayOfLanguages[index] = i.lvl;
+        index += 1;
+      }
+    });
+    this.httpService.getData('http://localhost:1337/api/meta-data/other-skills').subscribe(res => {
+      this.arrayOfOtherSkills = res.json();
+      let index = 0;
+      for (let i of this.arrayOfOtherSkills) {
+        this.sendArrayOfOtherSkills[index] = i.skill;
         index += 1;
       }
     });

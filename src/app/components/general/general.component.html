@@ -4,12 +4,15 @@
     <date-picker [(model)]="model.requestDate" (ngModelChange)="onModelChange($event)"></date-picker>
     <date-picker [(model)]="model.projectStartDate" (ngModelChange)="onModelChange($event)"></date-picker>
     <select-component [(model)]="model.status" (ngModelChange)="onModelChange($event)"></select-component>
-    <!--<input-text [(model)]="model.resumeLink" (ngModelChange)="onModelChange($event)"></input-text>-->
-    <select-component [(model)]="model.primarySkill" (ngModelChange)="onModelChange($event)"></select-component>
+    <select-mark-component [(model)]="model.primarySkill" (ngModelChange)="onModelChange($event)"></select-mark-component>
     <date-picker [(model)]="model.workExperience" (ngModelChange)="onModelChange($event)"></date-picker>
     <select-component [(model)]="model.englishLevel" (ngModelChange)="onModelChange($event)"></select-component>
-    <input-text *ngFor="let item of model.otherSkills; let i = index" [(model)]="model.otherSkills[i]"
-                (ngModelChange)="onModelChange($event)"></input-text>
+    <select-mark-component *ngFor="let item of model.secondarySkills; let i = index" [(model)]="model.secondarySkills[i]"
+                (ngModelChange)="onModelChange($event)"></select-mark-component>
+    <select-component *ngFor="let item of model.otherSkills; let i = index" [(model)]="model.otherSkills[i]"
+                (ngModelChange)="onModelChange($event)"></select-component>
+    <input-text [(model)]="model.salaryWish" (ngModelChange)="onModelChange($event)"></input-text>
+    <input-text [(model)]="model.linkedIn" (ngModelChange)="onModelChange($event)"></input-text>
     <input-textarea [(model)]="model.description" (ngModelChange)="onModelChange($event)"></input-textarea>
 </form>
 
@@ -25,9 +28,6 @@
     <select-component *ngFor="let item of model.otherSkills; let i = index" [(model)]="model.otherSkills[i]"
                 (ngModelChange)="onModelChange($event)"></select-component>
     <select-component [(model)]="model.englishLevel" (ngModelChange)="onModelChange($event)"></select-component>
-    <!--<input-text [(model)]="model.resumeLink" (ngModelChange)="onModelChange($event)"></input-text>-->
-    <!--<select-component *ngFor="let item of model.vacancies; let i = index" [(model)]="model.vacancies[i]"-->
-    <!--(ngModelChange)="onModelChange($event)"></select-component>-->
     <input-text *ngFor="let item of model.emailAdresses; let i = index" [(model)]="model.emailAdresses[i]"
                 (ngModelChange)="onModelChange($event)"></input-text>
     <input-text [(model)]="model.phoneNumbers" (ngModelChange)="onModelChange($event)"></input-text>
@@ -42,20 +42,34 @@
     <date-picker [(model)]="model.workExperience" (modelChange)="onModelChange($event)"></date-picker>
 
     <select-mark-component *ngFor="let item of model.secondarySkills; let i = index;"[(model)]="model.secondarySkills[i]"
-                      (modelChange)="updateSecondarySkill($event,item,i)"></select-mark-component>
+                           (modelChange)="updateSecondarySkill($event,item,i)"></select-mark-component>
     <select-mark-component [(model)]="model.nextSecondarySkill" (modelChange)="addSecondarySkill($event)"></select-mark-component>
 
     <select-component *ngFor="let item of model.otherSkills; let i = index;"[(model)]="model.otherSkills[i]"
                       (modelChange)="updateSecondarySkill($event,item,i)"></select-component>
     <select-component [(model)]="model.nextOtherSkill" (modelChange)="addOtherSkill($event)"></select-component>
-
-
     <select-component [(model)]="model.englishLevel" (ngModelChange)="onModelChange($event)"></select-component>
-    <!--<input-text [(model)]="model.resumeLink" (ngModelChange)="onModelChange($event)"></input-text>-->
-    <!--<select-component *ngFor="let item of model.vacancies; let i = index" [(model)]="model.vacancies[i]"-->
-    <!--(ngModelChange)="onModelChange($event)"></select-component>-->
     <input-text [(model)]="model.emailAdresses" (ngModelChange)="onModelChange($event)"></input-text>
     <input-text [(model)]="model.phoneNumbers" (ngModelChange)="onModelChange($event)"></input-text>
     <input-text [(model)]="model.linkedIn" (ngModelChange)="onModelChange($event)"></input-text>
     <input-text [(model)]="model.skypeId" (ngModelChange)="onModelChange($event)"></input-text>
+</form>
+
+<form class="add" *ngIf="isVacancyAdd()">
+    <input-text [(model)]="model.projectName" (modelChange)="onModelChange($event)"></input-text>
+    <select-component [(model)]="model.location" (modelChange)="onModelChange($event)"></select-component>
+    <select-component [(model)]="model.status" (modelChange)="onModelChange($event)"></select-component>
+    <select-mark-component [(model)]="model.primarySkill" (modelChange)="onModelChange($event)"></select-mark-component>
+    <select-mark-component *ngFor="let item of model.secondarySkills; let i = index;"[(model)]="model.secondarySkills[i]"
+                           (modelChange)="updateSecondarySkill($event,item,i)"></select-mark-component>
+    <select-mark-component [(model)]="model.nextSecondarySkill" (modelChange)="addSecondarySkill($event)"></select-mark-component>
+    <select-component *ngFor="let item of model.otherSkills; let i = index;"[(model)]="model.otherSkills[i]"
+                      (modelChange)="updateSecondarySkill($event,item,i)"></select-component>
+    <select-component [(model)]="model.nextOtherSkill" (modelChange)="addOtherSkill($event)"></select-component>
+    <select-component [(model)]="model.englishLevel" (ngModelChange)="onModelChange($event)"></select-component>
+    <input-text [(model)]="model.salaryWish" (ngModelChange)="onModelChange($event)"></input-text>
+    <input-text [(model)]="model.linkedIn" (ngModelChange)="onModelChange($event)"></input-text>
+    <date-picker [(model)]="model.workExperience" (modelChange)="onModelChange($event)"></date-picker>
+    <date-picker [(model)]="model.startDate" (modelChange)="onModelChange($event)"></date-picker>
+    <input-text [(model)]="model.description" (ngModelChange)="onModelChange($event)"></input-text>
 </form>
