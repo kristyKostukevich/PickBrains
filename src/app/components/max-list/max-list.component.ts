@@ -233,7 +233,6 @@ export class MaxListComponent implements OnInit {
 
   ];
 
-
   constructor(private menuService: MenuService) {
   }
 
@@ -254,7 +253,7 @@ export class MaxListComponent implements OnInit {
         break;
       case 'History':
         this.parentData.itemType = 'history';
-        if (this.parentData.type = 'candidate') {
+        if (this.parentData.type === 'candidate') {
           this.getCandidateHistory();
         } else {
           this.getVacancyHistory();
