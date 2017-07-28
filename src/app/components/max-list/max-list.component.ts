@@ -1,21 +1,19 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { CardList } from 'app/classes/card-list';
 import { FeedbackCardItem } from 'app/interfaces/feedback-card-item';
 import { HistoryCardItem } from 'app/interfaces/history-card-item';
 import { CandidateCardItem } from 'app/interfaces/candidate-card-item';
+import { MenuService } from 'app/components/menu/menu.service';
+import { ComponentsData } from 'app/interfaces/components-data';
 
 @Component({
-  selector: 'list',
+  selector: 'max-list',
   templateUrl: 'max-list.component.html',
   styleUrls: ['max-list.component.scss'],
 })
-export class MaxListComponent implements OnChanges, OnInit {
+export class MaxListComponent implements OnInit {
   list: CardList;
-  id: number;
-  type: string;
-  itemType: string;
+  parentData: ComponentsData;
 
   candidateHistoryItems: HistoryCardItem[] = [
     {
@@ -92,8 +90,8 @@ export class MaxListComponent implements OnChanges, OnInit {
       status: 'Status',
       email: 'Email',
       city: 'city',
-      skill_name: 'Primary skill',
-      contact_date: new Date(2017, 1, 5),
+      skillName: 'Primary skill',
+      contactDate: new Date(2017, 1, 5),
       id: 1,
     },
     {
@@ -101,8 +99,8 @@ export class MaxListComponent implements OnChanges, OnInit {
       status: 'Status',
       email: 'Email',
       city: 'city',
-      skill_name: 'Primary skill',
-      contact_date: new Date(2017, 1, 5),
+      skillName: 'Primary skill',
+      contactDate: new Date(2017, 1, 5),
       id: 2,
     },
     {
@@ -110,8 +108,8 @@ export class MaxListComponent implements OnChanges, OnInit {
       status: 'Status',
       email: 'Email',
       city: 'city',
-      skill_name: 'Primary skill',
-      contact_date: new Date(2017, 1, 5),
+      skillName: 'Primary skill',
+      contactDate: new Date(2017, 1, 5),
       id: 3,
     },
     {
@@ -119,8 +117,8 @@ export class MaxListComponent implements OnChanges, OnInit {
       status: 'Status',
       email: 'Email',
       city: 'city',
-      skill_name: 'Primary skill',
-      contact_date: new Date(2017, 1, 5),
+      skillName: 'Primary skill',
+      contactDate: new Date(2017, 1, 5),
       id: 4,
     },
     {
@@ -128,8 +126,8 @@ export class MaxListComponent implements OnChanges, OnInit {
       status: 'Status',
       email: 'Email',
       city: 'city',
-      skill_name: 'Primary skill',
-      contact_date: new Date(2017, 1, 5),
+      skillName: 'Primary skill',
+      contactDate: new Date(2017, 1, 5),
       id: 5,
     },
     {
@@ -137,8 +135,8 @@ export class MaxListComponent implements OnChanges, OnInit {
       status: 'Status',
       email: 'Email',
       city: 'city',
-      skill_name: 'Primary skill',
-      contact_date: new Date(2017, 1, 5),
+      skillName: 'Primary skill',
+      contactDate: new Date(2017, 1, 5),
       id: 6,
     },
     {
@@ -146,8 +144,8 @@ export class MaxListComponent implements OnChanges, OnInit {
       status: 'Status',
       email: 'Email',
       city: 'city',
-      skill_name: 'Primary skill',
-      contact_date: new Date(2017, 1, 5),
+      skillName: 'Primary skill',
+      contactDate: new Date(2017, 1, 5),
       id: 7,
     },
     {
@@ -155,8 +153,8 @@ export class MaxListComponent implements OnChanges, OnInit {
       status: 'Status',
       email: 'Email',
       city: 'city',
-      skill_name: 'Primary skill',
-      contact_date: new Date(2017, 1, 5),
+      skillName: 'Primary skill',
+      contactDate: new Date(2017, 1, 5),
       id: 8,
     },
   ];
@@ -166,8 +164,8 @@ export class MaxListComponent implements OnChanges, OnInit {
       status: 'Status',
       email: 'Email',
       city: 'city',
-      skill_name: 'Primary skill',
-      contact_date: new Date(2017, 1, 5),
+      skillName: 'Primary skill',
+      contactDate: new Date(2017, 1, 5),
       id: 1,
     },
     {
@@ -175,8 +173,8 @@ export class MaxListComponent implements OnChanges, OnInit {
       status: 'Status',
       email: 'Email',
       city: 'city',
-      skill_name: 'Primary skill',
-      contact_date: new Date(2017, 1, 5),
+      skillName: 'Primary skill',
+      contactDate: new Date(2017, 1, 5),
       id: 2,
     },
     {
@@ -184,8 +182,8 @@ export class MaxListComponent implements OnChanges, OnInit {
       status: 'Status',
       email: 'Email',
       city: 'city',
-      skill_name: 'Primary skill',
-      contact_date: new Date(2017, 1, 5),
+      skillName: 'Primary skill',
+      contactDate: new Date(2017, 1, 5),
       id: 3,
     },
   ];
@@ -235,73 +233,83 @@ export class MaxListComponent implements OnChanges, OnInit {
 
   ];
 
-  private initialized: boolean = true; //не забыть поменять
-  private querySubscription: Subscription;
 
-  constructor(private route: ActivatedRoute) {
-    this.querySubscription = route.queryParams.subscribe(
-      (queryParam: any) => {
-        this.type = queryParam['type'];
-        this.id = queryParam['id'];
-        this.itemType = queryParam['itemType'];
-      },
-    );
-    this.setItemType(this.itemType);
+  constructor(private menuService: MenuService) {
   }
 
   ngOnInit() {
-
+    this.parentData = this.menuService.getData();
+    this.identifyRequestType(this.parentData.itemType);
   }
 
-  ngOnChanges() {
-    if (this.list)
-      this.initialized = true;
-  }
-
-  private setItemType(item) {
+  private identifyRequestType(item) {
     switch (item) {
       case 'Feedbacks From Tech':
-        this.itemType = 'feedbacks';
-        this.list = new CardList(this.candidateFeedbacksItems);
+        this.parentData.itemType = 'feedbacks';
+        this.getFeedbackFromTech();
         break;
       case 'Feedbacks From HRm':
-        this.itemType = 'feedbacks';
-        this.list = new CardList(this.candidateFeedbacksItems);
+        this.parentData.itemType = 'feedbacks';
+        this.getFeedbackFromHrm();
         break;
       case 'History':
-        this.itemType = 'history';
-        if (this.type = 'candidate') {
-          this.list = new CardList(this.candidateHistoryItems);
+        this.parentData.itemType = 'history';
+        if (this.parentData.type = 'candidate') {
+          this.getCandidateHistory();
         } else {
-          this.list = new CardList(this.vacancyHistoryItems);
+          this.getVacancyHistory();
         }
         break;
       case 'Assigned candidates':
-        this.itemType = 'candidates';
-        this.list = new CardList(this.vacancyAssignedCandidates);
+        this.parentData.itemType = 'candidates';
+        this.getAssignedCandidates();
         break;
       case 'Potential candidates':
-        this.itemType = 'candidates';
-        this.list = new CardList(this.vacancyPotentialCandidates);
+        this.parentData.itemType = 'candidates';
+        this.getPotentialCandidates();
         break;
       default:
         alert('error');
     }
   }
 
+  getFeedbackFromHrm() {
+    this.list = new CardList(this.candidateFeedbacksItems);
+  }
+
+  getCandidateHistory() {
+    this.list = new CardList(this.candidateHistoryItems);
+  }
+
+  getVacancyHistory() {
+    this.list = new CardList(this.vacancyHistoryItems);
+  }
+
+  getAssignedCandidates() {
+    this.list = new CardList(this.vacancyAssignedCandidates);
+  }
+
+  getPotentialCandidates() {
+    this.list = new CardList(this.vacancyPotentialCandidates);
+  }
+
+  getFeedbackFromTech() {
+    this.list = new CardList(this.candidateFeedbacksItems);
+  }
+
   isVacancies(): boolean {
-    return this.initialized && this.itemType === 'vacancies';
+    return this.parentData.itemType === 'vacancies';
   }
 
   isCandidates(): boolean {
-    return this.initialized && this.itemType === 'candidates';
+    return this.parentData.itemType === 'candidates';
   }
 
   isHistory(): boolean {
-    return this.initialized && this.itemType === 'history';
+    return this.parentData.itemType === 'history';
   }
 
   isFeedbacks(): boolean {
-    return this.initialized && this.itemType === 'feedbacks';
+    return this.parentData.itemType === 'feedbacks';
   }
 }
