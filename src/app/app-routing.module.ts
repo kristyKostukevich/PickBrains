@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PersonListComponent } from './main-page/person-list-component/person-list.component';
-import { TempComponent } from './Temp/temp.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { VacancyDetailComponent } from './vacancy-detail/vacancy-detail.component';
 import { CandidateDetailComponent } from './candidate-detail/candidate-detail.component';
@@ -11,15 +10,18 @@ import { AddVacancyComponent } from './add-vacancy/add-vacancy.component';
 import 'hammerjs';
 import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy-list-component';
 import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
-import { CandidateDetailComponent } from 'app/candidate-detail/candidate-detail.component';
-import { GeneralComponent } from 'app/components/general/general.component';
 import { MaxListComponent } from 'app/components/max-list/max-list.component';
-import { VacancyDetailComponent } from 'app/vacancy-detail/vacancy-detail.component';
+import { GeneralViewComponent } from 'app/components/general-view/general-view.component';
 
 const candidateRoutes: Routes = [
   {
+    path: '',
+    redirectTo: 'general',
+    pathMatch: 'full',
+  },
+  {
     path: 'general',
-    component: GeneralComponent,
+    component: GeneralViewComponent,
   },
   {
     path: 'feedbacks-from-tech',
@@ -34,11 +36,15 @@ const candidateRoutes: Routes = [
     component: MaxListComponent,
   },
 ];
-
 const vacancyRoutes: Routes = [
   {
+    path: '',
+    redirectTo: 'general',
+    pathMatch: 'full',
+  },
+  {
     path: 'general',
-    component: GeneralComponent,
+    component: GeneralViewComponent,
   },
   {
     path: 'assigned-candidates',
