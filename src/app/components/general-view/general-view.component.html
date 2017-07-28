@@ -4,11 +4,16 @@
     <date-picker [(model)]="model.requestDate"></date-picker>
     <date-picker [(model)]="model.projectStartDate"></date-picker>
     <select-component [(model)]="model.status"></select-component>
-    <select-component [(model)]="model.primarySkill"></select-component>
+    <select-mark-component [(model)]="model.primarySkill"></select-mark-component>
+    <date-picker [(model)]="model.workExperience"></date-picker>
+    <select-component [(model)]="model.englishLevel"></select-component>
     <select-mark-component *ngFor="let item of model.secondarySkills; let i = index"
                            [(model)]="model.secondarySkills[i]"></select-mark-component>
     <select-component *ngFor="let item of model.otherSkills; let i = index"
                       [(model)]="model.otherSkills[i]"></select-component>
+    <input-text [(model)]="model.salaryWish"></input-text>
+    <input-text [(model)]="model.linkedIn"></input-text>
+    <input-textarea [(model)]="model.description"></input-textarea>
 </form>
 
 <form *ngIf="isCandidate()">

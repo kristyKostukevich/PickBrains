@@ -9,7 +9,7 @@ import { ShowMenuService } from 'app/components/header/show-menu.service';
   providers: [HttpService],
 })
 export class GlobalHeaderComponent implements OnInit {
-  public person = 'User';
+  public person = '';
   flag: boolean = false;
 
   constructor(private showMenu: ShowMenuService, private httpService: HttpService) {
@@ -22,7 +22,7 @@ export class GlobalHeaderComponent implements OnInit {
     this.httpService
       .getData(`http://localhost:1337/api/user`)
       .subscribe((data) => {
-        this.person = data.json().first_name+' '+data.json().second_name;
+        this.person = data.json().firstName + ' ' + data.json().secondName;
       });
   }
 

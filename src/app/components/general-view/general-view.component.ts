@@ -3,61 +3,60 @@ import { CandidateGeneralPage } from 'app/classes/candidate-general-page';
 import { VacancyGeneralPage } from 'app/classes/vacancy-general-page';
 import { MenuService } from '../menu/menu.service';
 import { ComponentsData } from 'app/interfaces/components-data';
+import { HttpService } from 'app/http-service/http-service';
 
 @Component({
   selector: 'general',
   templateUrl: 'general-view.component.html',
   styleUrls: ['general-view.component.scss'],
+  providers: [HttpService],
 })
 export class GeneralViewComponent implements OnInit {
+  initialized: boolean = false;
   parentData: ComponentsData;
   model: any;
 
-  responseVacancy = {
-    id: 2,
-    name: 'Foooo',
-    requestDate: '2017-1-1',
-    startDate: '2017-2-2',
-    skillName: 'Android',
-    primarySkillLvl: 9,
-    city: 'Belarus, Vitebsk',
-    status: 'On hold',
-    secondarySkills: [
-      {
-        skillName: 'BI',
-        lvl: 2,
-      },
-      {
-        skillName: 'Ruby on Rails',
-        lvl: 3,
-      },
-    ],
-    otherSkills: [
-      {
-        skill: 'Programming basics',
-        id: 1,
-      },
-      {
-        skill: 'Networking',
-        id: 2,
-      },
-    ],
-  };
+  temp: string;
+  arrayOfCities: any[];
+  sendArrayOfCities: string[];
+  arrayOfStatuses: any[];
+  sendArrayOfStatuses: string[];
+  arrayOfSkills: any[];
+  sendArrayOfSkills: string[];
+  arrayOfLanguages: any[];
+  sendArrayOfLanguages: string[];
+  arrayOfOtherSkills: any[];
+  sendArrayOfOtherSkills: string[];
 
-  constructor(private menuService: MenuService) {
+  constructor(private menuService: MenuService, private httpService: HttpService) {
+    this.arrayOfCities = [];
+    this.sendArrayOfCities = [];
+    this.temp = '';
+    this.arrayOfStatuses = [];
+    this.sendArrayOfStatuses = [];
+    this.arrayOfSkills = [];
+    this.sendArrayOfSkills = [];
+    this.arrayOfLanguages = [];
+    this.sendArrayOfLanguages = [];
+    this.arrayOfOtherSkills = [];
+    this.sendArrayOfOtherSkills = [];
   }
 
   ngOnInit() {
     this.parentData = this.menuService.getData();
     this.identifyRequestType(this.parentData.type);
+    if (this.model)
+      this.initialized = true;
   }
 
   private identifyRequestType(item) {
     switch (item) {
       case 'candidate':
+        this.model = new CandidateGeneralPage('', [], [], [], [], [], '');
         this.getCandidateData();
         break;
       case 'vacancy':
+        this.model = new VacancyGeneralPage('', [], [], [], [], [], '');
         this.getVacancyData();
         break;
       default:
@@ -67,19 +66,118 @@ export class GeneralViewComponent implements OnInit {
   }
 
   getCandidateData() {
-    this.model = new CandidateGeneralPage('', [], [], [], [], [], '');
+    this.httpService.getData('http://localhost:1337/api/meta-data/candidate-statuses')
+      .subscribe((res) => {
+        this.arrayOfStatuses = res.json();
+        let index = 0;
+        for (let i of this.arrayOfStatuses) {
+          this.sendArrayOfStatuses[index] = i.status;
+          index += 1;
+        }
+      });
+
+    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe((res) => {
+      this.arrayOfSkills = res.json();
+      let index = 0;
+      for (let i of this.arrayOfSkills) {
+        this.sendArrayOfSkills[index] = i.skillName;
+        index += 1;
+      }
+    });
+    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels')
+      .subscribe((res) => {
+        this.arrayOfLanguages = res.json();
+        let index = 0;
+        for (let i of this.arrayOfLanguages) {
+          this.sendArrayOfLanguages[index] = i.lvl;
+          index += 1;
+        }
+      });
+    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe((res) => {
+      this.arrayOfCities = res.json();
+      let index = 0;
+      for (let i of this.arrayOfCities) {
+        this.sendArrayOfCities[index] = i.city;
+        index += 1;
+      }
+    });
+    this.httpService.getData('http://localhost:1337/api/meta-data/other-skills')
+      .subscribe((res) => {
+        this.arrayOfOtherSkills = res.json();
+        let index = 0;
+        for (let i of this.arrayOfOtherSkills) {
+          this.sendArrayOfOtherSkills[index] = i.skill;
+          index += 1;
+        }
+      });
+    this.httpService
+      .getData(`http://localhost:1337/api/candidates?id=${this.parentData.id}`)
+      .subscribe((res) => {
+        this.temp = res.json();
+        this.model = new CandidateGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages,this.sendArrayOfOtherSkills,'candidate');
+      });
   }
 
   getVacancyData() {
-    this.model = new VacancyGeneralPage(this.responseVacancy);
+    this.httpService.getData('http://localhost:1337/api/meta-data/vacancy-statuses')
+      .subscribe((res) => {
+        this.arrayOfStatuses = res.json();
+        let index = 0;
+        for (let i of this.arrayOfStatuses) {
+          this.sendArrayOfStatuses[index] = i.status;
+          index += 1;
+        }
+      });
+
+    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe((res) => {
+      this.arrayOfSkills = res.json();
+      let index = 0;
+      for (const i of this.arrayOfSkills) {
+        this.sendArrayOfSkills[index] = i.skillName;
+        index += 1;
+      }
+    });
+    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels')
+      .subscribe((res) => {
+        this.arrayOfLanguages = res.json();
+        let index = 0;
+        for (let i of this.arrayOfLanguages) {
+          this.sendArrayOfLanguages[index] = i.lvl;
+          index += 1;
+        }
+      });
+    this.httpService.getData('http://localhost:1337/api/meta-data/locations')
+      .subscribe((res) => {
+        this.arrayOfCities = res.json();
+        let index = 0;
+        for (let i of this.arrayOfCities) {
+          this.sendArrayOfCities[index] = i.city;
+          index += 1;
+        }
+      });
+    this.httpService.getData('http://localhost:1337/api/meta-data/other-skills')
+      .subscribe((res) => {
+        this.arrayOfOtherSkills = res.json();
+        let index = 0;
+        for (let i of this.arrayOfOtherSkills) {
+          this.sendArrayOfOtherSkills[index] = i.skill;
+          index += 1;
+        }
+      });
+    this.httpService
+      .getData(`http://localhost:1337/api/vacancies/${this.parentData.id}`)
+      .subscribe((data) => {
+        this.temp = data.json();
+        this.model = new VacancyGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages, this.sendArrayOfOtherSkills, 'vacancy');
+      });
   }
 
   isCandidate(): boolean {
-    return this.parentData.type === 'candidate';
+    return this.initialized && this.model.type === 'candidate';
   }
 
   isVacancy(): boolean {
-    return this.parentData.type === 'vacancy';
+    return this.initialized && this.model.type === 'vacancy';
   }
 
   isFeedbackFromHr(): boolean {

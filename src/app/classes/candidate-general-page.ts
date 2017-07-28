@@ -11,8 +11,8 @@ export class CandidateGeneralPage {
   status: SelectModel;
   primarySkill: SelectModel;
   workExperience: DatePickerModel;
-  secondarySkills: SelectModel[];
-  otherSkills: SelectModel[];
+  secondarySkills: InputModel[];
+  otherSkills: InputModel [];
   englishLevel: SelectModel;
   resumeLink: InputModel;
   // salaryWishes:
@@ -29,7 +29,7 @@ export class CandidateGeneralPage {
   skypeId: InputModel;
 
   constructor(data: any, arrayOfCities: any[], arrayOfStatuses: any[], arrayOfSkills: any[], arrayOfLanguages: any[], arrayOfOtherSkills: any[], type: string) {
-
+    console.log(data);
     this.id = data.id;
     this.type = type;
     this.firstName = new InputModel(data.firstName, 'First Name');
@@ -42,11 +42,11 @@ export class CandidateGeneralPage {
     this.workExperience = new DatePickerModel(data.expYear, 'Work Experience');
     this.secondarySkills = [];
     for (var key in data.secSkills) {
-      this.secondarySkills[key] = new SelectModel(data.secSkills[key].skillName, 'Secondary skill',arrayOfSkills,data.secSkills[key].lvl);
+      this.secondarySkills[key] = new SelectModel(data.secSkills[key].skillName, 'Secondary skill', arrayOfSkills, data.secSkills[key].lvl);
     }
     this.otherSkills = [];
     for (var key in data.otherSkills) {
-      this.otherSkills[key] = new SelectModel(data.otherSkills[key].skill, 'Other skill',arrayOfOtherSkills);
+      this.otherSkills[key] = new SelectModel(data.otherSkills[key].skill, 'Other skill', arrayOfOtherSkills);
     }
     this.englishLevel = new SelectModel(data.lvl, 'English Level', arrayOfLanguages);
     // this.resumeLink = new InputModel(data.linkedin, 'Resume Link');
