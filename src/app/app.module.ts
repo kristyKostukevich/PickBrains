@@ -11,13 +11,15 @@ import { FilterPersonModule } from './components/filter-components/filter-person
 import { VacancyPageModule } from './main-page/vacancy-list-component/vacancy-list-component.module';
 import { AuthorizationModule } from './authorization/authorization.module';
 import { HistoryPageModule } from './main-page/history-list-component/history-list-component.module';
-import { VacanciesDetailModule } from './vacancy-detail/vacancy-detail.module';
 import { AddCandidateModule } from './add-candidate/add-candidate.module';
 import { AddVacancyModule } from './add-vacancy/add-vacancy.module';
 import { VacancyDetailModule } from './vacancy-detail/vacancy-detail.module';
 import { CandidateDetailModule } from 'app/candidate-detail/candidate-detail.module';
-import { GeneralModule } from 'app/components/general/general.module';
 import { MaxListModule } from 'app/components/max-list/max-list.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { GeneralModule } from 'app/components/general/general.module';
+import { GeneralViewModule } from 'app/components/general-view/general-view.module';
+import { MenuService } from 'app/components/menu/menu.service';
 
 @NgModule({
   imports: [
@@ -33,18 +35,18 @@ import { MaxListModule } from 'app/components/max-list/max-list.module';
     VacancyPageModule,
     HistoryPageModule,
     VacancyDetailModule,
-    VacanciesDetailModule,
     CandidateDetailModule,
     AuthorizationModule,
     AddCandidateModule,
     AddVacancyModule,
     GeneralModule,
+    GeneralViewModule,
     MaxListModule,
   ],
   declarations: [
     AppComponent,
   ],
-  providers: [],
+  providers: [MenuService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
