@@ -3,11 +3,11 @@
     </vacancy-card>
 </div>
 <div *ngIf="isCandidates()">
-    <candidate-card *ngFor="let item of list.data" [item]="item">
+    <candidate-card class="listItem" *ngFor="let item of list.data" [item]="item">
     </candidate-card>
 </div>
 <div *ngIf="isHistory()">
-    <history-card *ngFor="let item of list.data" [item]="item">
+    <history-card class="listItem" *ngFor="let item of list.data" [item]="item">
     </history-card>
 </div>
 <div *ngIf="isFeedbacks()">

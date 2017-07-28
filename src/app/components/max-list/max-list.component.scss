@@ -5,7 +5,26 @@ div {
   position: absolute;
   top: 30px;
   width: calc(100% - 360px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
+.listItem {
+  width: calc((100% - 25px) / 2);
+  min-width: 320px;
+}
+
+@media screen and (max-width: 700px) {
+  .listItem {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1025px) {
+  .listItem {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 800px) {

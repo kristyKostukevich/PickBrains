@@ -15,22 +15,35 @@ html {
 }
 
 .adaptive-components {
-  width: 49%;
+  width: 32%;
   padding: 1%;
-  min-width: 260px;
+  min-width: 245px;
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 540px) {
+  .adaptive-components {
+    padding: 15px 0 0 0;
+    width: 92%;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1200px) {
+  .adaptive-components {
+    width: 49%;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 900px) {
   .adaptive-components {
     padding: 0;
     width: 92%;
   }
 }
 
-@media screen and (min-width: 801px) and (max-width: 950px) {
+@media screen and (min-width: 541px) and (max-width: 800px) {
   .adaptive-components {
-    padding: 0;
-    width: 92%;
+    width: 49%;
   }
+
 }
