@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
-import { CandidateDetailComponent } from 'app/candidate-detail/candidate-detail.component';
+import { CommonModule } from '@angular/common';
 import { MenuModule } from 'app/components/menu/menu.module';
-import { GeneralModule } from 'app/components/general/general.module';
-import { ListModule } from 'app/components/list/list.module';
-import { RatingModule } from 'ngx-rating';
-// import { FeedbackModule } from 'app/components/feedback/feedback.module';
+import { AppRoutingModule } from 'app/app-routing.module';
+import { CandidateDetailComponent } from 'app/candidate-detail/candidate-detail.component';
 
 @NgModule({
   imports: [
-    GeneralModule,
-    ListModule,
+    CommonModule,
+    AppRoutingModule,
     MenuModule,
-    // FeedbackModule,
-    RatingModule,
   ],
-  exports: [CandidateDetailComponent],
-  declarations: [CandidateDetailComponent],
-  providers: [],
+  exports: [
+    CandidateDetailComponent
+  ],
+  declarations: [
+    CandidateDetailComponent
+  ],
 })
 export class CandidateDetailModule {
 }

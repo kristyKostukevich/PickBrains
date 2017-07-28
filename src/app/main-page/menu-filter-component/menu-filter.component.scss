@@ -16,12 +16,21 @@
 }
 .mat-tab-link:hover {
   background-color: #F5F5F5;
+  color: #3f51b5;
+  font-weight: 500;
+  opacity: 1;
 }
 /deep/.mat-ink-bar {
   display: none !important;
 }
 .mat-tab-nav-bar {
   width: 260px;
+}
+
+.active {
+  color: #3f51b5;
+  font-weight: 500;
+  opacity: 1;
 }
 
 @media screen and (max-width: 800px) {

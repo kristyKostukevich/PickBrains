@@ -1,24 +1,11 @@
-<div class="menu-left">
+<div class="menu-left" [ngClass]="{open: showMenuFlag}">
     <div class="empty-block">
         <img src="../../../assets/menu-background.jpg">
     </div>
     <div class="menu-links">
-        <!--<button class="menu-item"-->
-                <!--md-button-->
-                <!--*ngFor="let item of menuItems; let i = index"-->
-                <!--(click)="toggle(item.label)"-->
-                <!--[ngClass]="{active: toggleFlags[i]}">-->
-            <!--{{item.label}}-->
-        <!--</button>-->
-        <nav md-tab-nav-bar>
-            <a md-tab-link
-               *ngFor="let item of menuItems"
-               [routerLink] = item.link
-               routerLinkActive #rla="routerLinkActive"
-               [active]="rla.isActive">
-                {{item.label}}
-            </a>
-        </nav>
+        <button class="menu-item" md-button *ngFor="let item of menuItems; let i = index" (click)="goToItem(item)"
+                [ngClass]="{active: toggleFlags[i]}">
+            {{item}}
+        </button>
     </div>
-
 </div>

@@ -10,10 +10,10 @@ export class ListComponent implements OnChanges{
   @Input() list: CardList;
   private initialiaze : boolean = false;
 
- ngOnChanges(){
-  if(this.list)
-    this.initialiaze = true;
-}
+  ngOnChanges(){
+    if(this.list)
+      this.initialiaze = true;
+  }
 
   isVacancies() : boolean {
     return this.initialiaze && this.list.type === 'vacancies';
@@ -27,3 +27,4 @@ export class ListComponent implements OnChanges{
     return this.initialiaze && this.list.type === 'history';
   }
 }
+
