@@ -19,14 +19,14 @@ export class MenuComponent implements OnInit {
   constructor(private router: Router, private showMenu: ShowMenuService,
               private menuService: MenuService) {
     this.toggleFlags = [];
+    this.toggleFlags[0] = true;
     this.showMenu.getEmitter().subscribe((flag) => {
       this.showMenuFlag = flag;
     });
   }
 
   ngOnInit() {
-    this.menuService.setData(this.type, this.id, 'General');
-    this.toggleMenuItem('General');
+    this.menuService.setData(this.type, this.id);
   }
 
   toggleMenuItem(item: string) {
