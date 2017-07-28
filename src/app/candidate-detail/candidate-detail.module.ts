@@ -10,9 +10,12 @@ import { CandidateDetailComponent } from 'app/candidate-detail/candidate-detail.
     AppRoutingModule,
     MenuModule,
   ],
-  exports: [CandidateDetailComponent],
-  declarations: [CandidateDetailComponent],
-  providers: [],
+  exports: [
+    CandidateDetailComponent
+  ],
+  declarations: [
+    CandidateDetailComponent
+  ],
 })
 export class CandidateDetailModule {
 }
