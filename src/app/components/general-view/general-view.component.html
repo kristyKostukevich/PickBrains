@@ -1,0 +1,35 @@
+<form *ngIf="isVacancy()">
+    <input-text [(model)]="model.projectName"></input-text>
+    <select-component [(model)]="model.location"></select-component>
+    <date-picker [(model)]="model.requestDate"></date-picker>
+    <date-picker [(model)]="model.projectStartDate"></date-picker>
+    <select-component [(model)]="model.status"></select-component>
+    <select-mark-component [(model)]="model.primarySkill"></select-mark-component>
+    <date-picker [(model)]="model.workExperience"></date-picker>
+    <select-component [(model)]="model.englishLevel"></select-component>
+    <select-mark-component *ngFor="let item of model.secondarySkills; let i = index"
+                           [(model)]="model.secondarySkills[i]"></select-mark-component>
+    <select-component *ngFor="let item of model.otherSkills; let i = index"
+                      [(model)]="model.otherSkills[i]"></select-component>
+    <input-text [(model)]="model.salaryWish"></input-text>
+    <input-text [(model)]="model.linkedIn"></input-text>
+    <input-textarea [(model)]="model.description"></input-textarea>
+</form>
+
+<form *ngIf="isCandidate()">
+    <input-text [(model)]="model.firstName"></input-text>
+    <input-text [(model)]="model.lastName"></input-text>
+    <select-component [(model)]="model.location"></select-component>
+    <select-component [(model)]="model.status"></select-component>
+    <select-mark-component [(model)]="model.primarySkill"></select-mark-component>
+    <date-picker [(model)]="model.workExperience"></date-picker>
+    <select-mark-component *ngFor="let item of model.secondarySkills; let i = index"
+                           [(model)]="model.secondarySkills[i]"></select-mark-component>
+    <select-component *ngFor="let item of model.otherSkills; let i = index"
+                      [(model)]="model.otherSkills[i]"></select-component>
+    <select-component [(model)]="model.englishLevel"></select-component>
+    <input-text *ngFor="let item of model.emailAdresses; let i = index" [(model)]="model.emailAdresses[i]"></input-text>
+    <input-text [(model)]="model.phoneNumbers"></input-text>
+    <input-text [(model)]="model.linkedIn"></input-text>
+    <input-text [(model)]="model.skypeId"></input-text>
+</form>

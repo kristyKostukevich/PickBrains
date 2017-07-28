@@ -1,9 +1,9 @@
 .mark {
   box-sizing: border-box;
   display: inline-block;
-  min-width: 260px;
+  min-width: 245px;
+  width: 32%;
   padding: 1%;
-  width: 49%;
 }
 
 .select {
@@ -11,27 +11,39 @@
   margin-bottom: 50.75px;
   margin-top: 7.5px;
   text-align: left;
-  width: calc(100% - 130px);
+  width: calc(100% - 125px);
 }
 
 rating {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 /deep/ .star-icon:before {
   color: #ec407a !important;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 540px) {
+  .mark {
+    padding: 15px 0 0 0;
+    width: 92%;
+  }
+}
+
+@media screen and (min-width: 901px) and (max-width: 1200px) {
+  .mark {
+    width: 49%;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 900px) {
   .mark {
     padding: 0;
     width: 92%;
   }
 }
 
-@media screen and (min-width: 801px) and (max-width: 950px) {
+@media screen and (min-width: 541px) and (max-width: 800px) {
   .mark {
-    padding: 0;
-    width: 92%;
+    width: 49%;
   }
 }

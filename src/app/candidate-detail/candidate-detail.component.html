@@ -1,6 +1,4 @@
 <div class="wrapper">
-    <menu [menuItems]="menuItems"></menu>
-    <general [model]="generalModel" ></general>
-    <!--<span>{{generalModel.secondName.value}}</span>-->
-    <!--<list [list]="historyModel"></list>-->
+    <menu [menuItems]="menuItems" [id]="id" [type]="type"></menu>
+    <router-outlet></router-outlet>
 </div>

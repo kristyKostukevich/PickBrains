@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralPage } from '../classes/general-page';
-import { LinkAndLabel } from '../components/menu/menu.component';
+// import { LinkAndLabel } from '../components/menu/menu.component';
 import { HttpService } from '../http-service/http-service';
 
 @Component({
@@ -10,7 +10,7 @@ import { HttpService } from '../http-service/http-service';
   providers: [HttpService],
 })
 export class AddVacancyComponent implements OnInit {
-  menuItems: LinkAndLabel [];
+  // menuItems: LinkAndLabel [];
   temp: string;
   model: GeneralPage;
   arrayOfCities: any[];
@@ -23,10 +23,10 @@ export class AddVacancyComponent implements OnInit {
   sendArrayOfLanguages: string[];
 
   constructor(private httpService: HttpService) {
-    this.menuItems = [{label: 'General', link: '/person-page'},
-      {label: 'Assigned candidates ', link: '/person-page'},
-      {label: 'Potential  candidates', link: '/person-page'},
-      {label: 'History', link: '/person-page'}];
+    // this.menuItems = [{label: 'General', link: '/person-page'},
+    //   {label: 'Assigned candidates ', link: '/person-page'},
+    //   {label: 'Potential  candidates', link: '/person-page'},
+    //   {label: 'History', link: '/person-page'}];
     this.model = new GeneralPage('', [], [], [], [],'');
     this.arrayOfCities = [];
     this.sendArrayOfCities = [];
