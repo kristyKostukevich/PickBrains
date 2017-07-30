@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PersonListComponent } from './main-page/person-list-component/person-list.component';
-import { TempComponent } from './Temp/temp.component';
-
 import 'hammerjs';
 import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy-list-component';
 import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
@@ -12,6 +10,8 @@ import { VacancyDetailComponent } from './vacancy-detail/vacancy-detail.componen
 import { CandidateDetailComponent } from './candidate-detail/candidate-detail.component';
 import { AddCandidateComponent } from './add-candidate/add-candidate.component';
 import { AddVacancyComponent } from './add-vacancy/add-vacancy.component';
+import { HrmGuard } from './guards/hrm.guard';
+import { TechGuard } from './guards/tech.guard';
 
 const routes: Routes = [
   {
@@ -25,10 +25,12 @@ const routes: Routes = [
   },
   {
     path: 'vacancy-page',
+    canActivate: [TechGuard],
     component: VacancyListComponent,
   },
   {
     path: 'history-page',
+    canActivate: [HrmGuard],
     component: HistoryListComponent,
   },
   {
