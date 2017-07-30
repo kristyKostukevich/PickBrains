@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from '../../authorization/authorization.service';
 import { HttpService } from '../../http-service/http-service';
+
 
 @Component({
   selector: 'global-header',
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.scss'],
-  providers: [HttpService],
 })
-export class GlobalHeaderComponent implements OnInit {
+export class GlobalHeaderComponent implements OnInit{
+  public person = '';
 
-  constructor(private httpService: HttpService) {
-  } ;
-
-  public person = 'user';
+  constructor(private authorization: AuthorizationService, private http: HttpService) {
+    this.authorization.getEmitter().subscribe(data =>
+      this.person = `${data.firstName} ${data.secondName}`);
+  }
 
   ngOnInit() {
-    this.httpService
+    this.http
       .getData(`http://localhost:1337/api/user`)
       .subscribe((data) => {
-        this.person = data.json().first_name+' '+data.json().second_name;
+        this.person = `${data.json().firstName} ${data.json().secondName}`;
       });
   }
+
 }
