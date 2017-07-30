@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from '../http-service/http-service';
+import { AuthorizationService } from './authorization.service';
 
 
 @Component({
@@ -19,8 +20,10 @@ export class AuthorizationComponent {
     value: '',
   };
 
-  constructor(private httpService: HttpService, private router: Router) {
-  }
+  constructor(
+    private httpService: HttpService,
+    private router: Router,
+    private authorization: AuthorizationService) {}
 
   submit() {
     const user: AuthorizationForm = {
@@ -36,11 +39,12 @@ export class AuthorizationComponent {
           this.login.value = '';
           this.password.value = '';
         });
+
+    this.authorization.authorizationToggle();
   }
   clear() {
     this.error = '';
   }
-
 }
 export class InputModel {
   placeholder: string;
