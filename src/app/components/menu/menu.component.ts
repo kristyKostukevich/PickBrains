@@ -56,7 +56,6 @@ export class MenuComponent implements OnInit {
   }
 
   goToItem(item: string) {
-    this.menuService.setItemType(item);
     this.toggleMenuItem(item);
     const parentPath = this.getParentPath();
     const path = `${parentPath}/${this.id}/${item.replace(/\s/g, '-')

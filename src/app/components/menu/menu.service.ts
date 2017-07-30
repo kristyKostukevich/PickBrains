@@ -8,12 +8,8 @@ export class MenuService {
   constructor() {
   }
 
-  setData(type: string, id: number, itemType?: string) {
-    this.data = new ComponentsData(type, id, itemType);
-  }
-
-  setItemType(itemType: string) {
-    this.data.setItemType(itemType);
+  setData(type: string, id: number) {
+    this.data = new ComponentsData(type, id);
   }
 
   getData() {
