@@ -5,6 +5,7 @@ import { HistoryCardItem } from 'app/interfaces/history-card-item';
 import { CandidateCardItem } from 'app/interfaces/candidate-card-item';
 import { MenuService } from 'app/components/menu/menu.service';
 import { ComponentsData } from 'app/interfaces/components-data';
+import { ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'max-list',
@@ -14,6 +15,7 @@ import { ComponentsData } from 'app/interfaces/components-data';
 export class MaxListComponent implements OnInit {
   list: CardList;
   parentData: ComponentsData;
+  currItemType: string;
 
   candidateHistoryItems: HistoryCardItem[] = [
     {
@@ -233,38 +235,40 @@ export class MaxListComponent implements OnInit {
 
   ];
 
-  constructor(private menuService: MenuService) {
+  constructor(private menuService: MenuService, private activateRoute: ActivatedRoute) {
+
   }
 
   ngOnInit() {
     this.parentData = this.menuService.getData();
-    this.identifyRequestType(this.parentData.itemType);
+    this.currItemType = this.activateRoute.snapshot.url[0].path;
+    this.identifyRequestType(this.currItemType);
   }
 
   private identifyRequestType(item) {
     switch (item) {
-      case 'Feedbacks From Tech':
-        this.parentData.itemType = 'feedbacks';
+      case 'feedbacks-from-tech':
+        this.currItemType = 'feedbacks';
         this.getFeedbackFromTech();
         break;
-      case 'Feedbacks From HRm':
-        this.parentData.itemType = 'feedbacks';
+      case 'feedbacks-from-hrm':
+        this.currItemType = 'feedbacks';
         this.getFeedbackFromHrm();
         break;
-      case 'History':
-        this.parentData.itemType = 'history';
+      case 'history':
+        this.currItemType = 'history';
         if (this.parentData.type === 'candidate') {
           this.getCandidateHistory();
         } else {
           this.getVacancyHistory();
         }
         break;
-      case 'Assigned candidates':
-        this.parentData.itemType = 'candidates';
+      case 'assigned-candidates':
+        this.currItemType = 'candidates';
         this.getAssignedCandidates();
         break;
-      case 'Potential candidates':
-        this.parentData.itemType = 'candidates';
+      case 'potential-candidates':
+        this.currItemType = 'candidates';
         this.getPotentialCandidates();
         break;
       default:
@@ -297,18 +301,18 @@ export class MaxListComponent implements OnInit {
   }
 
   isVacancies(): boolean {
-    return this.parentData.itemType === 'vacancies';
+    return this.currItemType === 'vacancies';
   }
 
   isCandidates(): boolean {
-    return this.parentData.itemType === 'candidates';
+    return this.currItemType === 'candidates';
   }
 
   isHistory(): boolean {
-    return this.parentData.itemType === 'history';
+    return this.currItemType === 'history';
   }
 
   isFeedbacks(): boolean {
-    return this.parentData.itemType === 'feedbacks';
+    return this.currItemType === 'feedbacks';
   }
 }
