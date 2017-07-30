@@ -4,11 +4,10 @@ import { VacancyCardItem } from '../../interfaces/vacancy-card-item';
 import { HttpService } from '../../http-service/http-service';
 import { ActivatedRoute } from '@angular/router';
 
-
 @Component({
   selector: 'vacancy-list',
-  templateUrl: `./vacancy-list-component.html`,
-  styleUrls: ['vacancy-list-component.scss'],
+  templateUrl: 'vacancy-list-component.html',
+  styleUrls: ['../person-list-component/person-list.component.scss'],
   providers: [HttpService],
 })
 
