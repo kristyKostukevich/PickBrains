@@ -14,7 +14,7 @@
                routerLinkActive = "routerLinkActive">
                 Vacancy
             </a>
-            <a md-tab-link
+            <a md-tab-link *ngIf="user === 'admin'"
                routerLink='/history-page'
                routerLinkActive = "routerLinkActive">
                 History
