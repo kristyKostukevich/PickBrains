@@ -12,7 +12,6 @@ import { HttpService } from '../../http-service/http-service';
   selector: 'max-list',
   templateUrl: 'max-list.component.html',
   styleUrls: ['max-list.component.scss'],
-  providers: [HttpService],
 })
 export class MaxListComponent implements OnInit {
   initialized: boolean = false;
@@ -277,6 +276,7 @@ export class MaxListComponent implements OnInit {
         break;
       case 'assigned-candidates':
         this.currItemType = 'candidates';
+        this.list = new CardList([], '');
         this.getAssignedCandidates();
         break;
       case 'potential-candidates':

@@ -3,13 +3,12 @@ import { CandidateGeneralPage } from 'app/classes/candidate-general-page';
 import { VacancyGeneralPage } from 'app/classes/vacancy-general-page';
 import { MenuService } from '../menu/menu.service';
 import { ComponentsData } from 'app/interfaces/components-data';
-import { HttpService } from 'app/http-service/http-service';
+import { HttpService } from '../../http-service/http-service';
 
 @Component({
   selector: 'general',
   templateUrl: 'general-view.component.html',
   styleUrls: ['general-view.component.scss'],
-  providers: [HttpService],
 })
 export class GeneralViewComponent implements OnInit {
   initialized: boolean = false;
