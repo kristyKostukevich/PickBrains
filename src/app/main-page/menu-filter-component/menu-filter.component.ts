@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthorizationService } from '../../authorization/authorization.service';
-import { HttpService } from '../../http-service/http-service';
 
 
 @Component({
@@ -8,21 +6,12 @@ import { HttpService } from '../../http-service/http-service';
   templateUrl: 'menu-filter.component.html',
   styleUrls: ['menu-filter.component.scss'],
 })
-export class FilterComponent {
+ export class FilterComponent {
   user: string;
-  constructor(private authorization: AuthorizationService, private http: HttpService) {
-    this.authorization.getEmitter().subscribe(data =>
-      this.user = data.type);
+
+  constructor() {
+    const data = JSON.parse(localStorage.getItem('user'));
+    this.user = data.type;
   }
-
-  ngOnInit() {
-    this.http
-      .getData(`http://localhost:1337/api/user`)
-      .subscribe((data) => {
-        this.user = data.json().type;
-      });
-  }
-
-
 }
 
