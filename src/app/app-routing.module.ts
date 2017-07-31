@@ -6,6 +6,8 @@ import { VacancyDetailComponent } from './vacancy-detail/vacancy-detail.componen
 import { CandidateDetailComponent } from './candidate-detail/candidate-detail.component';
 import { AddCandidateComponent } from './add-candidate/add-candidate.component';
 import { AddVacancyComponent } from './add-vacancy/add-vacancy.component';
+import { HrmGuard } from './guards/hrm.guard';
+import { TechGuard } from './guards/tech.guard';
 
 import 'hammerjs';
 import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy-list-component';
@@ -67,23 +69,28 @@ const routes: Routes = [
   },
   {
     path: 'person-page',
+    canActivate: [TechGuard],
     component: PersonListComponent,
   },
   {
     path: 'vacancy-page',
+    canActivate: [TechGuard],
     component: VacancyListComponent,
   },
   {
     path: 'history-page',
+    canActivate: [HrmGuard],
     component: HistoryListComponent,
   },
   {
     path: 'person-page/detail-candidate/:id',
+    canActivate: [TechGuard],
     component: CandidateDetailComponent,
     children: candidateRoutes,
   },
   {
     path: 'vacancy-page/detail-vacancy/:id',
+    canActivate: [TechGuard],
     component: VacancyDetailComponent,
     children: vacancyRoutes,
   },
@@ -93,10 +100,12 @@ const routes: Routes = [
   },
   {
     path: 'add-candidate',
+    canActivate: [TechGuard],
     component: AddCandidateComponent,
   },
   {
     path: 'add-vacancy',
+    canActivate: [TechGuard],
     component: AddVacancyComponent,
   },
 ];
@@ -104,7 +113,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-
 })
 export class AppRoutingModule {
 }

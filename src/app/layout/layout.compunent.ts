@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LayoutService } from './layout.service';
+import { AuthorizationService } from '../authorization/autorization.service';
 
 @Component({
   selector: 'layout',
@@ -8,13 +9,15 @@ import { LayoutService } from './layout.service';
 })
 export class LayoutComponent {
   flag: boolean;
-  constructor(private layout: LayoutService) {
+  headerFlag: boolean;
+  constructor(private layout: LayoutService, private authorization: AuthorizationService) {
     this.layout.getEmitter().subscribe(flag => this.flag = flag);
+    this.authorization.getEmitter().subscribe(flag => this.headerFlag = flag);
   }
 
-
   ngOnInit() {
-
+    if (localStorage.getItem('user'))
+      this.headerFlag = true;
   }
 
 }

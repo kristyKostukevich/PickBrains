@@ -7,6 +7,7 @@ import { FilterPersonModule } from '../../components/filter-components/filter-pe
 import { FilterVacancyModule } from '../../components/filter-components/filter-vacancy/filter-vacancy.module';
 import { RouterModule } from '@angular/router';
 
+
 @NgModule({
   imports: [
     CommonModule,
