@@ -34,7 +34,7 @@ export class HttpService{
         if (error.status === 401)
           this.router.navigateByUrl('/login');
         return Observable.throw(error);
-      });;
+      });
   }
 
   preparseOptions() {

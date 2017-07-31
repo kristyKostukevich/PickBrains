@@ -1,33 +1,28 @@
-.filter-head{
-  box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+.filter-head {
   background-color: #ffffff;
-  position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  top: 64px;
+  overflow: hidden;
   transition: 0.3s;
-  width: 260px;
+}
+
+.all {
   overflow: hidden;
 }
 
 .mat-tab-link {
-   min-width: 84px !important;
+  min-width: 84px !important;
 }
+
 .mat-tab-link:hover {
   background-color: #F5F5F5;
   color: #3f51b5;
   font-weight: 500;
   opacity: 1;
 }
-/deep/.mat-ink-bar {
-  display: none !important;
-}
-.mat-tab-nav-bar {
-  width: 260px;
-}
 
-.active {
+.routerLinkActive {
   color: #3f51b5;
   font-weight: 500;
   opacity: 1;
@@ -43,6 +38,7 @@
   background-color: #3f51b5;
   height: 160px;
 }
+
 img {
   height: 160px;
   opacity: 0.25;

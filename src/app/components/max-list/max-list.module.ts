@@ -5,6 +5,7 @@ import { CandidateModule } from '../candidate/candidate.module';
 import { HistoryModule } from '../history/history.module';
 import { FeedbackModule } from 'app/components/feedback/feedback.module';
 import { MaxListComponent } from './max-list.component';
+import { HttpService } from '../../http-service/http-service';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { MaxListComponent } from './max-list.component';
   ],
   declarations: [MaxListComponent],
   exports: [MaxListComponent],
+  providers: [HttpService],
 })
 export class MaxListModule{
 }

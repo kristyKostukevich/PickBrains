@@ -20,6 +20,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { GeneralModule } from 'app/components/general/general.module';
 import { GeneralViewModule } from 'app/components/general-view/general-view.module';
 import { MenuService } from 'app/components/menu/menu.service';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { MenuService } from 'app/components/menu/menu.service';
     GeneralModule,
     GeneralViewModule,
     MaxListModule,
+    LayoutModule,
   ],
   declarations: [
     AppComponent,

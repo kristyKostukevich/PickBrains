@@ -6,7 +6,7 @@
   width: calc(100% - 360px);
 }
 
-.mat-input-container {
+.search-full-width {
   box-sizing: border-box;
   background-color: white !important;
   border: 1px solid rgba(0, 0, 0, .03);
@@ -21,7 +21,7 @@
 }
 
 md-icon {
-  color: #ec407a;
+  color: #ff4081;
 }
 
 @media screen and (max-width: 800px) {

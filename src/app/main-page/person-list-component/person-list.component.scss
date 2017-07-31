@@ -2,17 +2,20 @@
   box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
   background-color: #ffffff;
   height: calc(100vh - 48px);
-  top: 112px;
+  top: 64px;
   z-index: 10;
   width: 260px;
   display: flex;
   flex-direction: column;
   position: fixed;
+}
+
+.scroll {
   overflow: auto;
 }
 
 @media screen and (max-width: 800px) {
-  filter-person, .leftBar {
+  .leftBar {
     display: none;
   }
 }
@@ -30,5 +33,5 @@
 }
 
 /deep/ .wrap list div {
-  top: 85px !important;
+  top: 100px !important;
 }

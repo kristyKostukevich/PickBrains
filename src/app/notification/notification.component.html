@@ -1,0 +1,22 @@
+<div class="notification-right">
+    <md-table #table [dataSource]="dataSource">
+
+        <ng-container cdkColumnDef="name">
+            <md-header-cell *cdkHeaderCellDef> Candidate Name</md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.candidateName}}</md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="date">
+            <md-header-cell *cdkHeaderCellDef> Date</md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.date|date:'dd.MM.y'}}</md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="time">
+            <md-header-cell *cdkHeaderCellDef> Time</md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.date|date:'HH:mm'}}</md-cell>
+        </ng-container>
+
+        <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+        <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+    </md-table>
+</div>

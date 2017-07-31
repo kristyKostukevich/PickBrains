@@ -1,10 +1,10 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { CardList } from '../../classes/card-list';
 
 @Component({
   selector: 'list',
   templateUrl: 'list.component.html',
-  styleUrls: ['list.component.scss'],
+  styleUrls: ['../max-list/max-list.component.scss'],
 })
 export class ListComponent implements OnChanges{
   @Input() list: CardList;
