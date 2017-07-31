@@ -22,5 +22,5 @@ import { LayoutService } from '../../layout/layout.service';
     HttpService,
     LayoutService],
 })
-export class GlobalHeaderModule {
+export class GlobalHeaderModule{
 }
