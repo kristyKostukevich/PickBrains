@@ -9,7 +9,10 @@ export class LayoutService {
     this.flag = !this.flag;
     this.showNotification.emit(this.flag);
   }
-
+  logout() {
+    this.flag = false;
+    this.showNotification.emit(this.flag);
+  }
   getEmitter() {
     return this.showNotification;
   }

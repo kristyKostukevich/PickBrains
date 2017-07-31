@@ -39,9 +39,13 @@ export class GlobalHeaderComponent{
     this.router.navigateByUrl('/login');
     localStorage.clear();
     this.authorization.closeHeaderToggle();
+    this.layout.logout();
 
   }
   onClick() {
     this.layout.notificationToggle();
+  }
+  mainPage() {
+    this.router.navigateByUrl('/person-page');
   }
 }
