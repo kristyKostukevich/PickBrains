@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from '../http-service/http-service';
+import { AuthorizationService } from './autorization.service';
 
 
 
@@ -23,7 +24,8 @@ export class AuthorizationComponent {
   private user: User;
   constructor(
     private httpService: HttpService,
-    private router: Router) {}
+    private router: Router,
+    private authorization: AuthorizationService) {}
 
   submit() {
     const user: AuthorizationForm = {
@@ -32,7 +34,15 @@ export class AuthorizationComponent {
     };
     this.httpService.postData(user, 'http://localhost:1337/api/authentication/login')
       .subscribe((data) => {
-        this.router.navigateByUrl('/person-page');
+        this.httpService
+            .getData(`http://localhost:1337/api/user`)
+            .subscribe((data) => {
+              this.user = data.json();
+              const currUser = JSON.stringify(this.user);
+              localStorage.setItem('user', currUser);
+              this.authorization.showHeaderToggle();
+              this.router.navigateByUrl('/person-page');
+            });
       },
         (error) => {
           this.error = 'incorrect data';
@@ -40,13 +50,8 @@ export class AuthorizationComponent {
           this.password.value = '';
         });
 
-    this.httpService
-      .getData(`http://localhost:1337/api/user`)
-      .subscribe((data) => {
-        this.user = data.json();
-        const currUser = JSON.stringify(this.user);
-        localStorage.setItem('user', currUser);
-      });
+
+
   }
   clear() {
     this.error = '';
