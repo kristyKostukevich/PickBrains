@@ -4,6 +4,7 @@ import { MdButtonModule, MdMenuModule, MdIconModule } from '@angular/material';
 import { GlobalHeaderComponent } from './header.component';
 import { RouterModule } from '@angular/router';
 import { ShowMenuService } from './show-menu.service';
+import { HttpService } from '../../http-service/http-service';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { ShowMenuService } from './show-menu.service';
   ],
   declarations: [GlobalHeaderComponent],
   exports: [GlobalHeaderComponent],
-  providers: [ShowMenuService],
+  providers: [ShowMenuService, HttpService],
 })
 export class GlobalHeaderModule {
 }
