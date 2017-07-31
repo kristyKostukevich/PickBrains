@@ -5,6 +5,7 @@
   left: 0;
   transition: 0.3s;
   width: 260px;
+  z-index: 10;
 }
 
 .empty-block {
@@ -21,24 +22,27 @@ img {
 
 .menu-links {
   background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
+  display: block;
   height: calc(100vh - 160px);
+  overflow: auto;
 }
 
-a {
+.menu-item {
   border-radius: 0;
   color: #606060;
-  font-weight: 800;
-  padding: 10px 30px 10px;
-  margin-bottom: 10px;
+  font-weight: 400;
+  padding: 13px 16px;
   text-align: left;
   width: 260px;
+  min-height: 62px;
 }
 
 @media screen and (max-width: 800px) {
   .menu-left {
     display: none;
+  }
+  .open {
+    display: block;
   }
 }
 
@@ -50,4 +54,7 @@ a:not([disabled]):focus, .menu-item:not([disabled]):hover {
 .active {
   color: #3f51b5;
   font-weight: 500;
+}
+.routerLinkActive {
+  color: rebeccapurple;
 }

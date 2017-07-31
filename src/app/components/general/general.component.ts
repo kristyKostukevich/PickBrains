@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { GeneralPage } from '../../classes/general-page';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { SelectModel } from '../../interfaces/select-model';
 
 @Component({
@@ -7,7 +9,6 @@ import { SelectModel } from '../../interfaces/select-model';
   templateUrl: 'general.component.html',
   styleUrls: ['general.component.scss'],
 })
-
 export class GeneralComponent implements OnChanges {
   @Input() model: any;
   @Output() modelChange = new EventEmitter<GeneralPage>();
@@ -25,7 +26,7 @@ export class GeneralComponent implements OnChanges {
   }
 
   updateSecondarySkill(a, b, c) {
-      console.log(a,b,c);
+    console.log(a, b, c);
   }
 
   addSecondarySkill() {
@@ -61,6 +62,9 @@ export class GeneralComponent implements OnChanges {
 
   isCandidateAdd(): boolean {
     return this.initialized && this.model.type === 'add-candidate';
+  }
+  isVacancyAdd(): boolean {
+    return this.initialized && this.model.type === 'add-vacancy';
   }
 
 }

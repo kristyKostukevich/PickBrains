@@ -1,0 +1,11 @@
+.notification-right {
+  box-shadow: -3px 0 6px rgba(0, 0, 0, .24);
+  position: fixed;
+  top: 64px;
+  right: 0;
+  transition: 0.3s;
+  width: 260px;
+  height: 100vh;
+  overflow: auto;
+  background: #FFFFFF;
+}

@@ -12,13 +12,19 @@ import { FilterPersonModule } from './components/filter-components/filter-person
 import { VacancyPageModule } from './main-page/vacancy-list-component/vacancy-list-component.module';
 import { AuthorizationModule } from './authorization/authorization.module';
 import { HistoryPageModule } from './main-page/history-list-component/history-list-component.module';
-import { VacanciesDetailModule } from './vacancy-detail/vacancy-detail.module';
-import { CandidateDetailModule } from './candidate-detail/candidate-detail.module';
 import { AddCandidateModule } from './add-candidate/add-candidate.module';
 import { AddVacancyModule } from './add-vacancy/add-vacancy.module';
 import { TechGuard } from './guards/tech.guard';
 import { HrmGuard } from './guards/hrm.guard';
 
+import { VacancyDetailModule } from './vacancy-detail/vacancy-detail.module';
+import { CandidateDetailModule } from 'app/candidate-detail/candidate-detail.module';
+import { MaxListModule } from 'app/components/max-list/max-list.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { GeneralModule } from 'app/components/general/general.module';
+import { GeneralViewModule } from 'app/components/general-view/general-view.module';
+import { MenuService } from 'app/components/menu/menu.service';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
   imports: [
@@ -33,18 +39,23 @@ import { HrmGuard } from './guards/hrm.guard';
     FilterPersonModule,
     VacancyPageModule,
     HistoryPageModule,
-    VacanciesDetailModule,
+    VacancyDetailModule,
     CandidateDetailModule,
     AuthorizationModule,
     AddCandidateModule,
     AddVacancyModule,
+    GeneralModule,
+    GeneralViewModule,
+    MaxListModule,
+    LayoutModule,
   ],
   declarations: [
     AppComponent,
   ],
   providers: [
     TechGuard,
-    HrmGuard],
+    HrmGuard,
+    MenuService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

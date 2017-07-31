@@ -1,19 +1,19 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { CardList } from '../../classes/card-list';
 
 @Component({
   selector: 'list',
   templateUrl: 'list.component.html',
-  styleUrls: ['list.component.scss'],
+  styleUrls: ['../max-list/max-list.component.scss'],
 })
 export class ListComponent implements OnChanges{
   @Input() list: CardList;
   private initialiaze : boolean = false;
 
- ngOnChanges(){
-  if(this.list)
-    this.initialiaze = true;
-}
+  ngOnChanges(){
+    if(this.list)
+      this.initialiaze = true;
+  }
 
   isVacancies() : boolean {
     return this.initialiaze && this.list.type === 'vacancies';
@@ -27,3 +27,4 @@ export class ListComponent implements OnChanges{
     return this.initialiaze && this.list.type === 'history';
   }
 }
+

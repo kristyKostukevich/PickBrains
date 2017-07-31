@@ -14,4 +14,3 @@ import { Component } from '@angular/core';
     this.user = data.type;
   }
 }
-

@@ -5,7 +5,6 @@ import { MdSelectModule } from '@angular/material';
 import { SelectMarkComponent } from './select-mark.component';
 import { RatingModule } from 'ngx-rating';
 
-
 @NgModule({
   declarations: [SelectMarkComponent,
   ],

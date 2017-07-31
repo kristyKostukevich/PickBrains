@@ -1,0 +1,22 @@
+form {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, .03);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
+  box-sizing: border-box;
+  left: 310px;
+  margin-bottom: 30px;
+  padding: 1.5%;
+  position: absolute;
+  top: 30px;
+  text-align: center;
+  width: calc(100% - 360px);
+}
+
+@media screen and (max-width: 800px) {
+  form {
+    top: 2.5%;
+    margin-bottom: 2.5%;
+    left: 2.5%;
+    width: 95%;
+  }
+}

@@ -1,25 +1,24 @@
-<div class="empty-block">
-    <img src="../../../assets/menu-background.jpg">
-</div>
-<div class="filter-head">
-    <nav md-tab-nav-bar>
-        <a md-tab-link
-           routerLink='/person-page'
-           routerLinkActive #rla="routerLinkActive"
-           [active]="rla.isActive">
-            Person
-        </a>
-        <a md-tab-link
-           routerLink='/vacancy-page'
-           routerLinkActive #rla="routerLinkActive"
-           [active]="rla.isActive">
-            Vacancy
-        </a>
-        <a md-tab-link *ngIf="user === 'admin'"
-           routerLink='/history-page'
-           routerLinkActive #rla="routerLinkActive"
-           [active]="rla.isActive">
-            History
-        </a>
-    </nav>
+<div class="all">
+    <div class="empty-block">
+        <img src="../../../assets/menu-background.jpg">
+    </div>
+    <div class="filter-head">
+        <nav md-tab-nav-bar>
+            <a md-tab-link
+               routerLink='/person-page'
+               routerLinkActive = "routerLinkActive">
+                Person
+            </a>
+            <a md-tab-link
+               routerLink='/vacancy-page'
+               routerLinkActive = "routerLinkActive">
+                Vacancy
+            </a>
+            <a md-tab-link
+               routerLink='/history-page'
+               routerLinkActive = "routerLinkActive">
+                History
+            </a>
+        </nav>
+    </div>
 </div>
