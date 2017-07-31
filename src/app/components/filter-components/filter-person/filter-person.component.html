@@ -6,7 +6,11 @@
             <md-icon class="buttonMore">expand_more</md-icon>
         </accordion-heading>
         <ul class="sub-menu">
-            <li *ngFor="let item of arrayOfCities"  >{{item.city}}
+            <li *ngFor="let item of arrayOfCities; let i = index">
+                <md-checkbox class="example-margin">
+                    {{item.city}}
+                </md-checkbox>
+                <!--<check-box></check-box>-->
             </li>
         </ul>
     </accordion-group>
@@ -17,8 +21,11 @@
             <md-icon class="buttonMore">expand_more</md-icon>
         </accordion-heading>
         <ul class="sub-menu">
-            <li *ngFor="let item of arrayOfSkills" >{{item.skillName}}</li>
-            <li></li>
+            <li *ngFor="let item of arrayOfSkills">
+                <md-checkbox class="example-margin">
+                    {{item.skillName}}
+                </md-checkbox>
+            </li>
         </ul>
     </accordion-group>
     <accordion-group>
@@ -36,7 +43,11 @@
             <md-icon class="buttonMore">expand_more</md-icon>
         </accordion-heading>
         <ul class="sub-menu">
-            <li *ngFor="let item of arrayOfLanguages">{{item.lvl}}</li>
+            <li *ngFor="let item of arrayOfLanguages">
+                <md-checkbox class="example-margin">
+                    {{item.lvl}}
+                </md-checkbox>
+            </li>
         </ul>
     </accordion-group>
     <accordion-group>
@@ -46,7 +57,11 @@
             <md-icon class="buttonMore">expand_more</md-icon>
         </accordion-heading>
         <ul class="sub-menu">
-           <li *ngFor="let item of arrayOfStatuses">{{item.status}}</li>
+            <li *ngFor="let item of arrayOfStatuses">
+                <md-checkbox class="example-margin">
+                    {{item.status}}
+                </md-checkbox>
+            </li>
         </ul>
     </accordion-group>
     <accordion-group>

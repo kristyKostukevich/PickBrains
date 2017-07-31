@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpService } from '../../../http-service/http-service';
+import { GeneralPage } from '../../../classes/general-page';
 
 
 @Component({
