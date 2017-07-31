@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from '../http-service/http-service';
-import { AuthorizationService } from './authorization.service';
+
 
 
 @Component({
@@ -20,10 +20,10 @@ export class AuthorizationComponent {
     value: '',
   };
 
+  private user: User;
   constructor(
     private httpService: HttpService,
-    private router: Router,
-    private authorization: AuthorizationService) {}
+    private router: Router) {}
 
   submit() {
     const user: AuthorizationForm = {
@@ -40,7 +40,13 @@ export class AuthorizationComponent {
           this.password.value = '';
         });
 
-    this.authorization.authorizationToggle();
+    this.httpService
+      .getData(`http://localhost:1337/api/user`)
+      .subscribe((data) => {
+        this.user = data.json();
+        const currUser = JSON.stringify(this.user);
+        localStorage.setItem('user', currUser);
+      });
   }
   clear() {
     this.error = '';
@@ -50,6 +56,13 @@ export class InputModel {
   placeholder: string;
   value: string;
 }
+export class User{
+
+  type:string;
+  firstName: string;
+  secondName: string;
+}
+
 export class AuthorizationForm {
   login: string;
   password: string;

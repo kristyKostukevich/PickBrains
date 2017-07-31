@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { MdButtonModule, MdMenuModule, MdIconModule } from '@angular/material';
 import { GlobalHeaderComponent } from './header.component';
 import { RouterModule } from '@angular/router';
-import { AuthorizationService } from '../../authorization/authorization.service';
 import { HttpService } from '../../http-service/http-service';
 
 @NgModule({
@@ -14,7 +13,7 @@ import { HttpService } from '../../http-service/http-service';
     MdIconModule,
     RouterModule,
   ],
-  providers: [AuthorizationService, HttpService],
+  providers: [HttpService],
   declarations: [GlobalHeaderComponent],
   exports: [GlobalHeaderComponent],
 })

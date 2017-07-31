@@ -21,6 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'person-page',
+    canActivate: [TechGuard],
     component: PersonListComponent,
   },
   {
@@ -35,10 +36,12 @@ const routes: Routes = [
   },
   {
     path: 'person-page/detail-candidate/:id',
+    canActivate: [TechGuard],
     component:CandidateDetailComponent,
 },
   {
     path: 'vacancy-page/detail-vacancy/:id',
+    canActivate: [TechGuard],
     component:VacancyDetailComponent,
   },
   {
@@ -47,10 +50,12 @@ const routes: Routes = [
   },
   {
     path: 'add-candidate',
+    canActivate: [TechGuard],
     component: AddCandidateComponent,
   },
   {
     path: 'add-vacancy',
+    canActivate: [TechGuard],
     component: AddVacancyComponent,
   },
 ];
