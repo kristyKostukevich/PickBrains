@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MdButtonModule } from '@angular/material';
 import { HttpService } from '../http-service/http-service';
 import { InputTextModule } from '../components/input-text/input-text.module';
+import { AuthorizationService } from './autorization.service';
 
 
 @NgModule({
@@ -16,7 +17,10 @@ import { InputTextModule } from '../components/input-text/input-text.module';
     FlexLayoutModule,
     MdButtonModule,
   ],
-  providers: [HttpService],
+  providers: [
+    HttpService,
+    AuthorizationService,
+  ],
   declarations: [AuthorizationComponent],
   exports: [AuthorizationComponent],
 })
