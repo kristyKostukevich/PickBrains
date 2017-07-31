@@ -11,7 +11,6 @@ export class HrmGuard implements CanActivate{
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
   Observable<boolean> | boolean {
-    console.log(this.user === 'admin');
     return this.user === 'admin';
   }
 }
