@@ -45,4 +45,7 @@ export class GlobalHeaderComponent{
   onClick() {
     this.layout.notificationToggle();
   }
+  mainPage() {
+    this.router.navigateByUrl('/person-page');
+  }
 }
