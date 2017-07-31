@@ -92,7 +92,7 @@ export class MaxListComponent implements OnInit {
 
   vacancyAssignedCandidates: CandidateCardItem[] = [
     {
-      name: 'Candidate name',
+      candidateName: 'Candidate name',
       status: 'Status',
       email: 'Email',
       city: 'city',
@@ -101,7 +101,7 @@ export class MaxListComponent implements OnInit {
       id: 1,
     },
     {
-      name: 'Candidate name',
+      candidateName: 'Candidate name',
       status: 'Status',
       email: 'Email',
       city: 'city',
@@ -110,7 +110,7 @@ export class MaxListComponent implements OnInit {
       id: 2,
     },
     {
-      name: 'Candidate name',
+      candidateName: 'Candidate name',
       status: 'Status',
       email: 'Email',
       city: 'city',
@@ -119,7 +119,7 @@ export class MaxListComponent implements OnInit {
       id: 3,
     },
     {
-      name: 'Candidate name',
+      candidateName: 'Candidate name',
       status: 'Status',
       email: 'Email',
       city: 'city',
@@ -128,7 +128,7 @@ export class MaxListComponent implements OnInit {
       id: 4,
     },
     {
-      name: 'Candidate name',
+      candidateName: 'Candidate name',
       status: 'Status',
       email: 'Email',
       city: 'city',
@@ -137,7 +137,7 @@ export class MaxListComponent implements OnInit {
       id: 5,
     },
     {
-      name: 'Candidate name',
+      candidateName: 'Candidate name',
       status: 'Status',
       email: 'Email',
       city: 'city',
@@ -146,7 +146,7 @@ export class MaxListComponent implements OnInit {
       id: 6,
     },
     {
-      name: 'Candidate name',
+      candidateName: 'Candidate name',
       status: 'Status',
       email: 'Email',
       city: 'city',
@@ -155,7 +155,7 @@ export class MaxListComponent implements OnInit {
       id: 7,
     },
     {
-      name: 'Candidate name',
+      candidateName: 'Candidate name',
       status: 'Status',
       email: 'Email',
       city: 'city',
@@ -166,7 +166,7 @@ export class MaxListComponent implements OnInit {
   ];
   vacancyPotentialCandidates: CandidateCardItem[] = [
     {
-      name: 'Dima Ivanov',
+      candidateName: 'Dima Ivanov',
       status: 'Status',
       email: 'Email',
       city: 'city',
@@ -175,7 +175,7 @@ export class MaxListComponent implements OnInit {
       id: 1,
     },
     {
-      name: 'Candidate name',
+      candidateName: 'Candidate name',
       status: 'Status',
       email: 'Email',
       city: 'city',
@@ -184,7 +184,7 @@ export class MaxListComponent implements OnInit {
       id: 2,
     },
     {
-      name: 'Candidate name',
+      candidateName: 'Candidate name',
       status: 'Status',
       email: 'Email',
       city: 'city',
@@ -307,7 +307,7 @@ export class MaxListComponent implements OnInit {
         const temp = res.json();
         for (const i of temp) {
           this.candidates.push({
-            name: i.name,
+            candidateName: i.name,
             skillName: i.skillName,
             city: i.city,
             status: i.status,
@@ -316,6 +316,7 @@ export class MaxListComponent implements OnInit {
             id: i.id,
           });
         }
+
         this.list = new CardList(this.candidates);
         console.log(this.list);
       });
@@ -327,7 +328,7 @@ export class MaxListComponent implements OnInit {
         const temp = res.json();
         for (const i of temp) {
           this.candidates.push({
-            name: i.name,
+            candidateName: i.name,
             skillName: i.skillName,
             city: i.city,
             status: i.status,
