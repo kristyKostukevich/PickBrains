@@ -6,6 +6,7 @@ import { DatePickerModule } from '../date-picker/date-picker.module';
 import { InputTextAreaModule } from '../input-text-area/input-text-area.module';
 import { SelectModule } from '../select/select.module';
 import { SelectMarkModule } from 'app/components/select-mark/select-mark.module';
+import { HttpService } from '../../http-service/http-service';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { SelectMarkModule } from 'app/components/select-mark/select-mark.module'
   ],
   declarations: [GeneralViewComponent],
   exports: [GeneralViewComponent],
+  providers: [HttpService],
 })
 export class GeneralViewModule {
 

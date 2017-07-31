@@ -11,6 +11,6 @@
     </history-card>
 </div>
 <div *ngIf="isFeedbacks()">
-    <feedback-card *ngFor="let item of list.data" [item]="item">
+    <feedback-card class="listItem" *ngFor="let item of list.data" [item]="item">
     </feedback-card>
 </div>
