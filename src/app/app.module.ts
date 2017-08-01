@@ -24,6 +24,8 @@ import { GeneralModule } from 'app/components/general/general.module';
 import { GeneralViewModule } from 'app/components/general-view/general-view.module';
 import { MenuService } from 'app/components/menu/menu.service';
 import { LayoutModule } from './layout/layout.module';
+import { AssignModule } from 'app/components/assign/assign.module';
+
 
 @NgModule({
   imports: [
@@ -47,6 +49,7 @@ import { LayoutModule } from './layout/layout.module';
     GeneralViewModule,
     MaxListModule,
     LayoutModule,
+    AssignModule,
   ],
   declarations: [
     AppComponent,

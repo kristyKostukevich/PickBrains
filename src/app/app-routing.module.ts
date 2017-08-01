@@ -14,6 +14,7 @@ import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy
 import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
 import { MaxListComponent } from 'app/components/max-list/max-list.component';
 import { GeneralViewComponent } from 'app/components/general-view/general-view.component';
+import { AssignComponent } from 'app/components/assign/assign.component';
 
 const candidateRoutes: Routes = [
   {
@@ -55,6 +56,10 @@ const vacancyRoutes: Routes = [
   {
     path: 'potential-candidates',
     component: MaxListComponent,
+  },
+  {
+    path: 'assign-candidate',
+    component: AssignComponent,
   },
   {
     path: 'history',
