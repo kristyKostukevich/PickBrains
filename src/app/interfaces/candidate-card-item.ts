@@ -1,5 +1,5 @@
 export interface CandidateCardItem {
-  name: string;
+  candidateName: string;
   skillName: string;
   city: string;
   status: string;
