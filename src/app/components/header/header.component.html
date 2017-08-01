@@ -1,8 +1,8 @@
 <header>
-    <div class="logo-items" (click)="mainPage()">
-        <img src="../assets/logo2.png" alt="Company logo">
+    <div class="logo-items">
+        <img src="../assets/logo2.png" alt="Company logo" >
         <md-icon class="mobile-menu-icon" (click)="menuToggle()">menu</md-icon>
-        <span class="logo-name">PickBrains</span>
+        <span class="logo-name" (click)="mainPage()">PickBrains</span>
     </div>
     <div class="user-items">
         <span>{{person}}</span>
