@@ -9,9 +9,9 @@ import { CheckBoxModel } from '../../interfaces/check-box';
 
 export class CheckBoxComponent {
   @Input() info: CheckBoxModel;
-  @Output() infoChange = new EventEmitter<CheckBoxModel>();
+  @Output() onChanged = new EventEmitter<boolean>();
 
-  onModelChange() {
-    this.infoChange.emit(this.info);
+  updateCheckedOptions(index) {
+    this.onChanged.emit(index);
   }
 }

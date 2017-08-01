@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CheckBoxComponent } from './check-box.component';
-import { MaterialModule } from '@angular/material';
+import { MdCheckboxModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule,
+    MdCheckboxModule,
   ],
   declarations: [CheckBoxComponent],
   exports: [CheckBoxComponent],

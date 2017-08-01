@@ -1,5 +1,3 @@
-<md-checkbox class="check-box"
-             [(ngModel)]="info.value"
-             (ngModelChange)="onModelChange($event)">
-    {{model.value}}
+<md-checkbox class="check-box" (change)="updateCheckedOptions(info.id, $event)">
+{{info.value}}
 </md-checkbox>
