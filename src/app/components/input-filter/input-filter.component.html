@@ -1,0 +1,13 @@
+<md-input-container class="input-text adaptive-components">
+    <input mdInput
+           [(ngModel)]="info.valueBegin"
+           (ngModelChange)="updateCheckedOptions(info.valueBegin,'begin')"
+           [placeholder]="'Start value'">
+
+</md-input-container>
+<md-input-container class="input-text adaptive-components">
+    <input mdInput
+           [(ngModel)]="info.valueEnd"
+           (ngModelChange)="updateCheckedOptions(info.valueEnd,'end')"
+           [placeholder]="'End value'">
+</md-input-container>

@@ -1,0 +1,6 @@
+<md-input-container class="date-picker adaptive-components">
+    <input mdInput
+           [mdDatepicker]="picker" [placeholder]="'Work experience'">
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+</md-input-container>
+<md-datepicker touchUi="true" #picker (selectedChanged)="updateCheckedOptions(info.value, $event)"></md-datepicker>
