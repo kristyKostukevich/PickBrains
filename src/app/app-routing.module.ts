@@ -14,6 +14,7 @@ import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy
 import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
 import { MaxListComponent } from 'app/components/max-list/max-list.component';
 import { GeneralViewComponent } from 'app/components/general-view/general-view.component';
+import { LayoutComponent } from './layout/layout.compunent';
 
 const candidateRoutes: Routes = [
   {
@@ -69,49 +70,54 @@ const routes: Routes = [
   },
   {
     path: 'person-page',
-    canActivate: [TechGuard],
+    //canActivate: [TechGuard],
     component: PersonListComponent,
   },
   {
     path: 'vacancy-page',
-    canActivate: [TechGuard],
+    //canActivate: [TechGuard],
     component: VacancyListComponent,
   },
   {
     path: 'history-page',
-    canActivate: [HrmGuard],
+    //canActivate: [HrmGuard],
     component: HistoryListComponent,
   },
   {
     path: 'person-page/detail-candidate/:id',
-    canActivate: [TechGuard],
     component: CandidateDetailComponent,
     children: candidateRoutes,
   },
   {
     path: 'vacancy-page/detail-vacancy/:id',
-    canActivate: [TechGuard],
     component: VacancyDetailComponent,
     children: vacancyRoutes,
   },
+
+  {
+    path: 'add-candidate',
+    component: AddCandidateComponent,
+  },
+  {
+    path: 'add-vacancy',
+    //canActivate: [TechGuard],
+    component: AddVacancyComponent,
+  },
+
+];
+const globalRoutes: Routes = [
   {
     path: 'login',
     component: AuthorizationComponent,
   },
   {
-    path: 'add-candidate',
-    canActivate: [TechGuard],
-    component: AddCandidateComponent,
-  },
-  {
-    path: 'add-vacancy',
-    canActivate: [TechGuard],
-    component: AddVacancyComponent,
+    path: '',
+    component: LayoutComponent,
+    children: routes,
   },
 ];
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(globalRoutes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {
