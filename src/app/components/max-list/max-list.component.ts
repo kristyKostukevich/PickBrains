@@ -136,8 +136,6 @@ export class MaxListComponent implements OnInit {
 
   ];
 
-
-
   constructor(private menuService: MenuService, private activateRoute: ActivatedRoute,
               private httpService: HttpService) {
     this.candidates = [];
@@ -201,23 +199,27 @@ export class MaxListComponent implements OnInit {
   getInterviews() {
     this.list = new CardList(this.interviews);
     this.httpService.getData(`http://localhost:1337/api/interviews/candidate?candidateid=${this.parentData.id}`)
-      .subscribe((res) => {
-        const temp = res.json();
-        for (const i of temp) {
-          this.interviews.push({
-            candidateId: i.candidateId,
-            vacancyId: i.vacancyId,
-            type: i.type,
-            date: new Date(i.date),
-            status: i.done,
-            candidateName: i.candidateName,
-            userName: i.userName,
-            vacancyName: i.vacancyName,
-          });
-        }
-        this.list = new CardList(this.interviews);
-        console.log(this.list);
-      });
+      .subscribe(
+        (res) => {
+          const temp = res.json();
+          for (const i of temp) {
+            this.interviews.push({
+              candidateId: i.candidateId,
+              vacancyId: i.vacancyId,
+              type: i.type,
+              date: new Date(i.date),
+              status: i.done,
+              candidateName: i.candidateName,
+              userName: i.userName,
+              vacancyName: i.vacancyName,
+            });
+          }
+          this.list = new CardList(this.interviews);
+          console.log(this.list);
+        },
+        (error) => {
+          console.log(error);
+        });
   }
 
   getCandidateHistory() {
@@ -230,40 +232,47 @@ export class MaxListComponent implements OnInit {
 
   getAssignedCandidates() {
     this.httpService.getData(`http://localhost:1337/api/vacancies/${this.parentData.id}/assigned`)
-      .subscribe((res) => {
-        const temp = res.json();
-        for (const i of temp) {
-          this.candidates.push({
-            candidateName: i.name,
-            skillName: i.skillName,
-            city: i.city,
-            status: i.status,
-            contactDate: i.contactDate,
-            email: i.email,
-            id: i.id,
-          });
-        }
-        this.list = new CardList(this.candidates);
-      });
+      .subscribe(
+        (res) => {
+          const temp = res.json();
+          for (const i of temp) {
+            this.candidates.push({
+              candidateName: i.name,
+              skillName: i.skillName,
+              city: i.city,
+              status: i.status,
+              contactDate: i.contactDate,
+              email: i.email,
+              id: i.id,
+            });
+          }
+          this.list = new CardList(this.candidates);
+        },
+        (error) => {
+          console.log(error);
+        });
   }
 
   getPotentialCandidates() {
     this.httpService.getData(`http://localhost:1337/api/vacancies/${this.parentData.id}/candidates`)
       .subscribe((res) => {
-        const temp = res.json();
-        for (const i of temp) {
-          this.candidates.push({
-            candidateName: i.name,
-            skillName: i.skillName,
-            city: i.city,
-            status: i.status,
-            contactDate: i.contactDate,
-            email: i.email,
-            id: i.id,
-          });
-        }
-        this.list = new CardList(this.candidates);
-      });
+          const temp = res.json();
+          for (const i of temp) {
+            this.candidates.push({
+              candidateName: i.name,
+              skillName: i.skillName,
+              city: i.city,
+              status: i.status,
+              contactDate: i.contactDate,
+              email: i.email,
+              id: i.id,
+            });
+          }
+          this.list = new CardList(this.candidates);
+        },
+        (error) => {
+          console.log(error);
+        });
   }
 
   isVacancies(): boolean {
