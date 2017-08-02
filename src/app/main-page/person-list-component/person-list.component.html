@@ -3,7 +3,7 @@
     <filter-person class="scroll" (send)="send($event)"></filter-person>
 </div>
 <div class="wrap">
-    <global-search></global-search>
+    <global-search (sendSearchLine)="sendSearchLine($event)" ></global-search>
     <button-add [inputAdress]="urlAdress"></button-add>
     <list [list]="listItem"></list>
 </div>
