@@ -6,10 +6,8 @@
             <md-icon class="buttonMore">expand_more</md-icon>
         </accordion-heading>
         <ul class="sub-menu">
-            <li *ngFor="let item of arrayOfCities">
-                <md-checkbox class="example-margin">
-                    {{item.city}}
-                </md-checkbox>
+            <li *ngFor="let item of sendArrayOfCities; let i = index">
+                <check-box [(info)]="sendArrayOfCities[i]" (onChanged)="onChanged($event,'city')"></check-box>
             </li>
         </ul>
     </accordion-group>
@@ -20,10 +18,8 @@
             <md-icon class="buttonMore">expand_more</md-icon>
         </accordion-heading>
         <ul class="sub-menu">
-            <li *ngFor="let item of arrayOfSkills">
-                <md-checkbox class="example-margin" >
-                    {{item.skillName}}
-                </md-checkbox>
+            <li *ngFor="let item of sendArrayOfSkills; let i = index">
+                <check-box [(info)]="sendArrayOfSkills[i]" (onChanged)="onChanged($event,'skill')"></check-box>
             </li>
         </ul>
     </accordion-group>
