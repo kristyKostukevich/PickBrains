@@ -3,7 +3,8 @@ import { HttpService } from '../../http-service/http-service';
 import { ShowMenuService } from 'app/components/header/show-menu.service';
 import { Router } from '@angular/router';
 import { LayoutService } from '../../layout/layout.service';
-import { UserService } from '../../core-service/user.service';
+import { UserService, User } from '../../core-service/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'global-header',
@@ -11,7 +12,7 @@ import { UserService } from '../../core-service/user.service';
   styleUrls: ['header.component.scss'],
 })
 export class GlobalHeaderComponent{
-  public person = '';
+  public person: Observable<string>;
   flag: boolean = false;
 
   constructor(
@@ -24,7 +25,7 @@ export class GlobalHeaderComponent{
       this.flag = flag;
     });
 
-   // this.person = this.userService.getUserName();
+    this.person = this.userService.name;
   }
 
   menuToggle() {

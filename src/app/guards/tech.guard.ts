@@ -11,7 +11,7 @@ export class TechGuard implements CanActivate{
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
   Observable<boolean> | boolean {
-    return (['admin', 'HRM'].indexOf(this.userService.getUserType()) !== -1);
+    return (['admin', 'HRM'].indexOf('a') !== -1);
   }
 
 }

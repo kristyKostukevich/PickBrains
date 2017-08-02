@@ -10,6 +10,6 @@ export class HrmGuard implements CanActivate{
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
   Observable<boolean> | boolean {
-    return (['admin'].indexOf(this.userService.getUserType()) !== -1);
+    return (['admin'].indexOf('a') !== -1);
   }
 }
