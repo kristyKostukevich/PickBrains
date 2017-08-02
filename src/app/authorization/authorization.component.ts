@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from '../http-service/http-service';
-import { AuthorizationService } from './autorization.service';
 
 
 @Component({
@@ -20,11 +19,8 @@ export class AuthorizationComponent {
     value: '',
   };
 
-  private user: User;
-
   constructor(private httpService: HttpService,
-              private router: Router,
-              private authorization: AuthorizationService) {
+              private router: Router) {
   }
 
   enterClick(event) {
@@ -39,22 +35,12 @@ export class AuthorizationComponent {
     };
     this.httpService.postData(user, 'http://localhost:1337/api/authentication/login')
       .subscribe((data) => {
-        this.httpService
-            .getData(`http://localhost:1337/api/user`)
-            .subscribe((data) => {
-              this.user = data.json();
-              const currUser = JSON.stringify(this.user);
-              localStorage.setItem('user', currUser);
-              this.authorization.showHeaderToggle();
-              this.router.navigateByUrl('/person-page');
-            });
+        this.router.navigateByUrl('');
       },
         (error) => {
           this.error = 'incorrect data';
-          this.login.value = '';
           this.password.value = '';
         });
-
 
   }
 
@@ -65,12 +51,6 @@ export class AuthorizationComponent {
 export class InputModel {
   placeholder: string;
   value: string;
-}
-export class User {
-
-  type: string;
-  firstName: string;
-  secondName: string;
 }
 
 export class AuthorizationForm {
