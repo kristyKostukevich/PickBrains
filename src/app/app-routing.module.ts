@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PersonListComponent } from './main-page/person-list-component/person-list.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
-import { VacancyDetailComponent } from './vacancy-detail/vacancy-detail.component';
+import { VacancyDetailComponent } from './vacancy-detail-wrapper/vacancy-detail/vacancy-detail.component';
 import { CandidateDetailComponent } from './candidate-detail/candidate-detail.component';
 import { AddCandidateComponent } from './add-candidate/add-candidate.component';
 import { AddVacancyComponent } from './add-vacancy/add-vacancy.component';
@@ -14,7 +14,7 @@ import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy
 import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
 import { MaxListComponent } from 'app/components/max-list/max-list.component';
 import { GeneralViewComponent } from 'app/components/general-view/general-view.component';
-import { AssignComponent } from 'app/components/assign/assign.component';
+import { AssignCandidateComponent } from 'app/vacancy-detail-wrapper/assign-candidate/assign-candidate.component';
 
 const candidateRoutes: Routes = [
   {
@@ -59,7 +59,7 @@ const vacancyRoutes: Routes = [
   },
   {
     path: 'assign-candidate',
-    component: AssignComponent,
+    component: AssignCandidateComponent,
   },
   {
     path: 'history',

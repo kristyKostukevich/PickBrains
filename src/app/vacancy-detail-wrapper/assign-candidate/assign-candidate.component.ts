@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AssignPage } from 'app/classes/assign-page';
-import { MenuService } from 'app/components/menu/menu.service';
-import { ComponentsData } from 'app/interfaces/components-data';
-import { HttpService } from 'app/http-service/http-service';
+import { AssignPage } from '../../classes/assign-page';
+import { MenuService } from '../../components/menu/menu.service';
+import { ComponentsData } from '../../interfaces/components-data';
+import { HttpService } from '../../http-service/http-service';
 
 @Component({
-  selector: 'assign',
-  templateUrl: 'assign.component.html',
-  styleUrls: ['assign.component.scss'],
+  selector: 'assign-candidate',
+  templateUrl: 'assign-candidate.component.html',
+  styleUrls: ['assign-candidate.component.scss'],
 })
 
-export class AssignComponent implements OnInit {
+export class AssignCandidateComponent implements OnInit {
   model: AssignPage;
   data: any;
   interviewTypes: string[];
@@ -112,6 +112,8 @@ export class AssignComponent implements OnInit {
           this.candidateOptions,
           this.parentData.type,
         );
+        console.log('model');
+        console.log(this.model);
       });
   }
 
