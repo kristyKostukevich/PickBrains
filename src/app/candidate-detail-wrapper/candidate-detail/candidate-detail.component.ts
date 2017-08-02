@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class CandidateDetailComponent implements OnInit, OnDestroy {
-  menuItems: string[];
+  menuItems: any[];
   id: number;
   type: string;
 
@@ -17,8 +17,29 @@ export class CandidateDetailComponent implements OnInit, OnDestroy {
 
   constructor(private activateRoute: ActivatedRoute) {
     this.subscription = activateRoute.params.subscribe(params => this.id = params['id']);
-    this.menuItems = ['General', 'Feedbacks From Tech', 'Feedbacks From HRm', 'History'];
     this.type = 'candidate';
+    this.menuItems = [
+      {
+        item: 'General',
+        link: 'general',
+      },
+      {
+        item: 'Feedbacks From Tech',
+        link: 'feedbacks-from-tech',
+      },
+      {
+        item: 'Feedbacks From HRm',
+        link: 'feedbacks-from-hrm',
+      },
+      {
+        item: 'Interviews',
+        link: 'interviews',
+      },
+      {
+        item: 'History',
+        link: 'history',
+      },
+    ];
   }
 
   ngOnInit() {

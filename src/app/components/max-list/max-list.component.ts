@@ -7,6 +7,7 @@ import { MenuService } from 'app/components/menu/menu.service';
 import { ComponentsData } from 'app/interfaces/components-data';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../../http-service/http-service';
+import { InterviewCard } from 'app/classes/interview-card';
 
 @Component({
   selector: 'max-list',
@@ -18,8 +19,8 @@ export class MaxListComponent implements OnInit {
   list: CardList;
   parentData: ComponentsData;
   currItemType: string;
-  temp: any[];
   candidates: CandidateCardItem[];
+  interviews: InterviewCard[];
 
   candidateHistoryItems: HistoryCardItem[] = [
     {
@@ -89,110 +90,6 @@ export class MaxListComponent implements OnInit {
       date: new Date(2017, 1, 1),
     },
   ];
-
-  vacancyAssignedCandidates: CandidateCardItem[] = [
-    {
-      candidateName: 'Candidate name',
-      status: 'Status',
-      email: 'Email',
-      city: 'city',
-      skillName: 'Primary skill',
-      contactDate: new Date(2017, 1, 5),
-      id: 1,
-    },
-    {
-      candidateName: 'Candidate name',
-      status: 'Status',
-      email: 'Email',
-      city: 'city',
-      skillName: 'Primary skill',
-      contactDate: new Date(2017, 1, 5),
-      id: 2,
-    },
-    {
-      candidateName: 'Candidate name',
-      status: 'Status',
-      email: 'Email',
-      city: 'city',
-      skillName: 'Primary skill',
-      contactDate: new Date(2017, 1, 5),
-      id: 3,
-    },
-    {
-      candidateName: 'Candidate name',
-      status: 'Status',
-      email: 'Email',
-      city: 'city',
-      skillName: 'Primary skill',
-      contactDate: new Date(2017, 1, 5),
-      id: 4,
-    },
-    {
-      candidateName: 'Candidate name',
-      status: 'Status',
-      email: 'Email',
-      city: 'city',
-      skillName: 'Primary skill',
-      contactDate: new Date(2017, 1, 5),
-      id: 5,
-    },
-    {
-      candidateName: 'Candidate name',
-      status: 'Status',
-      email: 'Email',
-      city: 'city',
-      skillName: 'Primary skill',
-      contactDate: new Date(2017, 1, 5),
-      id: 6,
-    },
-    {
-      candidateName: 'Candidate name',
-      status: 'Status',
-      email: 'Email',
-      city: 'city',
-      skillName: 'Primary skill',
-      contactDate: new Date(2017, 1, 5),
-      id: 7,
-    },
-    {
-      candidateName: 'Candidate name',
-      status: 'Status',
-      email: 'Email',
-      city: 'city',
-      skillName: 'Primary skill',
-      contactDate: new Date(2017, 1, 5),
-      id: 8,
-    },
-  ];
-  vacancyPotentialCandidates: CandidateCardItem[] = [
-    {
-      candidateName: 'Dima Ivanov',
-      status: 'Status',
-      email: 'Email',
-      city: 'city',
-      skillName: 'Primary skill',
-      contactDate: new Date(2017, 1, 5),
-      id: 1,
-    },
-    {
-      candidateName: 'Candidate name',
-      status: 'Status',
-      email: 'Email',
-      city: 'city',
-      skillName: 'Primary skill',
-      contactDate: new Date(2017, 1, 5),
-      id: 2,
-    },
-    {
-      candidateName: 'Candidate name',
-      status: 'Status',
-      email: 'Email',
-      city: 'city',
-      skillName: 'Primary skill',
-      contactDate: new Date(2017, 1, 5),
-      id: 3,
-    },
-  ];
   vacancyHistoryItems: HistoryCardItem[] = [
     {
       changeName: 'Status was change',
@@ -242,6 +139,7 @@ export class MaxListComponent implements OnInit {
   constructor(private menuService: MenuService, private activateRoute: ActivatedRoute,
               private httpService: HttpService) {
     this.candidates = [];
+    this.interviews = [];
   }
 
   ngOnInit() {
@@ -251,9 +149,6 @@ export class MaxListComponent implements OnInit {
     if (this.list) {
       this.initialized = true;
     }
-    console.log('ngOnInit');
-    console.log(this.initialized);
-    console.log(this.list);
   }
 
   private identifyRequestType(item) {
@@ -265,6 +160,10 @@ export class MaxListComponent implements OnInit {
       case 'feedbacks-from-hrm':
         this.currItemType = 'feedbacks';
         this.getFeedbackFromHrm();
+        break;
+      case 'interviews':
+        this.currItemType = 'interviews';
+        this.getInterviews();
         break;
       case 'history':
         this.currItemType = 'history';
@@ -293,6 +192,36 @@ export class MaxListComponent implements OnInit {
     this.list = new CardList(this.candidateFeedbacksItems);
   }
 
+  getFeedbackFromTech() {
+    this.list = new CardList(this.candidateFeedbacksItems);
+  }
+
+  getInterviews() {
+    this.list = new CardList(this.interviews);
+    this.httpService.getData(`http://localhost:1337/api/interviews/candidate?candidateid=${this.parentData.id}`)
+      .subscribe(
+        (res) => {
+          const temp = res.json();
+          for (const i of temp) {
+            this.interviews.push({
+              candidateId: i.candidateId,
+              vacancyId: i.vacancyId,
+              type: i.type,
+              date: new Date(i.date),
+              status: i.done,
+              candidateName: i.candidateName,
+              userName: i.userName,
+              vacancyName: i.vacancyName,
+            });
+          }
+          this.list = new CardList(this.interviews);
+          console.log(this.list);
+        },
+        (error) => {
+          console.log(error);
+        });
+  }
+
   getCandidateHistory() {
     this.list = new CardList(this.candidateHistoryItems);
   }
@@ -303,47 +232,47 @@ export class MaxListComponent implements OnInit {
 
   getAssignedCandidates() {
     this.httpService.getData(`http://localhost:1337/api/vacancies/${this.parentData.id}/assigned`)
-      .subscribe((res) => {
-        const temp = res.json();
-        for (const i of temp) {
-          this.candidates.push({
-            candidateName: i.name,
-            skillName: i.skillName,
-            city: i.city,
-            status: i.status,
-            contactDate: i.contactDate,
-            email: i.email,
-            id: i.id,
-          });
-        }
-
-        this.list = new CardList(this.candidates);
-        console.log(this.list);
-      });
+      .subscribe(
+        (res) => {
+          const temp = res.json();
+          for (const i of temp) {
+            this.candidates.push({
+              candidateName: i.name,
+              skillName: i.skillName,
+              city: i.city,
+              status: i.status,
+              contactDate: i.contactDate,
+              email: i.email,
+              id: i.id,
+            });
+          }
+          this.list = new CardList(this.candidates);
+        },
+        (error) => {
+          console.log(error);
+        });
   }
 
   getPotentialCandidates() {
     this.httpService.getData(`http://localhost:1337/api/vacancies/${this.parentData.id}/candidates`)
       .subscribe((res) => {
-        const temp = res.json();
-        for (const i of temp) {
-          this.candidates.push({
-            candidateName: i.name,
-            skillName: i.skillName,
-            city: i.city,
-            status: i.status,
-            contactDate: i.contactDate,
-            email: i.email,
-            id: i.id,
-          });
-        }
-        this.list = new CardList(this.candidates);
-        console.log(this.list);
-      });
-  }
-
-  getFeedbackFromTech() {
-    this.list = new CardList(this.candidateFeedbacksItems);
+          const temp = res.json();
+          for (const i of temp) {
+            this.candidates.push({
+              candidateName: i.name,
+              skillName: i.skillName,
+              city: i.city,
+              status: i.status,
+              contactDate: i.contactDate,
+              email: i.email,
+              id: i.id,
+            });
+          }
+          this.list = new CardList(this.candidates);
+        },
+        (error) => {
+          console.log(error);
+        });
   }
 
   isVacancies(): boolean {
@@ -360,5 +289,9 @@ export class MaxListComponent implements OnInit {
 
   isFeedbacks(): boolean {
     return this.currItemType === 'feedbacks';
+  }
+
+  isInterview(): boolean {
+    return this.initialized && this.currItemType === 'interviews';
   }
 }
