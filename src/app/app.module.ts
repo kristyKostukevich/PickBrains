@@ -16,14 +16,14 @@ import { AddCandidateModule } from './add-candidate/add-candidate.module';
 import { AddVacancyModule } from './add-vacancy/add-vacancy.module';
 import { TechGuard } from './guards/tech.guard';
 import { HrmGuard } from './guards/hrm.guard';
-
-import { VacancyDetailModule } from './vacancy-detail/vacancy-detail.module';
+import { VacancyDetailModule } from './vacancy-detail-wrapper/vacancy-detail/vacancy-detail.module';
 import { CandidateDetailModule } from 'app/candidate-detail/candidate-detail.module';
 import { MaxListModule } from 'app/components/max-list/max-list.module';
 import { GeneralModule } from 'app/components/general/general.module';
 import { GeneralViewModule } from 'app/components/general-view/general-view.module';
 import { MenuService } from 'app/components/menu/menu.service';
 import { LayoutModule } from './layout/layout.module';
+import { AssignCandidateModule } from 'app/vacancy-detail-wrapper/assign-candidate/assign-candidate.module';
 
 @NgModule({
   imports: [
@@ -47,6 +47,7 @@ import { LayoutModule } from './layout/layout.module';
     GeneralViewModule,
     MaxListModule,
     LayoutModule,
+    AssignCandidateModule,
   ],
   declarations: [
     AppComponent,
