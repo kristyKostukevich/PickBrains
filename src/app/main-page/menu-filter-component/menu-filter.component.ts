@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../../core-service/user.service';
 
 
 @Component({
@@ -8,9 +9,8 @@ import { Component } from '@angular/core';
 })
  export class FilterComponent {
   user: string;
+ // constructor(private userService: UserService) {
+ //   this.user = this.userService.getUserType();
+  //}
 
-  constructor() {
-    const data = JSON.parse(localStorage.getItem('user'));
-    this.user = data.type;
-  }
 }
