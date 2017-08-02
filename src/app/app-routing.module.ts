@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PersonListComponent } from './main-page/person-list-component/person-list.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { VacancyDetailComponent } from './vacancy-detail-wrapper/vacancy-detail/vacancy-detail.component';
-import { CandidateDetailComponent } from './candidate-detail/candidate-detail.component';
+import { CandidateDetailComponent } from './candidate-detail-wrapper/candidate-detail/candidate-detail.component';
 import { AddCandidateComponent } from './add-candidate/add-candidate.component';
 import { AddVacancyComponent } from './add-vacancy/add-vacancy.component';
 import { HrmGuard } from './guards/hrm.guard';
@@ -32,6 +32,10 @@ const candidateRoutes: Routes = [
   },
   {
     path: 'feedbacks-from-hrm',
+    component: MaxListComponent,
+  },
+  {
+    path: 'interviews',
     component: MaxListComponent,
   },
   {
@@ -88,13 +92,13 @@ const routes: Routes = [
     component: HistoryListComponent,
   },
   {
-    path: 'person-page/detail-candidate/:id',
+    path: 'detail-candidate/:id',
     canActivate: [TechGuard],
     component: CandidateDetailComponent,
     children: candidateRoutes,
   },
   {
-    path: 'vacancy-page/detail-vacancy/:id',
+    path: 'detail-vacancy/:id',
     canActivate: [TechGuard],
     component: VacancyDetailComponent,
     children: vacancyRoutes,

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuModule } from 'app/components/menu/menu.module';
-import { AppRoutingModule } from 'app/app-routing.module';
-import { CandidateDetailComponent } from 'app/candidate-detail/candidate-detail.component';
+import { MenuModule } from '../../components/menu/menu.module';
+import { AppRoutingModule } from '../../app-routing.module';
+import { CandidateDetailComponent } from './candidate-detail.component';
 
 @NgModule({
   imports: [

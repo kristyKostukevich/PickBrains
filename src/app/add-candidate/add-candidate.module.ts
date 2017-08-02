@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CandidateDetailComponent } from 'app/candidate-detail/candidate-detail.component';
+import { CandidateDetailComponent } from '../candidate-detail-wrapper/candidate-detail/candidate-detail.component';
 import { MenuModule } from 'app/components/menu/menu.module';
 import { GeneralModule } from 'app/components/general/general.module';
 import { ListModule } from 'app/components/list/list.module';
