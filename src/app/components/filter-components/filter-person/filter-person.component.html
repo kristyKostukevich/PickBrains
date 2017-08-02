@@ -6,7 +6,8 @@
             <md-icon class="buttonMore">expand_more</md-icon>
         </accordion-heading>
         <ul class="sub-menu">
-            <li *ngFor="let item of arrayOfCities"  >{{item.city}}
+            <li *ngFor="let item of sendArrayOfCities; let i = index">
+                <check-box [(info)]="sendArrayOfCities[i]" (onChanged)="onChanged($event,'city')"></check-box>
             </li>
         </ul>
     </accordion-group>
@@ -17,8 +18,9 @@
             <md-icon class="buttonMore">expand_more</md-icon>
         </accordion-heading>
         <ul class="sub-menu">
-            <li *ngFor="let item of arrayOfSkills" >{{item.skillName}}</li>
-            <li></li>
+            <li *ngFor="let item of sendArrayOfSkills; let i = index">
+                <check-box [(info)]="sendArrayOfSkills[i]" (onChanged)="onChanged($event,'skill')"></check-box>
+            </li>
         </ul>
     </accordion-group>
     <accordion-group>
@@ -27,7 +29,7 @@
             Salary
             <md-icon class="buttonMore">expand_more</md-icon>
         </accordion-heading>
-        <md-slider thumbLabel max="9999"></md-slider>
+                <input-filter [(info)]="sendSalary" (onChanged)="onChanged($event,'salary')"></input-filter>
     </accordion-group>
     <accordion-group>
         <accordion-heading>
@@ -36,7 +38,9 @@
             <md-icon class="buttonMore">expand_more</md-icon>
         </accordion-heading>
         <ul class="sub-menu">
-            <li *ngFor="let item of arrayOfLanguages">{{item.lvl}}</li>
+            <li *ngFor="let item of sendArrayOfLanguages; let i = index">
+                <check-box [(info)]="sendArrayOfLanguages[i]" (onChanged)="onChanged($event,'language')"></check-box>
+            </li>
         </ul>
     </accordion-group>
     <accordion-group>
@@ -46,7 +50,9 @@
             <md-icon class="buttonMore">expand_more</md-icon>
         </accordion-heading>
         <ul class="sub-menu">
-           <li *ngFor="let item of arrayOfStatuses">{{item.status}}</li>
+            <li *ngFor="let item of sendArrayOfStatuses; let i = index">
+                <check-box [(info)]="sendArrayOfStatuses[i]" (onChanged)="onChanged($event,'status')"></check-box>
+            </li>
         </ul>
     </accordion-group>
     <accordion-group>
@@ -55,10 +61,6 @@
             Work experience
             <md-icon class="buttonMore">expand_more</md-icon>
         </accordion-heading>
-        <md-input-container>
-            <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
-            <button mdSuffix [mdDatepickerToggle]="picker"></button>
-        </md-input-container>
-        <md-datepicker #picker></md-datepicker>
+            <data-picker-filter [(info)]="sendDate" (onChanged)="onChanged($event,'date')"></data-picker-filter>
     </accordion-group>
 </accordion>

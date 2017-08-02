@@ -44,10 +44,6 @@ export class CandidateAddPage {
     this.otherSkills = [];
     this.nextOtherSkill = new SelectModel('','Other skill',arrayOfOtherSkills);
     this.englishLevel = new SelectModel(data.lvl, 'English Level', arrayOfLanguages);
-    // this.resumeLink = new InputModel(data.linkedin, 'Resume Link');
-    //
-    // // нужны vacancies,hrmNames, techName
-    //
     this.emailAdresses = new InputModel('', 'Email addresses');
     this.phoneNumbers = new InputModel(data.phone, 'Phone number');
     this.linkedIn = new InputModel(data.linkedin, 'LinledIn');

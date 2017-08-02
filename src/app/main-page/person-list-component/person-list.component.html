@@ -1,6 +1,6 @@
 <div class="leftBar">
     <person-page-filter></person-page-filter>
-    <filter-person class="scroll"></filter-person>
+    <filter-person class="scroll" (send)="send($event)"></filter-person>
 </div>
 <div class="wrap">
     <global-search></global-search>

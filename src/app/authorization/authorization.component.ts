@@ -4,7 +4,6 @@ import { HttpService } from '../http-service/http-service';
 import { AuthorizationService } from './autorization.service';
 
 
-
 @Component({
   selector: 'authorization',
   templateUrl: 'authorization.component.html',
@@ -22,10 +21,16 @@ export class AuthorizationComponent {
   };
 
   private user: User;
-  constructor(
-    private httpService: HttpService,
-    private router: Router,
-    private authorization: AuthorizationService) {}
+
+  constructor(private httpService: HttpService,
+              private router: Router,
+              private authorization: AuthorizationService) {
+  }
+
+  enterClick(event) {
+    if (event.keyCode === 13)
+      this.submit();
+  }
 
   submit() {
     const user: AuthorizationForm = {
@@ -51,8 +56,8 @@ export class AuthorizationComponent {
         });
 
 
-
   }
+
   clear() {
     this.error = '';
   }
@@ -61,9 +66,9 @@ export class InputModel {
   placeholder: string;
   value: string;
 }
-export class User{
+export class User {
 
-  type:string;
+  type: string;
   firstName: string;
   secondName: string;
 }
