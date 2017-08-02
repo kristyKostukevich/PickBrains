@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GlobalHeaderModule } from './components/header/header.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccordionModule } from 'ngx-accordion';
 import { PersonPageModule } from './main-page/person-list-component/person-list.module';
@@ -24,13 +23,13 @@ import { GeneralModule } from 'app/components/general/general.module';
 import { GeneralViewModule } from 'app/components/general-view/general-view.module';
 import { MenuService } from 'app/components/menu/menu.service';
 import { LayoutModule } from './layout/layout.module';
+import { UserService } from './core-service/user.service';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
-    GlobalHeaderModule,
     PersonPageModule,
     AccordionModule,
     HttpModule,
