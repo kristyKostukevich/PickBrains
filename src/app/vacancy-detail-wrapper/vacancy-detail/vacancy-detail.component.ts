@@ -16,7 +16,7 @@ export class VacancyDetailComponent implements OnInit, OnDestroy {
 
   constructor(private activateRoute: ActivatedRoute) {
     this.subscription = activateRoute.params.subscribe(params => this.id = params['id']);
-    this.menuItems = ['General', 'Assigned candidates', 'Potential candidates', 'History'];
+    this.menuItems = ['General', 'Assigned candidates', 'Potential candidates', 'Assign candidate', 'History'];
     this.type = 'vacancy';
   }
 
