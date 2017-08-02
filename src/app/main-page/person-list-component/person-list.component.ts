@@ -23,6 +23,8 @@ export class PersonListComponent implements OnInit {
   arrayOfSalary: any[];
   waitArrayOfSalary: any[];
   date: Date;
+  urlSearch: string;
+  urlDefault: string = 'http://localhost:1337/api/candidates/search';
 
 
   constructor(private httpService: HttpService, private route: ActivatedRoute) {
@@ -31,12 +33,29 @@ export class PersonListComponent implements OnInit {
     this.arrayOfLanguages = [];
     this.arrayOfCities = [];
     this.arrayOfSalary = [];
-    this.waitArrayOfSalary = [-1,-1];
+    this.waitArrayOfSalary = [-1, -1];
     this.date = new Date();
   }
 
   ngOnInit() {
     this.httpService.postData({skip: 0}, 'http://localhost:1337/api/candidates')
+      .subscribe((res) => {
+        this.persons = res.json();
+        this.listItem = new CardList(this.persons, 'candidates');
+        this.urlAdress = this.route.snapshot.url[0].path;
+      });
+  }
+
+  sendSearchLine(event) {
+    if(event.indexOf(' ') > -1){
+      event = event.replace(/\s/ig, '%20');
+    }
+    if (!event) {
+      this.urlSearch = this.urlDefault;
+    } else {
+      this.urlSearch = `http://localhost:1337/api/candidates/search?q=${event}`;
+    }
+    this.httpService.postData({skip: 0}, this.urlSearch)
       .subscribe((res) => {
         this.persons = res.json();
         this.listItem = new CardList(this.persons, 'candidates');
@@ -108,19 +127,20 @@ export class PersonListComponent implements OnInit {
         this.date = event.id;
         break;
       case 'salary':
-        if(event.id.field === 'begin'){
-          this.waitArrayOfSalary[0] =  +event.id.event;
+        if (event.id.field === 'begin') {
+          this.waitArrayOfSalary[0] = +event.id.event;
         }
-        if(event.id.field === 'end'){
-          this.waitArrayOfSalary[1] =  +event.id.event;
+        if (event.id.field === 'end') {
+          this.waitArrayOfSalary[1] = +event.id.event;
         }
         console.log(this.waitArrayOfSalary);
-        if(this.waitArrayOfSalary[0]!= -1 && this.waitArrayOfSalary[1]!=-1 && this.waitArrayOfSalary[1]!= ''){
-          for (let i  = 0; i < 2; i++)
-          this.arrayOfSalary[i] = this.waitArrayOfSalary[i];
+        if (this.waitArrayOfSalary[0] != -1 && this.waitArrayOfSalary[1] != -1 && this.waitArrayOfSalary[1] != '') {
+          for (let i = 0; i < 2; i++)
+            this.arrayOfSalary[i] = this.waitArrayOfSalary[i];
         }
         console.log(this.arrayOfSalary);
         break;
     }
   }
+
 }
