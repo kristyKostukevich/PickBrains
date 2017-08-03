@@ -3,7 +3,8 @@ import { HttpService } from '../../http-service/http-service';
 import { ShowMenuService } from 'app/components/header/show-menu.service';
 import { Router } from '@angular/router';
 import { LayoutService } from '../../layout/layout.service';
-import { AuthorizationService } from '../../authorization/autorization.service';
+import { UserService, User } from '../../core-service/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'global-header',
@@ -11,7 +12,7 @@ import { AuthorizationService } from '../../authorization/autorization.service';
   styleUrls: ['header.component.scss'],
 })
 export class GlobalHeaderComponent{
-  public person = '';
+  public person: Observable<string>;
   flag: boolean = false;
 
   constructor(
@@ -19,16 +20,14 @@ export class GlobalHeaderComponent{
     private httpService: HttpService,
     private router: Router,
     private layout: LayoutService,
-    private authorization: AuthorizationService) {
-    this.showMenu.getEmitter().subscribe(flag => {
+    private userService: UserService) {
+    this.showMenu.getEmitter().subscribe((flag) => {
       this.flag = flag;
     });
+
+    this.person = this.userService.name;
   }
 
-  ngOnInit() {
-    const data = JSON.parse(localStorage.getItem('user'));
-    this.person = `${data.firstName} ${data.secondName}`;
-  }
   menuToggle() {
     this.showMenu.menuToggle();
   }
@@ -37,10 +36,8 @@ export class GlobalHeaderComponent{
     this.httpService.postData({ } ,'http://localhost:1337/api/authentication/exit')
       .subscribe();
     this.router.navigateByUrl('/login');
-    localStorage.clear();
-    this.authorization.closeHeaderToggle();
     this.layout.logout();
-
+    this.userService.reset();
   }
   onClick() {
     this.layout.notificationToggle();

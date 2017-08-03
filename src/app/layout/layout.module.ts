@@ -8,7 +8,7 @@ import { NotificationModule } from '../notification/notification.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { LayoutService } from './layout.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AuthorizationService } from '../authorization/autorization.service';
+import { UserService } from '../core-service/user.service';
 
 
 @NgModule({
@@ -25,7 +25,7 @@ import { AuthorizationService } from '../authorization/autorization.service';
   exports: [LayoutComponent],
   providers: [
     LayoutService,
-    AuthorizationService],
+    UserService],
 })
 export class LayoutModule {
 }

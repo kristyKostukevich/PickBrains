@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PersonListComponent } from './main-page/person-list-component/person-list.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
-import { VacancyDetailComponent } from './vacancy-detail-wrapper/vacancy-detail/vacancy-detail.component';
-import { CandidateDetailComponent } from './candidate-detail-wrapper/candidate-detail/candidate-detail.component';
+import { VacancyDetailComponent } from './vacancy-detail/vacancy-detail.component';
+import { CandidateDetailComponent } from './candidate-detail/candidate-detail.component';
 import { AddCandidateComponent } from './add-candidate/add-candidate.component';
 import { AddVacancyComponent } from './add-vacancy/add-vacancy.component';
 import { HrmGuard } from './guards/hrm.guard';
@@ -14,6 +14,7 @@ import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy
 import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
 import { MaxListComponent } from 'app/components/max-list/max-list.component';
 import { GeneralViewComponent } from 'app/components/general-view/general-view.component';
+import { LayoutComponent } from './layout/layout.compunent';
 import { AssignCandidateComponent } from 'app/vacancy-detail-wrapper/assign-candidate/assign-candidate.component';
 
 const candidateRoutes: Routes = [
@@ -93,23 +94,17 @@ const routes: Routes = [
   },
   {
     path: 'detail-candidate/:id',
-    canActivate: [TechGuard],
     component: CandidateDetailComponent,
     children: candidateRoutes,
   },
   {
     path: 'detail-vacancy/:id',
-    canActivate: [TechGuard],
     component: VacancyDetailComponent,
     children: vacancyRoutes,
   },
-  {
-    path: 'login',
-    component: AuthorizationComponent,
-  },
+
   {
     path: 'add-candidate',
-    canActivate: [TechGuard],
     component: AddCandidateComponent,
   },
   {
@@ -119,8 +114,20 @@ const routes: Routes = [
   },
 ];
 
+];
+const globalRoutes: Routes = [
+  {
+    path: 'login',
+    component: AuthorizationComponent,
+  },
+  {
+    path: '',
+    component: LayoutComponent,
+    children: routes,
+  },
+];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(globalRoutes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {
