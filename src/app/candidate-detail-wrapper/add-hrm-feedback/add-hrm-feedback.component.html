@@ -1,0 +1,12 @@
+<form>
+    <input-text [(model)]="model.name"></input-text>
+    <date-picker [(model)]="model.date"></date-picker>
+    <input-textarea [(model)]="model.reason"></input-textarea>
+    <select-component [(model)]="model.readinessToWork"></select-component>
+    <select-component [(model)]="model.readinessToBusinessTrip"></select-component>
+    <input-textarea  [(model)]="model.motivation"></input-textarea >
+    <select-component [(model)]="model.englishLevel"></select-component>
+    <input-text [(model)]="model.salary"></input-text>
+    <input-textarea [(model)]="model.comment"></input-textarea>
+</form>
+<a md-fab routerLink="../feedbacks-from-hrm"><md-icon>add</md-icon></a>

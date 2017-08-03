@@ -15,6 +15,7 @@ import { HistoryListComponent } from './main-page/history-list-component/history
 import { MaxListComponent } from 'app/components/max-list/max-list.component';
 import { GeneralViewComponent } from 'app/components/general-view/general-view.component';
 import { AssignCandidateComponent } from 'app/vacancy-detail-wrapper/assign-candidate/assign-candidate.component';
+import { AddHrmFeedbackComponent } from 'app/candidate-detail-wrapper/add-hrm-feedback/add-hrm-feedback.component';
 
 const candidateRoutes: Routes = [
   {
@@ -37,6 +38,10 @@ const candidateRoutes: Routes = [
   {
     path: 'interviews',
     component: MaxListComponent,
+  },
+  {
+    path: 'add-hrm-feedback',
+    component: AddHrmFeedbackComponent,
   },
   {
     path: 'history',
