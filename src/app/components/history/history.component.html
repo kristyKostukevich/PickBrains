@@ -1,41 +1,32 @@
-<div class="history-card">
-    <div class="title">
-        <span class="change-name">{{item.changeName}}</span>
-        <span>{{item.userName}}, {{item.changeDate.toDateString()}}</span>
-    </div>
-    <hr>
-    <div class="card" *ngIf="isVacancy()">
-        <div class="first-block">
-            <div>
-                <h4>{{item.data.projectName}}</h4>
-                <span class="date">{{item.data.date.toDateString()}}</span>
-            </div>
-            <p>{{item.data.description}}</p>
-        </div>
-        <div class="second-block">
-            <span>{{item.data.status}}</span>
-            <div class="tags">
-                <span class="tags-item">{{item.data.primarySkill}}</span>
-                <span class="tags-item">{{item.data.location}}</span>
-            </div>
-        </div>
-    </div>
-    <div class="card" *ngIf="isCandidate()">
-        <div class="first-block">
-            <div>
-                <h4>{{item.data.candidateName}}</h4>
-                <span class="date">{{item.data.date.toDateString()}}</span>
-            </div>
-            <p>{{item.data.email}}</p>
-        </div>
-        <div class="second-block">
-            <span>{{item.data.status}}</span>
-            <div class="tags">
-                <span class="tags-item">{{item.data.primarySkill}}</span>
-                <span class="tags-item">{{item.data.location}}</span>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="history">
+    <md-table #table [dataSource]="dataSource">
+        <ng-container  cdkColumnDef="name">
+            <md-header-cell *cdkHeaderCellDef> Name</md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.candidateName}}</md-cell>
+        </ng-container>
 
+        <ng-container cdkColumnDef="type">
+            <md-header-cell *cdkHeaderCellDef> Type </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.type}}</md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="status">
+            <md-header-cell *cdkHeaderCellDef> That changed </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.status}}</md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="change">
+            <md-header-cell *cdkHeaderCellDef> Changed by  </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.change}}</md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="date">
+            <md-header-cell *cdkHeaderCellDef> Date</md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.date|date:'dd.MM.y'}}</md-cell>
+        </ng-container>
+
+        <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+        <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+    </md-table>
+</div>
 
