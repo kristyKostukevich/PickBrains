@@ -1,0 +1,24 @@
+<div class="wrap">
+    <div class="row">
+        <div class="sel-header">
+            That changed
+        </div>
+        <div class="sel-header">
+            Changed by
+        </div>
+        <div class="sel-header">
+            Date
+        </div>
+    </div>
+    <div class="row" *ngFor="let item of history">
+        <div class="sel">
+            {{item.status}}
+        </div>
+        <div class="sel">
+            {{item.nameHRM}}
+        </div>
+        <div class="sel">
+            {{item.date | date:'dd.MM.y'}}
+        </div>
+    </div>
+</div>

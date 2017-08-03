@@ -14,6 +14,8 @@ import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy
 import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
 import { MaxListComponent } from 'app/components/max-list/max-list.component';
 import { GeneralViewComponent } from 'app/components/general-view/general-view.component';
+import { HistoryComponent } from './components/history/history.component';
+import { HistoryDetailComponent } from './components/history-in-detail-view/history-detail.component';
 
 const candidateRoutes: Routes = [
   {
@@ -35,7 +37,7 @@ const candidateRoutes: Routes = [
   },
   {
     path: 'history',
-    component: MaxListComponent,
+    component: HistoryDetailComponent,
   },
 ];
 const vacancyRoutes: Routes = [
@@ -58,7 +60,7 @@ const vacancyRoutes: Routes = [
   },
   {
     path: 'history',
-    component: MaxListComponent,
+    component: HistoryDetailComponent,
   },
 ];
 const routes: Routes = [
