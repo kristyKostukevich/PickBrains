@@ -4,10 +4,10 @@
             <h4>{{item.vacancyName}}</h4>
             <span class="type">{{item.type}} interview with {{item.userName}} </span>
         </div>
-        <p>{{item.date | date: mediumTime}}</p>
+        <p>{{item.date | date: mediumTime}}, {{time}}</p>
     </div>
     <div class="second-block">
         <span>{{item.status}}</span>
-        <a style="background-color: rgb(224, 224, 224); box-shadow: none" md-raised-button color="pink" routerLink=".">Add feedback</a>
+        <a style="background-color: rgb(224, 224, 224); box-shadow: none" md-raised-button color="pink" routerLink="../add-hrm-feedback">Add feedback</a>
     </div>
 </div>
