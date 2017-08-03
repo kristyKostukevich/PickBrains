@@ -6,7 +6,6 @@ import { VacancyDetailComponent } from './vacancy-detail-wrapper/vacancy-detail/
 import { CandidateDetailComponent } from './candidate-detail-wrapper/candidate-detail/candidate-detail.component';
 import { AddCandidateComponent } from './add-candidate/add-candidate.component';
 import { AddVacancyComponent } from './add-vacancy/add-vacancy.component';
-import { HrmGuard } from './guards/hrm.guard';
 import { TechGuard } from './guards/tech.guard';
 import 'hammerjs';
 import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy-list-component';
@@ -93,7 +92,6 @@ const routes: Routes = [
   },
   {
     path: 'history-page',
-    canActivate: [HrmGuard],
     component: HistoryListComponent,
   },
   {

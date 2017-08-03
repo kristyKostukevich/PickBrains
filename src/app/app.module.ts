@@ -14,7 +14,6 @@ import { HistoryPageModule } from './main-page/history-list-component/history-li
 import { AddCandidateModule } from './add-candidate/add-candidate.module';
 import { AddVacancyModule } from './add-vacancy/add-vacancy.module';
 import { TechGuard } from './guards/tech.guard';
-import { HrmGuard } from './guards/hrm.guard';
 import { MaxListModule } from 'app/components/max-list/max-list.module';
 import { GeneralModule } from 'app/components/general/general.module';
 import { GeneralViewModule } from 'app/components/general-view/general-view.module';
@@ -52,7 +51,6 @@ import { CandidateDetailModule } from './candidate-detail-wrapper/candidate-deta
   ],
   providers: [
     TechGuard,
-    HrmGuard,
     MenuService],
   bootstrap: [AppComponent],
 })
