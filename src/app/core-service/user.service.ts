@@ -12,6 +12,7 @@ export class UserService {
       .map(data => data.json());
     this.name = this.user.map(data => `${data.firstName} ${data.secondName}`);
     this.type = this.user.map(data => data.type);
+    console.log('userservice');
   }
 
   reset() {
