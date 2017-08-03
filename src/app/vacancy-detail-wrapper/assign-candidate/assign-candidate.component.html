@@ -1,0 +1,8 @@
+<form>
+    <select-component (modelChange)="modelChange($event)" [(model)]="model.typeOfInterview"></select-component>
+    <select-component [(model)]="model.interviewer"></select-component>
+    <select-component [(model)]="model.value"></select-component>
+    <date-picker [(model)]="model.date"></date-picker>
+    <input-text [(model)]="model.time"></input-text>
+</form>
+<a class="button" routerLink="../assigned-candidates" md-fab (click)="submit()"><md-icon>person_add</md-icon></a>

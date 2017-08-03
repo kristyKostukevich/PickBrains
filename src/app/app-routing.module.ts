@@ -15,6 +15,7 @@ import { HistoryListComponent } from './main-page/history-list-component/history
 import { MaxListComponent } from 'app/components/max-list/max-list.component';
 import { GeneralViewComponent } from 'app/components/general-view/general-view.component';
 import { LayoutComponent } from './layout/layout.compunent';
+import { AssignCandidateComponent } from 'app/vacancy-detail-wrapper/assign-candidate/assign-candidate.component';
 
 const candidateRoutes: Routes = [
   {
@@ -32,6 +33,10 @@ const candidateRoutes: Routes = [
   },
   {
     path: 'feedbacks-from-hrm',
+    component: MaxListComponent,
+  },
+  {
+    path: 'interviews',
     component: MaxListComponent,
   },
   {
@@ -56,6 +61,10 @@ const vacancyRoutes: Routes = [
   {
     path: 'potential-candidates',
     component: MaxListComponent,
+  },
+  {
+    path: 'assign-candidate',
+    component: AssignCandidateComponent,
   },
   {
     path: 'history',
@@ -84,12 +93,12 @@ const routes: Routes = [
     component: HistoryListComponent,
   },
   {
-    path: 'person-page/detail-candidate/:id',
+    path: 'detail-candidate/:id',
     component: CandidateDetailComponent,
     children: candidateRoutes,
   },
   {
-    path: 'vacancy-page/detail-vacancy/:id',
+    path: 'detail-vacancy/:id',
     component: VacancyDetailComponent,
     children: vacancyRoutes,
   },
@@ -103,6 +112,7 @@ const routes: Routes = [
     canActivate: [TechGuard],
     component: AddVacancyComponent,
   },
+];
 
 ];
 const globalRoutes: Routes = [

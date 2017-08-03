@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuModule } from '../components/menu/menu.module';
-import { AppRoutingModule } from 'app/app-routing.module';
+import { MenuModule } from '../../components/menu/menu.module';
+import { AppRoutingModule } from '../../app-routing.module';
 import { VacancyDetailComponent } from './vacancy-detail.component';
 
 @NgModule({

@@ -1,7 +1,11 @@
 <form class="search-block">
     <md-input-container class="search-full-width">
-        <input type="text" class="search-bar-input" mdInput placeholder="Search">
+        <input mdInput
+               [(ngModel)]="info"
+               (ngModelChange)="updateCheckedOptions(info)"
+               [placeholder]="'Search'"
+               name="search"
+               (keypress)="enterClick($event)">
         <md-icon mdSuffix>search</md-icon>
-        <md-icon mdSuffix>more_vert</md-icon>
     </md-input-container>
 </form>

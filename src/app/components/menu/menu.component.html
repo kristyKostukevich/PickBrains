@@ -3,9 +3,10 @@
         <img src="../../../assets/menu-background.jpg">
     </div>
     <div class="menu-links">
-        <button class="menu-item" md-button *ngFor="let item of menuItems; let i = index" (click)="goToItem(item)"
-                [ngClass]="{active: toggleFlags[i]}">
-            {{item}}
-        </button>
+        <a class="menu-item" md-button *ngFor="let menuItem of menuItems; let i = index"
+           [routerLink]="menuItems[i].link"
+           routerLinkActive="active" (click)="toggleMenuItem()">
+            {{menuItem.item}}
+        </a>
     </div>
 </div>
