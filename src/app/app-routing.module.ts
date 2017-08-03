@@ -8,12 +8,12 @@ import { AddCandidateComponent } from './add-candidate/add-candidate.component';
 import { AddVacancyComponent } from './add-vacancy/add-vacancy.component';
 import { HrmGuard } from './guards/hrm.guard';
 import { TechGuard } from './guards/tech.guard';
-
 import 'hammerjs';
 import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy-list-component';
 import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
 import { MaxListComponent } from 'app/components/max-list/max-list.component';
 import { GeneralViewComponent } from 'app/components/general-view/general-view.component';
+import { LayoutComponent } from './layout/layout.compunent';
 import { AssignCandidateComponent } from 'app/vacancy-detail-wrapper/assign-candidate/assign-candidate.component';
 import { AddHrmFeedbackComponent } from 'app/candidate-detail-wrapper/add-hrm-feedback/add-hrm-feedback.component';
 
@@ -98,23 +98,17 @@ const routes: Routes = [
   },
   {
     path: 'detail-candidate/:id',
-    canActivate: [TechGuard],
     component: CandidateDetailComponent,
     children: candidateRoutes,
   },
   {
     path: 'detail-vacancy/:id',
-    canActivate: [TechGuard],
     component: VacancyDetailComponent,
     children: vacancyRoutes,
   },
-  {
-    path: 'login',
-    component: AuthorizationComponent,
-  },
+
   {
     path: 'add-candidate',
-    canActivate: [TechGuard],
     component: AddCandidateComponent,
   },
   {
@@ -124,8 +118,20 @@ const routes: Routes = [
   },
 ];
 
+
+const globalRoutes: Routes = [
+  {
+    path: 'login',
+    component: AuthorizationComponent,
+  },
+  {
+    path: '',
+    component: LayoutComponent,
+    children: routes,
+  },
+];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(globalRoutes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {

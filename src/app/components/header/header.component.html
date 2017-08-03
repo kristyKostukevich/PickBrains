@@ -5,7 +5,7 @@
         <span class="logo-name" (click)="mainPage()">PickBrains</span>
     </div>
     <div class="user-items">
-        <span>{{person}}</span>
+        <span>{{person | async}}</span>
         <div class="menu">
             <button md-icon-button [mdMenuTriggerFor]="menu">
                 <md-icon class="user-menu-icon">expand_more</md-icon>

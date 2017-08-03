@@ -1,18 +1,17 @@
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
+import { UserService } from '../core-service/user.service';
 
 
 @Injectable()
 export class TechGuard implements CanActivate{
-  user: string;
-  constructor() {
-    const data = JSON.parse(localStorage.getItem('user'));
-    this.user = data.type;
+
+  constructor(private userService: UserService) {
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-    Observable<boolean> | boolean {
-    return this.user === 'admin' || this.user === 'HRM';
+  Observable<boolean> | boolean {
+    return this.userService.type.map(data => ['admin', 'HRM'].indexOf(data) !== -1);
   }
 
 }

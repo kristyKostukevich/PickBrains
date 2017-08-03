@@ -35,7 +35,7 @@ export class NotificationDatabase {
   }
 
   constructor(private httpService: HttpService) {
-    this.httpService.getData('http://localhost:1337/api/notification/upcoming-interviews')
+    this.httpService.getData('http://localhost:1337/api/interviews/user')
       .subscribe((res) => {
         const interviews: UserData[] = res.json();
         this.dataChange.next(interviews);
