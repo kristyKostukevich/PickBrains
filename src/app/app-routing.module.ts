@@ -70,17 +70,17 @@ const routes: Routes = [
   },
   {
     path: 'person-page',
-    //canActivate: [TechGuard],
+    canActivate: [TechGuard],
     component: PersonListComponent,
   },
   {
     path: 'vacancy-page',
-    //canActivate: [TechGuard],
+    canActivate: [TechGuard],
     component: VacancyListComponent,
   },
   {
     path: 'history-page',
-    //canActivate: [HrmGuard],
+    canActivate: [HrmGuard],
     component: HistoryListComponent,
   },
   {
@@ -100,7 +100,7 @@ const routes: Routes = [
   },
   {
     path: 'add-vacancy',
-    //canActivate: [TechGuard],
+    canActivate: [TechGuard],
     component: AddVacancyComponent,
   },
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../core-service/user.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -8,9 +9,12 @@ import { UserService } from '../../core-service/user.service';
   styleUrls: ['menu-filter.component.scss'],
 })
  export class FilterComponent {
-  user: string;
- // constructor(private userService: UserService) {
- //   this.user = this.userService.getUserType();
-  //}
+  user: Observable<string>;
+  constructor (private userService: UserService) {
+
+  }
+  ngOnInit() {
+    this.user = this.userService.type;
+  }
 
 }

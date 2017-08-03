@@ -6,26 +6,13 @@ import { Observable } from 'rxjs';
 export class UserService {
   user: Observable<User>;
   name: Observable<string>;
-
+  type: Observable<string>;
   constructor(private httpService: HttpService) {
     this.user = this.httpService.getData(`http://localhost:1337/api/user`)
       .map(data => data.json());
-    this.name = this.user.map(data => data.firstName);
-    // .subscribe((data) => {
-    //   this.user = data.json();
-    //   console.log(this.user);
-    // });
+    this.name = this.user.map(data => `${data.firstName} ${data.secondName}`);
+    this.type = this.user.map(data => data.type);
   }
-
-  // getUserType(): string {
-  //   console.log('type');
-  //   //return this.user.type;
-  // }
-  //
-  // getUserName(): string {
-  //   console.log('name');
-  //   // return this.name;
-  // }
 
   reset() {
     if (this.user) {
