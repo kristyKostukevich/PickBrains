@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MenuService } from '../menu/menu.service';
 
 
 @Component({
@@ -7,6 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['history-detail.component.scss'],
 })
 export class HistoryDetailComponent {
+
+  constructor(menuService: MenuService) {
+  }
+
+  createUrl(id: number, type: string):string {
+    switch (type){
+      case 'candidate':
+        return `h`
+    }
+  }
   history: HistoryDate[] = [{
     status: 'email',
     nameHRM: 'Vladislav',

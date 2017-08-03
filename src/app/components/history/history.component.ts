@@ -48,14 +48,14 @@ export class HistoryDatabase {
       {
         candidateName: 'Kristy',
         type: 'candidate',
-        status: 'email',
+        status: 'changed email',
         change: 'Max',
         date: new Date(),
       },
       {
         candidateName: 'BitCoin',
         type: 'vacancy',
-        status: 'status',
+        status: 'add feedback',
         change: 'Kostya',
         date: new Date(),
       },
