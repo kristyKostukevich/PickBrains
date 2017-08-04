@@ -39,7 +39,7 @@ const candidateRoutes: Routes = [
     component: MaxListComponent,
   },
   {
-    path: 'add-hrm-feedback',
+    path: 'interviews/:id/add-hrm-feedback',
     component: AddHrmFeedbackComponent,
   },
   {

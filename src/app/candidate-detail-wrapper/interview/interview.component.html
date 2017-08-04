@@ -9,6 +9,6 @@
     <div class="second-block">
         <span>{{item.status}}</span>
         <a style="background-color: rgb(224, 224, 224); box-shadow: none" *ngIf="isInterviewer()" md-raised-button
-           routerLink="../add-hrm-feedback">Add feedback</a>
+           [routerLink]="[item.interviewId,'add-hrm-feedback']">Add feedback</a>
     </div>
 </div>

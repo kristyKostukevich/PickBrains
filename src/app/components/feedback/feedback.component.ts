@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FeedbackCard } from '../../classes/feedback-card';
 
 @Component({
@@ -6,21 +6,11 @@ import { FeedbackCard } from '../../classes/feedback-card';
   templateUrl: 'feedback.component.html',
   styleUrls: ['feedback.component.scss'],
 })
-export class FeedbackComponent implements OnInit {
+export class FeedbackComponent {
   @Input() item: FeedbackCard;
-  time: string;
+  currDate: Date = new Date();//не забыть сказать бэку!
 
-  ngOnInit() {
-    this.getTime();
-  }
-
-  getTime() {
-    const minutes = this.item.date
-      .getMinutes() === 0 ? '00' : this.item.date.getMinutes().toString();
-    this.time = `${this.item.date.getHours()}:${minutes}`;
-  }
-
-  isSkill(){
+  isSkill() {
     return !(this.item.skillName === null);
   }
 }
