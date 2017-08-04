@@ -32,6 +32,16 @@
   width: 100%;
 }
 
-/deep/ .wrap list div {
-  top: 100px !important;
+.paginationButton{
+  position: fixed;
+  bottom: 90px;
+  right: 35px;
+  z-index: 50;
 }
+.downloadButton{
+  position: fixed;
+  bottom: 160px;
+  right: 35px;
+  z-index: 50;
+}
+

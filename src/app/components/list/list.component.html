@@ -2,10 +2,11 @@
     <vacancy-card class="listItem" *ngFor="let item of list.data" [item]="item">
     </vacancy-card>
 </div>
-<div *ngIf="isCandidates()">
+<div style="top: 100px;" *ngIf="isCandidates()" >
     <candidate-card class="listItem" *ngFor="let item of list.data" [item]="item">
     </candidate-card>
 </div>
 <div *ngIf="isHistory()">
     <history-card></history-card>
 </div>
+

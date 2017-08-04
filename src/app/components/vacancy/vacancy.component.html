@@ -1,11 +1,11 @@
-<a [routerLink]="['detail-vacancy',item.id]">
+<a [routerLink]="['/','detail-vacancy',item.id]">
     <div class="vacancy-card">
         <div class="first-block">
             <div>
                 <h4>{{item.name}}</h4>
-                <!--<span class="date">{{item.request_date | date: mediumTime }}</span>-->
+                <span class="date">{{item.requestDate | date: mediumTime }}</span>
             </div>
-            <p>{{item.requestDate | date: mediumTime}}</p>
+            <p>Project start: {{item.startDate | date: mediumTime}}</p>
         </div>
         <div class="second-block">
             <span>{{item.status}}</span>

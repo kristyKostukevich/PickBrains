@@ -1,9 +1,10 @@
 <div class="feedback-card">
     <div class="first-block">
-            <h4>{{item.title}}</h4>
+        <h4>Feedback from {{item.userName}}</h4>
+        <p *ngIf="isSkill()">{{item.skillName}}</p>
     </div>
     <div class="second-block">
-        <span>{{item.vacancy}}</span>
-        <span class="date">{{item.date.toDateString()}}</span>
+        <span>{{item.vacancyName}}</span>
+        <span class="date">{{item.date | date: mediumTime}}, {{time}}</span>
     </div>
 </div>

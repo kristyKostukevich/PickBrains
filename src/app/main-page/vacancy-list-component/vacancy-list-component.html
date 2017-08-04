@@ -1,9 +1,9 @@
 <div class="leftBar">
     <person-page-filter></person-page-filter>
-    <filter-vacancy class="scroll"></filter-vacancy>
+    <filter-vacancy class="scroll" (send)="send($event)"></filter-vacancy>
 </div>
 <div class="wrap">
-    <global-search></global-search>
     <list [list]="listItem"></list>
     <button-add [inputAdress]="urlAdress"></button-add>
+    <a *ngIf="flagOfButtonShowMore" md-fab class="paginationButton" (click)="onClick()"><md-icon>format_line_spacing</md-icon></a>
 </div>

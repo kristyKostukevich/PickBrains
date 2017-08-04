@@ -28,8 +28,8 @@
     <select-component *ngFor="let item of model.otherSkills; let i = index"
                       [(model)]="model.otherSkills[i]"></select-component>
     <select-component [(model)]="model.englishLevel"></select-component>
-    <input-text *ngFor="let item of model.emailAdresses; let i = index" [(model)]="model.emailAdresses[i]"></input-text>
-    <input-text [(model)]="model.phoneNumbers"></input-text>
+    <input-email *ngFor="let item of model.emailAdresses; let i = index" [(model)]="model.emailAdresses[i]"></input-email>
+    <input-phone-text [(model)]="model.phoneNumbers"></input-phone-text>
     <input-text [(model)]="model.linkedIn"></input-text>
     <input-text [(model)]="model.skypeId"></input-text>
 </form>

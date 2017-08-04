@@ -1,0 +1,7 @@
+<md-input-container class="input-text adaptive-components">
+    <input mdInput
+           pattern="^[0-9\-\+]{9,15}$"
+           [(ngModel)]="model.value"
+           (ngModelChange)="onModelChange($event)"
+           [placeholder]="model.placeholder">
+</md-input-container>

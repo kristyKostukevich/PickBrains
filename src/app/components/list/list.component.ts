@@ -1,6 +1,5 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, HostListener, Inject, HostBinding } from '@angular/core';
 import { CardList } from '../../classes/card-list';
-
 @Component({
   selector: 'list',
   templateUrl: 'list.component.html',
@@ -11,8 +10,9 @@ export class ListComponent implements OnChanges{
   private initialiaze : boolean = false;
 
   ngOnChanges(){
-    if(this.list)
+    if(this.list) {
       this.initialiaze = true;
+    }
   }
 
   isVacancies() : boolean {
@@ -27,4 +27,3 @@ export class ListComponent implements OnChanges{
     return this.initialiaze && this.list.type === 'history';
   }
 }
-

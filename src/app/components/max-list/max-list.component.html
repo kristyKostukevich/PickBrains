@@ -10,3 +10,7 @@
     <feedback-card class="listItem" *ngFor="let item of list.data" [item]="item">
     </feedback-card>
 </div>
+<div *ngIf="isInterview()">
+    <interview-card class="listItem" *ngFor="let item of list.data" [item]="item">
+    </interview-card>
+</div>

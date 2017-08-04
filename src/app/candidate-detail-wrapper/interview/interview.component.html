@@ -1,0 +1,14 @@
+<div class="interview-card">
+    <div class="first-block">
+        <div>
+            <a [routerLink]="['/', 'detail-vacancy', item.vacancyId]"><h4>{{item.vacancyName}}</h4></a>
+            <span class="type">{{type}} interview with {{item.userName}} </span>
+        </div>
+        <p>{{item.date | date: mediumTime}}, {{time}}</p>
+    </div>
+    <div class="second-block">
+        <span>{{item.status}}</span>
+        <a style="background-color: rgb(224, 224, 224); box-shadow: none" *ngIf="isInterviewer()" md-raised-button
+           routerLink="../add-hrm-feedback">Add feedback</a>
+    </div>
+</div>

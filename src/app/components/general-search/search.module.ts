@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SearchLineComponent } from './search.component';
 import { MdIconModule, MdInputModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     MdIconModule,
     MdInputModule,
+    FormsModule,
   ],
   declarations: [SearchLineComponent],
   exports: [SearchLineComponent,],
