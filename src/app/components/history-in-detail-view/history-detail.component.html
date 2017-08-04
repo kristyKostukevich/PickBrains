@@ -1,0 +1,36 @@
+<div class="wrap">
+    <div class="row">
+        <div class="sel-header">
+            That changed
+        </div>
+        <div class="sel-header">
+            Changed by
+        </div>
+        <div class="sel-header">
+            Date
+        </div>
+        <div class="sel-header">
+            Time
+        </div>
+    </div>
+    <div class="row" *ngFor="let item of history">
+        <div class="sel">
+            {{item.change}}
+        </div>
+        <div class="sel">
+            {{item.user}}
+        </div>
+        <div class="sel">
+            {{item.changeDate | date:'dd.MM.y'}}
+        </div>
+        <div class="sel">
+            {{item.changeDate | date:'HH:mm'}}
+        </div>
+    </div>
+    <md-paginator [length]="length"
+                  [pageSize]="10"
+                  [pageSizeOptions]="[3, 10, 25, 100]"
+                  (page)="onClick($event)">
+
+    </md-paginator>
+</div>

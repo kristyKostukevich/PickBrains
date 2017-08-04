@@ -22,6 +22,8 @@ import { LayoutModule } from './layout/layout.module';
 import { AssignCandidateModule } from 'app/vacancy-detail-wrapper/assign-candidate/assign-candidate.module';
 import { VacancyDetailModule } from './vacancy-detail-wrapper/vacancy-detail/vacancy-detail.module';
 import { CandidateDetailModule } from './candidate-detail-wrapper/candidate-detail/candidate-detail.module';
+import { HistoryModule } from './components/history/history.module';
+import { HistoryDetailModule } from './components/history-in-detail-view/history-detail.module';
 
 @NgModule({
   imports: [
@@ -45,6 +47,8 @@ import { CandidateDetailModule } from './candidate-detail-wrapper/candidate-deta
     MaxListModule,
     LayoutModule,
     AssignCandidateModule,
+    HistoryModule,
+    HistoryDetailModule,
   ],
   declarations: [
     AppComponent,

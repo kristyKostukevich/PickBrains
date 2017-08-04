@@ -15,6 +15,8 @@ import { GeneralViewComponent } from 'app/components/general-view/general-view.c
 import { LayoutComponent } from './layout/layout.compunent';
 import { AssignCandidateComponent } from 'app/vacancy-detail-wrapper/assign-candidate/assign-candidate.component';
 import { AddHrmFeedbackComponent } from 'app/candidate-detail-wrapper/add-hrm-feedback/add-hrm-feedback.component';
+import { HistoryComponent } from './components/history/history.component';
+import { HistoryDetailComponent } from './components/history-in-detail-view/history-detail.component';
 
 const candidateRoutes: Routes = [
   {
@@ -44,7 +46,7 @@ const candidateRoutes: Routes = [
   },
   {
     path: 'history',
-    component: MaxListComponent,
+    component: HistoryDetailComponent,
   },
 ];
 const vacancyRoutes: Routes = [
@@ -71,7 +73,7 @@ const vacancyRoutes: Routes = [
   },
   {
     path: 'history',
-    component: MaxListComponent,
+    component: HistoryDetailComponent,
   },
 ];
 const routes: Routes = [
