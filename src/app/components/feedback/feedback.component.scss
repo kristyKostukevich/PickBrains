@@ -6,7 +6,7 @@
   color: rgba(0, 0, 0, .77);
   display: flex;
   flex-direction: row;
-  height: 100px;
+  height: 120px;
   justify-content: space-between;
   margin-bottom: 15px;
   padding: 10px;
@@ -31,14 +31,39 @@
   text-align: right;
 }
 
+.tag {
+  background-color: rgb(224, 224, 224);
+  border-radius: 12px;
+  color: rgba(0, 0, 0, .77);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 15px;
+  margin-left: 3px;
+  padding: 6px;
+  transition: .3s;
+}
+
+.tag:hover {
+  background-color: rgb(255, 64, 129);
+  color: #ffffff;
+}
+
 h4, p {
   margin: 0;
 }
 
-span {
+h4 {
+  color: #606060;
+}
+
+span, p {
   font-size: 12px;
 }
 
-.date {
+.grey {
   color: rgba(0, 0, 0, .47);
+}
+
+.big {
+  font-size: 13px;
 }

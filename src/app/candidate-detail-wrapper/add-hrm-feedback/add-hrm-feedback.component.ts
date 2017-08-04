@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AddHrmFeedbackPage } from 'app/classes/add-hrm-feedback-page';
 import { UserService } from 'app/core-service/user.service';
-import { InterviewService } from '../interview/interview.service';
 import { HttpService } from 'app/http-service/http-service';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'add-hrm-feedback',
@@ -15,30 +14,33 @@ import { ActivatedRoute } from '@angular/router';
   ],
 })
 
-export class AddHrmFeedbackComponent implements OnInit {
+export class AddHrmFeedbackComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
   model: AddHrmFeedbackPage;
   englishOptions: any[];
   interviewId: number;
 
   constructor(private userService: UserService,
-              private interviewService: InterviewService,
               private httpService: HttpService,
               private router: Router,
               private currentActivatedRoute: ActivatedRoute) {
+    this.subscription = currentActivatedRoute.params
+      .subscribe(params => this.interviewId = params['id']);
+    console.log(this.interviewId);
     this.englishOptions = [];
     this.model = new AddHrmFeedbackPage({}, []);
   }
 
   ngOnInit() {
-    this.interviewId = this.interviewService.getData();
-    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels').subscribe(res => {
-      this.englishOptions = res.json();
-      const temp = this.englishOptions.map((item) => {
-        return item.lvl;
+    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels')
+      .subscribe((res) => {
+        this.englishOptions = res.json();
+        const temp = this.englishOptions.map((item) => {
+          return item.lvl;
+        });
+        this.model = new AddHrmFeedbackPage({}, temp);
+        this.model.setName(this.userService.realName);
       });
-      this.model = new AddHrmFeedbackPage({}, temp);
-      this.model.setName(this.userService.realName);
-    });
   }
 
   submit() {
@@ -58,7 +60,8 @@ export class AddHrmFeedbackComponent implements OnInit {
     }, 'http://localhost:1337/api/candidate/hrm-feedbacks/new').subscribe(
       (res) => {
         if (res.status === 201) {
-          this.router.navigate(['../feedbacks-from-hrm'], {relativeTo: this.currentActivatedRoute});
+          this.router
+            .navigate(['../../../feedbacks-from-hrm'], {relativeTo: this.currentActivatedRoute});
         }
         console.log(res.status);
       },
@@ -66,5 +69,9 @@ export class AddHrmFeedbackComponent implements OnInit {
         console.log(error);
       },
     );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { InterviewCard } from '../../classes/interview-card';
 import { UserService } from 'app/core-service/user.service';
-import { InterviewService } from './interview.service';
 
 @Component({
   selector: 'interview-card',
@@ -14,12 +13,11 @@ export class InterviewComponent implements OnInit {
   userName: string;
   type: string;
 
-  constructor(private userService: UserService, private interviewService: InterviewService) {
+  constructor(private userService: UserService) {
     this.userName = this.userService.realName;
   }
 
   ngOnInit() {
-    this.interviewService.setData(this.item.interviewId);
     this.getTime();
     this.getType();
   }
