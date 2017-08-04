@@ -12,21 +12,25 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class VacancyListComponent implements OnInit {
+  flagOfButtonShowMore: boolean = true;
   vacancies: VacancyCardItem [] = [];
   urlAdress: string;
   listItem: CardList;
   body: any;
   arrayOfCities: any[];
   arrayOfSkills: any[];
+  countOfElements: number;
+
 
   constructor(private httpService: HttpService, private route: ActivatedRoute) {
     this.arrayOfSkills = [];
     this.arrayOfCities = [];
-  }
-
+    this.countOfElements =  5;
+}
 
   ngOnInit() {
-    this.httpService.postData({limit: 0}, 'http://localhost:1337/api/vacancies').subscribe((res) => {
+    this.httpService.postData({skip: 0, capacity: this.countOfElements}, 'http://localhost:1337/api/vacancies')
+      .subscribe((res) => {
       this.vacancies = res.json();
       this.listItem = new CardList(this.vacancies, 'vacancies');
       this.urlAdress = this.route.snapshot.url[0].path;
@@ -34,18 +38,20 @@ export class VacancyListComponent implements OnInit {
   }
 
   send(event) {
+    this.countOfElements = 0;
     this.checkGroupOfEvent(event);
-    console.log(this.arrayOfCities);
-    console.log(this.arrayOfSkills);
     this.body = {
-      limit: 0,
+      skip: 0,
       city: this.arrayOfCities,
       primarySkill: this.arrayOfSkills,
+      capacity: this.countOfElements + 6,
     };
     this.httpService.postData(this.body, 'http://localhost:1337/api/vacancies')
       .subscribe((res) => {
         // console.log(res.json());
         this.vacancies = res.json();
+        if (this.isLastItem())
+          this.vacancies.pop();
         this.listItem = new CardList(this.vacancies, 'vacancies');
         this.urlAdress = this.route.snapshot.url[0].path;
       });
@@ -62,7 +68,6 @@ export class VacancyListComponent implements OnInit {
   }
 
   checkGroupOfEvent(event) {
-    // console.log(typeof event.group);
     switch (event.group) {
       case 'city':
         if (!this.isElemOfArray(this.arrayOfCities, event.id)) {
@@ -74,6 +79,41 @@ export class VacancyListComponent implements OnInit {
           this.arrayOfSkills.push(event.id);
         }
         break;
+    }
+  }
+
+  onClick() {
+    this.body = {
+      skip: 0,
+      city: this.arrayOfCities,
+      primarySkill: this.arrayOfSkills,
+      capacity: this.countOfElements + 6,
+    };
+    this.httpService.postData(this.body, 'http://localhost:1337/api/vacancies')
+      .subscribe((res) => {
+        this.vacancies = res.json();
+        console.log(this.vacancies);
+        if (this.isLastItem())
+          this.vacancies.pop();
+        this.listItem = new CardList(this.vacancies, 'vacancies');
+        this.urlAdress = this.route.snapshot.url[0].path;
+      });
+  }
+
+  isLastItem() {
+    console.log(this.countOfElements);
+    if (this.countOfElements + 5< this.vacancies.length) {
+      this.flagOfButtonShowMore = true;
+      this.countOfElements += 5;
+      console.log('good', this.countOfElements);
+      return true;
+    }
+    else
+    {
+      this.countOfElements -= 5;
+      console.log('sosi',this.countOfElements);
+      this.flagOfButtonShowMore = false;
+      return false;
     }
   }
 }

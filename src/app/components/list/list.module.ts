@@ -4,9 +4,11 @@ import { VacancyModule } from '../vacancy/vacancy.module';
 import { CandidateModule } from '../candidate/candidate.module';
 import { HistoryModule } from '../history/history.module';
 import { ListComponent } from './list.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
+    BrowserModule,
     CommonModule,
     VacancyModule,
     CandidateModule,
@@ -14,7 +16,6 @@ import { ListComponent } from './list.component';
   ],
   declarations: [ListComponent],
   exports: [ListComponent],
+  bootstrap: [ListComponent]
 })
-export class ListModule{
-
-}
+export class ListModule{}
