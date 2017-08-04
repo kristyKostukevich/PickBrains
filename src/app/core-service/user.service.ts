@@ -7,12 +7,18 @@ export class UserService {
   user: Observable<User>;
   name: Observable<string>;
   type: Observable<string>;
+  realName: string;
+
   constructor(private httpService: HttpService) {
     this.user = this.httpService.getData(`http://localhost:1337/api/user`)
       .map(data => data.json());
     this.name = this.user.map(data => `${data.firstName} ${data.secondName}`);
     this.type = this.user.map(data => data.type);
-    console.log('userservice');
+
+    this.name.subscribe(data => {
+      this.realName = data;
+      console.log(this.realName);
+    });
   }
 
   reset() {
