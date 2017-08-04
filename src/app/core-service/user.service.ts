@@ -10,8 +10,8 @@ export class UserService {
   constructor(private httpService: HttpService) {
     this.user = this.httpService.getData(`http://localhost:1337/api/user`)
       .map(data => data.json());
-    this.name = this.user.map(data => `${data.firstName} ${data.secondName}`);
-    this.type = this.user.map(data => data.type);
+    this.name = this.user.map(data => `${data.firstName} ${data.secondName}`).publishReplay(1).refCount();
+    this.type = this.user.map(data => data.type).publishReplay(1).refCount();
     console.log('userservice');
   }
 
