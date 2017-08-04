@@ -43,22 +43,6 @@ export class GeneralComponent implements OnChanges {
     }))
   }
 
-  isCandidate(): boolean {
-    return this.initialized && this.model.type === 'candidate';
-  }
-
-  isVacancy(): boolean {
-    return this.initialized && this.model.type === 'vacancy';
-  }
-
-  isFeedbackFromHr(): boolean {
-    return this.initialized && this.model.type === 'feedbackFromHr';
-  }
-
-  isFeedbackFromTech(): boolean {
-    return this.initialized && this.model.type === 'feedbackFromTech';
-  }
-
   isCandidateAdd(): boolean {
     return this.initialized && this.model.type === 'add-candidate';
   }

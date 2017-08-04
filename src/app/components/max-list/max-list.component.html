@@ -6,10 +6,6 @@
     <candidate-card class="listItem" *ngFor="let item of list.data" [item]="item">
     </candidate-card>
 </div>
-<div *ngIf="isHistory()">
-    <history-card class="listItem" *ngFor="let item of list.data" [item]="item">
-    </history-card>
-</div>
 <div *ngIf="isFeedbacks()">
     <feedback-card class="listItem" *ngFor="let item of list.data" [item]="item">
     </feedback-card>
