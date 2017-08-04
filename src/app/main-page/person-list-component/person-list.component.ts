@@ -27,6 +27,8 @@ export class PersonListComponent implements OnInit {
   urlSearch: string;
   urlDefault: string = 'http://localhost:1337/api/candidates/search';
   countOfElements: number;
+  arrayOfQuery : string [];
+  returnQuery:string;
 
 
   constructor(private httpService: HttpService, private route: ActivatedRoute) {
@@ -37,7 +39,7 @@ export class PersonListComponent implements OnInit {
     this.arrayOfSalary = [];
     this.waitArrayOfSalary = [-1, -1];
     this.date = new Date();
-    this.countOfElements =  5;
+    this.countOfElements = 5;
   }
 
   ngOnInit() {
@@ -174,18 +176,35 @@ export class PersonListComponent implements OnInit {
 
   isLastItem() {
     console.log(this.countOfElements);
-    if (this.countOfElements + 5< this.persons.length) {
+    if (this.countOfElements + 5 < this.persons.length) {
       this.flagOfButtonShowMore = true;
       this.countOfElements += 5;
       console.log('good', this.countOfElements);
       return true;
     }
-  else
-    {
+    else {
       this.countOfElements -= 5;
-      console.log('sosi',this.countOfElements);
+      console.log('sosi', this.countOfElements);
       this.flagOfButtonShowMore = false;
       return false;
+    }
+  }
+
+  OnDownload() {
+    window.open(`http://localhost:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities,'city',true)}${this.makeQuery(this.arrayOfStatuses,'status',false)}${this.makeQuery(this.arrayOfSkills,'primarySkill',false)}${this.makeQuery(this.arrayOfLanguages,'englishLvl',false)}${this.makeQuery(this.arrayOfSalary,'salaryWish',false)}&expYear=${this.date.getTime()}`);
+    console.log(`http://localhost:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities,'city',true)}${this.makeQuery(this.arrayOfStatuses,'status',false)}${this.makeQuery(this.arrayOfSkills,'primarySkill',false)}${this.makeQuery(this.arrayOfLanguages,'englishLvl',false)}${this.makeQuery(this.arrayOfSalary,'salaryWish',false)}&expYear=${this.date.getTime()}`);
+    window.close();
+  }
+
+  makeQuery(array: any[],type: string,flag: boolean){
+    this.arrayOfQuery = array.map(function (elem) {
+      return `&${type}[]=${elem}`
+    });
+    this.returnQuery = this.arrayOfQuery.join('');
+    if(flag)
+      return this.returnQuery.substr(1,this.returnQuery.length);
+    else {
+      return this.returnQuery;
     }
   }
 }
