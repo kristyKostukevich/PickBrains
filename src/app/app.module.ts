@@ -51,7 +51,9 @@ import { CandidateDetailModule } from './candidate-detail-wrapper/candidate-deta
   ],
   providers: [
     TechGuard,
-    MenuService],
+    MenuService,
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}
