@@ -30,16 +30,13 @@ export class HistoryDetailComponent {
     this.httpServise.getData(this.createUrl(0, 10)).subscribe((res) => {
       this.history = this.createHistory(res.json().slice(1));
       this.length = res.json()[0];
-      console.log(this.length);
     });
   }
 
 
   createHistory(history: any): HistoryDate[] {
     let currentHistory: HistoryDate[] = new Array<HistoryDate>();
-    console.log(currentHistory);
     for (const i of history) {
-      console.log(i);
       for (const j of i.changes)
         currentHistory.push(
           {
