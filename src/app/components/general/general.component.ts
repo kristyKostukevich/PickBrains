@@ -43,7 +43,6 @@ export class GeneralComponent implements OnChanges {
     }))
   }
 
-
   isCandidate(): boolean {
     return this.initialized && this.model.type === 'candidate';
   }
