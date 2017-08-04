@@ -9,6 +9,7 @@ import { ListModule } from '../../components/list/list.module';
 import { FilterPersonModule } from '../../components/filter-components/filter-person/filter-person.module';
 import { GlobalHeaderModule } from '../../components/header/header.module';
 import { ButtonAddModule } from '../../components/button-add/button.module';
+import { MdIconModule, MdButtonModule } from '@angular/material';
 
 
 @NgModule({
@@ -22,6 +23,8 @@ import { ButtonAddModule } from '../../components/button-add/button.module';
     FilterPersonModule,
     GlobalHeaderModule,
     ButtonAddModule,
+    MdButtonModule,
+    MdIconModule,
   ],
   declarations: [PersonListComponent],
   exports: [PersonListComponent],

@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class PersonListComponent implements OnInit {
+  flagOfButtonShowMore: boolean = true;
   persons: CandidateCardItem [] = [];
   urlAdress: string;
   listItem: CardList;
@@ -25,6 +26,7 @@ export class PersonListComponent implements OnInit {
   date: Date;
   urlSearch: string;
   urlDefault: string = 'http://localhost:1337/api/candidates/search';
+  countOfElements: number;
 
 
   constructor(private httpService: HttpService, private route: ActivatedRoute) {
@@ -35,10 +37,11 @@ export class PersonListComponent implements OnInit {
     this.arrayOfSalary = [];
     this.waitArrayOfSalary = [-1, -1];
     this.date = new Date();
+    this.countOfElements =  5;
   }
 
   ngOnInit() {
-    this.httpService.postData({skip: 0}, 'http://localhost:1337/api/candidates')
+    this.httpService.postData({skip: 0, amount: this.countOfElements}, 'http://localhost:1337/api/candidates')
       .subscribe((res) => {
         this.persons = res.json();
         this.listItem = new CardList(this.persons, 'candidates');
@@ -47,7 +50,7 @@ export class PersonListComponent implements OnInit {
   }
 
   sendSearchLine(event) {
-    if(event.indexOf(' ') > -1){
+    if (event.indexOf(' ') > -1) {
       event = event.replace(/\s/ig, '%20');
     }
     if (!event) {
@@ -64,14 +67,16 @@ export class PersonListComponent implements OnInit {
   }
 
   send(event) {
-    // console.log(event);
+    this.countOfElements = 0;
+    console.log(this.countOfElements);
     this.checkGroupOfEvent(event);
-    console.log(this.arrayOfCities);
-    console.log(this.arrayOfStatuses);
-    console.log(this.arrayOfLanguages);
-    console.log(this.arrayOfSkills);
-    console.log(this.date);
-    console.log(this.arrayOfSalary);
+    // console.log(this.arrayOfCities);
+    // console.log(this.arrayOfStatuses);
+    // console.log(this.arrayOfLanguages);
+    // console.log(this.arrayOfSkills);
+    // console.log(this.date);
+    // console.log(this.arrayOfSalary);
+    //console.log(this.countOfElements);
     this.body = {
       skip: 0,
       city: this.arrayOfCities,
@@ -80,11 +85,13 @@ export class PersonListComponent implements OnInit {
       englishLvl: this.arrayOfLanguages,
       salaryWish: this.arrayOfSalary,
       expYear: this.date,
+      amount: this.countOfElements + 6,
     };
     this.httpService.postData(this.body, 'http://localhost:1337/api/candidates')
       .subscribe((res) => {
-        // console.log(res.json());
         this.persons = res.json();
+        if (this.isLastItem())
+          this.persons.pop();
         this.listItem = new CardList(this.persons, 'candidates');
         this.urlAdress = this.route.snapshot.url[0].path;
       });
@@ -143,4 +150,42 @@ export class PersonListComponent implements OnInit {
     }
   }
 
+  onClick() {
+    this.body = {
+      skip: 0,
+      city: this.arrayOfCities,
+      status: this.arrayOfStatuses,
+      primarySkill: this.arrayOfSkills,
+      englishLvl: this.arrayOfLanguages,
+      salaryWish: this.arrayOfSalary,
+      expYear: this.date,
+      amount: this.countOfElements + 6,
+    };
+    this.httpService.postData(this.body, 'http://localhost:1337/api/candidates')
+      .subscribe((res) => {
+        this.persons = res.json();
+        console.log(this.persons);
+        if (this.isLastItem())
+          this.persons.pop();
+        this.listItem = new CardList(this.persons, 'candidates');
+        this.urlAdress = this.route.snapshot.url[0].path;
+      });
+  }
+
+  isLastItem() {
+    console.log(this.countOfElements);
+    if (this.countOfElements + 5< this.persons.length) {
+      this.flagOfButtonShowMore = true;
+      this.countOfElements += 5;
+      console.log('good', this.countOfElements);
+      return true;
+    }
+  else
+    {
+      this.countOfElements -= 5;
+      console.log('sosi',this.countOfElements);
+      this.flagOfButtonShowMore = false;
+      return false;
+    }
+  }
 }

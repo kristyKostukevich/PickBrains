@@ -8,6 +8,7 @@ import { ListModule } from '../../components/list/list.module';
 import { VacancyListComponent } from './vacancy-list-component';
 import { FilterVacancyModule } from '../../components/filter-components/filter-vacancy/filter-vacancy.module';
 import { ButtonAddModule } from '../../components/button-add/button.module';
+import { MdButtonModule, MdIconModule } from '@angular/material';
 
 
 @NgModule({
@@ -20,6 +21,8 @@ import { ButtonAddModule } from '../../components/button-add/button.module';
     ListModule,
     FilterVacancyModule,
     ButtonAddModule,
+    MdButtonModule,
+    MdIconModule,
   ],
   declarations: [VacancyListComponent],
   exports: [VacancyListComponent],
