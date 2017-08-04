@@ -2,5 +2,6 @@
     <input mdInput
            [(ngModel)]="model.value"
            (ngModelChange)="onModelChange($event)"
-           [placeholder]="model.placeholder">
+           [placeholder]="model.placeholder"
+           [disabled]="model.disabled">
 </md-input-container>

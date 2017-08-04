@@ -50,7 +50,7 @@ export class AssignCandidateComponent implements OnInit {
   }
 
   getTechInterviewers() {
-    this.httpService.getData('http://localhost:1337/api/users?type=Tech')
+    this.httpService.getData('http://localhost:1337/api/users?type=TECH')
       .subscribe((res) => {
         const temp = res.json();
         for (const i of temp) {

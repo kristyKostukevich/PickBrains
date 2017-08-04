@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CardList } from 'app/classes/card-list';
-import { FeedbackCardItem } from 'app/interfaces/feedback-card-item';
+import { FeedbackCard } from 'app/classes/feedback-card';
 import { HistoryCardItem } from 'app/interfaces/history-card-item';
 import { CandidateCardItem } from 'app/interfaces/candidate-card-item';
 import { MenuService } from 'app/components/menu/menu.service';
@@ -21,6 +21,7 @@ export class MaxListComponent implements OnInit {
   currItemType: string;
   candidates: CandidateCardItem[];
   interviews: InterviewCard[];
+  feedbacks: FeedbackCard[];
 
   candidateHistoryItems: HistoryCardItem[] = [
     {
@@ -64,30 +65,6 @@ export class MaxListComponent implements OnInit {
         date: new Date(2017, 1, 5),
       },
       type: 'candidate',
-    },
-  ];
-  candidateFeedbacksItems: FeedbackCardItem[] = [
-    {
-      title: 'Feedback from Vasya',
-      vacancy: 'Sobaca project',
-      date: new Date(2017, 1, 1),
-    },
-    {
-      title: 'Feedback from Vasya',
-      vacancy: 'Sobaca project',
-      date: new Date(2017, 1, 1),
-    }, {
-      title: 'Feedback from Vasya',
-      vacancy: 'Sobaca project',
-      date: new Date(2017, 1, 1),
-    }, {
-      title: 'Feedback from Vasya',
-      vacancy: 'Sobaca project',
-      date: new Date(2017, 1, 1),
-    }, {
-      title: 'Feedback from Vasya',
-      vacancy: 'Sobaca project',
-      date: new Date(2017, 1, 1),
     },
   ];
   vacancyHistoryItems: HistoryCardItem[] = [
@@ -140,6 +117,7 @@ export class MaxListComponent implements OnInit {
               private httpService: HttpService) {
     this.candidates = [];
     this.interviews = [];
+    this.feedbacks = [];
   }
 
   ngOnInit() {
@@ -188,17 +166,55 @@ export class MaxListComponent implements OnInit {
     }
   }
 
-  getFeedbackFromHrm() {
-    this.list = new CardList(this.candidateFeedbacksItems);
+  getFeedbackFromTech() {
+    this.list = new CardList(this.feedbacks);
+    this.httpService.getData(`http://localhost:1337/api/candidate/ts-feedbacks?id=${this.parentData.id}`)
+      .subscribe(
+        (res) => {
+          const temp = res.json();
+          for (const i of temp) {
+            this.feedbacks.push({
+              id: i.id,
+              date: new Date(i.date),
+              skillName: i.skillName,
+              userName: i.userName,
+              vacancyName: i.vacancyName,
+            });
+          }
+          this.list = new CardList(this.feedbacks);
+          console.log(this.list);
+        },
+        (error) => {
+          console.log(error);
+        });
   }
 
-  getFeedbackFromTech() {
-    this.list = new CardList(this.candidateFeedbacksItems);
+  getFeedbackFromHrm() {
+    this.list = new CardList(this.feedbacks);
+    this.httpService.getData(`http://localhost:1337/api/candidate/hrm-feedbacks?id=${this.parentData.id}`)
+      .subscribe(
+        (res) => {
+          const temp = res.json();
+          for (const i of temp) {
+            this.feedbacks.push({
+              id: i.id,
+              date: new Date(i.date),
+              userName: i.userName,
+              vacancyName: i.vacancyName,
+              skillName: null,
+            });
+          }
+          this.list = new CardList(this.feedbacks);
+          console.log(this.list);
+        },
+        (error) => {
+          console.log(error);
+        });
   }
 
   getInterviews() {
     this.list = new CardList(this.interviews);
-    this.httpService.getData(`http://localhost:1337/api/interviews/candidate?candidateid=${this.parentData.id}`)
+    this.httpService.getData(`http://localhost:1337/api/interviews/candidate?id=${this.parentData.id}`)
       .subscribe(
         (res) => {
           const temp = res.json();
@@ -206,6 +222,7 @@ export class MaxListComponent implements OnInit {
             this.interviews.push({
               candidateId: i.candidateId,
               vacancyId: i.vacancyId,
+              interviewId: i.id,
               type: i.type,
               date: new Date(i.date),
               status: i.done,
