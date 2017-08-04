@@ -13,7 +13,7 @@ export class AddHrmFeedbackPage {
   salary: InputModel;
   comment: InputModel;
 
-  constructor(data: any) {
+  constructor(data: any, englishOptions: string[]) {
     this.name = new InputModel(data.name, 'HR-manager name', true);
     this.date = new DatePickerModel(new Date(), 'Date', true);
     this.reason = new InputModel(data.reason, 'Reason for change of job  ');
@@ -34,8 +34,12 @@ export class AddHrmFeedbackPage {
       ],
     );
     this.motivation = new InputModel(data.motivation, 'Motivation(what interesting)');
-    this.englishLevel = new SelectModel(data.englishLevel, 'English level', ['1', '2', '3']);
+    this.englishLevel = new SelectModel(data.englishLevel, 'English level', englishOptions);
     this.salary = new InputModel(data.salary, 'Expected salary');
     this.comment = new InputModel(data.comment, 'Comment');
+  }
+
+  setName(name: string) {
+    this.name.value = name;
   }
 }
