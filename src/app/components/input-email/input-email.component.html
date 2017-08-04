@@ -1,0 +1,7 @@
+<md-input-container class="input-text adaptive-components">
+    <input mdInput
+           pattern="(\S+@\S+\.\S+\s?)+"
+           [(ngModel)]="model.value"
+           (ngModelChange)="onModelChange($event)"
+           [placeholder]="model.placeholder">
+</md-input-container>
