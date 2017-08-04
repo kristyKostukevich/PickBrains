@@ -9,16 +9,28 @@
         <div class="sel-header">
             Date
         </div>
+        <div class="sel-header">
+            Time
+        </div>
     </div>
     <div class="row" *ngFor="let item of history">
         <div class="sel">
-            {{item.status}}
+            {{item.change}}
         </div>
         <div class="sel">
-            {{item.nameHRM}}
+            {{item.user}}
         </div>
         <div class="sel">
-            {{item.date | date:'dd.MM.y'}}
+            {{item.changeDate | date:'dd.MM.y'}}
+        </div>
+        <div class="sel">
+            {{item.changeDate | date:'HH:mm'}}
         </div>
     </div>
+    <md-paginator [length]="length"
+                  [pageSize]="10"
+                  [pageSizeOptions]="[3, 10, 25, 100]"
+                  (page)="onClick($event)">
+
+    </md-paginator>
 </div>

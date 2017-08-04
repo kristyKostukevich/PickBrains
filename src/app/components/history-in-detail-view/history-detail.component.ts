@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuService } from '../menu/menu.service';
+import { HttpService } from '../../http-service/http-service';
 
 
 @Component({
@@ -9,91 +10,59 @@ import { MenuService } from '../menu/menu.service';
 })
 export class HistoryDetailComponent {
 
-  constructor(menuService: MenuService) {
+  constructor(private menuService: MenuService, private httpServise: HttpService) {
   }
 
-  createUrl(id: number, type: string):string {
-    switch (type){
+  history: HistoryDate[];
+  length: number = 0;
+  createUrl(skip: number, capacity: number): string {
+    switch (this.menuService.getData().type) {
       case 'candidate':
-        return `h`
+        return `http://localhost:1337/api/candidates/${this.menuService.
+        getData().id}/history?skip=${skip}&capacity=${capacity}`;
+      case 'vacancy':
+        return `http://localhost:1337/api/vacancies/${this.menuService.
+        getData().id}/history?skip=${skip}&capacity=${capacity}`;
     }
   }
-  history: HistoryDate[] = [{
-    status: 'email',
-    nameHRM: 'Vladislav',
-    date: new Date(),
-  },
-  {
-    status: 'namder',
-    nameHRM: 'Vladislav',
-    date: new Date(),
-  },
-    {
-      status: 'email',
-      nameHRM: 'Vladislav',
-      date: new Date(),
-    },
-    {
-      status: 'namder',
-      nameHRM: 'Vladislav',
-      date: new Date(),
-    },
-    {
-      status: 'email',
-      nameHRM: 'Vladislav',
-      date: new Date(),
-    },
-    {
-      status: 'namder',
-      nameHRM: 'Vladislav',
-      date: new Date(),
-    },
-    {
-      status: 'email',
-      nameHRM: 'Vladislav',
-      date: new Date(),
-    },
-    {
-      status: 'namder',
-      nameHRM: 'Vladislav',
-      date: new Date(),
-    },
-    {
-      status: 'email',
-      nameHRM: 'Vladislav',
-      date: new Date(),
-    },
-    {
-      status: 'namder',
-      nameHRM: 'Vladislav',
-      date: new Date(),
-    },
-    {
-      status: 'email',
-      nameHRM: 'Vladislav',
-      date: new Date(),
-    },
-    {
-      status: 'namder',
-      nameHRM: 'Vladislav',
-      date: new Date(),
-    },
-    {
-      status: 'email',
-      nameHRM: 'Vladislav',
-      date: new Date(),
-    },
-    {
-      status: 'namder',
-      nameHRM: 'Vladislav',
-      date: new Date(),
-    },
-  ];
 
+  ngOnInit() {
+    this.httpServise.getData(this.createUrl(0, 10)).subscribe((res) => {
+      this.history = this.createHistory(res.json().slice(1));
+      this.length = res.json()[0];
+      console.log(this.length);
+    });
+  }
+
+
+  createHistory(history: any): HistoryDate[] {
+    let currentHistory: HistoryDate[] = new Array<HistoryDate>();
+    console.log(currentHistory);
+    for (const i of history) {
+      console.log(i);
+      for (const j of i.changes)
+        currentHistory.push(
+          {
+            user: i.user,
+            changeDate: i.cahngeDate,
+            change: j,
+          });
+    }
+    return currentHistory;
+  }
+
+  onClick(event) {
+    const skip: number = event.pageSize * event.pageIndex;
+    this.httpServise.getData(this.createUrl(skip, event.pageSize)).subscribe((res) => {
+      this.history = this.createHistory(res.json().slice(1));
+    });
+
+  }
 }
 
+
 export class HistoryDate {
-  status: string;
-  nameHRM: string;
-  date: Date;
+  change: string;
+  user: string;
+  changeDate: Date;
 }
