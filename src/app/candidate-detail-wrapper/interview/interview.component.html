@@ -4,11 +4,11 @@
             <a [routerLink]="['/', 'detail-vacancy', item.vacancyId]"><h4>{{item.vacancyName}}</h4></a>
             <span class="type">{{type}} interview with {{item.userName}} </span>
         </div>
-        <p>{{item.date | date: mediumTime}}, {{time}}</p>
+        <p>{{item.date | date: 'dd.MM.y'}}, {{item.date | date: 'H.mm'}}</p>
     </div>
     <div class="second-block">
         <span>{{item.status}}</span>
         <a style="background-color: rgb(224, 224, 224); box-shadow: none" *ngIf="isInterviewer()" md-raised-button
-           [routerLink]="[item.interviewId,'add-hrm-feedback']">Add feedback</a>
+           [routerLink]="[item.interviewId, this.link]">Add feedback</a>
     </div>
 </div>

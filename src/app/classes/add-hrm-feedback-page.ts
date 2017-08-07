@@ -13,30 +13,29 @@ export class AddHrmFeedbackPage {
   salary: InputModel;
   comment: InputModel;
 
-  constructor(data: any, englishOptions: string[]) {
-    this.name = new InputModel(data.name, 'HR-manager name', true);
+
+  constructor(englishOptions: string[]) {
+    this.name = new InputModel('', 'HR-manager name', true);
     this.date = new DatePickerModel(new Date(), 'Date', true);
-    this.reason = new InputModel(data.reason, 'Reason for change of job  ');
-    this.readinessToWork = new SelectModel(
-      data.readinessToWork,
+    this.reason = new InputModel('', 'Reason for change of job  ');
+    this.readinessToWork = new SelectModel('',
       'Readiness to start work',
       [
         'Ready',
         'Not ready',
       ],
     );
-    this.readinessToBusinessTrip = new SelectModel(
-      data.readinessToBusinessTrip,
+    this.readinessToBusinessTrip = new SelectModel('',
       'Readiness to business trip',
       [
         'Ready',
         'Not ready',
       ],
     );
-    this.motivation = new InputModel(data.motivation, 'Motivation(what interesting)');
-    this.englishLevel = new SelectModel(data.englishLevel, 'English level', englishOptions);
-    this.salary = new InputModel(data.salary, 'Expected salary');
-    this.comment = new InputModel(data.comment, 'Comment');
+    this.motivation = new InputModel('', 'Motivation(what interesting)');
+    this.englishLevel = new SelectModel('', 'English level', englishOptions);
+    this.salary = new InputModel('', 'Expected salary');
+    this.comment = new InputModel('', 'Comment');
   }
 
   setName(name: string) {

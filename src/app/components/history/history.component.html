@@ -21,7 +21,7 @@
 
         <ng-container cdkColumnDef="time">
             <md-header-cell *cdkHeaderCellDef> Time</md-header-cell>
-            <md-cell *cdkCellDef="let row"> {{row.date|date:'HH:mm'}}</md-cell>
+            <md-cell *cdkCellDef="let row"> {{row.date|date:'H:mm'}}</md-cell>
         </ng-container>
         <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
         <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>

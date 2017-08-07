@@ -16,8 +16,8 @@ import { Subscription } from 'rxjs';
 
 export class AddHrmFeedbackComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
+  englishMap: Map<string, number>;
   model: AddHrmFeedbackPage;
-  englishOptions: any[];
   interviewId: number;
 
   constructor(private userService: UserService,
@@ -27,37 +27,35 @@ export class AddHrmFeedbackComponent implements OnInit, OnDestroy {
     this.subscription = currentActivatedRoute.params
       .subscribe(params => this.interviewId = params['id']);
     console.log(this.interviewId);
-    this.englishOptions = [];
-    this.model = new AddHrmFeedbackPage({}, []);
+
+    this.englishMap = new Map();
+    this.model = new AddHrmFeedbackPage([]);
   }
 
   ngOnInit() {
-    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels')
+    this.httpService.getData('http://192.168.43.8:1488/api/meta-data/english-levels')
       .subscribe((res) => {
-        this.englishOptions = res.json();
-        const temp = this.englishOptions.map((item) => {
-          return item.lvl;
-        });
-        this.model = new AddHrmFeedbackPage({}, temp);
+        this.getEnglishData(res.json());
+        this.model = new AddHrmFeedbackPage(Array.from(this.englishMap.keys()));
         this.model.setName(this.userService.realName);
       });
   }
 
-  submit() {
-    const currEnglishLvl = this.englishOptions.find((item) => {
-      return item.lvl === this.model.englishLevel.value;
-    });
+  getEnglishData(param) {
+    param.forEach(item => this.englishMap.set(item.lvl, item.id));
+  }
 
+  submit() {
     this.httpService.postData({
       changeReason: this.model.reason.value,
       readyToWork: this.model.readinessToWork.value,
       readyToTravel: this.model.readinessToBusinessTrip.value,
       motivation: this.model.motivation.value,
-      englishLvl: currEnglishLvl.id,
+      englishLvl: this.englishMap.get(this.model.englishLevel.value),
       salaryWish: this.model.salary.value,
       other: this.model.comment.value,
       interviewId: this.interviewId,
-    }, 'http://localhost:1337/api/candidate/hrm-feedbacks/new').subscribe(
+    }, 'http://192.168.43.8:1488/api/candidate/hrm-feedbacks/new').subscribe(
       (res) => {
         if (res.status === 201) {
           this.router
