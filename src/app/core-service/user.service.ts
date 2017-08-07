@@ -10,21 +10,21 @@ export class UserService {
   realName: string;
 
   constructor(private httpService: HttpService) {
-    this.init();
-  }
-
-  init() {
-    this.user = this.httpService.getData(`http://192.168.43.31:1337/api/user`)
+    this.user = this.httpService.getData(`http://localhost:1337/api/user`)
       .map(data => data.json());
-    this.name = this.user.map(data => `${data.firstName} ${data.secondName}`)
-      .publishReplay(1).refCount();
+    this.name = this.user.map(data => `${data.firstName} ${data.secondName}`).publishReplay(1).refCount();
     this.type = this.user.map(data => data.type).publishReplay(1).refCount();
 
-    this.name.subscribe(data => this.realName = data);
+    this.name.subscribe(data => {
+      this.realName = data;
+      console.log(this.realName);
+    });
   }
 
   reset() {
-    this.user = Observable.empty();
+    if (this.user) {
+      this.user = null;
+    }
   }
 }
 export class User {

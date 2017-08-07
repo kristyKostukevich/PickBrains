@@ -24,7 +24,7 @@ export class DetailTechFeedbackComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.httpService.getData(`http://192.168.43.31:1337/api/candidate/ts-feedbacks/detailed-view?id=${this.feedbackId}`)
+    this.httpService.getData(`http://localhost:1337/api/candidate/ts-feedbacks/detailed-view?id=${this.feedbackId}`)
       .subscribe((res) => {
         this.getFeedbackData(res.json());
       });

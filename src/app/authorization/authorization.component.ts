@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from '../http-service/http-service';
-import { UserService } from '../core-service/user.service';
 
 
 @Component({
@@ -21,8 +20,7 @@ export class AuthorizationComponent {
   };
 
   constructor(private httpService: HttpService,
-              private router: Router,
-              private userService: UserService) {
+              private router: Router) {
   }
 
   enterClick(event) {
@@ -35,11 +33,10 @@ export class AuthorizationComponent {
       login: this.login.value,
       password: this.password.value,
     };
-    this.httpService.postData(user, 'http://192.168.43.31:1337/api/authentication/login')
+    this.httpService.postData(user, 'http://localhost:1337/api/authentication/login')
       .subscribe((data) => {
-          this.userService.init();
-          this.router.navigateByUrl('');
-        },
+        this.router.navigateByUrl('');
+      },
         (error) => {
           this.error = 'incorrect data';
           this.password.value = '';
