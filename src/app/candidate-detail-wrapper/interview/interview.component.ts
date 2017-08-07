@@ -9,23 +9,16 @@ import { UserService } from 'app/core-service/user.service';
 })
 export class InterviewComponent implements OnInit {
   @Input() item: InterviewCard;
-  time: string;
   userName: string;
   type: string;
+  link: string;
 
   constructor(private userService: UserService) {
     this.userName = this.userService.realName;
   }
 
   ngOnInit() {
-    this.getTime();
     this.getType();
-  }
-
-  getTime() {
-    const minutes = this.item.date
-      .getMinutes() === 0 ? '00' : this.item.date.getMinutes().toString();
-    this.time = `${this.item.date.getHours()}:${minutes}`;
   }
 
   isInterviewer() {
@@ -34,5 +27,6 @@ export class InterviewComponent implements OnInit {
 
   getType() {
     this.type = this.item.type === 'admin' ? 'HRM' : this.item.type;
+    this.link = `add-${this.type.toLowerCase()}-feedback`;
   }
 }

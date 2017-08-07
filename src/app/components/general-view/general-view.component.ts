@@ -27,7 +27,8 @@ export class GeneralViewComponent implements OnInit {
   arrayOfOtherSkills: any[];
   sendArrayOfOtherSkills: string[];
 
-  constructor(private menuService: MenuService, private httpService: HttpService) {
+  constructor(private menuService: MenuService,
+              private httpService: HttpService) {
     this.arrayOfCities = [];
     this.sendArrayOfCities = [];
     this.temp = '';
@@ -113,7 +114,7 @@ export class GeneralViewComponent implements OnInit {
       .getData(`http://192.168.43.8:1488/api/candidates?id=${this.parentData.id}`)
       .subscribe((res) => {
         this.temp = res.json();
-        this.model = new CandidateGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages,this.sendArrayOfOtherSkills,'candidate');
+        this.model = new CandidateGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages, this.sendArrayOfOtherSkills, 'candidate');
       });
   }
 

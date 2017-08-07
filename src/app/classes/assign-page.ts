@@ -5,21 +5,20 @@ import { InputModel } from 'app/interfaces/input-model';
 export class AssignPage {
   typeOfInterview: SelectModel;
   interviewer: SelectModel;
-  value: SelectModel;
+  item: SelectModel;
   date: DatePickerModel;
   time: InputModel;
 
-  constructor(data: any,
-              interviewTypes: string[],
+  constructor(interviewTypes: string[],
               interviewers: string[],
               candidates: string[],
               type: string) {
-    this.typeOfInterview = new SelectModel(data.interviewType, 'Interview type', interviewTypes);
-    this.interviewer = new SelectModel(data.interviewer, 'Interviewer', interviewers);
+    this.typeOfInterview = new SelectModel('HRM interview', 'Interview type', interviewTypes);
+    this.interviewer = new SelectModel('', 'Interviewer', interviewers);
     const valuePlaceholder = (type === 'vacancy') ? 'Candidate' : 'Vacancy';
-    this.value = new SelectModel(data.value, valuePlaceholder, candidates);
-    this.date = new DatePickerModel(data.date, 'Date');
-    this.time = new InputModel(data.time, 'Time');
+    this.item = new SelectModel('', valuePlaceholder, candidates);
+    this.date = new DatePickerModel(null, 'Date');
+    this.time = new InputModel('', 'Time');
   }
 
   setInterviewerOptions(data: any[]) {

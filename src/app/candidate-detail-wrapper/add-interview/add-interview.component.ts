@@ -7,19 +7,19 @@ import { Observable } from 'rxjs/Rx';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'assign-candidate',
-  templateUrl: 'assign-candidate.component.html',
-  styleUrls: ['assign-candidate.component.scss'],
+  selector: 'add-interview',
+  templateUrl: 'add-interview.component.html',
+  styleUrls: ['add-interview.component.scss'],
 })
 
-export class AssignCandidateComponent implements OnInit {
+export class AddInterviewComponent implements OnInit {
   model: AssignPage;
   parentData: ComponentsData;
   interviewTypes: string[];
 
   hrmMap: Map<string, number>;
   techMap: Map<string, number>;
-  candidateMap: Map<string, number>;
+  vacancyMap: Map<string, number>;
 
   techOptions: string[];
   hrmOptions: string[];
@@ -31,7 +31,7 @@ export class AssignCandidateComponent implements OnInit {
     this.interviewTypes = ['Technical interview', 'HRM interview'];
     this.hrmMap = new Map();
     this.techMap = new Map();
-    this.candidateMap = new Map();
+    this.vacancyMap = new Map();
   }
 
   modelChange(item) {
@@ -61,8 +61,8 @@ export class AssignCandidateComponent implements OnInit {
     param.forEach(item => this.hrmMap.set(`${item.first_name} ${item.second_name}`, item.id));
   }
 
-  getCandidatesData(param) {
-    param.forEach(item => this.candidateMap.set(item.name, item.id));
+  getVacancyData(param) {
+    param.forEach(item => this.vacancyMap.set(item.name, item.id));
   }
 
   createModel() {
@@ -72,7 +72,7 @@ export class AssignCandidateComponent implements OnInit {
     this.model = new AssignPage(
       this.interviewTypes,
       this.hrmOptions,
-      Array.from(this.candidateMap.keys()),
+      Array.from(this.vacancyMap.keys()),
       this.parentData.type,
     );
   }
@@ -84,7 +84,7 @@ export class AssignCandidateComponent implements OnInit {
         .map((res: Response) => res.json()),
       this.httpService.getData('http://192.168.43.8:1488/api/users?type=HRM')
         .map((res: Response) => res.json()),
-      this.httpService.getData(`http://192.168.43.8:1488/api/vacancies/${id}/candidates`)
+      this.httpService.postData({}, `http://192.168.43.8:1488/api/vacancies`)
         .map((res: Response) => res.json()),
     );
   }
@@ -93,7 +93,7 @@ export class AssignCandidateComponent implements OnInit {
     this.getRequests().subscribe((data) => {
       this.getTechData(data[0]);
       this.getHrmData(data[1]);
-      this.getCandidatesData(data[2]);
+      this.getVacancyData(data[2]);
       this.createModel();
       console.log(this.model);
     });
@@ -110,15 +110,15 @@ export class AssignCandidateComponent implements OnInit {
     const currDate = this.model.date.value.getTime() + this.getSeconds(this.model.time.value);
 
     this.httpService.postData({
-      candidateId: this.candidateMap.get(this.model.item.value),
-      vacancyId: this.parentData.id,
+      candidateId: this.parentData.id,
+      vacancyId: this.vacancyMap.get(this.model.item.value),
       userId: currUserId,
       date: currDate,
     }, 'http://192.168.43.8:1488/api/interviews/new')
       .subscribe((res) => {
           if (res.status === 201) {
             this.router
-              .navigate(['../assigned-candidates'], {relativeTo: this.currentActivatedRoute});
+              .navigate(['../interviews'], {relativeTo: this.currentActivatedRoute});
           }
           console.log(res.status);
         },
