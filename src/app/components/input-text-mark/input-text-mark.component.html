@@ -1,0 +1,13 @@
+<div class="mark">
+    <md-input-container class="input-text select">
+        <input mdInput
+               [readonly]="model.readOnly"
+               [(ngModel)]="model.value"
+               (ngModelChange)="onModelChange($event)"
+               [placeholder]="model.placeholder"
+               [disabled]="model.disabled">
+    </md-input-container>
+    <rating [readonly]="model.readOnly" [(ngModel)]="model.level"></rating>
+</div>
+
+

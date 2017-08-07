@@ -1,0 +1,53 @@
+.mark {
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 245px;
+  width: 32%;
+  padding: 1%;
+}
+
+.select {
+  box-sizing: border-box;
+  margin-bottom: 30px;
+  margin-top: -10px;
+  text-align: left;
+  width: calc(100% - 125px);
+}
+
+rating {
+  font-size: 12px;
+}
+
+.input-text {
+  text-align: left;
+}
+
+/deep/ .star-icon:before {
+  color: #ec407a !important;
+}
+
+@media screen and (max-width: 540px) {
+  .mark {
+    padding: 15px 0 0 0;
+    width: 92%;
+  }
+}
+
+@media screen and (min-width: 901px) and (max-width: 1200px) {
+  .mark {
+    width: 49%;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 900px) {
+  .mark {
+    padding: 0;
+    width: 92%;
+  }
+}
+
+@media screen and (min-width: 541px) and (max-width: 800px) {
+  .mark {
+    width: 49%;
+  }
+}
