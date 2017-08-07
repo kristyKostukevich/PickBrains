@@ -1,0 +1,8 @@
+<form>
+    <input-text [(model)]="model.name"></input-text>
+    <date-picker [(model)]="model.date"></date-picker>
+    <input-text-mark [(model)]="model.primarySkill"></input-text-mark>
+    <input-text-mark *ngFor="let item of model.secondarySkills; let i = index;"
+                     [(model)]="model.secondarySkills[i]"></input-text-mark>
+    <input-textarea [(model)]="model.comment"></input-textarea>
+</form>
