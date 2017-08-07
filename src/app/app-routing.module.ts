@@ -12,11 +12,11 @@ import { VacancyListComponent } from './main-page/vacancy-list-component/vacancy
 import { HistoryListComponent } from './main-page/history-list-component/history-list-component';
 import { MaxListComponent } from 'app/components/max-list/max-list.component';
 import { GeneralViewComponent } from 'app/components/general-view/general-view.component';
-import { LayoutComponent } from './layout/layout.compunent';
+import { LayoutComponent } from './layout/layout.component';
 import { AssignCandidateComponent } from 'app/vacancy-detail-wrapper/assign-candidate/assign-candidate.component';
 import { AddHrmFeedbackComponent } from 'app/candidate-detail-wrapper/add-hrm-feedback/add-hrm-feedback.component';
-import { HistoryComponent } from './components/history/history.component';
 import { HistoryDetailComponent } from './components/history-in-detail-view/history-detail.component';
+import { TechPageComponent } from './tech-page/tech-page.component';
 
 const candidateRoutes: Routes = [
   {
@@ -81,6 +81,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'person-page',
     pathMatch: 'full',
+  },
+  {
+    path: 'tech-interview',
+    component: TechPageComponent,
   },
   {
     path: 'person-page',

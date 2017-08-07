@@ -9,6 +9,6 @@ export class HttpService {
   }
 
   getData(body: any) {
-    return this.http.post('http://localhost:1337/api/vacancies', body).toPromise();
+    return this.http.post('http://192.168.43.8:1488/api/vacancies', body).toPromise();
   }
 }

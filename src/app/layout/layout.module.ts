@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LayoutComponent } from './layout.compunent';
+import { LayoutComponent } from './layout.component';
 import {} from '@angular/http';
 import { GlobalHeaderModule } from '../components/header/header.module';
 import { NotificationModule } from '../notification/notification.module';
