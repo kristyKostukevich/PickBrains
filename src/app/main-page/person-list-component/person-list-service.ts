@@ -9,7 +9,7 @@ export class HttpService {
   }
 
   getData(body : any) {
-    return this.http.post('http://192.168.43.8:1488/api/candidates', body ).toPromise();
+    return this.http.post('http://192.168.43.31:1337/api/candidates', body ).toPromise();
 
   }
 }
