@@ -10,18 +10,18 @@ export class HttpService {
   }
 
   getData() {
-    return this.http.get(`http://localhost:1337/api/vacancies/${this.route.snapshot.url[2].path}`).toPromise();
+    return this.http.get(`http://192.168.43.8:1488/api/vacancies/${this.route.snapshot.url[2].path}`).toPromise();
   }
   getCitiesData() {
-    return this.http.get('http://localhost:1337/api/meta-data/locations').toPromise();
+    return this.http.get('http://192.168.43.8:1488/api/meta-data/locations').toPromise();
   }
   getStatusData() {
-    return this.http.get('http://localhost:1337/api/meta-data/candidate-statuses').toPromise();
+    return this.http.get('http://192.168.43.8:1488/api/meta-data/candidate-statuses').toPromise();
   }
   getSkillsData() {
-    return this.http.get('http://localhost:1337/api/meta-data/skills').toPromise();
+    return this.http.get('http://192.168.43.8:1488/api/meta-data/skills').toPromise();
   }
   getLanguageData() {
-    return this.http.get('http://localhost:1337/api/meta-data/english-levels').toPromise();
+    return this.http.get('http://192.168.43.8:1488/api/meta-data/english-levels').toPromise();
   }
 }

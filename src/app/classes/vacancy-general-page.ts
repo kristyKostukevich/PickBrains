@@ -26,18 +26,18 @@ export class VacancyGeneralPage {
     this.requestDate = new DatePickerModel(data.requestDate, 'Request date');
     this.projectStartDate = new DatePickerModel(data.startDate, 'Project start date');
     this.status = new SelectModel(data.status, 'Status', arrayOfStatuses);
-    this.primarySkill = new SelectModel(data.skillName, 'Primary skill', arrayOfSkills);
+    this.primarySkill = new SelectModel(data.skillName, 'Primary skill', arrayOfSkills, data.primarySkillLvl);
     this.workExperience = new DatePickerModel(data.expYear, 'Work experience');
     this.englishLevel = new SelectModel(data.vacancyEnglishLvl, 'English level', arrayOfLanguages);
-    this.linkedIn = new InputModel(data.linkedin,'LinkedIn');
-    this.salaryWish = new InputModel(data.salaryWish,'Salary wish');
+    this.linkedIn = new InputModel(data.linkedin, 'LinkedIn');
+    this.salaryWish = new InputModel(data.salaryWish, 'Salary wish');
     this.secondarySkills = [];
     for (var key in data.secondarySkills) {
-      this.secondarySkills[key] = new SelectModel(data.secondarySkills[key].skillName, 'Secondary skill',arrayOfSkills,data.secondarySkills[key].lvl);
+      this.secondarySkills[key] = new SelectModel(data.secondarySkills[key].skillName, 'Secondary skill', arrayOfSkills, data.secondarySkills[key].lvl);
     }
     this.otherSkills = [];
     for (var key in data.otherSkills) {
-      this.otherSkills[key] = new SelectModel(data.otherSkills[key].skill, 'Other skill',arrayOfOtherSkills);
+      this.otherSkills[key] = new SelectModel(data.otherSkills[key].skill, 'Other skill', arrayOfOtherSkills);
     }
     this.description = new InputModel(data.description, 'Description');
   }

@@ -32,6 +32,10 @@ export class CandidateDetailComponent implements OnInit, OnDestroy {
         link: 'feedbacks-from-hrm',
       },
       {
+        item: 'Add interview',
+        link: 'add-interview',
+      },
+      {
         item: 'Interviews',
         link: 'interviews',
       },
