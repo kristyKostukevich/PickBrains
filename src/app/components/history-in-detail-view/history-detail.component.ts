@@ -28,30 +28,17 @@ export class HistoryDetailComponent {
 
   ngOnInit() {
     this.httpServise.getData(this.createUrl(0, 10)).subscribe((res) => {
-      this.history = this.createHistory(res.json().slice(1));
+      this.history = res.json().slice(1);
       this.length = res.json()[0];
     });
   }
 
 
-  createHistory(history: any): HistoryDate[] {
-    let currentHistory: HistoryDate[] = new Array<HistoryDate>();
-    for (const i of history) {
-      for (const j of i.changes)
-        currentHistory.push(
-          {
-            user: i.user,
-            changeDate: i.cahngeDate,
-            change: j,
-          });
-    }
-    return currentHistory;
-  }
 
   onClick(event) {
     const skip: number = event.pageSize * event.pageIndex;
     this.httpServise.getData(this.createUrl(skip, event.pageSize)).subscribe((res) => {
-      this.history = this.createHistory(res.json().slice(1));
+      this.history = res.json().slice(1);
     });
 
   }
@@ -61,5 +48,5 @@ export class HistoryDetailComponent {
 export class HistoryDate {
   change: string;
   user: string;
-  changeDate: Date;
+  cahngeDate: Date;
 }
