@@ -1,5 +1,4 @@
 import { Component, Input, OnChanges } from '@angular/core';
-// import { CandidateCardItem } from '../../interfaces/candidate-card-item';
 
 @Component({
   selector: 'button-add',

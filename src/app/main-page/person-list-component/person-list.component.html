@@ -4,8 +4,10 @@
 </div>
 <div class="wrap">
     <global-search (sendSearchLine)="sendSearchLine($event)" ></global-search>
-    <button-add [inputAdress]="urlAdress"></button-add>
     <list style="top: 100px;"  [list]="listItem"></list>
+    <div class="float-button">
+        <ng2-float-btn [mainButton]="mainButton" [buttons]="buttons"  [direction]="'up'">
+        </ng2-float-btn>
+    </div>
     <a *ngIf="flagOfButtonShowMore" md-fab class="paginationButton" (click)="onClick()"><md-icon>format_line_spacing</md-icon></a>
-    <a md-fab class="downloadButton" (click)="OnDownload()"><md-icon>file_download</md-icon></a>
 </div>

@@ -31,7 +31,7 @@ export class AddHrmFeedbackComponent implements OnInit {
 
   ngOnInit() {
     this.interviewId = this.interviewService.getData();
-    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels').subscribe(res => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/english-levels').subscribe(res => {
       this.englishOptions = res.json();
       const temp = this.englishOptions.map((item) => {
         return item.lvl;
@@ -55,7 +55,7 @@ export class AddHrmFeedbackComponent implements OnInit {
       salaryWish: this.model.salary.value,
       other: this.model.comment.value,
       interviewId: this.interviewId,
-    }, 'http://localhost:1337/api/candidate/hrm-feedbacks/new').subscribe(
+    }, 'http://192.168.43.31:1337/api/candidate/hrm-feedbacks/new').subscribe(
       (res) => {
         if (res.status === 201) {
           this.router.navigate(['../feedbacks-from-hrm'], {relativeTo: this.currentActivatedRoute});

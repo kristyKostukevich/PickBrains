@@ -11,5 +11,6 @@ export class SelectComponent {
 
   onModelChange() {
     this.modelChange.emit(this.model);
+    console.log(this.model);
   }
 }

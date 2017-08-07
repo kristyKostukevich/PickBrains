@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, HostListener, Inject, HostBinding } from '@angular/core';
 import { CardList } from '../../classes/card-list';
+import { Ng2FloatBtn } from 'ng2-float-btn';
 @Component({
   selector: 'list',
   templateUrl: 'list.component.html',
@@ -26,4 +27,5 @@ export class ListComponent implements OnChanges{
   isHistory() : boolean {
     return this.initialiaze && this.list.type === 'history';
   }
+
 }

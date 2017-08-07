@@ -11,6 +11,7 @@ export class InputTextComponent {
   @Output() modelChange = new EventEmitter<InputModel>();
 
   onModelChange() {
+    console.log(this.model);
     this.modelChange.emit(this.model);
   }
 }

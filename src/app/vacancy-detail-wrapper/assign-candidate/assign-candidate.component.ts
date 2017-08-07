@@ -50,7 +50,7 @@ export class AssignCandidateComponent implements OnInit {
   }
 
   getTechInterviewers() {
-    this.httpService.getData('http://localhost:1337/api/users?type=TECH')
+    this.httpService.getData('http://192.168.43.31:1337/api/users?type=TECH')
       .subscribe((res) => {
         const temp = res.json();
         for (const i of temp) {
@@ -68,7 +68,7 @@ export class AssignCandidateComponent implements OnInit {
   }
 
   getHrmInterviewers() {
-    this.httpService.getData('http://localhost:1337/api/users?type=HRM')
+    this.httpService.getData('http://192.168.43.31:1337/api/users?type=HRM')
       .subscribe((res) => {
         const temp = res.json();
         for (const i of temp) {
@@ -93,7 +93,7 @@ export class AssignCandidateComponent implements OnInit {
   }
 
   getPotentialCandidates() {
-    this.httpService.getData(`http://localhost:1337/api/vacancies/${this.parentData.id}/candidates`)
+    this.httpService.getData(`http://192.168.43.31:1337/api/vacancies/${this.parentData.id}/candidates`)
       .subscribe((res) => {
         const temp = res.json();
         for (const item of temp) {
@@ -135,7 +135,7 @@ export class AssignCandidateComponent implements OnInit {
       vacancyId: this.parentData.id,
       userId: currUserId,
       date: currDate,
-    }, 'http://localhost:1337/api/interviews/new').subscribe();
+    }, 'http://192.168.43.31:1337/api/interviews/new').subscribe();
   }
 
   private getSeconds(item: string) {

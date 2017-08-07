@@ -18,6 +18,12 @@ export class HttpService{
     return this.http.post(url, body, options)
       .catch((error:any) => {return Observable.throw(error);});
   }
+  patchData(obj: any, url: string) {
+    const body = JSON.stringify(obj);
+    const options = this.preparseOptions();
+    return this.http.patch(url, body, options)
+      .catch((error:any) => {return Observable.throw(error);});
+  }
   getData(url: string) {
     const options = this.preparseOptions();
     return this.http.get(url, options)

@@ -10,6 +10,7 @@ import { FilterPersonModule } from '../../components/filter-components/filter-pe
 import { GlobalHeaderModule } from '../../components/header/header.module';
 import { ButtonAddModule } from '../../components/button-add/button.module';
 import { MdIconModule, MdButtonModule } from '@angular/material';
+import { Ng2FloatBtnModule } from 'ng2-float-btn';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MdIconModule, MdButtonModule } from '@angular/material';
     ButtonAddModule,
     MdButtonModule,
     MdIconModule,
+    Ng2FloatBtnModule,
   ],
   declarations: [PersonListComponent],
   exports: [PersonListComponent],
