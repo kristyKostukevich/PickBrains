@@ -27,9 +27,10 @@
             {{item.cahngeDate | date:'HH:mm'}}
         </div>
     </div>
+    <div *ngIf="length === 0" class="row"> No history </div>
     <md-paginator [length]="length"
                   [pageSize]="10"
-                  [pageSizeOptions]="[3, 10, 25, 100]"
+                  [pageSizeOptions]="[5, 10, 25, 100]"
                   (page)="onClick($event)">
 
     </md-paginator>
