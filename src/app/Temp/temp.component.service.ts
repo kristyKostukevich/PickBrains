@@ -10,6 +10,6 @@ export class HttpService {
   }
 
   getData() {
-    return this.http.get(`http://192.168.43.8:1488/api/vacancies/${this.route.snapshot.url[2].path}`).toPromise();
+    return this.http.get(`http://localhost:1337/api/vacancies/${this.route.snapshot.url[2].path}`).toPromise();
   }
 }

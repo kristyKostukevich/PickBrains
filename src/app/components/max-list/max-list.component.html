@@ -1,3 +1,6 @@
+<div *ngIf="!this.list.data.length">
+    not found
+</div>
 <div *ngIf="isVacancies()">
     <vacancy-card *ngFor="let item of list.data" [item]="item">
     </vacancy-card>

@@ -29,7 +29,7 @@ export class VacancyListComponent implements OnInit {
 }
 
   ngOnInit() {
-    this.httpService.postData({skip: 0, capacity: this.countOfElements}, 'http://192.168.43.8:1488/api/vacancies')
+    this.httpService.postData({skip: 0, capacity: this.countOfElements}, 'http://localhost:1337/api/vacancies')
       .subscribe((res) => {
       this.vacancies = res.json();
       this.listItem = new CardList(this.vacancies, 'vacancies');
@@ -46,7 +46,7 @@ export class VacancyListComponent implements OnInit {
       primarySkill: this.arrayOfSkills,
       capacity: this.countOfElements + 6,
     };
-    this.httpService.postData(this.body, 'http://192.168.43.8:1488/api/vacancies')
+    this.httpService.postData(this.body, 'http://localhost:1337/api/vacancies')
       .subscribe((res) => {
         // console.log(res.json());
         this.vacancies = res.json();
@@ -89,7 +89,7 @@ export class VacancyListComponent implements OnInit {
       primarySkill: this.arrayOfSkills,
       capacity: this.countOfElements + 6,
     };
-    this.httpService.postData(this.body, 'http://192.168.43.8:1488/api/vacancies')
+    this.httpService.postData(this.body, 'http://localhost:1337/api/vacancies')
       .subscribe((res) => {
         this.vacancies = res.json();
         console.log(this.vacancies);

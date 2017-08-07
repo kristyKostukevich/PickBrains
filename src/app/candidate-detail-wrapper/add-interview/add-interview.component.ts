@@ -80,11 +80,11 @@ export class AddInterviewComponent implements OnInit {
   getRequests() {
     const id = this.parentData.id;
     return Observable.forkJoin(
-      this.httpService.getData('http://192.168.43.8:1488/api/users?type=TECH')
+      this.httpService.getData('http://localhost:1337/api/users?type=TECH')
         .map((res: Response) => res.json()),
-      this.httpService.getData('http://192.168.43.8:1488/api/users?type=HRM')
+      this.httpService.getData('http://localhost:1337/api/users?type=HRM')
         .map((res: Response) => res.json()),
-      this.httpService.postData({}, `http://192.168.43.8:1488/api/vacancies`)
+      this.httpService.postData({}, `http://localhost:1337/api/vacancies`)
         .map((res: Response) => res.json()),
     );
   }
@@ -114,7 +114,7 @@ export class AddInterviewComponent implements OnInit {
       vacancyId: this.vacancyMap.get(this.model.item.value),
       userId: currUserId,
       date: currDate,
-    }, 'http://192.168.43.8:1488/api/interviews/new')
+    }, 'http://localhost:1337/api/interviews/new')
       .subscribe((res) => {
           if (res.status === 201) {
             this.router
