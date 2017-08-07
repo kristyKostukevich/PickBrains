@@ -35,7 +35,7 @@ export class AuthorizationComponent {
       login: this.login.value,
       password: this.password.value,
     };
-    this.httpService.postData(user, 'http://192.168.43.8:1488/api/authentication/login')
+    this.httpService.postData(user, 'http://192.168.43.31:1337/api/authentication/login')
       .subscribe((data) => {
           this.userService.init();
           this.router.navigateByUrl('');
