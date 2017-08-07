@@ -9,6 +9,8 @@ import { AppRoutingModule } from '../app-routing.module';
 import { LayoutService } from './layout.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserService } from '../core-service/user.service';
+import { SpinnerService } from '../core-service/spinner.servise';
+import { MdProgressSpinnerModule } from '@angular/material';
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import { UserService } from '../core-service/user.service';
     NotificationModule,
     AppRoutingModule,
     FlexLayoutModule,
+    MdProgressSpinnerModule,
 
   ],
   declarations: [LayoutComponent],
@@ -26,6 +29,7 @@ import { UserService } from '../core-service/user.service';
   providers: [
     LayoutService,
     UserService,
+    SpinnerService,
   ],
 })
 export class LayoutModule {
