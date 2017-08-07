@@ -1,5 +1,6 @@
 <md-input-container class="input-text-area adaptive-components">
         <textarea mdInput
+                  [readonly]="model.readOnly"
                   [(ngModel)]="model.value"
                   (ngModelChange)="onModelChange($event)"
                   [placeholder]="model.placeholder"></textarea>

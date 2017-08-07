@@ -1,95 +1,22 @@
-.history-card {
-  @extend .block;
-  background-color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, .03);
-  box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
+.history {
   box-sizing: border-box;
-  color: rgba(0, 0, 0, .77);
-  margin-bottom: 15px;
-  padding: 10px;
-  width: 100%;
+  left: 310px;
+  position: absolute;
+  top: 30px;
+  width: calc(100% - 360px);
+  margin-bottom: 30px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
 }
 
-.title {
-  display: flex;
-  flex-direction: row;
-  height: 15px;
-  justify-content: space-between;
+@media screen and (max-width: 800px) {
+  form, .history {
+    top: 2.5%;
+    margin-bottom: 2.5%;
+    left: 2.5%;
+    width: 95%;
+  }
 }
 
-.change-name {
-  font-weight: 500;
-}
-
-hr {
-  background-color: rgb(224, 224, 224);
-  border: none;
-  color: rgb(224, 224, 224);
-  height: 1px;
-  width: 100%;
-}
-
-.card {
-  display: flex;
-  flex-direction: row;
-  height: 100px;
-  justify-content: space-between;
-
-}
-
-.block {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.first-block {
-  @extend .block;
-  align-items: flex-start;
-  text-align: left;
-}
-
-.second-block {
-  @extend .block;
-  align-items: flex-end;
-  text-align: right;
-}
-
-.tags {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-.tags-item {
-  background-color: rgb(224, 224, 224);
-  border-radius: 12px;
-  color: rgba(0, 0, 0, .77);
-  cursor: pointer;
-  font-size: 13px;
-  line-height: 15px;
-  margin-left: 3px;
-  padding: 6px;
-  transition: .3s;
-}
-
-.tags-item:hover {
-  background-color: rgb(255, 64, 129);
-  color: #ffffff;
-}
-
-h4, p {
-  margin: 0;
-}
-
-p {
-  font-size: 14px;
-}
-
-span {
+.mat-cell {
   font-size: 12px;
-}
-
-.date {
-  color: rgba(0, 0, 0, .47);
 }

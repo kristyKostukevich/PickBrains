@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MdButtonModule } from '@angular/material';
 import { InterviewComponent } from './interview.component';
-import { InterviewService } from './interview.service';
 
 @NgModule({
   imports: [
@@ -13,7 +12,7 @@ import { InterviewService } from './interview.service';
   ],
   declarations: [InterviewComponent],
   exports: [InterviewComponent],
-  providers: [InterviewService],
+  providers: [],
 })
 export class InterviewModule {
 }

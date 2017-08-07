@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ListModule } from '../../components/list/list.module';
 import { FilterVacancyModule } from '../../components/filter-components/filter-vacancy/filter-vacancy.module';
 import { HistoryListComponent } from './history-list-component';
+import { HistoryModule } from '../../components/history/history.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { HistoryListComponent } from './history-list-component';
     RouterModule,
     ListModule,
     FilterVacancyModule,
+    HistoryModule,
   ],
   declarations: [HistoryListComponent],
   exports: [HistoryListComponent],

@@ -7,7 +7,6 @@ import { SelectModule } from 'app/components/select/select.module';
 import { AddHrmFeedbackComponent } from './add-hrm-feedback.component';
 import { MdButtonModule, MdIconModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
-import { InterviewService } from '../interview/interview.service';
 import { HttpService } from 'app/http-service/http-service';
 
 @NgModule({
@@ -23,7 +22,7 @@ import { HttpService } from 'app/http-service/http-service';
   ],
   exports: [],
   declarations: [AddHrmFeedbackComponent],
-  providers: [InterviewService, HttpService],
+  providers: [HttpService],
 })
 export class AddHrmFeedbackModule {
 }

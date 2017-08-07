@@ -1,41 +1,35 @@
-<div class="history-card">
-    <div class="title">
-        <span class="change-name">{{item.changeName}}</span>
-        <span>{{item.userName}}, {{item.changeDate.toDateString()}}</span>
-    </div>
-    <hr>
-    <div class="card" *ngIf="isVacancy()">
-        <div class="first-block">
-            <div>
-                <h4>{{item.data.projectName}}</h4>
-                <span class="date">{{item.data.date.toDateString()}}</span>
-            </div>
-            <p>{{item.data.description}}</p>
-        </div>
-        <div class="second-block">
-            <span>{{item.data.status}}</span>
-            <div class="tags">
-                <span class="tags-item">{{item.data.primarySkill}}</span>
-                <span class="tags-item">{{item.data.location}}</span>
-            </div>
-        </div>
-    </div>
-    <div class="card" *ngIf="isCandidate()">
-        <div class="first-block">
-            <div>
-                <h4>{{item.data.candidateName}}</h4>
-                <span class="date">{{item.data.date.toDateString()}}</span>
-            </div>
-            <p>{{item.data.email}}</p>
-        </div>
-        <div class="second-block">
-            <span>{{item.data.status}}</span>
-            <div class="tags">
-                <span class="tags-item">{{item.data.primarySkill}}</span>
-                <span class="tags-item">{{item.data.location}}</span>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="history">
+    <md-table #table [dataSource]="dataSource">
+        <ng-container  cdkColumnDef="name">
+            <md-header-cell *cdkHeaderCellDef> Object </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.object}}</md-cell>
+        </ng-container>
 
+        <ng-container cdkColumnDef="status">
+            <md-header-cell *cdkHeaderCellDef> Action </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.action}}</md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="change">
+            <md-header-cell *cdkHeaderCellDef> Subject  </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.subject}}</md-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="date">
+            <md-header-cell *cdkHeaderCellDef> Date</md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.date|date:'dd.MM.y'}}</md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="time">
+            <md-header-cell *cdkHeaderCellDef> Time</md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.date|date:'H:mm'}}</md-cell>
+        </ng-container>
+        <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+        <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+    </md-table>
+    <md-paginator [length]="historyDatabase.length"
+                  [pageSize]="10"
+                  [pageSizeOptions]="[5, 10, 25, 100]"
+                  (page)="historyDatabase.onClick($event)">
+    </md-paginator>
+</div>
 

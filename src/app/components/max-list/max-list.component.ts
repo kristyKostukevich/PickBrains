@@ -23,96 +23,6 @@ export class MaxListComponent implements OnInit {
   interviews: InterviewCard[];
   feedbacks: FeedbackCard[];
 
-  candidateHistoryItems: HistoryCardItem[] = [
-    {
-      changeName: 'Email was change',
-      userName: 'Zosya',
-      changeDate: new Date(2020, 2, 7),
-      data: {
-        candidateName: 'Candidate name',
-        status: 'Status',
-        email: 'Email',
-        location: 'Location',
-        primarySkill: 'Primary skill',
-        date: new Date(2017, 1, 5),
-      },
-      type: 'candidate',
-    },
-    {
-      changeName: 'Email was change',
-      userName: 'Zosya',
-      changeDate: new Date(2020, 2, 7),
-      data: {
-        candidateName: 'Candidate name',
-        status: 'Status',
-        email: 'Email',
-        location: 'Location',
-        primarySkill: 'Primary skill',
-        date: new Date(2017, 1, 5),
-      },
-      type: 'candidate',
-    },
-    {
-      changeName: 'Email was change',
-      userName: 'Zosya',
-      changeDate: new Date(2020, 2, 7),
-      data: {
-        candidateName: 'Candidate name',
-        status: 'Status',
-        email: 'Email',
-        location: 'Location',
-        primarySkill: 'Primary skill',
-        date: new Date(2017, 1, 5),
-      },
-      type: 'candidate',
-    },
-  ];
-  vacancyHistoryItems: HistoryCardItem[] = [
-    {
-      changeName: 'Status was change',
-      userName: 'Gena',
-      changeDate: new Date(2016, 2, 7),
-      data: {
-        projectName: 'Project name',
-        location: 'Minsk',
-        status: 'In progress',
-        date: new Date(2017, 1, 5),
-        description: 'Description',
-        primarySkill: 'Java',
-      },
-      type: 'vacancy',
-    },
-    {
-      changeName: 'Status was change',
-      userName: 'Gena',
-      changeDate: new Date(2016, 2, 7),
-      data: {
-        projectName: 'Project name',
-        location: 'Minsk',
-        status: 'In progress',
-        date: new Date(2017, 1, 5),
-        description: 'Description',
-        primarySkill: 'Java',
-      },
-      type: 'vacancy',
-    },
-    {
-      changeName: 'Status was change',
-      userName: 'Gena',
-      changeDate: new Date(2016, 2, 7),
-      data: {
-        projectName: 'Project name',
-        location: 'Minsk',
-        status: 'In progress',
-        date: new Date(2017, 1, 5),
-        description: 'Description',
-        primarySkill: 'Java',
-      },
-      type: 'vacancy',
-    },
-
-  ];
-
   constructor(private menuService: MenuService, private activateRoute: ActivatedRoute,
               private httpService: HttpService) {
     this.candidates = [];
@@ -142,14 +52,6 @@ export class MaxListComponent implements OnInit {
       case 'interviews':
         this.currItemType = 'interviews';
         this.getInterviews();
-        break;
-      case 'history':
-        this.currItemType = 'history';
-        if (this.parentData.type === 'candidate') {
-          this.getCandidateHistory();
-        } else {
-          this.getVacancyHistory();
-        }
         break;
       case 'assigned-candidates':
         this.currItemType = 'candidates';
@@ -237,14 +139,6 @@ export class MaxListComponent implements OnInit {
         (error) => {
           console.log(error);
         });
-  }
-
-  getCandidateHistory() {
-    this.list = new CardList(this.candidateHistoryItems);
-  }
-
-  getVacancyHistory() {
-    this.list = new CardList(this.vacancyHistoryItems);
   }
 
   getAssignedCandidates() {

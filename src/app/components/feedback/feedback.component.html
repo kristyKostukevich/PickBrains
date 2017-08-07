@@ -1,10 +1,18 @@
-<div class="feedback-card">
-    <div class="first-block">
-        <h4>Feedback from {{item.userName}}</h4>
-        <p *ngIf="isSkill()">{{item.skillName}}</p>
+<a [routerLink]="[item.id]">
+    <div class="feedback-card">
+        <div class="first-block">
+            <div>
+                <h4>{{item.vacancyName}}</h4>
+                <span>Feedback from {{item.userName}}</span>
+            </div>
+            <p class="grey">Interview date: {{item.date | date: "dd.MM.y"}}, {{item.date | date: 'H:mm'}} </p>
+        </div>
+        <div class="second-block">
+            <div>
+                <p>Creation date</p>
+                <span class="small">{{currDate | date: "dd.MM.y"}}, {{currDate | date: 'H:mm'}}</span>
+            </div>
+            <span class="tag" *ngIf="isSkill()">{{item.skillName}} </span>
+        </div>
     </div>
-    <div class="second-block">
-        <span>{{item.vacancyName}}</span>
-        <span class="date">{{item.date | date: mediumTime}}, {{time}}</span>
-    </div>
-</div>
+</a>

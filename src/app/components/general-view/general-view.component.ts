@@ -31,7 +31,8 @@ export class GeneralViewComponent implements OnInit {
   editCandidateObject: PostCandidateInfo;
   editVacancyObject: PostVacancyInfo;
 
-  constructor(private menuService: MenuService, private httpService: HttpService) {
+  constructor(private menuService: MenuService,
+              private httpService: HttpService) {
     this.arrayOfCities = [];
     this.sendArrayOfCities = [];
     this.temp = '';

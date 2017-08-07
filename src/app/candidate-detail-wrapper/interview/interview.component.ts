@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { InterviewCard } from '../../classes/interview-card';
 import { UserService } from 'app/core-service/user.service';
-import { InterviewService } from './interview.service';
 
 @Component({
   selector: 'interview-card',
@@ -10,24 +9,16 @@ import { InterviewService } from './interview.service';
 })
 export class InterviewComponent implements OnInit {
   @Input() item: InterviewCard;
-  time: string;
   userName: string;
   type: string;
+  link: string;
 
-  constructor(private userService: UserService, private interviewService: InterviewService) {
+  constructor(private userService: UserService) {
     this.userName = this.userService.realName;
   }
 
   ngOnInit() {
-    this.interviewService.setData(this.item.interviewId);
-    this.getTime();
     this.getType();
-  }
-
-  getTime() {
-    const minutes = this.item.date
-      .getMinutes() === 0 ? '00' : this.item.date.getMinutes().toString();
-    this.time = `${this.item.date.getHours()}:${minutes}`;
   }
 
   isInterviewer() {
@@ -36,5 +27,6 @@ export class InterviewComponent implements OnInit {
 
   getType() {
     this.type = this.item.type === 'admin' ? 'HRM' : this.item.type;
+    this.link = `add-${this.type.toLowerCase()}-feedback`;
   }
 }
