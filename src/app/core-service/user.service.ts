@@ -19,10 +19,7 @@ export class UserService {
     this.name = this.user.map(data => `${data.firstName} ${data.secondName}`).publishReplay(1).refCount();
     this.type = this.user.map(data => data.type).publishReplay(1).refCount();
 
-    this.name.subscribe(data => {
-      this.realName = data;
-      console.log(this.realName);
-    });
+    this.name.subscribe(data => {this.realName = data;});
   }
 
   reset() {
