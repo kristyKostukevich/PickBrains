@@ -4,6 +4,9 @@
 </div>
 <div class="wrap">
     <list [list]="listItem"></list>
-    <button-add [inputAdress]="urlAdress"></button-add>
+    <div class="float-button">
+        <ng2-float-btn [mainButton]="mainButton" [buttons]="buttons"  [direction]="'up'">
+        </ng2-float-btn>
+    </div>
     <a *ngIf="flagOfButtonShowMore" md-fab class="paginationButton" (click)="onClick()"><md-icon>format_line_spacing</md-icon></a>
 </div>

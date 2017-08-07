@@ -5,7 +5,7 @@
             {{ item }}
         </md-option>
     </md-select>
-    <rating [(ngModel)]="model.level"></rating>
+    <rating [(ngModel)]="model.level" (ngModelChange)="onModelChange($event)"></rating>
 </div>
 
 

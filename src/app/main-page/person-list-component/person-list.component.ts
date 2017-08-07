@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CardList } from '../../classes/card-list';
 import { CandidateCardItem } from '../../interfaces/candidate-card-item';
 import { HttpService } from '../../http-service/http-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Ng2FloatBtn } from 'ng2-float-btn';
 
 @Component({
   selector: 'person-list',
@@ -25,13 +26,14 @@ export class PersonListComponent implements OnInit {
   waitArrayOfSalary: any[];
   date: Date;
   urlSearch: string;
-  urlDefault: string = 'http://localhost:1337/api/candidates/search';
+  urlDefault: string = 'http://192.168.43.31:1337/api/candidates/search';
   countOfElements: number;
   arrayOfQuery : string [];
   returnQuery:string;
+  mainButton: Ng2FloatBtn;
+  buttons: Array<Ng2FloatBtn>;
 
-
-  constructor(private httpService: HttpService, private route: ActivatedRoute) {
+  constructor(private httpService: HttpService, private route: ActivatedRoute, private router: Router) {
     this.arrayOfSkills = [];
     this.arrayOfStatuses = [];
     this.arrayOfLanguages = [];
@@ -40,10 +42,36 @@ export class PersonListComponent implements OnInit {
     this.waitArrayOfSalary = [-1, -1];
     this.date = new Date();
     this.countOfElements = 5;
+
+    this.mainButton = {
+      color: "accent",
+      iconName: "more_vert"
+    };
+
+    this.buttons = [
+      {
+        color: "accent",
+        iconName: "add",
+        onClick: () => {
+          this.router.navigate(['/add-candidate']);
+        },
+        label : "Add"
+      },
+      {
+        color: "accent",
+        iconName: "file_download",
+        onClick: () => {
+          window.open(`http://192.168.43.31:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities,'city',true)}${this.makeQuery(this.arrayOfStatuses,'status',false)}${this.makeQuery(this.arrayOfSkills,'primarySkill',false)}${this.makeQuery(this.arrayOfLanguages,'englishLvl',false)}${this.makeQuery(this.arrayOfSalary,'salaryWish',false)}&expYear=${this.date.getTime()}`);
+          console.log(`http://192.168.43.31:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities,'city',true)}${this.makeQuery(this.arrayOfStatuses,'status',false)}${this.makeQuery(this.arrayOfSkills,'primarySkill',false)}${this.makeQuery(this.arrayOfLanguages,'englishLvl',false)}${this.makeQuery(this.arrayOfSalary,'salaryWish',false)}&expYear=${this.date.getTime()}`);
+          window.close();
+        },
+        label : "File"
+      }
+    ]
   }
 
   ngOnInit() {
-    this.httpService.postData({skip: 0, amount: this.countOfElements}, 'http://localhost:1337/api/candidates')
+    this.httpService.postData({skip: 0, amount: this.countOfElements}, 'http://192.168.43.31:1337/api/candidates')
       .subscribe((res) => {
         this.persons = res.json();
         this.listItem = new CardList(this.persons, 'candidates');
@@ -58,7 +86,7 @@ export class PersonListComponent implements OnInit {
     if (!event) {
       this.urlSearch = this.urlDefault;
     } else {
-      this.urlSearch = `http://localhost:1337/api/candidates/search?q=${event}`;
+      this.urlSearch = `http://192.168.43.31:1337/api/candidates/search?q=${event}`;
     }
     this.httpService.postData({skip: 0}, this.urlSearch)
       .subscribe((res) => {
@@ -89,7 +117,7 @@ export class PersonListComponent implements OnInit {
       expYear: this.date,
       amount: this.countOfElements + 6,
     };
-    this.httpService.postData(this.body, 'http://localhost:1337/api/candidates')
+    this.httpService.postData(this.body, 'http://192.168.43.31:1337/api/candidates')
       .subscribe((res) => {
         this.persons = res.json();
         if (this.isLastItem())
@@ -163,7 +191,7 @@ export class PersonListComponent implements OnInit {
       expYear: this.date,
       amount: this.countOfElements + 6,
     };
-    this.httpService.postData(this.body, 'http://localhost:1337/api/candidates')
+    this.httpService.postData(this.body, 'http://192.168.43.31:1337/api/candidates')
       .subscribe((res) => {
         this.persons = res.json();
         console.log(this.persons);
@@ -188,12 +216,6 @@ export class PersonListComponent implements OnInit {
       this.flagOfButtonShowMore = false;
       return false;
     }
-  }
-
-  OnDownload() {
-    window.open(`http://localhost:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities,'city',true)}${this.makeQuery(this.arrayOfStatuses,'status',false)}${this.makeQuery(this.arrayOfSkills,'primarySkill',false)}${this.makeQuery(this.arrayOfLanguages,'englishLvl',false)}${this.makeQuery(this.arrayOfSalary,'salaryWish',false)}&expYear=${this.date.getTime()}`);
-    console.log(`http://localhost:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities,'city',true)}${this.makeQuery(this.arrayOfStatuses,'status',false)}${this.makeQuery(this.arrayOfSkills,'primarySkill',false)}${this.makeQuery(this.arrayOfLanguages,'englishLvl',false)}${this.makeQuery(this.arrayOfSalary,'salaryWish',false)}&expYear=${this.date.getTime()}`);
-    window.close();
   }
 
   makeQuery(array: any[],type: string,flag: boolean){

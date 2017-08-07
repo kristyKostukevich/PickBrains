@@ -32,16 +32,18 @@
   width: 100%;
 }
 
-.paginationButton{
+.float-button{
   position: fixed;
   bottom: 90px;
-  right: 35px;
+  right: 28px;
   z-index: 50;
 }
-.downloadButton{
+
+.paginationButton{
   position: fixed;
-  bottom: 160px;
+  bottom: 20px;
   right: 35px;
   z-index: 50;
 }
+
 

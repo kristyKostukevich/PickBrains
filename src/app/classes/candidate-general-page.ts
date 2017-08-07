@@ -14,52 +14,52 @@ export class CandidateGeneralPage {
   secondarySkills: InputModel[];
   otherSkills: InputModel [];
   englishLevel: SelectModel;
-  resumeLink: InputModel;
-  // salaryWishes:
   vacancies: SelectModel[];
-  hrmNames: SelectModel[];
-  techName: SelectModel[];
-  interviewResult: InputModel;
-  interviewDate: DatePickerModel;
-  communicationDate: DatePickerModel;
-  communicateAgain: DatePickerModel;
-  emailAdresses: InputModel[];
-  phoneNumbers: InputModel; //почему не массив?
+  emailAddresses: InputModel[];
+  phoneNumbers: InputModel;
   linkedIn: InputModel;
   skypeId: InputModel;
 
   constructor(data: any, arrayOfCities: any[], arrayOfStatuses: any[], arrayOfSkills: any[], arrayOfLanguages: any[], arrayOfOtherSkills: any[], type: string) {
-    console.log(data);
     this.id = data.id;
     this.type = type;
-    this.firstName = new InputModel(data.firstName, 'First Name');
-    this.lastName = new InputModel(data.secondName, 'Last Name');
-    this.location = new SelectModel(data.city, 'Location', arrayOfCities);
-    this.status = new SelectModel(data.status, 'Status', arrayOfStatuses);
-    // console.log(data.skillName);
-    // console.log(data.secSkills[0]);
-    this.primarySkill = new SelectModel(data.skillName, 'Primary Skill', arrayOfSkills, data.primarySkillLvl);
-    this.workExperience = new DatePickerModel(data.expYear, 'Work Experience');
+    this.firstName = new InputModel(data.firstName, 'First Name',undefined,'firstName');
+    this.lastName = new InputModel(data.secondName, 'Last Name',undefined,'secondName');
+    this.location = new SelectModel(data.city, 'Location', arrayOfCities,undefined,undefined,'city');
+    this.status = new SelectModel(data.status, 'Status', arrayOfStatuses,undefined,undefined,'status');
+    this.primarySkill = new SelectModel(data.skillName, 'Primary Skill', arrayOfSkills.slice(0,20), data.primarySkillLvl,undefined,'skillName');
+    this.workExperience = new DatePickerModel(data.expYear, 'Work Experience',undefined,'expYear');
     this.secondarySkills = [];
     for (var key in data.secSkills) {
-      this.secondarySkills[key] = new SelectModel(data.secSkills[key].skillName, 'Secondary skill', arrayOfSkills, data.secSkills[key].lvl);
+      this.secondarySkills[key] = new SelectModel(
+        data.secSkills[key].skillName,
+        'Secondary skill',
+        arrayOfSkills,
+        data.secSkills[key].lvl,
+        undefined,
+        'secSkills',
+        +key,
+      );
     }
     this.otherSkills = [];
     for (var key in data.otherSkills) {
-      this.otherSkills[key] = new SelectModel(data.otherSkills[key].skill, 'Other skill', arrayOfOtherSkills);
+      this.otherSkills[key] = new SelectModel(
+        data.otherSkills[key].skill,
+        'Other skill',
+        arrayOfOtherSkills,
+        undefined,
+        undefined,
+        'otherSkills',
+        +key,
+      );
     }
-    this.englishLevel = new SelectModel(data.lvl, 'English Level', arrayOfLanguages);
-    // this.resumeLink = new InputModel(data.linkedin, 'Resume Link');
-    //
-    // // нужны vacancies,hrmNames, techName
-    //
-
-    this.emailAdresses = [];
+    this.englishLevel = new SelectModel(data.lvl, 'English Level', arrayOfLanguages,undefined,undefined,'lvl');
+    this.emailAddresses = [];
     for (var key in data.emails) {
-      this.emailAdresses[key] = new InputModel(data.emails[key], 'Email address');
+      this.emailAddresses[key] = new InputModel(data.emails[key], 'Email address',undefined,'emails',+key);
     }
-    this.phoneNumbers = new InputModel(data.phone, 'Phone number');
-    this.linkedIn = new InputModel(data.linkedin, 'LinkedIn');
-    this.skypeId = new InputModel(data.skype, 'SkypeID');
+    this.phoneNumbers = new InputModel(data.phone, 'Phone number',undefined,'phone');
+    this.linkedIn = new InputModel(data.linkedin, 'LinkedIn',undefined,'linkedin');
+    this.skypeId = new InputModel(data.skype, 'SkypeID',undefined,'skype');
   }
 }

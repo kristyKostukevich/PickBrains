@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CardList } from '../../classes/card-list';
 import { VacancyCardItem } from '../../interfaces/vacancy-card-item';
 import { HttpService } from '../../http-service/http-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Ng2FloatBtn } from 'ng2-float-btn';
 
 @Component({
   selector: 'vacancy-list',
@@ -20,16 +21,44 @@ export class VacancyListComponent implements OnInit {
   arrayOfCities: any[];
   arrayOfSkills: any[];
   countOfElements: number;
+  mainButton: Ng2FloatBtn;
+  buttons: Array<Ng2FloatBtn>;
 
 
-  constructor(private httpService: HttpService, private route: ActivatedRoute) {
+  constructor(private httpService: HttpService, private route: ActivatedRoute, private router: Router) {
     this.arrayOfSkills = [];
     this.arrayOfCities = [];
     this.countOfElements =  5;
-}
+
+    this.mainButton = {
+      color: "accent",
+      iconName: "more_vert"
+    };
+
+    this.buttons = [
+      {
+        color: "accent",
+        iconName: "add",
+        onClick: () => {
+          this.router.navigate(['/add-vacancy']);
+        },
+        label : "Add"
+      },
+      // {
+      //   color: "accent",
+      //   iconName: "file_download",
+      //   onClick: () => {
+      //     // window.open(`http://192.168.43.31:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities,'city',true)}${this.makeQuery(this.arrayOfStatuses,'status',false)}${this.makeQuery(this.arrayOfSkills,'primarySkill',false)}${this.makeQuery(this.arrayOfLanguages,'englishLvl',false)}${this.makeQuery(this.arrayOfSalary,'salaryWish',false)}&expYear=${this.date.getTime()}`);
+      //     // console.log(`http://192.168.43.31:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities,'city',true)}${this.makeQuery(this.arrayOfStatuses,'status',false)}${this.makeQuery(this.arrayOfSkills,'primarySkill',false)}${this.makeQuery(this.arrayOfLanguages,'englishLvl',false)}${this.makeQuery(this.arrayOfSalary,'salaryWish',false)}&expYear=${this.date.getTime()}`);
+      //     // window.close();
+      //   },
+      //   label : "File"
+      // }
+    ]
+  }
 
   ngOnInit() {
-    this.httpService.postData({skip: 0, capacity: this.countOfElements}, 'http://localhost:1337/api/vacancies')
+    this.httpService.postData({skip: 0, capacity: this.countOfElements}, 'http://192.168.43.31:1337/api/vacancies')
       .subscribe((res) => {
       this.vacancies = res.json();
       this.listItem = new CardList(this.vacancies, 'vacancies');
@@ -46,7 +75,7 @@ export class VacancyListComponent implements OnInit {
       primarySkill: this.arrayOfSkills,
       capacity: this.countOfElements + 6,
     };
-    this.httpService.postData(this.body, 'http://localhost:1337/api/vacancies')
+    this.httpService.postData(this.body, 'http://192.168.43.31:1337/api/vacancies')
       .subscribe((res) => {
         // console.log(res.json());
         this.vacancies = res.json();
@@ -89,7 +118,7 @@ export class VacancyListComponent implements OnInit {
       primarySkill: this.arrayOfSkills,
       capacity: this.countOfElements + 6,
     };
-    this.httpService.postData(this.body, 'http://localhost:1337/api/vacancies')
+    this.httpService.postData(this.body, 'http://192.168.43.31:1337/api/vacancies')
       .subscribe((res) => {
         this.vacancies = res.json();
         console.log(this.vacancies);

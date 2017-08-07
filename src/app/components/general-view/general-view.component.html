@@ -1,35 +1,46 @@
 <form *ngIf="isVacancy()">
-    <input-text [(model)]="model.projectName"></input-text>
-    <select-component [(model)]="model.location"></select-component>
-    <date-picker [(model)]="model.requestDate"></date-picker>
-    <date-picker [(model)]="model.projectStartDate"></date-picker>
-    <select-component [(model)]="model.status"></select-component>
-    <select-mark-component [(model)]="model.primarySkill"></select-mark-component>
-    <date-picker [(model)]="model.workExperience"></date-picker>
-    <select-component [(model)]="model.englishLevel"></select-component>
+    <input-text [(model)]="model.projectName" (modelChange)="onModelChange($event)"></input-text>
+    <select-component [(model)]="model.location" (modelChange)="onModelChange($event)"></select-component>
+    <date-picker [(model)]="model.requestDate" (modelChange)="onModelChange($event)"></date-picker>
+    <date-picker [(model)]="model.projectStartDate" (modelChange)="onModelChange($event)"></date-picker>
+    <select-component [(model)]="model.status" (modelChange)="onModelChange($event)"></select-component>
+    <select-mark-component [(model)]="model.primarySkill" (modelChange)="onModelChange($event)"></select-mark-component>
+    <date-picker [(model)]="model.workExperience" (modelChange)="onModelChange($event)"></date-picker>
+    <select-component [(model)]="model.englishLevel" (modelChange)="onModelChange($event)"></select-component>
     <select-mark-component *ngFor="let item of model.secondarySkills; let i = index"
-                           [(model)]="model.secondarySkills[i]"></select-mark-component>
+                           [(model)]="model.secondarySkills[i]"
+                           (modelChange)="onModelChange($event)"></select-mark-component>
     <select-component *ngFor="let item of model.otherSkills; let i = index"
-                      [(model)]="model.otherSkills[i]"></select-component>
-    <input-text [(model)]="model.salaryWish"></input-text>
-    <input-text [(model)]="model.linkedIn"></input-text>
-    <input-textarea [(model)]="model.description"></input-textarea>
+                      [(model)]="model.otherSkills[i]" (modelChange)="onModelChange($event)"></select-component>
+    <input-text [(model)]="model.salaryWish" (modelChange)="onModelChange($event)"></input-text>
+    <input-text [(model)]="model.linkedIn" (modelChange)="onModelChange($event)"></input-text>
+    <input-textarea [(model)]="model.description" (modelChange)="onModelChange($event)"></input-textarea>
+    <a *ngIf="flagOfButtonShowMore" md-fab class="editButton" (click)="onClickVacancy()">
+        <md-icon>edit</md-icon>
+    </a>
 </form>
 
 <form *ngIf="isCandidate()">
-    <input-text [(model)]="model.firstName"></input-text>
-    <input-text [(model)]="model.lastName"></input-text>
-    <select-component [(model)]="model.location"></select-component>
-    <select-component [(model)]="model.status"></select-component>
-    <select-mark-component [(model)]="model.primarySkill"></select-mark-component>
-    <date-picker [(model)]="model.workExperience"></date-picker>
+    <input-text [(model)]="model.firstName" (modelChange)="onModelChange($event)"></input-text>
+    <input-text [(model)]="model.lastName" (modelChange)="onModelChange($event)"></input-text>
+    <select-component [(model)]="model.location" (modelChange)="onModelChange($event)"></select-component>
+    <select-component [(model)]="model.status" (modelChange)="onModelChange($event)"></select-component>
+    <select-mark-component [(model)]="model.primarySkill" (modelChange)="onModelChange($event)"></select-mark-component>
+    <date-picker [(model)]="model.workExperience" (modelChange)="onModelChange($event)"></date-picker>
     <select-mark-component *ngFor="let item of model.secondarySkills; let i = index"
-                           [(model)]="model.secondarySkills[i]"></select-mark-component>
+                           [(model)]="model.secondarySkills[i]"
+                           (modelChange)="onModelChange($event)"></select-mark-component>
     <select-component *ngFor="let item of model.otherSkills; let i = index"
-                      [(model)]="model.otherSkills[i]"></select-component>
-    <select-component [(model)]="model.englishLevel"></select-component>
-    <input-email *ngFor="let item of model.emailAdresses; let i = index" [(model)]="model.emailAdresses[i]"></input-email>
-    <input-phone-text [(model)]="model.phoneNumbers"></input-phone-text>
-    <input-text [(model)]="model.linkedIn"></input-text>
-    <input-text [(model)]="model.skypeId"></input-text>
+                      [(model)]="model.otherSkills[i]"
+                      (modelChange)="onModelChange($event)"></select-component>
+    <select-component [(model)]="model.englishLevel" (modelChange)="onModelChange($event)"></select-component>
+    <input-email *ngFor="let item of model.emailAddresses; let i = index"
+                 [(model)]="model.emailAddresses[i]"
+                 (modelChange)="onModelChange($event)"></input-email>
+    <input-phone-text [(model)]="model.phoneNumbers" (modelChange)="onModelChange($event)"></input-phone-text>
+    <input-text [(model)]="model.linkedIn" (modelChange)="onModelChange($event)"></input-text>
+    <input-text [(model)]="model.skypeId" (modelChange)="onModelChange($event)"></input-text>
+    <a *ngIf="flagOfButtonShowMore" md-fab class="editButton" (click)="onClickCandidate()">
+        <md-icon>edit</md-icon>
+    </a>
 </form>

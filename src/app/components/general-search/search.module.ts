@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SearchLineComponent } from './search.component';
-import { MdIconModule, MdInputModule } from '@angular/material';
+import { MdIconModule, MdInputModule, MdButtonModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
     MdIconModule,
     MdInputModule,
     FormsModule,
+    MdButtonModule,
   ],
   declarations: [SearchLineComponent],
   exports: [SearchLineComponent,],

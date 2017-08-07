@@ -9,6 +9,7 @@ import { SelectMarkModule } from 'app/components/select-mark/select-mark.module'
 import { HttpService } from '../../http-service/http-service';
 import { InputPhoneModule } from '../input-phone-number/input-phone-number.module';
 import { InputEmailModule } from '../input-email/input-email.module';
+import { MdButtonModule, MdIconModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -20,6 +21,8 @@ import { InputEmailModule } from '../input-email/input-email.module';
     SelectMarkModule,
     InputPhoneModule,
     InputEmailModule,
+    MdButtonModule,
+    MdIconModule,
   ],
   declarations: [GeneralViewComponent],
   exports: [GeneralViewComponent],

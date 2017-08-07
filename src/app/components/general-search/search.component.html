@@ -9,3 +9,6 @@
         <md-icon mdSuffix>search</md-icon>
     </md-input-container>
 </form>
+<ul class="triSearch">
+    <li *ngFor="let item of list"><button class="buttonTriSearch" md-raised-button (click)="changeInfo(item)">{{item.name}}</button> </li>
+</ul>

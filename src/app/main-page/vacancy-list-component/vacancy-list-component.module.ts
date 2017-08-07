@@ -9,6 +9,7 @@ import { VacancyListComponent } from './vacancy-list-component';
 import { FilterVacancyModule } from '../../components/filter-components/filter-vacancy/filter-vacancy.module';
 import { ButtonAddModule } from '../../components/button-add/button.module';
 import { MdButtonModule, MdIconModule } from '@angular/material';
+import { Ng2FloatBtnModule } from 'ng2-float-btn';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { MdButtonModule, MdIconModule } from '@angular/material';
     ButtonAddModule,
     MdButtonModule,
     MdIconModule,
+    Ng2FloatBtnModule,
   ],
   declarations: [VacancyListComponent],
   exports: [VacancyListComponent],
