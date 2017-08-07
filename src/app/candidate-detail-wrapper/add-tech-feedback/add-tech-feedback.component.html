@@ -1,0 +1,14 @@
+<form>
+    <input-text [(model)]="model.name"></input-text>
+    <date-picker [(model)]="model.date"></date-picker>
+    <select-mark-component [(model)]="model.primarySkill"
+                           (modelChange)="removeOptions($event)"></select-mark-component>
+    <select-mark-component *ngFor="let item of model.secondarySkills; let i = index;"
+                           [(model)]="model.secondarySkills[i]"></select-mark-component>
+    <select-mark-component [(model)]="model.nextSecondarySkill"
+                           (modelChange)="addSecondarySkill($event)"></select-mark-component>
+    <input-textarea [(model)]="model.comment"></input-textarea>
+</form>
+<button class="button-add" md-fab (click)="submit()">
+    <md-icon>add</md-icon>
+</button>
