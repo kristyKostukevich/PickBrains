@@ -13,10 +13,12 @@ export class AuthorizationComponent {
   login: InputModel = {
     placeholder: 'Login',
     value: '',
+    type: 'text',
   };
   password: InputModel = {
     placeholder: 'Password',
     value: '',
+    type: 'password',
   };
 
   constructor(private httpService: HttpService,
@@ -51,6 +53,7 @@ export class AuthorizationComponent {
 export class InputModel {
   placeholder: string;
   value: string;
+  type: string;
 }
 
 export class AuthorizationForm {
