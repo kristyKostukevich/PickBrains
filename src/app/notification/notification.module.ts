@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NotificationComponent } from './notification.component';
 import { MdTableModule } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -11,6 +12,7 @@ import { CdkTableModule } from '@angular/cdk';
     FormsModule,
     MdTableModule,
     CdkTableModule,
+    RouterModule,
   ],
   declarations: [NotificationComponent],
   exports: [NotificationComponent],
