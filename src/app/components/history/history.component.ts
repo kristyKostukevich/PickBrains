@@ -42,7 +42,7 @@ export class HistoryDatabase {
   }
 
   constructor(private httpService: HttpService) {
-    this.httpService.getData('http://localhost:1337/api/history/?skip=0&capacity=10')
+    this.httpService.getData('http://192.168.43.31:1337/api/history/?skip=0&capacity=10')
       .subscribe((res) => {
         const interviews: HistoryData[] = res.json().slice(1);
         interviews.forEach((interview) => {
@@ -55,7 +55,7 @@ export class HistoryDatabase {
   onClick(event) {
     const skip:number = event.pageSize * event.pageIndex;
     this.httpService
-      .getData(`http://localhost:1337/api/history/?skip=${skip}&capacity=${event.pageSize}`)
+      .getData(`http://192.168.43.31:1337/api/history/?skip=${skip}&capacity=${event.pageSize}`)
       .subscribe((res) => {
         const interviews: HistoryData[] = res.json().slice(1);
         interviews.forEach((interview) => {
