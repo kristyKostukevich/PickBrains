@@ -9,10 +9,12 @@ export class SpinnerService {
     this.flag = true;
     this.showSpinner.emit(this.flag);
   }
+
   stopSpinner() {
     this.flag = false;
     this.showSpinner.emit(this.flag);
   }
+
   getEmitter() {
     return this.showSpinner;
   }

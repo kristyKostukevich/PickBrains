@@ -90,13 +90,17 @@ export class AddInterviewComponent implements OnInit {
   }
 
   getData() {
-    this.getRequests().subscribe((data) => {
-      this.getTechData(data[0]);
-      this.getHrmData(data[1]);
-      this.getVacancyData(data[2]);
-      this.createModel();
-      console.log(this.model);
-    });
+    this.getRequests().subscribe(
+      (data) => {
+        this.getTechData(data[0]);
+        this.getHrmData(data[1]);
+        this.getVacancyData(data[2]);
+        this.createModel();
+        console.log(this.model);
+      },
+      (error) => {
+        console.log(error);
+      });
   }
 
   submit() {
@@ -109,13 +113,16 @@ export class AddInterviewComponent implements OnInit {
 
     const currDate = this.model.date.value.getTime() + this.getSeconds(this.model.time.value);
 
-    this.httpService.postData({
-      candidateId: this.parentData.id,
-      vacancyId: this.vacancyMap.get(this.model.item.value),
-      userId: currUserId,
-      date: currDate,
-    }, 'http://192.168.43.31:1337/api/interviews/new')
-      .subscribe((res) => {
+    this.httpService.postData(
+      {
+        candidateId: this.parentData.id,
+        vacancyId: this.vacancyMap.get(this.model.item.value),
+        userId: currUserId,
+        date: currDate,
+      },
+      'http://192.168.43.31:1337/api/interviews/new')
+      .subscribe(
+        (res) => {
           if (res.status === 201) {
             this.router
               .navigate(['../interviews'], {relativeTo: this.currentActivatedRoute});

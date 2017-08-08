@@ -34,11 +34,14 @@ export class AddHrmFeedbackComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.httpService.getData('http://192.168.43.31:1337/api/meta-data/english-levels')
-      .subscribe((res) => {
-        this.getEnglishData(res.json());
-        this.model = new AddHrmFeedbackPage(Array.from(this.englishMap.keys()));
-        this.model.setName(this.userService.realName);
-      });
+      .subscribe(
+        (res) => {
+          this.getEnglishData(res.json());
+          this.model = new AddHrmFeedbackPage(Array.from(this.englishMap.keys()));
+          this.model.setName(this.userService.realName);
+        },
+        (error) => {
+        });
   }
 
   getEnglishData(param) {

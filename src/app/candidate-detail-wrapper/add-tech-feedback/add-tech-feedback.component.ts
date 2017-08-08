@@ -3,6 +3,7 @@ import { AddTechFeedbackPage } from 'app/classes/add-tech-feedback-page';
 import { UserService } from 'app/core-service/user.service';
 import { HttpService } from 'app/http-service/http-service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SpinnerService } from 'app/core-service/spinner.servise';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -23,7 +24,8 @@ export class AddTechFeedbackComponent implements OnInit, OnDestroy {
   constructor(private userService: UserService,
               private httpService: HttpService,
               private router: Router,
-              private currentActivatedRoute: ActivatedRoute) {
+              private currentActivatedRoute: ActivatedRoute,
+              private spinnerService: SpinnerService) {
     this.subscription = currentActivatedRoute.params
       .subscribe(params => this.interviewId = params['id']);
     this.skillMap = new Map();
@@ -31,12 +33,19 @@ export class AddTechFeedbackComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // this.spinnerService.startSpinner();
     this.httpService.getData('http://192.168.43.31:1337/api/meta-data/skills')
-      .subscribe((res) => {
-        this.getSkillData(res.json());
-        this.model = new AddTechFeedbackPage(Array.from(this.skillMap.keys()));
-        this.model.setName(this.userService.realName);
-      });
+      .subscribe(
+        (res) => {
+          this.getSkillData(res.json());
+          this.model = new AddTechFeedbackPage(Array.from(this.skillMap.keys()));
+          this.model.setName(this.userService.realName);
+          // this.spinnerService.stopSpinner();
+        },
+        (error) => {
+          // this.spinnerService.stopSpinner();
+          console.log(error);
+        });
   }
 
   getSkillData(param) {
@@ -52,6 +61,7 @@ export class AddTechFeedbackComponent implements OnInit, OnDestroy {
   }
 
   submit() {
+    // this.spinnerService.startSpinner();
     this.httpService.postData({
       primarySkillId: this.skillMap.get(this.model.primarySkill.value),
       primarySkillLvl: this.model.primarySkill.level,
@@ -69,9 +79,11 @@ export class AddTechFeedbackComponent implements OnInit, OnDestroy {
           this.router
             .navigate(['../../../feedbacks-from-tech'], {relativeTo: this.currentActivatedRoute});
         }
+        // this.spinnerService.stopSpinner();
         console.log(res.status);
       },
       (error) => {
+        // this.spinnerService.stopSpinner();
         console.log(error);
       },
     );

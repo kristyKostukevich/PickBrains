@@ -30,6 +30,7 @@ export class SearchLineComponent {
     if (event.keyCode === 13) {
       this.sendSearchLine.emit(this.info);
     }
+    this.list = [];
   }
 
   changeInfo(item) {
