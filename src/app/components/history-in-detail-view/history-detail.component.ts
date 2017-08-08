@@ -18,10 +18,10 @@ export class HistoryDetailComponent {
   createUrl(skip: number, capacity: number): string {
     switch (this.menuService.getData().type) {
       case 'candidate':
-        return `http://localhost:1337/api/candidates/${this.menuService.
+        return `http://192.168.43.31:1337/api/candidates/${this.menuService.
         getData().id}/history?skip=${skip}&capacity=${capacity}`;
       case 'vacancy':
-        return `http://localhost:1337/api/vacancies/${this.menuService.
+        return `http://192.168.43.31:1337/api/vacancies/${this.menuService.
         getData().id}/history?skip=${skip}&capacity=${capacity}`;
     }
   }
