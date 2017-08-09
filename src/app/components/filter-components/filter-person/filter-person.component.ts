@@ -30,7 +30,7 @@ export class FilterPersonComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/locations').subscribe((res) => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe((res) => {
       this.arrayOfCities = res.json();
       var count = 0;
       for(var item of this.arrayOfCities){
@@ -38,7 +38,7 @@ export class FilterPersonComponent implements OnInit {
           count++;
       }
     });
-    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/skills').subscribe((res) => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe((res) => {
       this.arrayOfSkills = res.json();
       var count = 0;
       for(var item of this.arrayOfSkills){
@@ -46,7 +46,7 @@ export class FilterPersonComponent implements OnInit {
         count++;
       }
     });
-    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/english-levels').subscribe((res) => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels').subscribe((res) => {
       this.arrayOfLanguages = res.json();
       var count = 0;
       for(var item of this.arrayOfLanguages){
@@ -54,7 +54,7 @@ export class FilterPersonComponent implements OnInit {
         count++;
       }
     });
-    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/candidate-statuses').subscribe((res) => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/candidate-statuses').subscribe((res) => {
       this.arrayOfStatuses = res.json();
       var count = 0;
       for(var item of this.arrayOfStatuses){

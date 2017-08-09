@@ -10,11 +10,12 @@ import { SpinnerService } from '../core-service/spinner.servise';
 })
 export class LayoutComponent {
   flag: boolean;
-  statusSpinner: boolean = false;
+  statusSpinner: boolean;
   constructor(
     private layout: LayoutService,
     private spinner: SpinnerService,
   ) {
+    this.statusSpinner = false;
     this.layout.getEmitter().subscribe(flag => this.flag = flag);
     this.spinner.getEmitter().subscribe(flag => this.statusSpinner = flag);
   }

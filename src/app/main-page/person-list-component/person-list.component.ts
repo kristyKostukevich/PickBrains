@@ -31,7 +31,7 @@ export class PersonListComponent implements OnInit {
 
   date: Date;
   urlSearch: string;
-  urlDefault: string = 'http://192.168.43.135:1337/api/candidates/search';
+  urlDefault: string = 'http://localhost:1337/api/candidates/search';
   countOfElements: number;
   arrayOfQuery: string [];
   returnQuery: string;
@@ -66,7 +66,7 @@ export class PersonListComponent implements OnInit {
         color: "accent",
         iconName: "file_download",
         onClick: () => {
-          window.open(`http://192.168.43.135:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities, 'city', true)}${this.makeQuery(this.arrayOfStatuses, 'status', false)}${this.makeQuery(this.arrayOfSkills, 'primarySkill', false)}${this.makeQuery(this.arrayOfLanguages, 'englishLvl', false)}${this.makeQuery(this.arrayOfSalary, 'salaryWish', false)}&expYear=${this.date.getTime()}`);
+          window.open(`http://localhost:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities, 'city', true)}${this.makeQuery(this.arrayOfStatuses, 'status', false)}${this.makeQuery(this.arrayOfSkills, 'primarySkill', false)}${this.makeQuery(this.arrayOfLanguages, 'englishLvl', false)}${this.makeQuery(this.arrayOfSalary, 'salaryWish', false)}&expYear=${this.date.getTime()}`);
           window.close();
         },
         label: "File"
@@ -75,16 +75,16 @@ export class PersonListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.postData({skip: 0, amount: this.countOfElements}, 'http://192.168.43.135:1337/api/candidates')
+    this.httpService.postData({skip: 0, amount: this.countOfElements}, 'http://localhost:1337/api/candidates')
       .subscribe((res) => {
         this.persons = res.json();
         this.listItem = new CardList(this.persons, 'candidates');
         this.urlAdress = this.route.snapshot.url[0].path;
       });
-    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/locations').subscribe((res) => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe((res) => {
       this.arrayOfCitiesFromServer = res.json();
     });
-    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/skills').subscribe((res) => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe((res) => {
       this.arrayOfSkillsFromServer = res.json();
     });
 
@@ -97,7 +97,7 @@ export class PersonListComponent implements OnInit {
     if (!event) {
       this.urlSearch = this.urlDefault;
     } else {
-      this.urlSearch = `http://192.168.43.135:1337/api/candidates/search?q=${event}`;
+      this.urlSearch = `http://localhost:1337/api/candidates/search?q=${event}`;
     }
     this.httpService.postData({skip: 0}, this.urlSearch)
       .subscribe((res) => {
@@ -120,7 +120,7 @@ export class PersonListComponent implements OnInit {
       expYear: this.date,
       amount: this.countOfElements + this.step + 1,
     };
-    this.httpService.postData(this.body, 'http://192.168.43.135:1337/api/candidates')
+    this.httpService.postData(this.body, 'http://localhost:1337/api/candidates')
       .subscribe((res) => {
         this.persons = res.json();
         if (this.isLastItem())
@@ -202,7 +202,7 @@ export class PersonListComponent implements OnInit {
       expYear: this.date,
       amount: this.countOfElements + this.step + 1,
     };
-    this.httpService.postData(this.body, 'http://192.168.43.135:1337/api/candidates')
+    this.httpService.postData(this.body, 'http://localhost:1337/api/candidates')
       .subscribe((res) => {
         this.persons = res.json();
         console.log(this.persons);

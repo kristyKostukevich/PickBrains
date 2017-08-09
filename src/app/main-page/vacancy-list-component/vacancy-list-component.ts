@@ -50,16 +50,16 @@ export class VacancyListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.postData({skip: 0, capacity: this.countOfElements}, 'http://192.168.43.135:1337/api/vacancies')
+    this.httpService.postData({skip: 0, capacity: this.countOfElements}, 'http://localhost:1337/api/vacancies')
       .subscribe((res) => {
       this.vacancies = res.json();
       this.listItem = new CardList(this.vacancies, 'vacancies');
       this.urlAdress = this.route.snapshot.url[0].path;
     });
-    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/locations').subscribe((res) => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe((res) => {
       this.arrayOfCitiesFromServer = res.json();
     });
-    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/skills').subscribe((res) => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe((res) => {
       this.arrayOfSkillsFromServer = res.json();
     });
   }
@@ -73,7 +73,7 @@ export class VacancyListComponent implements OnInit {
       primarySkill: this.arrayOfSkills,
       capacity: this.countOfElements + 6,
     };
-    this.httpService.postData(this.body, 'http://192.168.43.135:1337/api/vacancies')
+    this.httpService.postData(this.body, 'http://localhost:1337/api/vacancies')
       .subscribe((res) => {
         this.vacancies = res.json();
         if (this.isLastItem())
@@ -122,7 +122,7 @@ export class VacancyListComponent implements OnInit {
       primarySkill: this.arrayOfSkills,
       capacity: this.countOfElements + 6,
     };
-    this.httpService.postData(this.body, 'http://192.168.43.135:1337/api/vacancies')
+    this.httpService.postData(this.body, 'http://localhost:1337/api/vacancies')
       .subscribe((res) => {
         this.vacancies = res.json();
         console.log(this.vacancies);
@@ -149,7 +149,7 @@ export class VacancyListComponent implements OnInit {
       return false;
     }
   }
-  
+
   searchOfCountArray(array: any[], searchWord: string) {
     let index = 0;
     for (let i of array) {

@@ -81,23 +81,27 @@ export class AddInterviewComponent implements OnInit {
   getRequests() {
     const id = this.parentData.id;
     return Observable.forkJoin(
-      this.httpService.getData('http://192.168.43.135:1337/api/users?type=TECH')
+      this.httpService.getData('http://localhost:1337/api/users?type=TECH')
         .map((res: Response) => res.json()),
-      this.httpService.getData('http://192.168.43.135:1337/api/users?type=HRM')
+      this.httpService.getData('http://localhost:1337/api/users?type=HRM')
         .map((res: Response) => res.json()),
-      this.httpService.postData({}, `http://192.168.43.135:1337/api/vacancies`)
+      this.httpService.postData({}, `http://localhost:1337/api/vacancies`)
         .map((res: Response) => res.json()),
     );
   }
 
   getData() {
-    this.getRequests().subscribe((data) => {
-      this.getTechData(data[0]);
-      this.getHrmData(data[1]);
-      this.getVacancyData(data[2]);
-      this.createModel();
-      console.log(this.model);
-    });
+    this.getRequests().subscribe(
+      (data) => {
+        this.getTechData(data[0]);
+        this.getHrmData(data[1]);
+        this.getVacancyData(data[2]);
+        this.createModel();
+        console.log(this.model);
+      },
+      (error) => {
+        console.log(error);
+      });
   }
 
   submit() {
@@ -110,13 +114,16 @@ export class AddInterviewComponent implements OnInit {
 
     const currDate = this.model.date.value.getTime() + this.getSeconds(this.model.time.value);
 
-    this.httpService.postData({
-      candidateId: this.parentData.id,
-      vacancyId: this.vacancyMap.get(this.model.item.value),
-      userId: currUserId,
-      date: currDate,
-    }, 'http://192.168.43.135:1337/api/interviews/new')
-      .subscribe((res) => {
+    this.httpService.postData(
+      {
+        candidateId: this.parentData.id,
+        vacancyId: this.vacancyMap.get(this.model.item.value),
+        userId: currUserId,
+        date: currDate,
+      },
+      'http://localhost:1337/api/interviews/new')
+      .subscribe(
+        (res) => {
           if (res.status === 201) {
             this.router
               .navigate(['../interviews'], {relativeTo: this.currentActivatedRoute});

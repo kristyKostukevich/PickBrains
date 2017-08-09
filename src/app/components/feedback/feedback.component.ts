@@ -8,7 +8,6 @@ import { FeedbackCard } from '../../classes/feedback-card';
 })
 export class FeedbackComponent {
   @Input() item: FeedbackCard;
-  currDate: Date = new Date();//не забыть сказать бэку!
 
   isSkill() {
     return !(this.item.skillName === null);

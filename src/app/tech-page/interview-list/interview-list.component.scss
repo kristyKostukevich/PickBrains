@@ -1,0 +1,24 @@
+div {
+  position: absolute;
+  top: 15px;
+  left: 20%;
+  width: 60%;
+}
+
+.wrapper {
+  bottom: 0;
+  box-sizing: border-box;
+  left: 0;
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  top: 64px;
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  div {
+    width: 95%;
+    left: 2.5%;
+  }
+}

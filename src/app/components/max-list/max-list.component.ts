@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CardList } from 'app/classes/card-list';
 import { FeedbackCard } from 'app/classes/feedback-card';
-import { HistoryCardItem } from 'app/interfaces/history-card-item';
 import { CandidateCardItem } from 'app/interfaces/candidate-card-item';
 import { MenuService } from 'app/components/menu/menu.service';
 import { ComponentsData } from 'app/interfaces/components-data';
@@ -70,7 +69,7 @@ export class MaxListComponent implements OnInit {
 
   getFeedbackFromTech() {
     this.list = new CardList(this.feedbacks);
-    this.httpService.getData(`http://192.168.43.135:1337/api/candidate/ts-feedbacks?id=${this.parentData.id}`)
+    this.httpService.getData(`http://localhost:1337/api/candidate/ts-feedbacks?id=${this.parentData.id}`)
       .subscribe(
         (res) => {
           const temp = res.json();
@@ -93,7 +92,7 @@ export class MaxListComponent implements OnInit {
 
   getFeedbackFromHrm() {
     this.list = new CardList(this.feedbacks);
-    this.httpService.getData(`http://192.168.43.135:1337/api/candidate/hrm-feedbacks?id=${this.parentData.id}`)
+    this.httpService.getData(`http://localhost:1337/api/candidate/hrm-feedbacks?id=${this.parentData.id}`)
       .subscribe(
         (res) => {
           const temp = res.json();
@@ -116,7 +115,7 @@ export class MaxListComponent implements OnInit {
 
   getInterviews() {
     this.list = new CardList(this.interviews);
-    this.httpService.getData(`http://192.168.43.135:1337/api/interviews/candidate?id=${this.parentData.id}`)
+    this.httpService.getData(`http://localhost:1337/api/interviews/candidate?id=${this.parentData.id}`)
       .subscribe(
         (res) => {
           const temp = res.json();
@@ -142,7 +141,7 @@ export class MaxListComponent implements OnInit {
   }
 
   getAssignedCandidates() {
-    this.httpService.getData(`http://192.168.43.135:1337/api/vacancies/${this.parentData.id}/assigned`)
+    this.httpService.getData(`http://localhost:1337/api/vacancies/${this.parentData.id}/assigned`)
       .subscribe(
         (res) => {
           const temp = res.json();
@@ -165,7 +164,7 @@ export class MaxListComponent implements OnInit {
   }
 
   getPotentialCandidates() {
-    this.httpService.getData(`http://192.168.43.135:1337/api/vacancies/${this.parentData.id}/candidates`)
+    this.httpService.getData(`http://localhost:1337/api/vacancies/${this.parentData.id}/candidates`)
       .subscribe((res) => {
           const temp = res.json();
           for (const i of temp) {

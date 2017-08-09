@@ -33,12 +33,15 @@ export class AddHrmFeedbackComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/english-levels')
-      .subscribe((res) => {
-        this.getEnglishData(res.json());
-        this.model = new AddHrmFeedbackPage(Array.from(this.englishMap.keys()));
-        this.model.setName(this.userService.realName);
-      });
+    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels')
+      .subscribe(
+        (res) => {
+          this.getEnglishData(res.json());
+          this.model = new AddHrmFeedbackPage(Array.from(this.englishMap.keys()));
+          this.model.setName(this.userService.realName);
+        },
+        (error) => {
+        });
   }
 
   getEnglishData(param) {
@@ -55,7 +58,7 @@ export class AddHrmFeedbackComponent implements OnInit, OnDestroy {
       salaryWish: this.model.salary.value,
       other: this.model.comment.value,
       interviewId: this.interviewId,
-    }, 'http://192.168.43.135:1337/api/candidate/hrm-feedbacks/new').subscribe(
+    }, 'http://localhost:1337/api/candidate/hrm-feedbacks/new').subscribe(
       (res) => {
         if (res.status === 201) {
           this.router

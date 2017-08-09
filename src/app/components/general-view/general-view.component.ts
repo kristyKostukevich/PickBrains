@@ -85,17 +85,17 @@ export class GeneralViewComponent implements OnInit {
   getCandidateRequests() {
     const id = this.parentData.id;
     return Observable.forkJoin(
-      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/candidate-statuses')
+      this.httpService.getData('http://localhost:1337/api/meta-data/candidate-statuses')
         .map((res: Response) => res.json()),
-      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/skills')
+      this.httpService.getData('http://localhost:1337/api/meta-data/skills')
         .map((res: Response) => res.json()),
-      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/english-levels')
+      this.httpService.getData('http://localhost:1337/api/meta-data/english-levels')
         .map((res: Response) => res.json()),
-      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/locations')
+      this.httpService.getData('http://localhost:1337/api/meta-data/locations')
         .map((res: Response) => res.json()),
-      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/other-skills')
+      this.httpService.getData('http://localhost:1337/api/meta-data/other-skills')
         .map((res: Response) => res.json()),
-      this.httpService.getData(`http://192.168.43.135:1337/api/candidates?id=${this.parentData.id}`)
+      this.httpService.getData(`http://localhost:1337/api/candidates?id=${this.parentData.id}`)
         .map((res: Response) => res.json()),
     );
   }
@@ -103,19 +103,19 @@ export class GeneralViewComponent implements OnInit {
   getVacancyRequests() {
     const id = this.parentData.id;
     return Observable.forkJoin(
-      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/vacancy-statuses')
+      this.httpService.getData('http://localhost:1337/api/meta-data/vacancy-statuses')
         .map((res: Response) => res.json()),
-      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/skills')
+      this.httpService.getData('http://localhost:1337/api/meta-data/skills')
         .map((res: Response) => res.json()),
-      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/english-levels')
+      this.httpService.getData('http://localhost:1337/api/meta-data/english-levels')
         .map((res: Response) => res.json()),
-      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/locations')
+      this.httpService.getData('http://localhost:1337/api/meta-data/locations')
         .map((res: Response) => res.json()),
-      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/other-skills')
+      this.httpService.getData('http://localhost:1337/api/meta-data/other-skills')
         .map((res: Response) => res.json()),
-      this.httpService.getData(`http://192.168.43.135:1337/api/vacancies/${this.parentData.id}/hiring`)
+      this.httpService.getData(`http://localhost:1337/api/vacancies/${this.parentData.id}/hiring`)
         .map((res: Response) => res.json()),
-      this.httpService.getData(`http://192.168.43.135:1337/api/vacancies/${this.parentData.id}`)
+      this.httpService.getData(`http://localhost:1337/api/vacancies/${this.parentData.id}`)
         .map((res: Response) => res.json()),
     );
   }
@@ -230,7 +230,7 @@ export class GeneralViewComponent implements OnInit {
   }
 
   onClickCandidate() {
-    this.httpService.patchData(this.editCandidateObject, `http://192.168.43.135:1337/api/candidates/edit?id=${this.model.id}`)
+    this.httpService.patchData(this.editCandidateObject, `http://localhost:1337/api/candidates/edit?id=${this.model.id}`)
       .subscribe(() => {
         alert('good');
       });
@@ -239,7 +239,7 @@ export class GeneralViewComponent implements OnInit {
   onClickVacancy() {
     console.log(this.editVacancyObject);
     if (!this.closeFlag) {
-      this.httpService.patchData(this.editVacancyObject, `http://192.168.43.135:1337/api/vacancies/${this.model.id}/update`)
+      this.httpService.patchData(this.editVacancyObject, `http://localhost:1337/api/vacancies/${this.model.id}/update`)
         .subscribe(() => {
           alert('good');
         });
@@ -249,7 +249,7 @@ export class GeneralViewComponent implements OnInit {
       this.httpService.patchData({
         vacancyId: this.model.id,
         candidateId: this.worker
-      }, `http://192.168.43.135:1337/api/vacancies/close`)
+      }, `http://localhost:1337/api/vacancies/close`)
         .subscribe(() => {
           alert('good');
         });

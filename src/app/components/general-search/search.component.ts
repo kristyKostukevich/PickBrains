@@ -17,7 +17,7 @@ export class SearchLineComponent {
   updateCheckedOptions(event) {
     this.info = event;
     if (event !== '')
-      this.httpService.getData(`http://192.168.43.135:1337/api/candidates/trie-search?candidate=${event}`).subscribe((res) => {
+      this.httpService.getData(`http://localhost:1337/api/candidates/trie-search?candidate=${event}`).subscribe((res) => {
         // this.list.push({name:event});
           this.list = res.json();
           this.list = this.list.slice(0, 5);
@@ -30,6 +30,7 @@ export class SearchLineComponent {
     if (event.keyCode === 13) {
       this.sendSearchLine.emit(this.info);
     }
+    this.list = [];
   }
 
   changeInfo(item) {

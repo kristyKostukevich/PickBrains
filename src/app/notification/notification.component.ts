@@ -40,7 +40,7 @@ export class NotificationDatabase {
   }
 
   constructor(private httpService: HttpService) {
-    this.httpService.getData('http://192.168.43.135:1337/api/interviews/user')
+    this.httpService.getData('http://localhost:1337/api/interviews/user')
       .subscribe((res) => {
         const interviews: UserData[] = res.json();
         this.dataChange.next(interviews);

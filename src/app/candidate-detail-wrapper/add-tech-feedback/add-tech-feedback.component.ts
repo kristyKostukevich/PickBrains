@@ -31,12 +31,16 @@ export class AddTechFeedbackComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/skills')
-      .subscribe((res) => {
-        this.getSkillData(res.json());
-        this.model = new AddTechFeedbackPage(Array.from(this.skillMap.keys()));
-        this.model.setName(this.userService.realName);
-      });
+    this.httpService.getData('http://localhost:1337/api/meta-data/skills')
+      .subscribe(
+        (res) => {
+          this.getSkillData(res.json());
+          this.model = new AddTechFeedbackPage(Array.from(this.skillMap.keys()));
+          this.model.setName(this.userService.realName);
+        },
+        (error) => {
+          console.log(error);
+        });
   }
 
   getSkillData(param) {
@@ -63,7 +67,7 @@ export class AddTechFeedbackComponent implements OnInit, OnDestroy {
         };
       }),
       other: this.model.comment.value,
-    }, 'http://192.168.43.135:1337/api/candidate/ts-feedbacks/new').subscribe(
+    }, 'http://localhost:1337/api/candidate/ts-feedbacks/new').subscribe(
       (res) => {
         if (res.status === 201) {
           this.router
