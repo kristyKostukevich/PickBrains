@@ -3,7 +3,7 @@
 
         <ng-container cdkColumnDef="name">
             <md-header-cell *cdkHeaderCellDef> Candidate Name</md-header-cell>
-            <md-cell *cdkCellDef="let row"> {{row.candidateName}}</md-cell>
+            <md-cell *cdkCellDef="let row"> <a [routerLink]="['/','detail-candidate',row.id]" (click)="close()">{{row.candidateName}}</a></md-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="date">
@@ -20,3 +20,4 @@
         <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
     </md-table>
 </div>
+<a md-mini-fab class="button-back" (click)="close()"><md-icon>keyboard_arrow_right</md-icon></a>

@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccordionModule } from 'ngx-accordion';
 import { PersonPageModule } from './main-page/person-list-component/person-list.module';
 import { HttpModule } from '@angular/http';
-import { TempModule } from './Temp/temp.module';
 import { FilterPersonModule } from './components/filter-components/filter-person/filter-person.module';
 import { VacancyPageModule } from './main-page/vacancy-list-component/vacancy-list-component.module';
 import { AuthorizationModule } from './authorization/authorization.module';
@@ -34,7 +33,6 @@ import { TechPageModule } from './tech-page/tech-page.module';
     PersonPageModule,
     AccordionModule,
     HttpModule,
-    TempModule,
     FilterPersonModule,
     VacancyPageModule,
     HistoryPageModule,
