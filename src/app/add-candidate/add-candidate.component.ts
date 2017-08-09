@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CandidateAddPage } from '../classes/candidate-add-page';
 import { HttpService } from '../http-service/http-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'add-candidate',
@@ -25,7 +26,8 @@ export class AddCandidateComponent implements OnInit {
   sendArrayOfOtherSkills: string [];
 
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService,
+              private router: Router) {
     this.generalModel = new CandidateAddPage('', [], [], [], [], [], '');
     this.arrayOfCities = [];
     this.sendArrayOfCities = [];
@@ -42,7 +44,7 @@ export class AddCandidateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.getData('http://localhost:1337/api/meta-data/candidate-statuses').subscribe(res => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/candidate-statuses').subscribe(res => {
       this.arrayOfStatuses = res.json();
       let index = 0;
       for (let i of this.arrayOfStatuses) {
@@ -51,7 +53,7 @@ export class AddCandidateComponent implements OnInit {
       }
     });
 
-    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe(res => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/skills').subscribe(res => {
       this.arrayOfSkills = res.json();
       let index = 0;
       for (let i of this.arrayOfSkills) {
@@ -59,7 +61,7 @@ export class AddCandidateComponent implements OnInit {
         index += 1;
       }
     });
-    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels').subscribe(res => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/english-levels').subscribe(res => {
       this.arrayOfLanguages = res.json();
       let index = 0;
       for (let i of this.arrayOfLanguages) {
@@ -67,7 +69,7 @@ export class AddCandidateComponent implements OnInit {
         index += 1;
       }
     });
-    this.httpService.getData('http://localhost:1337/api/meta-data/other-skills').subscribe(res => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/other-skills').subscribe(res => {
       this.arrayOfOtherSkills = res.json();
       let index = 0;
       for (let i of this.arrayOfOtherSkills) {
@@ -75,7 +77,7 @@ export class AddCandidateComponent implements OnInit {
         index += 1;
       }
     });
-    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe(res => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/locations').subscribe(res => {
       this.arrayOfCities = res.json();
       let index = 0;
       for (let i of this.arrayOfCities) {
@@ -115,8 +117,11 @@ export class AddCandidateComponent implements OnInit {
       this.searchOfCountArray(this.arrayOfSkills, this.generalModel.primarySkill.value),
       this.generalModel.skypeId.value,
     );
-    this.httpService.postData(this.postCandidateInfo,'http://localhost:1337/api/candidates/new')
-      .subscribe(() => {
+    this.httpService.postData(this.postCandidateInfo, 'http://192.168.43.31:1337/api/candidates/new')
+      .subscribe((res) => {
+        if (res.status === 201) {
+          this.router.navigate(['/person-page']);
+        }
         this.done = true;
       });
   }
@@ -170,7 +175,7 @@ export class PostCandidateInfo {
     for (var item of secondarySkills) {
       this.secSkills[counter] = new SkillsFields(
         this.searchOfCountArray(secondarySkills[counter].options, secondarySkills[counter].value).toString(),
-        secondarySkills[counter].level
+        secondarySkills[counter].level,
       );
       counter++;
     }

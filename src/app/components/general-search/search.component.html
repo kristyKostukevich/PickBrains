@@ -1,6 +1,7 @@
 <form class="search-block">
     <md-input-container class="search-full-width" floatPlaceholder="never">
         <input mdInput
+               autocomplete = "off"
                [(ngModel)]="info"
                (ngModelChange)="updateCheckedOptions(info)"
                [placeholder]="'Search'"

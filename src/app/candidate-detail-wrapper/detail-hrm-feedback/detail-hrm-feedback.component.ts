@@ -19,12 +19,11 @@ export class DetailHrmFeedbackComponent implements OnInit, OnDestroy {
               private currentActivatedRoute: ActivatedRoute) {
     this.subscription = currentActivatedRoute.params
       .subscribe(params => this.feedbackId = params['id']);
-    console.log(this.feedbackId);
     this.model = new DetailHrmFeedbackPage({});
   }
 
   ngOnInit() {
-    this.httpService.getData(`http://localhost:1337/api/candidate/hrm-feedbacks/detailed-view?id=${this.feedbackId}`)
+    this.httpService.getData(`http://192.168.43.31:1337/api/candidate/hrm-feedbacks/detailed-view?id=${this.feedbackId}`)
       .subscribe(
         (res) => {
           this.getFeedbackData(res.json());

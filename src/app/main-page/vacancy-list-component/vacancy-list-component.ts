@@ -50,16 +50,16 @@ export class VacancyListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.postData({skip: 0, capacity: this.countOfElements}, 'http://localhost:1337/api/vacancies')
+    this.httpService.postData({skip: 0, capacity: this.countOfElements}, 'http://192.168.43.31:1337/api/vacancies')
       .subscribe((res) => {
       this.vacancies = res.json();
       this.listItem = new CardList(this.vacancies, 'vacancies');
       this.urlAdress = this.route.snapshot.url[0].path;
     });
-    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe((res) => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/locations').subscribe((res) => {
       this.arrayOfCitiesFromServer = res.json();
     });
-    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe((res) => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/skills').subscribe((res) => {
       this.arrayOfSkillsFromServer = res.json();
     });
   }
@@ -73,7 +73,7 @@ export class VacancyListComponent implements OnInit {
       primarySkill: this.arrayOfSkills,
       capacity: this.countOfElements + 6,
     };
-    this.httpService.postData(this.body, 'http://localhost:1337/api/vacancies')
+    this.httpService.postData(this.body, 'http://192.168.43.31:1337/api/vacancies')
       .subscribe((res) => {
         this.vacancies = res.json();
         if (this.isLastItem())
@@ -109,7 +109,6 @@ export class VacancyListComponent implements OnInit {
         this.arrayOfCities.push(this.searchOfCountArray(this.arrayOfCitiesFromServer,event.id));
         break;
       case 'skillSmall':
-        console.log('good');
         this.arrayOfSkills.push(this.searchOfCountArray(this.arrayOfSkillsFromServer,event.id));
         break;
     }
@@ -122,10 +121,9 @@ export class VacancyListComponent implements OnInit {
       primarySkill: this.arrayOfSkills,
       capacity: this.countOfElements + 6,
     };
-    this.httpService.postData(this.body, 'http://localhost:1337/api/vacancies')
+    this.httpService.postData(this.body, 'http://192.168.43.31:1337/api/vacancies')
       .subscribe((res) => {
         this.vacancies = res.json();
-        console.log(this.vacancies);
         if (this.isLastItem())
           this.vacancies.pop();
         this.listItem = new CardList(this.vacancies, 'vacancies');
@@ -134,17 +132,14 @@ export class VacancyListComponent implements OnInit {
   }
 
   isLastItem() {
-    console.log(this.countOfElements);
     if (this.countOfElements + 5< this.vacancies.length) {
       this.flagOfButtonShowMore = true;
       this.countOfElements += 5;
-      console.log('good', this.countOfElements);
       return true;
     }
     else
     {
       this.countOfElements -= 5;
-      console.log('sosi',this.countOfElements);
       this.flagOfButtonShowMore = false;
       return false;
     }

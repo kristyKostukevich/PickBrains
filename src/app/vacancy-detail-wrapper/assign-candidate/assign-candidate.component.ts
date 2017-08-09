@@ -80,11 +80,11 @@ export class AssignCandidateComponent implements OnInit {
   getRequests() {
     const id = this.parentData.id;
     return Observable.forkJoin(
-      this.httpService.getData('http://localhost:1337/api/users?type=TECH')
+      this.httpService.getData('http://192.168.43.31:1337/api/users?type=TECH')
         .map((res: Response) => res.json()),
-      this.httpService.getData('http://localhost:1337/api/users?type=HRM')
+      this.httpService.getData('http://192.168.43.31:1337/api/users?type=HRM')
         .map((res: Response) => res.json()),
-      this.httpService.getData(`http://localhost:1337/api/vacancies/${id}/candidates`)
+      this.httpService.getData(`http://192.168.43.31:1337/api/vacancies/${id}/candidates`)
         .map((res: Response) => res.json()),
     );
   }
@@ -95,7 +95,6 @@ export class AssignCandidateComponent implements OnInit {
       this.getHrmData(data[1]);
       this.getCandidatesData(data[2]);
       this.createModel();
-      console.log(this.model);
     });
   }
 
@@ -114,13 +113,12 @@ export class AssignCandidateComponent implements OnInit {
       vacancyId: this.parentData.id,
       userId: currUserId,
       date: currDate,
-    }, 'http://localhost:1337/api/interviews/new')
+    }, 'http://192.168.43.31:1337/api/interviews/new')
       .subscribe((res) => {
           if (res.status === 201) {
             this.router
               .navigate(['../assigned-candidates'], {relativeTo: this.currentActivatedRoute});
           }
-          console.log(res.status);
         },
         (error) => {
           console.log(error);

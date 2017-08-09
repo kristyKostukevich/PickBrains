@@ -8,8 +8,7 @@
     </div>
     <div class="second-block">
         <span>{{item.done}}</span>
-        <a style="background-color: rgb(224, 224, 224); box-shadow: none" md-raised-button
-           [routerLink]="[]">Add feedback</a>
+        <a style="background-color: rgb(224, 224, 224); box-shadow: none" md-raised-button [routerLink]="['/', 'interviews', item.id, 'add-feedback']">Add feedback</a>
     </div>
 </div>
 

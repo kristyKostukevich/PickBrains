@@ -23,6 +23,7 @@ import { DetailHrmFeedbackComponent } from 'app/candidate-detail-wrapper/detail-
 import { DetailTechFeedbackComponent } from 'app/candidate-detail-wrapper/detail-tech-feedback/detail-tech-feedback.component';
 import { InterviewListComponent } from './tech-page/interview-list/interview-list.component';
 import { InterviewDetailComponent } from './tech-page/interview-detail/interview-detail.component';
+import { AddFeedbackComponent } from 'app/tech-page/add-feedback/add-feedback.component';
 
 const candidateRoutes: Routes = [
   {
@@ -111,6 +112,10 @@ const routes: Routes = [
   {
     path: 'interviews/:id',
     component: InterviewDetailComponent,
+  },
+  {
+    path: 'interviews/:id/add-feedback',
+    component: AddFeedbackComponent,
   },
   {
     path: 'person-page',

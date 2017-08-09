@@ -1,5 +1,5 @@
-<div *ngIf="!this.list.data.length">
-    not found
+<div *ngIf="!this.list.data.length" class="not-found-wrapp">
+    <span calss="not-found">Not found</span>
 </div>
 <div *ngIf="isVacancies()">
     <vacancy-card *ngFor="let item of list.data" [item]="item">

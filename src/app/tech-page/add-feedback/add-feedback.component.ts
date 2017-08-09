@@ -6,15 +6,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'add-tech-feedback',
-  templateUrl: 'add-tech-feedback.component.html',
+  selector: 'add-feedback',
+  templateUrl: 'add-feedback.component.html',
   styleUrls: [
-    '../../components/general-view/general-view.component.scss',
-    '../add-hrm-feedback/add-hrm-feedback.component.scss',
+    './add-feedback.component.scss',
+    '../interview-list/interview-list.component.scss',
   ],
 })
 
-export class AddTechFeedbackComponent implements OnInit, OnDestroy {
+export class AddFeedbackComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   model: AddTechFeedbackPage;
   skillMap: Map<string, number>;
@@ -69,9 +69,11 @@ export class AddTechFeedbackComponent implements OnInit, OnDestroy {
       other: this.model.comment.value,
     }, 'http://192.168.43.31:1337/api/candidate/ts-feedbacks/new').subscribe(
       (res) => {
+        console.log(res.status);
+        console.log(this.model);
         if (res.status === 201) {
           this.router
-            .navigate(['../../../feedbacks-from-tech'], {relativeTo: this.currentActivatedRoute});
+            .navigate(['/inerviews']);
         }
       },
       (error) => {

@@ -26,14 +26,12 @@ export class AddHrmFeedbackComponent implements OnInit, OnDestroy {
               private currentActivatedRoute: ActivatedRoute) {
     this.subscription = currentActivatedRoute.params
       .subscribe(params => this.interviewId = params['id']);
-    console.log(this.interviewId);
-
     this.englishMap = new Map();
     this.model = new AddHrmFeedbackPage([]);
   }
 
   ngOnInit() {
-    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels')
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/english-levels')
       .subscribe(
         (res) => {
           this.getEnglishData(res.json());
@@ -58,13 +56,12 @@ export class AddHrmFeedbackComponent implements OnInit, OnDestroy {
       salaryWish: this.model.salary.value,
       other: this.model.comment.value,
       interviewId: this.interviewId,
-    }, 'http://localhost:1337/api/candidate/hrm-feedbacks/new').subscribe(
+    }, 'http://192.168.43.31:1337/api/candidate/hrm-feedbacks/new').subscribe(
       (res) => {
         if (res.status === 201) {
           this.router
             .navigate(['../../../feedbacks-from-hrm'], {relativeTo: this.currentActivatedRoute});
         }
-        console.log(res.status);
       },
       (error) => {
         console.log(error);

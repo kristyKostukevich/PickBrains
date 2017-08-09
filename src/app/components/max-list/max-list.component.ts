@@ -63,13 +63,12 @@ export class MaxListComponent implements OnInit {
         this.getPotentialCandidates();
         break;
       default:
-        alert('error');
     }
   }
 
   getFeedbackFromTech() {
     this.list = new CardList(this.feedbacks);
-    this.httpService.getData(`http://localhost:1337/api/candidate/ts-feedbacks?id=${this.parentData.id}`)
+    this.httpService.getData(`http://192.168.43.31:1337/api/candidate/ts-feedbacks?id=${this.parentData.id}`)
       .subscribe(
         (res) => {
           const temp = res.json();
@@ -83,7 +82,6 @@ export class MaxListComponent implements OnInit {
             });
           }
           this.list = new CardList(this.feedbacks);
-          console.log(this.list);
         },
         (error) => {
           console.log(error);
@@ -92,7 +90,7 @@ export class MaxListComponent implements OnInit {
 
   getFeedbackFromHrm() {
     this.list = new CardList(this.feedbacks);
-    this.httpService.getData(`http://localhost:1337/api/candidate/hrm-feedbacks?id=${this.parentData.id}`)
+    this.httpService.getData(`http://192.168.43.31:1337/api/candidate/hrm-feedbacks?id=${this.parentData.id}`)
       .subscribe(
         (res) => {
           const temp = res.json();
@@ -106,7 +104,6 @@ export class MaxListComponent implements OnInit {
             });
           }
           this.list = new CardList(this.feedbacks);
-          console.log(this.list);
         },
         (error) => {
           console.log(error);
@@ -115,7 +112,7 @@ export class MaxListComponent implements OnInit {
 
   getInterviews() {
     this.list = new CardList(this.interviews);
-    this.httpService.getData(`http://localhost:1337/api/interviews/candidate?id=${this.parentData.id}`)
+    this.httpService.getData(`http://192.168.43.31:1337/api/interviews/candidate?id=${this.parentData.id}`)
       .subscribe(
         (res) => {
           const temp = res.json();
@@ -133,7 +130,6 @@ export class MaxListComponent implements OnInit {
             });
           }
           this.list = new CardList(this.interviews);
-          console.log(this.list);
         },
         (error) => {
           console.log(error);
@@ -141,7 +137,7 @@ export class MaxListComponent implements OnInit {
   }
 
   getAssignedCandidates() {
-    this.httpService.getData(`http://localhost:1337/api/vacancies/${this.parentData.id}/assigned`)
+    this.httpService.getData(`http://192.168.43.31:1337/api/vacancies/${this.parentData.id}/assigned`)
       .subscribe(
         (res) => {
           const temp = res.json();
@@ -164,7 +160,7 @@ export class MaxListComponent implements OnInit {
   }
 
   getPotentialCandidates() {
-    this.httpService.getData(`http://localhost:1337/api/vacancies/${this.parentData.id}/candidates`)
+    this.httpService.getData(`http://192.168.43.31:1337/api/vacancies/${this.parentData.id}/candidates`)
       .subscribe((res) => {
           const temp = res.json();
           for (const i of temp) {

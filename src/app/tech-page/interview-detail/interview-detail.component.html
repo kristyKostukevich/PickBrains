@@ -7,4 +7,7 @@
         <input-text-mark *ngFor="let item of model.secondarySkills; let i = index;"
                          [(model)]="model.secondarySkills[i]"></input-text-mark>
     </form>
+    <a md-fab [routerLink]="['/', 'interviews', interviewId, 'add-feedback']" class="button-add">
+        <md-icon>note_add</md-icon>
+    </a>
 </div>

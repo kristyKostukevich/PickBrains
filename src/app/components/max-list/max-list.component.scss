@@ -1,4 +1,4 @@
-div {
+div, .not-found-wrapp {
   box-sizing: border-box;
   left: 310px;
   margin-bottom: 15px;
@@ -28,7 +28,7 @@ div {
 }
 
 @media screen and (max-width: 800px) {
-  div {
+  div, .not-found-wrapp{
     top: 2.5%;
     left: 2.5%;
     width: 95%;
@@ -41,4 +41,15 @@ div {
   div {
     text-align: center;
   }
+}
+
+.not-found {
+  font-size: 3em;
+  color: #606060;
+  opacity: 0.8;
+}
+
+.not-found-wrapp {
+  justify-content: center;
+  align-items: center;
 }

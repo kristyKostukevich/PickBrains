@@ -14,12 +14,10 @@ export class InterviewListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.getData('http://localhost:1337/api/interviews/unclosed/user')
+    this.httpService.getData('http://192.168.43.31:1337/api/interviews/unclosed/user')
       .subscribe(
         (res) => {
-          console.log(res.json());
           this.list = res.json();
-          console.log(this.list);
         },
       );
   }
@@ -27,14 +25,14 @@ export class InterviewListComponent implements OnInit {
 
 export class TechInterview {
   id: number;
-  interviewDate: Date;
+  date: Date;
   done: string;
   candidateName: string;
   vacancyName: string;
 
   constructor(data: any) {
     this.id = data.id;
-    this.interviewDate = data.date;
+    this.date = data.date;
     this.done = data.done;
     this.candidateName = data.candidateName;
     this.vacancyName = data.vacancyName;

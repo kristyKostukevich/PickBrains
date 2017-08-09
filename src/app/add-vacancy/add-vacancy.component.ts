@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http-service/http-service';
 import { VacancyAddPage } from '../classes/vacancy-add-page';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'add-vacancy',
@@ -23,7 +24,8 @@ export class AddVacancyComponent implements OnInit {
   arrayOfOtherSkills: any[];
   sendArrayOfOtherSkills: string [];
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService,
+              private router: Router) {
     this.model = new VacancyAddPage('', [], [], [], [], [], '');
     this.arrayOfCities = [];
     this.sendArrayOfCities = [];
@@ -40,7 +42,7 @@ export class AddVacancyComponent implements OnInit {
 
   ngOnInit() {
 
-    this.httpService.getData('http://localhost:1337/api/meta-data/vacancy-statuses').subscribe(res => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/vacancy-statuses').subscribe(res => {
       this.arrayOfStatuses = res.json();
       let index = 0;
       for (let i of this.arrayOfStatuses) {
@@ -49,7 +51,7 @@ export class AddVacancyComponent implements OnInit {
       }
     });
 
-    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe(res => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/skills').subscribe(res => {
       this.arrayOfSkills = res.json();
       let index = 0;
       for (let i of this.arrayOfSkills) {
@@ -57,7 +59,7 @@ export class AddVacancyComponent implements OnInit {
         index += 1;
       }
     });
-    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels').subscribe(res => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/english-levels').subscribe(res => {
       this.arrayOfLanguages = res.json();
       let index = 0;
       for (let i of this.arrayOfLanguages) {
@@ -65,7 +67,7 @@ export class AddVacancyComponent implements OnInit {
         index += 1;
       }
     });
-    this.httpService.getData('http://localhost:1337/api/meta-data/other-skills').subscribe(res => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/other-skills').subscribe(res => {
       this.arrayOfOtherSkills = res.json();
       let index = 0;
       for (let i of this.arrayOfOtherSkills) {
@@ -73,7 +75,7 @@ export class AddVacancyComponent implements OnInit {
         index += 1;
       }
     });
-    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe(res => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/locations').subscribe(res => {
       this.arrayOfCities = res.json();
       let index = 0;
       for (let i of this.arrayOfCities) {
@@ -113,9 +115,11 @@ export class AddVacancyComponent implements OnInit {
       this.model.workExperience.value,
       this.model.description.value,
     );
-    console.log(this.postVacancyInfo);
-    this.httpService.postData(this.postVacancyInfo, 'http://localhost:1337/api/vacancies/new')
-      .subscribe(() => {
+    this.httpService.postData(this.postVacancyInfo, 'http://192.168.43.31:1337/api/vacancies/new')
+      .subscribe((res) => {
+        if (res.status === 201) {
+          this.router.navigate(['/vacancy-page']);
+        }
         this.done = true;
       });
   }

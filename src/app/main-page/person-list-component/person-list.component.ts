@@ -31,7 +31,7 @@ export class PersonListComponent implements OnInit {
 
   date: Date;
   urlSearch: string;
-  urlDefault: string = 'http://localhost:1337/api/candidates/search';
+  urlDefault: string = 'http://192.168.43.31:1337/api/candidates/search';
   countOfElements: number;
   arrayOfQuery: string [];
   returnQuery: string;
@@ -66,7 +66,7 @@ export class PersonListComponent implements OnInit {
         color: "accent",
         iconName: "file_download",
         onClick: () => {
-          window.open(`http://localhost:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities, 'city', true)}${this.makeQuery(this.arrayOfStatuses, 'status', false)}${this.makeQuery(this.arrayOfSkills, 'primarySkill', false)}${this.makeQuery(this.arrayOfLanguages, 'englishLvl', false)}${this.makeQuery(this.arrayOfSalary, 'salaryWish', false)}&expYear=${this.date.getTime()}`);
+          window.open(`http://192.168.43.31:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities, 'city', true)}${this.makeQuery(this.arrayOfStatuses, 'status', false)}${this.makeQuery(this.arrayOfSkills, 'primarySkill', false)}${this.makeQuery(this.arrayOfLanguages, 'englishLvl', false)}${this.makeQuery(this.arrayOfSalary, 'salaryWish', false)}&expYear=${this.date.getTime()}`);
           window.close();
         },
         label: "File"
@@ -75,16 +75,16 @@ export class PersonListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.postData({skip: 0, amount: this.countOfElements}, 'http://localhost:1337/api/candidates')
+    this.httpService.postData({skip: 0, amount: this.countOfElements}, 'http://192.168.43.31:1337/api/candidates')
       .subscribe((res) => {
         this.persons = res.json();
         this.listItem = new CardList(this.persons, 'candidates');
         this.urlAdress = this.route.snapshot.url[0].path;
       });
-    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe((res) => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/locations').subscribe((res) => {
       this.arrayOfCitiesFromServer = res.json();
     });
-    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe((res) => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/skills').subscribe((res) => {
       this.arrayOfSkillsFromServer = res.json();
     });
 
@@ -97,7 +97,7 @@ export class PersonListComponent implements OnInit {
     if (!event) {
       this.urlSearch = this.urlDefault;
     } else {
-      this.urlSearch = `http://localhost:1337/api/candidates/search?q=${event}`;
+      this.urlSearch = `http://192.168.43.31:1337/api/candidates/search?q=${event}`;
     }
     this.httpService.postData({skip: 0}, this.urlSearch)
       .subscribe((res) => {
@@ -120,7 +120,7 @@ export class PersonListComponent implements OnInit {
       expYear: this.date,
       amount: this.countOfElements + this.step + 1,
     };
-    this.httpService.postData(this.body, 'http://localhost:1337/api/candidates')
+    this.httpService.postData(this.body, 'http://192.168.43.31:1337/api/candidates')
       .subscribe((res) => {
         this.persons = res.json();
         if (this.isLastItem())
@@ -172,19 +172,16 @@ export class PersonListComponent implements OnInit {
         if (event.id.field === 'end') {
           this.waitArrayOfSalary[1] = +event.id.event;
         }
-        console.log(this.waitArrayOfSalary);
         if (this.waitArrayOfSalary[0] != -1 && this.waitArrayOfSalary[1] != -1 && this.waitArrayOfSalary[1] != '') {
           for (let i = 0; i < 2; i++)
             this.arrayOfSalary[i] = this.waitArrayOfSalary[i];
         }
-        console.log(this.arrayOfSalary);
         break;
       case 'citySmall':
         this.arrayOfCities.push(this.searchOfCountArray(this.arrayOfCitiesFromServer,event.id));
         this.arrayOfSkills = [];
         break;
       case 'skillSmall':
-        console.log('good');
         this.arrayOfSkills.push(this.searchOfCountArray(this.arrayOfSkillsFromServer,event.id));
         this.arrayOfCities = [];
         break;
@@ -202,10 +199,9 @@ export class PersonListComponent implements OnInit {
       expYear: this.date,
       amount: this.countOfElements + this.step + 1,
     };
-    this.httpService.postData(this.body, 'http://localhost:1337/api/candidates')
+    this.httpService.postData(this.body, 'http://192.168.43.31:1337/api/candidates')
       .subscribe((res) => {
         this.persons = res.json();
-        console.log(this.persons);
         if (this.isLastItem())
           this.persons.pop();
         this.listItem = new CardList(this.persons, 'candidates');

@@ -26,12 +26,10 @@ export class InterviewDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.httpService.getData(`http://localhost:1337/api/interviews/detailed-view?id=${this.interviewId}`)
+    this.httpService.getData(`http://192.168.43.31:1337/api/interviews/detailed-view?id=${this.interviewId}`)
       .subscribe(
         (res) => {
-          console.log(res.json());
           this.model = new InterviewDetailPage(res.json());
-          console.log(this.model);
         },
         (error) => {
           console.log(error);

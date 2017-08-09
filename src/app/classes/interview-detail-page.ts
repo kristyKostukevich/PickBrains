@@ -17,7 +17,7 @@ export class InterviewDetailPage {
     if (data.secondarySkills) {
       data.secondarySkills.forEach((item) => {
         this.secondarySkills
-          .push(new InputModel(item.skillName, 'Other skill', false, undefined, undefined, true, item.lvl));
+          .push(new InputModel(item.skillName, 'Secondary skill', false, undefined, undefined, true, item.lvl));
       });
     }
   }

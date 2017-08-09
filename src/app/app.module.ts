@@ -25,6 +25,7 @@ import { HistoryModule } from './components/history/history.module';
 import { HistoryDetailModule } from './components/history-in-detail-view/history-detail.module';
 import { InterviewListModule } from './tech-page/interview-list/interview-list.module';
 import { InterviewDetailModule } from './tech-page/interview-detail/interview-detail.module';
+import { AddFeedbackModule } from 'app/tech-page/add-feedback/add-feedback.module';
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import { InterviewDetailModule } from './tech-page/interview-detail/interview-de
     HistoryDetailModule,
     InterviewListModule,
     InterviewDetailModule,
+    AddFeedbackModule,
   ],
   declarations: [
     AppComponent,

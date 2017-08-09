@@ -21,7 +21,7 @@ export class FilterVacancyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe((res) => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/locations').subscribe((res) => {
       this.arrayOfCities = res.json();
       var count = 0;
       for(var item of this.arrayOfCities){
@@ -29,7 +29,7 @@ export class FilterVacancyComponent implements OnInit {
         count++;
       }
     });
-    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe((res) => {
+    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/skills').subscribe((res) => {
       this.arrayOfSkills = res.json();
       var count = 0;
       for(var item of this.arrayOfSkills){
