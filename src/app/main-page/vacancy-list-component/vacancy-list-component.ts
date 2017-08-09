@@ -23,6 +23,8 @@ export class VacancyListComponent implements OnInit {
   countOfElements: number;
   mainButton: Ng2FloatBtn;
   buttons: Array<Ng2FloatBtn>;
+  arrayOfCitiesFromServer: any[] = [];
+  arrayOfSkillsFromServer: any[] = [];
 
 
   constructor(private httpService: HttpService, private route: ActivatedRoute, private router: Router) {
@@ -44,25 +46,21 @@ export class VacancyListComponent implements OnInit {
         },
         label : "Add"
       },
-      // {
-      //   color: "accent",
-      //   iconName: "file_download",
-      //   onClick: () => {
-      //     // window.open(`http://192.168.43.31:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities,'city',true)}${this.makeQuery(this.arrayOfStatuses,'status',false)}${this.makeQuery(this.arrayOfSkills,'primarySkill',false)}${this.makeQuery(this.arrayOfLanguages,'englishLvl',false)}${this.makeQuery(this.arrayOfSalary,'salaryWish',false)}&expYear=${this.date.getTime()}`);
-      //     // console.log(`http://192.168.43.31:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities,'city',true)}${this.makeQuery(this.arrayOfStatuses,'status',false)}${this.makeQuery(this.arrayOfSkills,'primarySkill',false)}${this.makeQuery(this.arrayOfLanguages,'englishLvl',false)}${this.makeQuery(this.arrayOfSalary,'salaryWish',false)}&expYear=${this.date.getTime()}`);
-      //     // window.close();
-      //   },
-      //   label : "File"
-      // }
     ]
   }
 
   ngOnInit() {
-    this.httpService.postData({skip: 0, capacity: this.countOfElements}, 'http://192.168.43.31:1337/api/vacancies')
+    this.httpService.postData({skip: 0, capacity: this.countOfElements}, 'http://192.168.43.135:1337/api/vacancies')
       .subscribe((res) => {
       this.vacancies = res.json();
       this.listItem = new CardList(this.vacancies, 'vacancies');
       this.urlAdress = this.route.snapshot.url[0].path;
+    });
+    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/locations').subscribe((res) => {
+      this.arrayOfCitiesFromServer = res.json();
+    });
+    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/skills').subscribe((res) => {
+      this.arrayOfSkillsFromServer = res.json();
     });
   }
 
@@ -75,9 +73,8 @@ export class VacancyListComponent implements OnInit {
       primarySkill: this.arrayOfSkills,
       capacity: this.countOfElements + 6,
     };
-    this.httpService.postData(this.body, 'http://192.168.43.31:1337/api/vacancies')
+    this.httpService.postData(this.body, 'http://192.168.43.135:1337/api/vacancies')
       .subscribe((res) => {
-        // console.log(res.json());
         this.vacancies = res.json();
         if (this.isLastItem())
           this.vacancies.pop();
@@ -108,6 +105,13 @@ export class VacancyListComponent implements OnInit {
           this.arrayOfSkills.push(event.id);
         }
         break;
+      case 'citySmall':
+        this.arrayOfCities.push(this.searchOfCountArray(this.arrayOfCitiesFromServer,event.id));
+        break;
+      case 'skillSmall':
+        console.log('good');
+        this.arrayOfSkills.push(this.searchOfCountArray(this.arrayOfSkillsFromServer,event.id));
+        break;
     }
   }
 
@@ -118,7 +122,7 @@ export class VacancyListComponent implements OnInit {
       primarySkill: this.arrayOfSkills,
       capacity: this.countOfElements + 6,
     };
-    this.httpService.postData(this.body, 'http://192.168.43.31:1337/api/vacancies')
+    this.httpService.postData(this.body, 'http://192.168.43.135:1337/api/vacancies')
       .subscribe((res) => {
         this.vacancies = res.json();
         console.log(this.vacancies);
@@ -143,6 +147,16 @@ export class VacancyListComponent implements OnInit {
       console.log('sosi',this.countOfElements);
       this.flagOfButtonShowMore = false;
       return false;
+    }
+  }
+  
+  searchOfCountArray(array: any[], searchWord: string) {
+    let index = 0;
+    for (let i of array) {
+      if (JSON.stringify(i).indexOf(searchWord) > -1)
+        return index + 1;
+      else
+        index += 1;
     }
   }
 }

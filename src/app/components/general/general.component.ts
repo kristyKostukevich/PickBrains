@@ -23,6 +23,8 @@ export class GeneralComponent implements OnChanges {
 
   onModelChange() {
     this.modelChange.emit(this.model);
+    if (this.model.nextSecondarySkill.options.indexOf(this.model.primarySkill.value) > -1)
+      this.model.nextSecondarySkill.options.splice(this.model.nextSecondarySkill.options.indexOf(this.model.primarySkill.value), 1);
   }
 
   updateSecondarySkill(a, b, c) {
@@ -32,7 +34,7 @@ export class GeneralComponent implements OnChanges {
   addSecondarySkill() {
     this.model.secondarySkills.push(this.model.nextSecondarySkill);
     this.model.nextSecondarySkill = new SelectModel('', 'Secondary skill', this.model.nextSecondarySkill.options.filter(skill => {
-      return skill !== this.model.nextSecondarySkill.value;
+      return skill !== this.model.nextSecondarySkill.value && skill !== this.model.primarySkill.value;
     }))
   }
 
@@ -46,6 +48,7 @@ export class GeneralComponent implements OnChanges {
   isCandidateAdd(): boolean {
     return this.initialized && this.model.type === 'add-candidate';
   }
+
   isVacancyAdd(): boolean {
     return this.initialized && this.model.type === 'add-vacancy';
   }

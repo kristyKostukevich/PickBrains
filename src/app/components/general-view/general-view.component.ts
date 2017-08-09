@@ -4,6 +4,8 @@ import { VacancyGeneralPage } from 'app/classes/vacancy-general-page';
 import { MenuService } from '../menu/menu.service';
 import { ComponentsData } from 'app/interfaces/components-data';
 import { HttpService } from '../../http-service/http-service';
+import { Observable } from 'rxjs/Rx';
+import { Response } from '@angular/http';
 
 @Component({
   selector: 'general',
@@ -26,10 +28,15 @@ export class GeneralViewComponent implements OnInit {
   sendArrayOfLanguages: string[];
   arrayOfOtherSkills: any[];
   sendArrayOfOtherSkills: string[];
+  arrayOfCandidates: any[];
+  sendArrayOfCandidates: string[];
+  closeFlag: boolean = false;
+  startCloseFlag: boolean = false;
   flagOfButtonShowMore: boolean = false;
   body: any;
   editCandidateObject: PostCandidateInfo;
   editVacancyObject: PostVacancyInfo;
+  worker: number;
 
   constructor(private menuService: MenuService,
               private httpService: HttpService) {
@@ -44,6 +51,8 @@ export class GeneralViewComponent implements OnInit {
     this.sendArrayOfLanguages = [];
     this.arrayOfOtherSkills = [];
     this.sendArrayOfOtherSkills = [];
+    this.arrayOfCandidates = [];
+    this.sendArrayOfCandidates = [];
   }
 
   ngOnInit() {
@@ -59,10 +68,12 @@ export class GeneralViewComponent implements OnInit {
     switch (item) {
       case 'candidate':
         this.model = new CandidateGeneralPage('', [], [], [], [], [], '');
+        this.getCandidateRequests();
         this.getCandidateData();
         break;
       case 'vacancy':
         this.model = new VacancyGeneralPage('', [], [], [], [], [], '');
+        this.getVacancyRequests();
         this.getVacancyData();
         break;
       default:
@@ -71,111 +82,138 @@ export class GeneralViewComponent implements OnInit {
     }
   }
 
-  getCandidateData() {
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/candidate-statuses')
-      .subscribe((res) => {
-        this.arrayOfStatuses = res.json();
-        let index = 0;
-        for (let i of this.arrayOfStatuses) {
-          this.sendArrayOfStatuses[index] = i.status;
-          index += 1;
-        }
-      });
+  getCandidateRequests() {
+    const id = this.parentData.id;
+    return Observable.forkJoin(
+      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/candidate-statuses')
+        .map((res: Response) => res.json()),
+      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/skills')
+        .map((res: Response) => res.json()),
+      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/english-levels')
+        .map((res: Response) => res.json()),
+      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/locations')
+        .map((res: Response) => res.json()),
+      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/other-skills')
+        .map((res: Response) => res.json()),
+      this.httpService.getData(`http://192.168.43.135:1337/api/candidates?id=${this.parentData.id}`)
+        .map((res: Response) => res.json()),
+    );
+  }
 
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/skills').subscribe((res) => {
-      this.arrayOfSkills = res.json();
+  getVacancyRequests() {
+    const id = this.parentData.id;
+    return Observable.forkJoin(
+      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/vacancy-statuses')
+        .map((res: Response) => res.json()),
+      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/skills')
+        .map((res: Response) => res.json()),
+      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/english-levels')
+        .map((res: Response) => res.json()),
+      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/locations')
+        .map((res: Response) => res.json()),
+      this.httpService.getData('http://192.168.43.135:1337/api/meta-data/other-skills')
+        .map((res: Response) => res.json()),
+      this.httpService.getData(`http://192.168.43.135:1337/api/vacancies/${this.parentData.id}/hiring`)
+        .map((res: Response) => res.json()),
+      this.httpService.getData(`http://192.168.43.135:1337/api/vacancies/${this.parentData.id}`)
+        .map((res: Response) => res.json()),
+    );
+  }
+
+  getCandidateData() {
+    this.getCandidateRequests().subscribe((data) => {
+
+      this.arrayOfStatuses = data[0];
       let index = 0;
+      for (let i of this.arrayOfStatuses) {
+        this.sendArrayOfStatuses[index] = i.status;
+        index += 1;
+      }
+
+      this.arrayOfSkills = data[1];
+      index = 0;
       for (let i of this.arrayOfSkills) {
         this.sendArrayOfSkills[index] = i.skillName;
         index += 1;
       }
-    });
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/english-levels')
-      .subscribe((res) => {
-        this.arrayOfLanguages = res.json();
-        let index = 0;
-        for (let i of this.arrayOfLanguages) {
-          this.sendArrayOfLanguages[index] = i.lvl;
-          index += 1;
-        }
-      });
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/locations').subscribe((res) => {
-      this.arrayOfCities = res.json();
-      let index = 0;
+
+      this.arrayOfLanguages = data[2];
+      index = 0;
+      for (let i of this.arrayOfLanguages) {
+        this.sendArrayOfLanguages[index] = i.lvl;
+        index += 1;
+      }
+
+      this.arrayOfCities = data[3];
+      index = 0;
       for (let i of this.arrayOfCities) {
         this.sendArrayOfCities[index] = i.city;
         index += 1;
       }
+
+      this.arrayOfOtherSkills = data[4];
+      index = 0;
+      for (let i of this.arrayOfOtherSkills) {
+        this.sendArrayOfOtherSkills[index] = i.skill;
+        index += 1;
+      }
+
+      this.temp = data[5];
+      this.model = new CandidateGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages, this.sendArrayOfOtherSkills, 'candidate');
+
     });
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/other-skills')
-      .subscribe((res) => {
-        this.arrayOfOtherSkills = res.json();
-        let index = 0;
-        for (let i of this.arrayOfOtherSkills) {
-          this.sendArrayOfOtherSkills[index] = i.skill;
-          index += 1;
-        }
-      });
-    this.httpService
-      .getData(`http://192.168.43.31:1337/api/candidates?id=${this.parentData.id}`)
-      .subscribe((res) => {
-        this.temp = res.json();
-        this.model = new CandidateGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages, this.sendArrayOfOtherSkills, 'candidate');
-      });
   }
 
   getVacancyData() {
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/vacancy-statuses')
-      .subscribe((res) => {
-        this.arrayOfStatuses = res.json();
-        let index = 0;
-        for (let i of this.arrayOfStatuses) {
-          this.sendArrayOfStatuses[index] = i.status;
-          index += 1;
-        }
-      });
+    this.getVacancyRequests().subscribe((data) => {
 
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/skills').subscribe((res) => {
-      this.arrayOfSkills = res.json();
+      this.arrayOfStatuses = data[0];
       let index = 0;
-      for (const i of this.arrayOfSkills) {
+      for (let i of this.arrayOfStatuses) {
+        this.sendArrayOfStatuses[index] = i.status;
+        index += 1;
+      }
+
+      this.arrayOfSkills = data[1];
+      index = 0;
+      for (let i of this.arrayOfSkills) {
         this.sendArrayOfSkills[index] = i.skillName;
         index += 1;
       }
+
+      this.arrayOfLanguages = data[2];
+      index = 0;
+      for (let i of this.arrayOfLanguages) {
+        this.sendArrayOfLanguages[index] = i.lvl;
+        index += 1;
+      }
+
+      this.arrayOfCities = data[3];
+      index = 0;
+      for (let i of this.arrayOfCities) {
+        this.sendArrayOfCities[index] = i.city;
+        index += 1;
+      }
+
+      this.arrayOfOtherSkills = data[4];
+      index = 0;
+      for (let i of this.arrayOfOtherSkills) {
+        this.sendArrayOfOtherSkills[index] = i.skill;
+        index += 1;
+      }
+
+      this.arrayOfCandidates = data[5];
+      index = 0;
+      for (let i of this.arrayOfCandidates) {
+        this.sendArrayOfCandidates[index] = i.name;
+        index += 1;
+      }
+
+      this.temp = data[6];
+      this.model = new VacancyGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages, this.sendArrayOfOtherSkills, 'vacancy', this.sendArrayOfCandidates);
+      if (this.model.status.value === 'Closed')
+        this.startCloseFlag = true;
     });
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/english-levels')
-      .subscribe((res) => {
-        this.arrayOfLanguages = res.json();
-        let index = 0;
-        for (let i of this.arrayOfLanguages) {
-          this.sendArrayOfLanguages[index] = i.lvl;
-          index += 1;
-        }
-      });
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/locations')
-      .subscribe((res) => {
-        this.arrayOfCities = res.json();
-        let index = 0;
-        for (let i of this.arrayOfCities) {
-          this.sendArrayOfCities[index] = i.city;
-          index += 1;
-        }
-      });
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/other-skills')
-      .subscribe((res) => {
-        this.arrayOfOtherSkills = res.json();
-        let index = 0;
-        for (let i of this.arrayOfOtherSkills) {
-          this.sendArrayOfOtherSkills[index] = i.skill;
-          index += 1;
-        }
-      });
-    this.httpService
-      .getData(`http://192.168.43.31:1337/api/vacancies/${this.parentData.id}`)
-      .subscribe((data) => {
-        this.temp = data.json();
-        this.model = new VacancyGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages, this.sendArrayOfOtherSkills, 'vacancy');
-      });
   }
 
   isCandidate(): boolean {
@@ -186,21 +224,13 @@ export class GeneralViewComponent implements OnInit {
     return this.initialized && this.model.type === 'vacancy';
   }
 
-  isFeedbackFromHr(): boolean {
-    return this.parentData.type === 'feedbackFromHr';
-  }
-
-  isFeedbackFromTech(): boolean {
-    return this.parentData.type === 'feedbackFromTech';
-  }
-
   onModelChange(event) {
     this.flagOfButtonShowMore = true;
     this.makeBody(event, this.model.type);
   }
 
   onClickCandidate() {
-    this.httpService.patchData(this.editCandidateObject, `http://192.168.43.31:1337/api/candidates/edit?id=${this.model.id}`)
+    this.httpService.patchData(this.editCandidateObject, `http://192.168.43.135:1337/api/candidates/edit?id=${this.model.id}`)
       .subscribe(() => {
         alert('good');
       });
@@ -208,10 +238,23 @@ export class GeneralViewComponent implements OnInit {
 
   onClickVacancy() {
     console.log(this.editVacancyObject);
-    this.httpService.patchData(this.editVacancyObject, `http://192.168.43.31:1337/api/vacancies/${this.model.id}/update`)
-      .subscribe(() => {
-        alert('good');
-      });
+    if (!this.closeFlag) {
+      this.httpService.patchData(this.editVacancyObject, `http://192.168.43.135:1337/api/vacancies/${this.model.id}/update`)
+        .subscribe(() => {
+          alert('good');
+        });
+    }
+    else {
+      console.log(this.model.id, this.worker);
+      this.httpService.patchData({
+        vacancyId: this.model.id,
+        candidateId: this.worker
+      }, `http://192.168.43.135:1337/api/vacancies/close`)
+        .subscribe(() => {
+          alert('good');
+        });
+    }
+
   }
 
   makeBody(event, type) {
@@ -353,6 +396,10 @@ export class GeneralViewComponent implements OnInit {
           this.editVacancyObject.description = event.value;
           break;
         }
+        case 'worker': {
+          this.worker = this.searchOfCountArray(this.arrayOfCandidates, event.value);
+          break;
+        }
       }
     }
     return this.body
@@ -367,6 +414,14 @@ export class GeneralViewComponent implements OnInit {
         index += 1;
     }
   }
+
+  isClose() {
+    if (this.model.status.value === 'Closed' && !this.startCloseFlag) {
+      this.closeFlag = true;
+      return true;
+    }
+  }
+
 }
 
 export class SkillsFields {
@@ -427,5 +482,6 @@ export class SkillsFieldsVacancy {
     this.lvl = level;
   }
 }
+
 
 

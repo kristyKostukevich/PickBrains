@@ -33,7 +33,7 @@ export class GlobalHeaderComponent{
   }
 
   logout() {
-    this.httpService.postData({ } ,'http://192.168.43.31:1337/api/authentication/exit')
+    this.httpService.postData({ } ,'http://192.168.43.135:1337/api/authentication/exit')
       .subscribe();
     this.router.navigateByUrl('/login');
     this.layout.logout();
