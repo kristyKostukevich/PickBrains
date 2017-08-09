@@ -18,11 +18,9 @@ export class SearchLineComponent {
     this.info = event;
     if (event !== '')
       this.httpService.getData(`http://192.168.43.135:1337/api/candidates/trie-search?candidate=${event}`).subscribe((res) => {
-        // this.list.push({name:event});
           this.list = res.json();
           this.list = this.list.slice(0, 5);
           this.list.splice(0, 0, {name: event});
-          console.log(this.list);
       });
   }
 

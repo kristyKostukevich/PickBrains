@@ -77,7 +77,6 @@ export class GeneralViewComponent implements OnInit {
         this.getVacancyData();
         break;
       default:
-        alert('error');
         break;
     }
   }
@@ -232,26 +231,21 @@ export class GeneralViewComponent implements OnInit {
   onClickCandidate() {
     this.httpService.patchData(this.editCandidateObject, `http://192.168.43.135:1337/api/candidates/edit?id=${this.model.id}`)
       .subscribe(() => {
-        alert('good');
       });
   }
 
   onClickVacancy() {
-    console.log(this.editVacancyObject);
     if (!this.closeFlag) {
       this.httpService.patchData(this.editVacancyObject, `http://192.168.43.135:1337/api/vacancies/${this.model.id}/update`)
         .subscribe(() => {
-          alert('good');
         });
     }
     else {
-      console.log(this.model.id, this.worker);
       this.httpService.patchData({
         vacancyId: this.model.id,
         candidateId: this.worker
       }, `http://192.168.43.135:1337/api/vacancies/close`)
         .subscribe(() => {
-          alert('good');
         });
     }
 

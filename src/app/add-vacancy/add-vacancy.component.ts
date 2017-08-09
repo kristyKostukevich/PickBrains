@@ -113,7 +113,6 @@ export class AddVacancyComponent implements OnInit {
       this.model.workExperience.value,
       this.model.description.value,
     );
-    console.log(this.postVacancyInfo);
     this.httpService.postData(this.postVacancyInfo, 'http://192.168.43.135:1337/api/vacancies/new')
       .subscribe(() => {
         this.done = true;

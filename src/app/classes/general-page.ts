@@ -19,7 +19,6 @@ export class GeneralPage {
   description: InputModel;
 
   constructor(data: any, arrayOfCities: any[], arrayOfStatuses: any[], arrayOfSkills: any[], arrayOfLanguages: any[], arrayOfOtherSkills: any[], type: string) {
-    console.log(data);
     this.type = type;
     this.projectName = new InputModel(data.name, 'Project name');
     this.location = new SelectModel(data.city, 'Location', arrayOfCities);

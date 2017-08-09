@@ -84,7 +84,6 @@ export class MaxListComponent implements OnInit {
             });
           }
           this.list = new CardList(this.feedbacks);
-          console.log(this.list);
         },
         (error) => {
           console.log(error);
@@ -107,7 +106,6 @@ export class MaxListComponent implements OnInit {
             });
           }
           this.list = new CardList(this.feedbacks);
-          console.log(this.list);
         },
         (error) => {
           console.log(error);
@@ -134,7 +132,6 @@ export class MaxListComponent implements OnInit {
             });
           }
           this.list = new CardList(this.interviews);
-          console.log(this.list);
         },
         (error) => {
           console.log(error);

@@ -15,7 +15,7 @@ export class UserService {
   }
 
   init() {
-    this.user = this.httpService.getData(`http://192.168.43.31:1337/api/user`)
+    this.user = this.httpService.getData(`http://192.168.43.135:1337/api/user`)
       .map(data => data.json());
     this.name = this.user.map(data => `${data.firstName} ${data.secondName}`)
       .publishReplay(1).refCount();

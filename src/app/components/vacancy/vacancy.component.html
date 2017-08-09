@@ -1,18 +1,17 @@
-
-    <div class="vacancy-card">
-        <div class="first-block">
-            <div>
-                <a [routerLink]="['/','detail-vacancy',item.id]"><h4>{{item.name}}</h4></a>
-                <span class="date">{{item.requestDate | date: mediumTime }}</span>
-            </div>
-            <p>Project start: {{item.startDate | date: mediumTime}}</p>
+<div class="vacancy-card">
+    <div class="first-block">
+        <div>
+            <a [routerLink]="['/','detail-vacancy',item.id]"><h4>{{item.name}}</h4></a>
+            <span class="date">{{item.requestDate | date: mediumTime }}</span>
         </div>
-        <div class="second-block">
-            <span>{{item.status}}</span>
-            <div class="tags">
-                <span (click)="filterSend(item.skillName,'skillSmall')" class="tags-item">{{item.skillName}}</span>
-                <span (click)="filterSend(item.city,'citySmall')" class="tags-item">{{item.city}}</span>
-            </div>
+        <p>Project start: {{item.startDate | date: mediumTime}}</p>
+    </div>
+    <div class="second-block">
+        <span>{{item.status}}</span>
+        <div class="tags">
+            <span (click)="filterSend(item.skillName,'skillSmall')" class="tags-item">{{item.skillName}}</span>
+            <span (click)="filterSend(item.city,'citySmall')" class="tags-item">{{item.city}}</span>
         </div>
     </div>
+</div>
 

@@ -28,7 +28,6 @@ export class GeneralComponent implements OnChanges {
   }
 
   updateSecondarySkill(a, b, c) {
-    console.log(a, b, c);
   }
 
   addSecondarySkill() {

@@ -172,19 +172,16 @@ export class PersonListComponent implements OnInit {
         if (event.id.field === 'end') {
           this.waitArrayOfSalary[1] = +event.id.event;
         }
-        console.log(this.waitArrayOfSalary);
         if (this.waitArrayOfSalary[0] != -1 && this.waitArrayOfSalary[1] != -1 && this.waitArrayOfSalary[1] != '') {
           for (let i = 0; i < 2; i++)
             this.arrayOfSalary[i] = this.waitArrayOfSalary[i];
         }
-        console.log(this.arrayOfSalary);
         break;
       case 'citySmall':
         this.arrayOfCities.push(this.searchOfCountArray(this.arrayOfCitiesFromServer,event.id));
         this.arrayOfSkills = [];
         break;
       case 'skillSmall':
-        console.log('good');
         this.arrayOfSkills.push(this.searchOfCountArray(this.arrayOfSkillsFromServer,event.id));
         this.arrayOfCities = [];
         break;
@@ -205,7 +202,6 @@ export class PersonListComponent implements OnInit {
     this.httpService.postData(this.body, 'http://192.168.43.135:1337/api/candidates')
       .subscribe((res) => {
         this.persons = res.json();
-        console.log(this.persons);
         if (this.isLastItem())
           this.persons.pop();
         this.listItem = new CardList(this.persons, 'candidates');
