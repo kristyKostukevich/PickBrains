@@ -23,7 +23,8 @@ import { VacancyDetailModule } from './vacancy-detail-wrapper/vacancy-detail/vac
 import { CandidateDetailModule } from './candidate-detail-wrapper/candidate-detail/candidate-detail.module';
 import { HistoryModule } from './components/history/history.module';
 import { HistoryDetailModule } from './components/history-in-detail-view/history-detail.module';
-import { TechPageModule } from './tech-page/tech-page.module';
+import { InterviewListModule } from './tech-page/interview-list/interview-list.module';
+import { InterviewDetailModule } from './tech-page/interview-detail/interview-detail.module';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { TechPageModule } from './tech-page/tech-page.module';
     AssignCandidateModule,
     HistoryModule,
     HistoryDetailModule,
-    TechPageModule,
+    InterviewListModule,
+    InterviewDetailModule,
   ],
   declarations: [
     AppComponent,
