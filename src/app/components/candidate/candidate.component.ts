@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { CandidateCardItem } from '../../interfaces/candidate-card-item';
 
 @Component({
@@ -8,4 +8,10 @@ import { CandidateCardItem } from '../../interfaces/candidate-card-item';
 })
 export class CandidateComponent {
   @Input() item: CandidateCardItem;
+  @Output() onChanged = new EventEmitter<any>();
+
+  filterSend(elem,group){
+    this.onChanged.emit({id: elem,group : group});
+  }
+
 }

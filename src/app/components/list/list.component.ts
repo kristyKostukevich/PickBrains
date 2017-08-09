@@ -1,6 +1,6 @@
-import { Component, Input, OnChanges, HostListener, Inject, HostBinding } from '@angular/core';
+import { Component, Input, OnChanges, EventEmitter, Output } from '@angular/core';
 import { CardList } from '../../classes/card-list';
-import { Ng2FloatBtn } from 'ng2-float-btn';
+
 @Component({
   selector: 'list',
   templateUrl: 'list.component.html',
@@ -9,6 +9,7 @@ import { Ng2FloatBtn } from 'ng2-float-btn';
 export class ListComponent implements OnChanges{
   @Input() list: CardList;
   private initialiaze : boolean = false;
+  @Output() send = new EventEmitter<any>();
 
   ngOnChanges(){
     if(this.list) {
@@ -26,6 +27,10 @@ export class ListComponent implements OnChanges{
 
   isHistory() : boolean {
     return this.initialiaze && this.list.type === 'history';
+  }
+
+  onChanged(event){
+    this.send.emit(event);
   }
 
 }

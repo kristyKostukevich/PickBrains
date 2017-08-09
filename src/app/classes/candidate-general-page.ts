@@ -28,7 +28,7 @@ export class CandidateGeneralPage {
     this.location = new SelectModel(data.city, 'Location', arrayOfCities,undefined,undefined,'city');
     this.status = new SelectModel(data.status, 'Status', arrayOfStatuses,undefined,undefined,'status');
     this.primarySkill = new SelectModel(data.skillName, 'Primary Skill', arrayOfSkills.slice(0,20), data.primarySkillLvl,undefined,'skillName');
-    this.workExperience = new DatePickerModel(data.expYear, 'Work Experience',undefined,'expYear');
+    this.workExperience = new DatePickerModel(data.expYear, 'Work Experience',false,'expYear');
     this.secondarySkills = [];
     for (var key in data.secSkills) {
       this.secondarySkills[key] = new SelectModel(

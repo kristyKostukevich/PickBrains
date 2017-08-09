@@ -9,7 +9,7 @@ export class GeneralPage {
   requestDate: DatePickerModel;
   projectStartDate: DatePickerModel;
   status: SelectModel;
-  linkedIn: InputModel;
+  linkedin: InputModel;
   salaryWish: InputModel;
   primarySkill: SelectModel;
   workExperience: DatePickerModel;
@@ -29,7 +29,7 @@ export class GeneralPage {
     this.primarySkill = new SelectModel(data.skillName, 'Primary skill', arrayOfSkills);
     this.workExperience = new DatePickerModel(data.expYear, 'Work experience');
     this.englishLevel = new SelectModel(data.vacancyEnglishLvl, 'English level', arrayOfLanguages);
-    this.linkedIn = new InputModel(data.linkedin,'LinkedIn');
+    this.linkedin = new InputModel(data.linkedin,'LinkedIn');
     this.salaryWish = new InputModel(data.salaryWish,'Salary wish');
     this.secondarySkills = [];
     for (var key in data.secondarySkills) {
