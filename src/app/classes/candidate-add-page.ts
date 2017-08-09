@@ -37,7 +37,7 @@ export class CandidateAddPage {
     this.lastName = new InputModel(data.secondName, 'Last Name');
     this.location = new SelectModel(data.city, 'Location', arrayOfCities);
     this.status = new SelectModel(data.status, 'Status', arrayOfStatuses);
-    this.primarySkill = new SelectModel(data.skillName, 'Primary Skill', arrayOfSkills, 1);
+    this.primarySkill = new SelectModel(data.skillName, 'Primary Skill', arrayOfSkills.slice(0,20), 1);
     this.workExperience = new DatePickerModel(data.expYear, 'Work Experience');
     this.secondarySkills=[];
     this.nextSecondarySkill = new SelectModel('','Secondary skill',arrayOfSkills,1);

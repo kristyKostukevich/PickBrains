@@ -22,7 +22,9 @@ import { HttpService } from 'app/http-service/http-service';
   ],
   exports: [],
   declarations: [AddHrmFeedbackComponent],
-  providers: [HttpService],
+  providers: [
+    HttpService,
+  ],
 })
 export class AddHrmFeedbackModule {
 }

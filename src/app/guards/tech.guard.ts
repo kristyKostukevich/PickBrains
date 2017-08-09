@@ -15,7 +15,7 @@ export class TechGuard implements CanActivate {
     this.userService.type.subscribe(
       (data) => {
         if (data === 'TECH')
-          this.router.navigateByUrl('/tech-interview');
+          this.router.navigateByUrl('/inerviews');
       },
       (error) => {
         if (error === 401) {

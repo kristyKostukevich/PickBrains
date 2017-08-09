@@ -1,12 +1,13 @@
-<div class="menu-left" [ngClass]="{open: showMenuFlag}">
+<div class="menu-background" [ngClass]="{'back': showMenuFlag}" (click)="toggleMenuItem()"></div>
+<div class="menu-left" [ngClass]="{'open': showMenuFlag}">
     <div class="empty-block">
         <img src="../../../assets/menu-background.jpg">
     </div>
     <div class="menu-links">
         <a class="menu-item" md-button *ngFor="let menuItem of menuItems; let i = index"
-           [routerLink]="menuItems[i].link"
-           routerLinkActive="active" (click)="toggleMenuItem()">
+           [routerLink]="menuItems[i].link" routerLinkActive="active" (click)="toggleMenuItem()">
             {{menuItem.item}}
         </a>
     </div>
 </div>
+

@@ -10,11 +10,12 @@ export class UserService {
   realName: string;
 
   constructor(private httpService: HttpService) {
+    this.user = this.httpService.getData(`http://localhost:1337/api/user`)
     this.init();
   }
 
   init() {
-    this.user = this.httpService.getData(`http://192.168.43.31:1337/api/user`)
+    this.user = this.httpService.getData(`http://localhost:1337/api/user`)
       .map(data => data.json());
     this.name = this.user.map(data => `${data.firstName} ${data.secondName}`)
       .publishReplay(1).refCount();

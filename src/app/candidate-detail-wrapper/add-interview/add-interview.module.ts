@@ -22,7 +22,9 @@ import { RouterModule } from '@angular/router';
   declarations: [
     AddInterviewComponent,
   ],
-  providers: [HttpService],
+  providers: [
+    HttpService,
+  ],
 })
 export class AddInterviewModule {
 

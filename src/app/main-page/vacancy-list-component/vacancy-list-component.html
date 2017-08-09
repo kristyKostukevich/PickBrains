@@ -3,7 +3,7 @@
     <filter-vacancy class="scroll" (send)="send($event)"></filter-vacancy>
 </div>
 <div class="wrap">
-    <list [list]="listItem"></list>
+    <list [list]="listItem" (send)="send($event)"></list>
     <div class="float-button">
         <ng2-float-btn [mainButton]="mainButton" [buttons]="buttons"  [direction]="'up'">
         </ng2-float-btn>
