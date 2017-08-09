@@ -72,7 +72,7 @@ export class GeneralViewComponent implements OnInit {
   }
 
   getCandidateData() {
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/candidate-statuses')
+    this.httpService.getData('http://localhost:1337/api/meta-data/candidate-statuses')
       .subscribe((res) => {
         this.arrayOfStatuses = res.json();
         let index = 0;
@@ -82,7 +82,7 @@ export class GeneralViewComponent implements OnInit {
         }
       });
 
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/skills').subscribe((res) => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe((res) => {
       this.arrayOfSkills = res.json();
       let index = 0;
       for (let i of this.arrayOfSkills) {
@@ -90,7 +90,7 @@ export class GeneralViewComponent implements OnInit {
         index += 1;
       }
     });
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/english-levels')
+    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels')
       .subscribe((res) => {
         this.arrayOfLanguages = res.json();
         let index = 0;
@@ -99,7 +99,7 @@ export class GeneralViewComponent implements OnInit {
           index += 1;
         }
       });
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/locations').subscribe((res) => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe((res) => {
       this.arrayOfCities = res.json();
       let index = 0;
       for (let i of this.arrayOfCities) {
@@ -107,7 +107,7 @@ export class GeneralViewComponent implements OnInit {
         index += 1;
       }
     });
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/other-skills')
+    this.httpService.getData('http://localhost:1337/api/meta-data/other-skills')
       .subscribe((res) => {
         this.arrayOfOtherSkills = res.json();
         let index = 0;
@@ -117,7 +117,7 @@ export class GeneralViewComponent implements OnInit {
         }
       });
     this.httpService
-      .getData(`http://192.168.43.31:1337/api/candidates?id=${this.parentData.id}`)
+      .getData(`http://localhost:1337/api/candidates?id=${this.parentData.id}`)
       .subscribe((res) => {
         this.temp = res.json();
         this.model = new CandidateGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages, this.sendArrayOfOtherSkills, 'candidate');
@@ -125,7 +125,7 @@ export class GeneralViewComponent implements OnInit {
   }
 
   getVacancyData() {
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/vacancy-statuses')
+    this.httpService.getData('http://localhost:1337/api/meta-data/vacancy-statuses')
       .subscribe((res) => {
         this.arrayOfStatuses = res.json();
         let index = 0;
@@ -135,7 +135,7 @@ export class GeneralViewComponent implements OnInit {
         }
       });
 
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/skills').subscribe((res) => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe((res) => {
       this.arrayOfSkills = res.json();
       let index = 0;
       for (const i of this.arrayOfSkills) {
@@ -143,7 +143,7 @@ export class GeneralViewComponent implements OnInit {
         index += 1;
       }
     });
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/english-levels')
+    this.httpService.getData('http://localhost:1337/api/meta-data/english-levels')
       .subscribe((res) => {
         this.arrayOfLanguages = res.json();
         let index = 0;
@@ -152,7 +152,7 @@ export class GeneralViewComponent implements OnInit {
           index += 1;
         }
       });
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/locations')
+    this.httpService.getData('http://localhost:1337/api/meta-data/locations')
       .subscribe((res) => {
         this.arrayOfCities = res.json();
         let index = 0;
@@ -161,7 +161,7 @@ export class GeneralViewComponent implements OnInit {
           index += 1;
         }
       });
-    this.httpService.getData('http://192.168.43.31:1337/api/meta-data/other-skills')
+    this.httpService.getData('http://localhost:1337/api/meta-data/other-skills')
       .subscribe((res) => {
         this.arrayOfOtherSkills = res.json();
         let index = 0;
@@ -171,7 +171,7 @@ export class GeneralViewComponent implements OnInit {
         }
       });
     this.httpService
-      .getData(`http://192.168.43.31:1337/api/vacancies/${this.parentData.id}`)
+      .getData(`http://localhost:1337/api/vacancies/${this.parentData.id}`)
       .subscribe((data) => {
         this.temp = data.json();
         this.model = new VacancyGeneralPage(this.temp, this.sendArrayOfCities, this.sendArrayOfStatuses, this.sendArrayOfSkills, this.sendArrayOfLanguages, this.sendArrayOfOtherSkills, 'vacancy');
@@ -200,7 +200,7 @@ export class GeneralViewComponent implements OnInit {
   }
 
   onClickCandidate() {
-    this.httpService.patchData(this.editCandidateObject, `http://192.168.43.31:1337/api/candidates/edit?id=${this.model.id}`)
+    this.httpService.patchData(this.editCandidateObject, `http://localhost:1337/api/candidates/edit?id=${this.model.id}`)
       .subscribe(() => {
         alert('good');
       });
@@ -208,7 +208,7 @@ export class GeneralViewComponent implements OnInit {
 
   onClickVacancy() {
     console.log(this.editVacancyObject);
-    this.httpService.patchData(this.editVacancyObject, `http://192.168.43.31:1337/api/vacancies/${this.model.id}/update`)
+    this.httpService.patchData(this.editVacancyObject, `http://localhost:1337/api/vacancies/${this.model.id}/update`)
       .subscribe(() => {
         alert('good');
       });

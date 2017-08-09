@@ -21,7 +21,8 @@ import { AddTechFeedbackComponent } from 'app/candidate-detail-wrapper/add-tech-
 import { AddInterviewComponent } from 'app/candidate-detail-wrapper/add-interview/add-interview.component';
 import { DetailHrmFeedbackComponent } from 'app/candidate-detail-wrapper/detail-hrm-feedback/detail-hrm-feedback.component';
 import { DetailTechFeedbackComponent } from 'app/candidate-detail-wrapper/detail-tech-feedback/detail-tech-feedback.component';
-import { TechPageComponent } from './tech-page/tech-page.component';
+import { InterviewListComponent } from './tech-page/interview-list/interview-list.component';
+import { InterviewDetailComponent } from './tech-page/interview-detail/interview-detail.component';
 
 const candidateRoutes: Routes = [
   {
@@ -104,8 +105,12 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'tech-interview',
-    component: TechPageComponent,
+    path: 'inerviews',
+    component: InterviewListComponent,
+  },
+  {
+    path: 'interviews/:id',
+    component: InterviewDetailComponent,
   },
   {
     path: 'person-page',

@@ -1,0 +1,53 @@
+.interview-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, .03);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, .77);
+  display: flex;
+  flex-direction: row;
+  height: 130px;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 10px;
+  width: 100%;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.first-block {
+  @extend .block;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.second-block {
+  @extend .block;
+  align-items: flex-end;
+  text-align: right;
+}
+
+h4, p {
+  margin: 0;
+  color: #606060;
+}
+
+h4:hover{
+  color: #3f51b5;
+}
+
+p {
+  font-size: 12px;
+}
+
+span {
+  font-size: 13px;
+}
+
+.type {
+  color: rgba(0, 0, 0, .47);
+}

@@ -14,7 +14,7 @@ export class TechGuard implements CanActivate{
   Observable<boolean> | boolean {
     this.userService.type.subscribe(data => {
       if (data === 'TECH')
-        this.router.navigateByUrl('/tech-interview');
+        this.router.navigateByUrl('/inerviews');
     });
     return this.userService.type.map(data => ['admin', 'HRM'].indexOf(data) !== -1);
   }

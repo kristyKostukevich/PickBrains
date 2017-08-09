@@ -1,0 +1,15 @@
+<div class="interview-card">
+    <div class="first-block">
+        <div>
+            <a [routerLink]="['/', 'interviews', item.id]"><h4>{{item.vacancyName}}</h4></a>
+            <span class="type">Interview with {{item.candidateName}} </span>
+        </div>
+        <p>{{item.date | date: 'dd.MM.y'}}, {{item.date | date: 'H.mm'}}</p>
+    </div>
+    <div class="second-block">
+        <span>{{item.done}}</span>
+        <a style="background-color: rgb(224, 224, 224); box-shadow: none" md-raised-button
+           [routerLink]="[]">Add feedback</a>
+    </div>
+</div>
+

@@ -6,6 +6,6 @@
            [mdDatepicker]="picker"
            [placeholder]="model.placeholder"
            [disabled]="model.disabled">
-    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    <button mdSuffix [mdDatepickerToggle]="picker" [disabled]="model.readOnly"></button>
 </md-input-container>
-<md-datepicker touchUi="true" [disabled]="model.readOnly" #picker></md-datepicker>
+<md-datepicker touchUi="true" #picker></md-datepicker>
