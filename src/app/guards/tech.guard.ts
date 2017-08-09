@@ -5,17 +5,24 @@ import { UserService } from '../core-service/user.service';
 
 
 @Injectable()
-export class TechGuard implements CanActivate{
+export class TechGuard implements CanActivate {
 
   constructor(private userService: UserService,
               private router: Router) {
   }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-  Observable<boolean> | boolean {
-    this.userService.type.subscribe(data => {
-      if (data === 'TECH')
-        this.router.navigateByUrl('/inerviews');
-    });
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
+    this.userService.type.subscribe(
+      (data) => {
+        if (data === 'TECH')
+          this.router.navigateByUrl('/inerviews');
+      },
+      (error) => {
+        if (error === 401) {
+          this.router.navigateByUrl('/login');
+          return true;
+        }
+      });
     return this.userService.type.map(data => ['admin', 'HRM'].indexOf(data) !== -1);
   }
 

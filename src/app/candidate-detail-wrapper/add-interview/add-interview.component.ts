@@ -5,6 +5,7 @@ import { ComponentsData } from '../../interfaces/components-data';
 import { HttpService } from '../../http-service/http-service';
 import { Observable } from 'rxjs/Rx';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Response } from '@angular/http';
 
 @Component({
   selector: 'add-interview',

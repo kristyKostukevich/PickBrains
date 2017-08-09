@@ -4,7 +4,7 @@
 </div>
 <div class="wrap">
     <global-search (sendSearchLine)="sendSearchLine($event)" ></global-search>
-    <list style="top: 100px;"  [list]="listItem"></list>
+    <list style="top: 100px;"  [list]="listItem" (send)="send($event)"></list>
     <div class="float-button">
         <ng2-float-btn [mainButton]="mainButton" [buttons]="buttons"  [direction]="'up'">
         </ng2-float-btn>

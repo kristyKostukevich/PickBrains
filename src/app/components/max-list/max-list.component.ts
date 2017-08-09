@@ -166,7 +166,6 @@ export class MaxListComponent implements OnInit {
   getPotentialCandidates() {
     this.httpService.getData(`http://localhost:1337/api/vacancies/${this.parentData.id}/candidates`)
       .subscribe((res) => {
-          console.log(res.json());
           const temp = res.json();
           for (const i of temp) {
             this.candidates.push({

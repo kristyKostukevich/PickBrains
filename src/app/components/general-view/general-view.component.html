@@ -4,6 +4,8 @@
     <date-picker [(model)]="model.requestDate" (modelChange)="onModelChange($event)"></date-picker>
     <date-picker [(model)]="model.projectStartDate" (modelChange)="onModelChange($event)"></date-picker>
     <select-component [(model)]="model.status" (modelChange)="onModelChange($event)"></select-component>
+    <select-component *ngIf="isClose()" [(model)]="model.candidates"
+                      (modelChange)="onModelChange($event)"></select-component>
     <select-mark-component [(model)]="model.primarySkill" (modelChange)="onModelChange($event)"></select-mark-component>
     <date-picker [(model)]="model.workExperience" (modelChange)="onModelChange($event)"></date-picker>
     <select-component [(model)]="model.englishLevel" (modelChange)="onModelChange($event)"></select-component>

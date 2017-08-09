@@ -107,7 +107,7 @@ export class AddVacancyComponent implements OnInit {
       this.model.secondarySkills,
       this.model.otherSkills,
       this.searchOfCountArray(this.arrayOfLanguages, this.model.englishLevel.value),
-      this.model.linkedIn.value,
+      this.model.linkedin.value,
       +this.model.salaryWish.value,
       this.model.startDate.value,
       this.model.workExperience.value,
@@ -131,7 +131,7 @@ export class PostVacancyInfo {
   secondarySkills: SkillsFields[];
   otherSkills: any[];
   englishLvl: number;
-  linkedIn: string;
+  linkedin: string;
   salaryWish: number;
   startDate: Date;
   expYear: Date;
@@ -171,7 +171,7 @@ export class PostVacancyInfo {
       count++;
     }
     this.englishLvl = englishLevel;
-    this.linkedIn = linkedIn;
+    this.linkedin = linkedIn;
     this.salaryWish = salaryWish;
     this.startDate = startDate;
     this.expYear = workExperience;
