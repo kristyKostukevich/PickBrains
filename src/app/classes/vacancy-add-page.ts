@@ -13,7 +13,7 @@ export class VacancyAddPage {
   otherSkills: SelectModel [];
   englishLevel: SelectModel;
   salaryWish: InputModel;
-  linkedIn: InputModel;
+  linkedin: InputModel;
   startDate: DatePickerModel;
   workExperience: DatePickerModel;
   nextSecondarySkill: SelectModel;
@@ -26,14 +26,14 @@ export class VacancyAddPage {
     this.projectName = new InputModel('', 'Project name');
     this.location = new SelectModel('', 'Location', arrayOfCities);
     this.status = new SelectModel('', 'Status', arrayOfStatuses);
-    this.primarySkill = new SelectModel('', 'Primary Skill', arrayOfSkills, 1);
+    this.primarySkill = new SelectModel('', 'Primary Skill', arrayOfSkills.slice(0,20), 1);
     this.secondarySkills=[];
     this.nextSecondarySkill = new SelectModel('','Secondary skill',arrayOfSkills,1);
     this.otherSkills = [];
     this.nextOtherSkill = new SelectModel('','Other skill',arrayOfOtherSkills);
     this.englishLevel = new SelectModel('', 'English Level', arrayOfLanguages);
     this.salaryWish = new InputModel('','Salary wish');
-    this.linkedIn = new InputModel('','LinkedIn');
+    this.linkedin = new InputModel('','LinkedIn');
     this.startDate = new DatePickerModel(data.startDate, 'Start date');
     this.workExperience = new DatePickerModel(data.expYear, 'Work Experience');
     this.description = new InputModel('','Description of vacancy')

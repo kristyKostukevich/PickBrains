@@ -24,7 +24,7 @@ export class DetailHrmFeedbackComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.httpService.getData(`http://192.168.43.31:1337/api/candidate/hrm-feedbacks/detailed-view?id=${this.feedbackId}`)
+    this.httpService.getData(`http://192.168.43.135:1337/api/candidate/hrm-feedbacks/detailed-view?id=${this.feedbackId}`)
       .subscribe((res) => {
         this.getFeedbackData(res.json());
       });

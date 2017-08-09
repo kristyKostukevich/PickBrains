@@ -1,9 +1,9 @@
 <div *ngIf="isVacancies()">
-    <vacancy-card class="listItem" *ngFor="let item of list.data" [item]="item">
+    <vacancy-card class="listItem" *ngFor="let item of list.data" [item]="item" (onChanged)="onChanged($event)">
     </vacancy-card>
 </div>
-<div style="top: 100px;" *ngIf="isCandidates()" >
-    <candidate-card class="listItem" *ngFor="let item of list.data" [item]="item">
+    <div style="top: 100px;" *ngIf="isCandidates()" >
+    <candidate-card class="listItem" *ngFor="let item of list.data" [item]="item" (onChanged)="onChanged($event)" >
     </candidate-card>
 </div>
 <div *ngIf="isHistory()">
