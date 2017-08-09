@@ -10,7 +10,7 @@ export class UserService {
   realName: string;
 
   constructor(private httpService: HttpService) {
-    this.user = this.httpService.getData(`http://192.168.43.135:1337/api/user`)
+    this.user = this.httpService.getData(`http://localhost:1337/api/user`)
     this.init();
   }
 

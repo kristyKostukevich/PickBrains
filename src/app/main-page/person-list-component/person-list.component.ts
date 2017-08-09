@@ -66,7 +66,7 @@ export class PersonListComponent implements OnInit {
         color: "accent",
         iconName: "file_download",
         onClick: () => {
-          window.open(`http://192.168.43.135:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities, 'city', true)}${this.makeQuery(this.arrayOfStatuses, 'status', false)}${this.makeQuery(this.arrayOfSkills, 'primarySkill', false)}${this.makeQuery(this.arrayOfLanguages, 'englishLvl', false)}${this.makeQuery(this.arrayOfSalary, 'salaryWish', false)}&expYear=${this.date.getTime()}`);
+          window.open(`http://localhost:1337/api/candidates/report?${this.makeQuery(this.arrayOfCities, 'city', true)}${this.makeQuery(this.arrayOfStatuses, 'status', false)}${this.makeQuery(this.arrayOfSkills, 'primarySkill', false)}${this.makeQuery(this.arrayOfLanguages, 'englishLvl', false)}${this.makeQuery(this.arrayOfSalary, 'salaryWish', false)}&expYear=${this.date.getTime()}`);
           window.close();
         },
         label: "File"
@@ -75,16 +75,16 @@ export class PersonListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.postData({skip: 0, amount: this.countOfElements}, 'http://192.168.43.135:1337/api/candidates')
+    this.httpService.postData({skip: 0, amount: this.countOfElements}, 'http://localhost:1337/api/candidates')
       .subscribe((res) => {
         this.persons = res.json();
         this.listItem = new CardList(this.persons, 'candidates');
         this.urlAdress = this.route.snapshot.url[0].path;
       });
-    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/locations').subscribe((res) => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/locations').subscribe((res) => {
       this.arrayOfCitiesFromServer = res.json();
     });
-    this.httpService.getData('http://192.168.43.135:1337/api/meta-data/skills').subscribe((res) => {
+    this.httpService.getData('http://localhost:1337/api/meta-data/skills').subscribe((res) => {
       this.arrayOfSkillsFromServer = res.json();
     });
 
